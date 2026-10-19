@@ -1,0 +1,8 @@
+{
+  "discord_token": "ТОКЕН_ТВОЕГО_БОТА",
+  "channel_id": "ID_КАНАЛА_КУДА_ПРИХОДЯТ_ОБНОВЛЕНИЯ",
+  "github_token": "GITHUB_ТОКЕН",
+  "github_repo": "obtupok/mm2-values",
+  "github_path": "values.json",
+  "github_branch": "main"
+}

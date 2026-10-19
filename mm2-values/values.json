@@ -1,0 +1,10188 @@
+{
+ "categories": {
+  "ancients": [
+   "Nik's Scythe",
+   "Gingerscope",
+   "Traveler's Axe",
+   "Celestial",
+   "Vampire's Axe",
+   "Harvester",
+   "Icepiercer",
+   "Icebreaker",
+   "Batwing",
+   "Elderwood Scythe",
+   "Swirly Axe",
+   "Hallowscythe",
+   "Logchopper",
+   "Icewing"
+  ],
+  "chromas": [
+   "C. Traveler's Gun",
+   "Chroma Evergun",
+   "Chroma Evergreen",
+   "Chroma Bauble",
+   "C. Constellation",
+   "C. Vampire's Gun",
+   "Chroma Alienbeam",
+   "Chroma Raygun",
+   "Chroma Sunrise",
+   "Chroma Snowcannon",
+   "Chroma Sunset",
+   "Chroma Blizzard",
+   "Chroma Snowstorm",
+   "Chroma Heart Wand",
+   "Chroma Snow Dagger",
+   "Chroma Watergun",
+   "Chroma Icecream",
+   "Chroma Ornament",
+   "Chroma Treat",
+   "Chroma Sweet",
+   "Chroma Sands",
+   "Chroma Beachy",
+   "Chroma Darkbringer",
+   "Chroma Lightbringer",
+   "Chroma Luger",
+   "Chroma Candleflame",
+   "Chroma Laser",
+   "C. Elderwood Blade",
+   "Chroma Deathshard",
+   "Chroma Swirly Gun",
+   "Chroma Cookiecane",
+   "Chroma Fang",
+   "Chroma Gemstone",
+   "Chroma Shark",
+   "Chroma Slasher",
+   "Chroma Heat",
+   "Chroma Seer",
+   "Chroma Gingerblade",
+   "Chroma Tides",
+   "Chroma Saw",
+   "Chroma Boneblade",
+   "Chroma Fire Bat",
+   "Chroma Fire Bear",
+   "Chroma Fire Bunny",
+   "Chroma Fire Cat",
+   "Chroma Fire Dog",
+   "Chroma Fire Fox",
+   "Chroma Fire Pig"
+  ],
+  "commons": [
+   "Default Knife",
+   "Default Gun",
+   "Glitch1",
+   "Glitch2",
+   "Bats (Knife)",
+   "Gifts (Knife)",
+   "Ghoulish",
+   "Pine (Knife)",
+   "Mummified",
+   "Frosted (Knife)",
+   "Snowflakes (Gun)",
+   "Wrapped (Gun)",
+   "Sparkle9",
+   "Snowman (Gun)",
+   "Webbed (Gun)",
+   "CandyCorn (2017)",
+   "Ecto",
+   "Elf (2018)",
+   "Slimy",
+   "Sparkle10",
+   "Sparkle8",
+   "Sparkle7",
+   "RIP",
+   "Coal (Knife)",
+   "Elf (Knife)",
+   "Candy Corn (2019)",
+   "Pumpkin (2019)",
+   "Prism",
+   "Sparkle6",
+   "Combat II",
+   "Phantom",
+   "Zombie",
+   "Sparkle4",
+   "Skool",
+   "Sparkle5",
+   "Tailslide",
+   "Starry",
+   "Alex",
+   "Corl",
+   "Denis",
+   "Euro",
+   "Ollie",
+   "Sidewinder",
+   "Sketchy",
+   "Sub",
+   "Apocalypse (Gun)",
+   "Bats (2020)",
+   "Infected (Gun)",
+   "Ghosty",
+   "Sparkle1",
+   "Sparkle2",
+   "Sparkle3",
+   "Asteroid",
+   "Grind",
+   "Indy",
+   "Slashed",
+   "Bats (Gun)",
+   "Grave (Gun)",
+   "Grave (Knife)",
+   "Haunted (Gun)",
+   "Haunted (Knife)",
+   "Slime (Gun)",
+   "Slime (Knife)",
+   "Apocalypse (Knife)",
+   "Frosted (Gun)",
+   "Infected (Knife)",
+   "Webbed (Knife)",
+   "2015",
+   "Blossom",
+   "Bunny",
+   "Carrot",
+   "Choco",
+   "Egg",
+   "Elf (Gun)",
+   "Goo",
+   "Hearts",
+   "Ornament",
+   "Ornament1",
+   "Ornament2 (Gun)",
+   "Ornament2 (Knife)",
+   "Passion",
+   "Patrick",
+   "Reptile",
+   "Roses",
+   "Santa (Gun)",
+   "Santa (Knife)",
+   "Sweetheart",
+   "Tulip",
+   "Valentine",
+   "Bones",
+   "Brains",
+   "Witch",
+   "Gift Bag (Knife)",
+   "Hunter",
+   "Infected",
+   "Neon",
+   "TNL",
+   "Gifts (Gun)",
+   "Ribbons",
+   "Snowflakes (Knife)",
+   "Pine (Gun)",
+   "RB Knife",
+   "Cane (Gun)",
+   "Etched",
+   "Ornaments (Gun)",
+   "Moon",
+   "Love (2023)",
+   "Scarf",
+   "Candied (Knife)",
+   "Cracks (Gun)",
+   "Darkness (Knife)",
+   "Webs",
+   "Fragile (Gun)",
+   "Fragile (Knife)",
+   "Gift Bag (Gun)",
+   "Ornaments (Knife)",
+   "Stockings",
+   "Toy (Knife)",
+   "Trees",
+   "Aliens",
+   "Coal (Gun)",
+   "Ghosts (2023)",
+   "Pumpkin (2023)",
+   "Vines (Knife)",
+   "Cat",
+   "Ribbon",
+   "Santa (2023)",
+   "Toy (Gun)",
+   "Penguin",
+   "Reindeer",
+   "Candied (Gun)",
+   "Candle",
+   "Candy Corn (Gun)",
+   "Candy Corn (Knife)",
+   "Cane (Knife)",
+   "Carved (Gun)",
+   "Coal",
+   "Cracks (Knife)",
+   "Darkness (Gun)",
+   "Elf (2017)",
+   "Frozen (Knife)",
+   "Present",
+   "Present (2023)",
+   "Santa",
+   "Santa (2018)",
+   "Snowman (Knife)",
+   "Watcher (Gun)",
+   "Wrapped (Knife)",
+   "Stickers (Gun)",
+   "Stickers (Knife)",
+   "Wavy (Knife)",
+   "Candles",
+   "Carrots",
+   "Cats",
+   "Chick",
+   "Clownfish (Knife)",
+   "Gifts (2024)",
+   "Haunted (2025)",
+   "Hot Chocolate",
+   "Igloo (Gun)",
+   "UFOs (Knife)",
+   "Wavy (Gun)",
+   "Carved (Knife)",
+   "Giftwrap",
+   "Haunted",
+   "Watcher (Knife)",
+   "Eyeball",
+   "Balloons",
+   "Bells",
+   "Cherries",
+   "Clownfish (Gun)",
+   "Coconut",
+   "Dolphins",
+   "Duckies",
+   "Elf (2023)",
+   "Fall",
+   "Frozen (Gun)",
+   "Ghosts (2024)",
+   "Hearts (2026)",
+   "Igloo (Knife)",
+   "Leaves",
+   "Lights (Gun)",
+   "Lights (Knife)",
+   "Peppermint (Gun)",
+   "Peppermint (Knife)",
+   "Plaid",
+   "Sand",
+   "Sandy (Gun)",
+   "Skyline",
+   "Snowball (Gun)",
+   "Snowball (Knife)",
+   "Snowfall",
+   "Spider (2023)",
+   "Starfish (Gun)",
+   "Starfish (Knife)",
+   "Stickers",
+   "Stockings (2024)",
+   "Strawberries (Gun)",
+   "Strawberries (Knife)",
+   "Striped (Gun)",
+   "Striped (Knife)",
+   "Tourist",
+   "UFOs (Gun)",
+   "Vines (Gun)",
+   "Wood",
+   "Xbox",
+   "Clown (Gun)",
+   "Clown (Knife)",
+   "8Bit",
+   "Aqua",
+   "Big Kill",
+   "Bit",
+   "Bleached",
+   "Borders",
+   "Brown",
+   "Cardboard",
+   "Cherry",
+   "Clan",
+   "Cold",
+   "Combat",
+   "Copper",
+   "Eco",
+   "Engraved",
+   "Fallout",
+   "Green",
+   "Hardened",
+   "HL2",
+   "Ice",
+   "Infiltrator",
+   "Iron",
+   "Juice",
+   "Leaf",
+   "Linked",
+   "Log",
+   "Love (Knife)",
+   "Lovely",
+   "News",
+   "Oily",
+   "Orange",
+   "Pea",
+   "Sandy",
+   "Shaded",
+   "Slate",
+   "Splat",
+   "Splatter",
+   "Stainless",
+   "Star",
+   "Static",
+   "Whiteout",
+   "Yellow"
+  ],
+  "godlies": [
+   "Traveler's Gun",
+   "Evergun",
+   "Evergreen",
+   "Constellation",
+   "Alienbeam",
+   "Raygun",
+   "Vampire's Gun",
+   "Turkey",
+   "Darkshot",
+   "Darksword",
+   "Blossom",
+   "Sakura",
+   "Sunrise",
+   "Bauble",
+   "Snowcannon",
+   "Soul",
+   "Spirit",
+   "Sunset",
+   "Xenoknife",
+   "Xenoshot",
+   "Rainbow Gun",
+   "Flora",
+   "Rainbow",
+   "Bloom",
+   "Batwing",
+   "Heart Wand",
+   "Blizzard",
+   "Snowstorm",
+   "Ocean",
+   "Flowerwood Gun",
+   "Waves",
+   "Flowerwood",
+   "Snow Dagger",
+   "Icecream",
+   "Treat",
+   "Watergun",
+   "Sweet",
+   "Borealis",
+   "Australis",
+   "Bat",
+   "Beachy",
+   "Sands",
+   "Pearlshine",
+   "Candy",
+   "Pearl",
+   "Heartblade",
+   "Ornament",
+   "Phantom",
+   "Red Luger",
+   "Spectre",
+   "Candleflame",
+   "Darkbringer",
+   "Elderwood Blade",
+   "Elderwood Revolver",
+   "Iceblaster",
+   "Makeshift",
+   "Lightbringer",
+   "Sugar",
+   "Green Luger",
+   "Amerilaser",
+   "Laser",
+   "Hallowgun",
+   "Nightblade",
+   "Shark",
+   "Icebeam",
+   "Luger",
+   "Plasmabeam",
+   "Swirly Gun",
+   "Battleaxe II",
+   "Blaster",
+   "Ginger Luger",
+   "Pixel",
+   "Gemstone",
+   "Iceflake",
+   "Old Glory",
+   "Plasmablade",
+   "Slasher",
+   "Vampire's Edge",
+   "Cookiecane",
+   "Deathshard",
+   "Eternalcane",
+   "Gingerblade",
+   "Jinglegun",
+   "Lugercane",
+   "Minty",
+   "Nebula",
+   "Virtual",
+   "Battleaxe",
+   "Gingermint",
+   "Swirly Blade",
+   "Chill",
+   "Clockwork",
+   "Fang",
+   "Frostsaber",
+   "Heat",
+   "Spider",
+   "Tides",
+   "Bioblade",
+   "Eternal III",
+   "Eternal IV",
+   "Hallow's Blade",
+   "Hallow's Edge",
+   "Handsaw",
+   "Boneblade",
+   "Eternal",
+   "Eternal II",
+   "Frostbite",
+   "Ghostblade",
+   "Ice Dragon",
+   "Ice Shard",
+   "Prismatic",
+   "Pumpking",
+   "Saw",
+   "Xmas",
+   "Eggblade",
+   "Flames",
+   "Snowflake",
+   "Winter's Edge",
+   "Peppermint",
+   "Cookieblade",
+   "Blue Seer",
+   "Purple Seer",
+   "Red Seer",
+   "Seer",
+   "Orange Seer",
+   "Yellow Seer"
+  ],
+  "legendaries": [
+   "Latte (Gun)",
+   "Latte (Knife)",
+   "Spectral (Knife)",
+   "Traveler (Gun)",
+   "Aurora (Gun)",
+   "Vampire (Gun)",
+   "Beach",
+   "Cotton Candy",
+   "JD",
+   "Bunnies",
+   "Golden",
+   "Shadow",
+   "Arctic (Gun)",
+   "Cavern (Knife)",
+   "Broken",
+   "Icedriller",
+   "Nightsky",
+   "Ghost (Knife)",
+   "Ginger (Gun)",
+   "Red Scratch",
+   "Skulls",
+   "Aurora (Knife)",
+   "Spectral (Gun)",
+   "Traveler (Knife)",
+   "Vampire (Knife)",
+   "Witched",
+   "Blue Elite",
+   "Green Elite",
+   "Santa's Magic",
+   "Santa's Spirit",
+   "Energized (Gun)",
+   "Frostfade (Knife)",
+   "Blue Scratch",
+   "Ghost (Gun)",
+   "Chromatic (Knife)",
+   "Icecracker",
+   "Red Fire",
+   "Cavern (Gun)",
+   "Arctic (Knife)",
+   "Chromatic (Gun)",
+   "Cursed (Knife)",
+   "Emerald",
+   "Energized (Knife)",
+   "Frozen (Gun)",
+   "Nightstar",
+   "Overseer (Gun)",
+   "Predator (Knife)",
+   "Ripper (Knife)",
+   "Rupture",
+   "Tree (Gun)",
+   "Tree (Knife)",
+   "Web",
+   "Green Fire",
+   "Aquarium (Gun)",
+   "Cursed (Gun)",
+   "Frostfade (Gun)",
+   "Frozen (Knife)",
+   "Midnight",
+   "Palms (Gun)",
+   "Sparkle",
+   "Bubbles",
+   "Cupid",
+   "Ginger (Knife)",
+   "Ripper (Gun)",
+   "Aquarium (Knife)",
+   "Palms (Knife)",
+   "Overseer (Knife)",
+   "Predator (Gun)",
+   "Rune",
+   "Universe",
+   "Viper",
+   "Fade",
+   "Fusion",
+   "Plasmite",
+   "Shiny",
+   "Splash (Knife)",
+   "Elite",
+   "Splash (Gun)"
+  ],
+  "misc": [
+   "Mystery Key",
+   "Blue Papers",
+   "Box of Fertilizer",
+   "Gold Papers",
+   "Green Papers",
+   "Purple Papers",
+   "Red Papers",
+   "Ultra Wrap",
+   "Gifts 2015",
+   "Snowflake Key",
+   "Skeleton Key",
+   "Candies (2016)",
+   "Candies (2017)"
+  ],
+  "pets": [
+   "Zombie Dog",
+   "Elf (2019)",
+   "Blue Pumpkin",
+   "Dogey",
+   "Red Pumpkin",
+   "Black Cat",
+   "Green Pumpkin",
+   "Mr. Reindeer",
+   "Piggy",
+   "Pumpkin (2017)",
+   "Elf",
+   "Mr. Snowman",
+   "Skully",
+   "<3",
+   "Shadow Pumpkin",
+   "Nobledragon",
+   "Snowbear",
+   "Chilly",
+   "Eyeball",
+   "Fairy",
+   "Jetstream",
+   "Mechbug",
+   "Overseer Eye",
+   "Pengy",
+   "Purple Pumpkin",
+   "Reindeer",
+   "Rudolph",
+   "Seahorsey",
+   "Tankie",
+   "UFO",
+   "Vampire Bat",
+   "Lil' Alien",
+   "Badger",
+   "Carrot Bunny",
+   "Deathspeaker",
+   "Electro",
+   "Frostbird",
+   "Ice Phoenix",
+   "Icey",
+   "Phoenix",
+   "Sammy",
+   "Skelly",
+   "Steambird",
+   "Traveller",
+   "Pumpkin (2018)",
+   "Fire Bat",
+   "Fire Bear",
+   "Fire Bunny",
+   "Fire Cat",
+   "Fire Dog",
+   "Fire Fox",
+   "Fire Pig",
+   "Scarecrow",
+   "Teddy",
+   "Pumpkin (2019)",
+   "Bat",
+   "Santa Dog",
+   "Elitey",
+   "Bear",
+   "Fox",
+   "Pig",
+   "Pumpkin (2020)",
+   "Cat",
+   "Dog",
+   "Pumpkin (2021)",
+   "Santa (2019)",
+   "Bunny",
+   "Snowman",
+   "Ghosty"
+  ],
+  "rares": [
+   "Cane (Knife)",
+   "Dungeon",
+   "Darkknife",
+   "Silent Night (Knife)",
+   "Makeshift (Knife)",
+   "Zombified",
+   "Starry (Gun)",
+   "Swirl",
+   "Watcher (Gun)",
+   "Magma (Gun)",
+   "Silent Night (Gun)",
+   "Snowflakes",
+   "Cowboy",
+   "Laser",
+   "Phaser",
+   "Prince",
+   "Floral (Knife)",
+   "Ghostfire",
+   "Ghastly (Gun)",
+   "Aurora (Knife)",
+   "Toxic (Knife)",
+   "Wraith (Knife)",
+   "Icicles (Gun)",
+   "Jack",
+   "Snakebite (Knife)",
+   "Vampire (Gun)",
+   "Magma",
+   "Candy Swirl (Gun)",
+   "Sun",
+   "Bats",
+   "Green Marble",
+   "Orange Marble",
+   "Toxic (Gun)",
+   "Darkgun",
+   "Gingerbread",
+   "Monster",
+   "Aurora (Gun)",
+   "Candy Swirl (Knife)",
+   "Snakebite (Gun)",
+   "Vampire (Knife)",
+   "Gingerbread (Gun)",
+   "Starry (Knife)",
+   "Cane (Gun)",
+   "Ginger (Gun)",
+   "Ginger (Knife)",
+   "Mummy",
+   "Nuke",
+   "Magma (Knife)",
+   "Watcher (Knife)",
+   "Snowy",
+   "Icicles (Knife)",
+   "Ghastly (Knife)",
+   "Ice Camo",
+   "Logcutter",
+   "Molten (Gun)",
+   "Molten (Knife)",
+   "Butterflies",
+   "Heart",
+   "Neon",
+   "Candleflame (Gun)",
+   "Damp",
+   "Frostflame (Knife)",
+   "Gingerbread (Knife)",
+   "Nether",
+   "Painted (Knife)",
+   "Spitfire",
+   "Storm",
+   "Wraith (Gun)",
+   "Tree (2023)",
+   "Tree (Knife)",
+   "Bio",
+   "Bones (Knife)",
+   "Curse",
+   "Frostflame (Gun)",
+   "Ghosts (Gun)",
+   "Gingercookie (Knife)",
+   "Hologram (Gun)",
+   "Pop Art (Knife)",
+   "Spearmint (Gun)",
+   "Xeno (Knife)",
+   "Pier",
+   "Sunset",
+   "Sunny",
+   "Tropical",
+   "Hologram (Knife)",
+   "Portal (Knife)",
+   "Tree (Gun)",
+   "Xeno (Gun)",
+   "Kraken",
+   "Ritual",
+   "Snowflake",
+   "Snowglobe",
+   "Floral (Gun)",
+   "Gingercookie (Gun)",
+   "Heartbreak",
+   "Pop Art (Gun)",
+   "Robot",
+   "Sharky",
+   "Sleigh",
+   "Spearmint (Knife)",
+   "Spring",
+   "Waves",
+   "Yummy",
+   "Black",
+   "Abstract",
+   "Ace",
+   "Bacon",
+   "Galactic",
+   "Galaxy",
+   "Hacker",
+   "Imbued",
+   "iRevolver",
+   "Korblox",
+   "Krypto",
+   "Musical",
+   "Nightfire",
+   "Nova",
+   "Purple",
+   "Rainbow (Gun)",
+   "Rainbow (Knife)",
+   "Space",
+   "Spectrum",
+   "Squire",
+   "Vortex",
+   "Deep Sea"
+  ],
+  "sets": [
+   "Chroma Ever Set",
+   "Chroma Alien Set",
+   "Chroma Bauble Set",
+   "Chroma Sun Set",
+   "Chroma Snow Set",
+   "Chroma Blizzard Set",
+   "Chroma Sweet Set",
+   "Chroma Beach Set",
+   "Chroma Bringer Set",
+   "Chroma Slasher Set",
+   "Chroma Pet Set",
+   "Traveler's Set",
+   "Ever Set",
+   "Celestial Set",
+   "Alien Set",
+   "Dark Set",
+   "Vampire's Set",
+   "Sakura Set",
+   "Sun Set",
+   "Soul Set",
+   "Snow Set",
+   "Xeno Set",
+   "Rainbow Set",
+   "Bloom Set",
+   "Bauble Set",
+   "Blizzard Set",
+   "Ocean Set",
+   "Flowerwood Set",
+   "Bow Set",
+   "Corrupt Set",
+   "Sweet Set",
+   "Borealis Set",
+   "Full Ice Set",
+   "Beach Set",
+   "Bat Set",
+   "Pearl Set",
+   "Candy Set",
+   "Full Elderwood Set",
+   "Ice Set",
+   "Elderwood Set",
+   "Spectre Set",
+   "Full Swirly Set",
+   "Bringer Set",
+   "Swirly Set",
+   "Hallow Set",
+   "Old Glory Set",
+   "Slasher Set",
+   "Iceflake Set",
+   "Plasma Set",
+   "Logchopper Set",
+   "Ginger Set (Godly)",
+   "Virtual Set",
+   "Eternalcane Set",
+   "Cookie Set",
+   "Pumpkin Set",
+   "Latte Set",
+   "Bats Set",
+   "Zombified Set",
+   "Gingerbread Set",
+   "Dark Set (Rare)",
+   "Silent Night Set",
+   "Spectral Set",
+   "Traveler Set",
+   "Aurora Set (Legend.)",
+   "Vampire Set (Legend.)",
+   "Pumpkin Set (2020)",
+   "Pumpkin Set (2021)",
+   "Wrap Set",
+   "Aurora Set (Rare)",
+   "Cavern Set",
+   "Toxic Set",
+   "Ghost Set",
+   "Pumpkin Set (2019)",
+   "Icedriller Set",
+   "Full Elite Set",
+   "Santa's Set (Legend.)",
+   "Scratch Set",
+   "Zombie Set",
+   "Eye Set",
+   "Snakebite Set",
+   "Vampire Set (Rare)",
+   "Frozen Set",
+   "Marble Set",
+   "Potion Set",
+   "Candy Swirl Set",
+   "Lights Set",
+   "Mummy Set",
+   "Grave Set",
+   "Haunted Set",
+   "Slime Set",
+   "Full Bringer Set",
+   "Full Luger Set",
+   "Sparkle Set",
+   "Luger Set",
+   "Retro Set",
+   "Vintage Set",
+   "Full Colored Seer Set",
+   "Eternal Set",
+   "Skate Set",
+   "Pals Set",
+   "Colored Seer Set",
+   "Wrapping Paper Set",
+   "Small Set (107)",
+   "Small Set (103)",
+   "Full Chroma Set",
+   "Chroma Weapon Set"
+  ],
+  "uncommons": [
+   "Bones",
+   "Brains",
+   "Zombified (Knife)",
+   "Gingerbread (Knife)",
+   "Sweater (Knife)",
+   "Snowflake (Knife)",
+   "Branches",
+   "Mummy (2017)",
+   "Skulls",
+   "Zombified (Gun)",
+   "Void",
+   "Wrap (Gun)",
+   "Wrap (Knife)",
+   "Ghost",
+   "Steel (Gun)",
+   "Gothic (Gun)",
+   "Zombie",
+   "Snowman (Gun)",
+   "Hazard (Gun)",
+   "Zombie (Gun)",
+   "Gingerbread (Gun)",
+   "Lantern",
+   "Webs",
+   "Zombie (2023)",
+   "Frozen (Gun)",
+   "Potion (2017)",
+   "Tree (2021)",
+   "Meltdown",
+   "Moonlight",
+   "Stars (Knife)",
+   "Pumpkin Pie",
+   "Lights (Gun)",
+   "Mummy (Gun)",
+   "Potion (Gun)",
+   "Potion (Knife)",
+   "Cookie (Knife)",
+   "Frozen (Knife)",
+   "Holly (Gun)",
+   "Lights (Knife)",
+   "Mummy (Knife)",
+   "Zombie (Knife)",
+   "Moons",
+   "Vampire",
+   "Wolf",
+   "Gothic (Knife)",
+   "Nutcracker",
+   "Snowman (Knife)",
+   "Snowy",
+   "Wrapped (Gun)",
+   "Wrapped (Knife)",
+   "Gifted",
+   "Steel (Knife)",
+   "Pool Noodle",
+   "Wraiths (Knife)",
+   "Mistletoe (Gun)",
+   "Hazard (Knife)",
+   "Gingerheart",
+   "Love (Gun)",
+   "Rose",
+   "Canes (Gun)",
+   "Cookie (Gun)",
+   "Fireplace",
+   "Forest",
+   "Marble",
+   "Melon",
+   "Snowflake (Gun)",
+   "Frosty",
+   "Holly (Knife)",
+   "Stockings (Knife)",
+   "Brains (2022)",
+   "Carrot",
+   "Carrot (Gun)",
+   "Carrot (Knife)",
+   "Clown (Gun)",
+   "Fall Camo",
+   "Floatie",
+   "Monster",
+   "Moons (2024)",
+   "Painted (Gun)",
+   "Sweater (Gun)",
+   "Witchbrew",
+   "Wraiths (Gun)",
+   "Stars (Gun)",
+   "Sweater",
+   "Tree (2017)",
+   "Checkers",
+   "Decorated",
+   "Eclipse",
+   "Eyes",
+   "Future",
+   "Glowy",
+   "Lava (Knife)",
+   "Meadow",
+   "Mistletoe (Knife)",
+   "Night",
+   "Polar Bear",
+   "Pool",
+   "Popsicle",
+   "Pumpkin (2025)",
+   "Soda (Gun)",
+   "Stockings (Gun)",
+   "Treats (Gun)",
+   "Canes (Knife)",
+   "Floral",
+   "Neopolitan",
+   "Snowman (2023)",
+   "Turtles",
+   "Ghostly",
+   "Ghosts (Knife)",
+   "Portal (Gun)",
+   "Pumpkin (Knife)",
+   "Donut",
+   "Abduction",
+   "Blossom",
+   "Bones (Knife)",
+   "Jellyfish",
+   "Lava (Gun)",
+   "Leaves",
+   "Ornaments",
+   "Paws",
+   "Popsicle (Gun)",
+   "Pumpkin Patch",
+   "Retro",
+   "Snowman (2024)",
+   "Soda (Knife)",
+   "Starry",
+   "Treats (Knife)",
+   "Turtle",
+   "Witch's Brew",
+   "Wreaths",
+   "Doge",
+   "Sketch",
+   "Adurite (Gun)",
+   "Adurite (Knife)",
+   "Biogun",
+   "Blue",
+   "Bluesteel (Gun)",
+   "Bluesteel (Knife)",
+   "Brush",
+   "Camo (Gun)",
+   "Camo (Knife)",
+   "Caution",
+   "Cheddar",
+   "Cheesy",
+   "Circuit",
+   "Hazmat",
+   "Hive",
+   "Jigsaw",
+   "Lucky",
+   "Marina",
+   "Missing",
+   "Paper",
+   "Pink",
+   "Pirate",
+   "Red",
+   "Soda",
+   "Stalker",
+   "Tiger",
+   "Wanwood",
+   "Wooden",
+   "Graffiti",
+   "High Tech"
+  ],
+  "uniques": [
+   "Corrupt",
+   "slouse's Clown (Gun)",
+   "slouse's Clown (Knife)",
+   "Sharkseeker",
+   "Dartbringer",
+   "Gold Candy",
+   "Gold Hallow",
+   "Gold Sugar",
+   "Gold Elderwood",
+   "Gold Minty",
+   "Gold Logchopper",
+   "Gold Vamp's Edge",
+   "Gold Iceblaster",
+   "Gold Icebreaker",
+   "Gold Harvester",
+   "Gold Swirly",
+   "Gold Icecrusher",
+   "Gold Icepiercer",
+   "Gold Traveler's",
+   "Gold Gingerscythe",
+   "Gold Gingerscope",
+   "Gold Vampire's Axe",
+   "Gold Constellation",
+   "Gold Celestial",
+   "Gold Synthwave",
+   "Gold Raygun",
+   "Gold Snow Dagger",
+   "Gold Snowcannon",
+   "Silver Candy",
+   "Silver Hallow",
+   "Silver Sugar",
+   "Silver Elderwood",
+   "Silver Minty",
+   "Silver Logchopper",
+   "Silver Vamp's Edge",
+   "Silver Iceblaster",
+   "Silver Icebreaker",
+   "Silver Harvester",
+   "Silver Swirly",
+   "Silver Icecrusher",
+   "Silver Icepiercer",
+   "Silver Traveler's",
+   "Silver Gingerscythe",
+   "Silver Gingerscope",
+   "Silver Vampire's Axe",
+   "Silver Constellation",
+   "Silver Celestial",
+   "Silver Synthwave",
+   "Silver Raygun",
+   "Silver Snow Dagger",
+   "Silver Snowcannon",
+   "Bronze Candy",
+   "Bronze Hallow",
+   "Bronze Sugar",
+   "Bronze Elderwood",
+   "Bronze Minty",
+   "Bronze Logchopper",
+   "Bronze Vamp's Edge",
+   "Bronze Iceblaster",
+   "Bronze Icebreaker",
+   "Bronze Harvester",
+   "Bronze Swirly",
+   "Bronze Icecrusher",
+   "Bronze Icepiercer",
+   "Bronze Traveler's",
+   "Bronze Gingerscythe",
+   "Bronze Gingerscope",
+   "Bronze Vampire's Axe",
+   "Bronze Constellation",
+   "Bronze Celestial",
+   "Bronze Synthwave",
+   "Bronze Raygun",
+   "Bronze Snow Dagger",
+   "Bronze Snowcannon",
+   "Blue Candy",
+   "Red Hallow",
+   "Blue Sugar",
+   "Blue Elderwood",
+   "Blue Minty",
+   "Blue Logchopper",
+   "Blue Vamp's Edge",
+   "Red Iceblaster",
+   "Red Icebreaker",
+   "Blue Harvester",
+   "Blue Swirly",
+   "Red Icecrusher",
+   "Red Icepiercer",
+   "Red Traveler's",
+   "Blue Gingerscythe",
+   "Blue Gingerscope",
+   "Purple Vampire's Axe",
+   "Red Constellation",
+   "Red Celestial",
+   "Blue Synthwave",
+   "Red Raygun",
+   "Red Snow Dagger",
+   "Red Snowcannon"
+  ],
+  "vintages": [
+   "Blood",
+   "Ghost",
+   "Laser",
+   "America",
+   "Prince",
+   "Shadow",
+   "Phaser",
+   "Cowboy",
+   "Golden",
+   "Splitter"
+  ]
+ },
+ "category_order": [
+  "sets",
+  "uniques",
+  "ancients",
+  "vintages",
+  "chromas",
+  "godlies",
+  "legendaries",
+  "rares",
+  "uncommons",
+  "commons",
+  "pets",
+  "misc"
+ ],
+ "changes": {
+  "<3": -1,
+  "Alex": 1,
+  "Alien Set": 50,
+  "Alienbeam": 25,
+  "Amerilaser": -1,
+  "Apocalypse (Gun)": 1,
+  "Arctic (Gun)": 3,
+  "Asteroid": -1,
+  "Aurora (Gun)": -5,
+  "Aurora (Knife)": 1,
+  "Aurora Set (Legend.)": -5,
+  "Aurora Set (Rare)": -1,
+  "Australis": -5,
+  "Bat": 5,
+  "Bat Set": 5,
+  "Bats": -1,
+  "Bats (2020)": 1,
+  "Bats (Gun)": -1,
+  "Bats (Knife)": 10,
+  "Bats Set": 10,
+  "Battleaxe II": -1,
+  "Batwing": -1,
+  "Bauble": -25,
+  "Bauble Set": -5,
+  "Beach": 5,
+  "Beach Set": -10,
+  "Beachy": -5,
+  "Bioblade": -2,
+  "Black Cat": 5,
+  "Blaster": -1,
+  "Blizzard": -10,
+  "Blizzard Set": -20,
+  "Bloom": -5,
+  "Bloom Set": -10,
+  "Blossom": -20,
+  "Blue Papers": -1,
+  "Blue Pumpkin": 10,
+  "Bones": -5,
+  "Borealis": -5,
+  "Borealis Set": -10,
+  "Bow Set": -20,
+  "Brains": -5,
+  "Branches": 5,
+  "Bringer Set": -1,
+  "Bunnies": 2,
+  "C. Constellation": -1000,
+  "C. Elderwood Blade": -1,
+  "C. Traveler's Gun": -5000,
+  "C. Vampire's Gun": -500,
+  "Candleflame": -2,
+  "Candy": -5,
+  "Candy Corn (2019)": 2,
+  "Candy Set": -1,
+  "Candy Swirl (Gun)": -1,
+  "Candy Swirl Set": -1,
+  "CandyCorn (2017)": 3,
+  "Cane (Knife)": -25,
+  "Cavern (Knife)": -1,
+  "Cavern Set": -1,
+  "Celestial": -50,
+  "Celestial Set": -100,
+  "Chill": -2,
+  "Chilly": -1,
+  "Chroma Alien Set": -250,
+  "Chroma Alienbeam": -1000,
+  "Chroma Bauble": -1000,
+  "Chroma Bauble Set": -1000,
+  "Chroma Beach Set": 50,
+  "Chroma Beachy": 25,
+  "Chroma Blizzard": 250,
+  "Chroma Blizzard Set": 250,
+  "Chroma Boneblade": -3,
+  "Chroma Bringer Set": -10,
+  "Chroma Candleflame": -2,
+  "Chroma Constellation": -1000,
+  "Chroma Cookiecane": -1,
+  "Chroma Darkbringer": -5,
+  "Chroma Deathshard": -3,
+  "Chroma Elderwood Blade": -1,
+  "Chroma Ever Set": -2000,
+  "Chroma Evergreen": -1000,
+  "Chroma Evergun": -1000,
+  "Chroma Fang": -3,
+  "Chroma Fire Bat": -1,
+  "Chroma Fire Bear": -1,
+  "Chroma Fire Bunny": -1,
+  "Chroma Fire Cat": -1,
+  "Chroma Fire Dog": -1,
+  "Chroma Fire Fox": -1,
+  "Chroma Fire Pig": -1,
+  "Chroma Gemstone": -3,
+  "Chroma Gingerblade": -1,
+  "Chroma Heart Wand": -100,
+  "Chroma Heat": -2,
+  "Chroma Icecream": 50,
+  "Chroma Laser": -2,
+  "Chroma Lightbringer": -5,
+  "Chroma Luger": -2,
+  "Chroma Ornament": 25,
+  "Chroma Pet Set": -7,
+  "Chroma Raygun": -250,
+  "Chroma Sands": 25,
+  "Chroma Saw": -2,
+  "Chroma Seer": -2,
+  "Chroma Shark": -3,
+  "Chroma Slasher": -1,
+  "Chroma Slasher Set": -1,
+  "Chroma Snow Dagger": -100,
+  "Chroma Snow Set": -100,
+  "Chroma Snowcannon": -250,
+  "Chroma Snowstorm": 50,
+  "Chroma Sun Set": -500,
+  "Chroma Sunrise": -250,
+  "Chroma Sunset": -250,
+  "Chroma Sweet": -25,
+  "Chroma Sweet Set": -100,
+  "Chroma Swirly Gun": -3,
+  "Chroma Tides": -1,
+  "Chroma Traveler's Gun": -5000,
+  "Chroma Treat": -75,
+  "Chroma Vampire's Gun": -500,
+  "Chroma Watergun": -50,
+  "Chroma Weapon Set": -10,
+  "Chromatic (Knife)": -1,
+  "Clockwork": -2,
+  "Coal (Knife)": 3,
+  "Colored Seer Set": -6,
+  "Constellation": -50,
+  "Cookie (Knife)": 1,
+  "Cookie Set": -1,
+  "Cookiecane": -2,
+  "Corl": 1,
+  "Corrupt": -10,
+  "Corrupt Set": -10,
+  "Cotton Candy": -3,
+  "Cowboy": -1,
+  "Dark Set": -50,
+  "Dark Set (Rare)": -5,
+  "Darkbringer": -2,
+  "Darkgun": 1,
+  "Darkknife": -5,
+  "Darkshot": -25,
+  "Darksword": -25,
+  "Deathshard": -2,
+  "Denis": 1,
+  "Dogey": -5,
+  "Dungeon": -10,
+  "Ecto": 5,
+  "Elderwood Blade": -2,
+  "Elderwood Revolver": -2,
+  "Elderwood Scythe": -2,
+  "Elderwood Set": -4,
+  "Elf": 5,
+  "Elf (2018)": 5,
+  "Elf (2019)": 50,
+  "Elf (Knife)": -2,
+  "Energized (Gun)": 1,
+  "Eternal": -1,
+  "Eternal II": -1,
+  "Eternal III": -2,
+  "Eternal IV": -2,
+  "Eternal Set": -8,
+  "Eternalcane": -2,
+  "Eternalcane Set": -4,
+  "Euro": -1,
+  "Ever Set": 25,
+  "Evergreen": 25,
+  "Evergun": -25,
+  "Eye Set": -2,
+  "Eyeball": -1,
+  "Fairy": -1,
+  "Fang": -2,
+  "Flames": -2,
+  "Flora": -5,
+  "Floral (Knife)": -2,
+  "Flowerwood": -5,
+  "Flowerwood Gun": -5,
+  "Flowerwood Set": -10,
+  "Frosted (Knife)": 2,
+  "Frostfade (Knife)": 1,
+  "Frozen (Gun)": -2,
+  "Frozen (Knife)": -1,
+  "Frozen Set": -2,
+  "Full Bringer Set": -1,
+  "Full Chroma Set": -15,
+  "Full Colored Seer Set": -2,
+  "Full Elderwood Set": -6,
+  "Full Elite Set": -2,
+  "Full Ice Set": -2,
+  "Full Luger Set": -2,
+  "Full Swirly Set": -3,
+  "Gemstone": -2,
+  "Ghastly (Gun)": 2,
+  "Ghost": -2,
+  "Ghost Set": -1,
+  "Ghostfire": 2,
+  "Ghoulish": -5,
+  "Gifts (Knife)": 5,
+  "Ginger (Gun)": -1,
+  "Ginger Luger": -3,
+  "Ginger Set (Godly)": -2,
+  "Gingerblade": -2,
+  "Gingerbread (Gun)": 1,
+  "Gingerbread (Knife)": 5,
+  "Gingerbread Set": 5,
+  "Gingermint": -1,
+  "Gingerscope": -250,
+  "Glitch1": -5,
+  "Glitch2": -5,
+  "Gold Papers": -1,
+  "Gothic (Gun)": 2,
+  "Grave (Gun)": -1,
+  "Grave (Knife)": -1,
+  "Grave Set": -1,
+  "Green Luger": -2,
+  "Green Marble": -1,
+  "Green Pumpkin": 5,
+  "Hallow Set": -2,
+  "Hallowgun": -2,
+  "Hallowscythe": -2,
+  "Harvester": -10,
+  "Haunted (Gun)": -1,
+  "Haunted (Knife)": -1,
+  "Haunted Set": -2,
+  "Hazard (Gun)": 2,
+  "Heart Wand": 10,
+  "Heartblade": -2,
+  "Heat": -2,
+  "Holly (Gun)": -1,
+  "Ice Dragon": -1,
+  "Ice Set": -2,
+  "Ice Shard": -1,
+  "Icebeam": -2,
+  "Iceblaster": -2,
+  "Icebreaker": -2,
+  "Icecracker": -1,
+  "Icecream": 5,
+  "Icedriller": -2,
+  "Icedriller Set": -3,
+  "Iceflake": -2,
+  "Iceflake Set": -4,
+  "Icepiercer": -10,
+  "Icewing": -2,
+  "Icicles (Gun)": -2,
+  "Infected (Gun)": 1,
+  "JD": -2,
+  "Jetstream": -1,
+  "Jinglegun": -2,
+  "Lantern": 1,
+  "Latte (Gun)": -5,
+  "Latte (Knife)": -5,
+  "Latte Set": -10,
+  "Lightbringer": -1,
+  "Lights (Gun)": -1,
+  "Lights Set": -1,
+  "Lil' Alien": 1,
+  "Logchopper": -2,
+  "Logchopper Set": -2,
+  "Luger": -2,
+  "Luger Set": -2,
+  "Lugercane": -2,
+  "Magma": -2,
+  "Magma (Gun)": -2,
+  "Makeshift": -2,
+  "Makeshift (Knife)": -5,
+  "Marble Set": -1,
+  "Mechbug": -2,
+  "Meltdown": 1,
+  "Minty": -2,
+  "Monster": -1,
+  "Moonlight": 1,
+  "Moons": -1,
+  "Mr. Reindeer": -5,
+  "Mr. Snowman": 2,
+  "Mummified": 5,
+  "Mummy (2017)": 5,
+  "Mummy (Gun)": -1,
+  "Mummy (Knife)": -1,
+  "Mummy Set": -1,
+  "Nebula": -2,
+  "Nightblade": -2,
+  "Nightsky": 1,
+  "Nobledragon": -2,
+  "Ocean": -5,
+  "Ocean Set": -10,
+  "Old Glory": -2,
+  "Old Glory Set": -1,
+  "Ollie": -1,
+  "Ornament": -5,
+  "Overseer Eye": -1,
+  "Pals Set": 4,
+  "Pearl": -5,
+  "Pearl Set": -10,
+  "Pearlshine": -5,
+  "Pengy": -1,
+  "Phantom": -2,
+  "Piggy": 5,
+  "Pine (Knife)": 5,
+  "Pixel": -3,
+  "Plasma Set": -2,
+  "Plasmabeam": -4,
+  "Plasmablade": -2,
+  "Potion (2017)": -1,
+  "Potion (Gun)": -1,
+  "Potion (Knife)": -1,
+  "Potion Set": -2,
+  "Prism": 2,
+  "Pumpkin (2017)": -5,
+  "Pumpkin (2019)": 2,
+  "Pumpkin Pie": -1,
+  "Pumpkin Set": -1,
+  "Pumpkin Set (2019)": -2,
+  "Pumpkin Set (2020)": -3,
+  "Pumpkin Set (2021)": -3,
+  "Pumpking": -1,
+  "Purple Papers": -1,
+  "Purple Pumpkin": -1,
+  "RIP": 2,
+  "Rainbow": -5,
+  "Rainbow Gun": -5,
+  "Rainbow Set": -10,
+  "Raygun": 25,
+  "Red Luger": -2,
+  "Red Papers": -1,
+  "Red Pumpkin": 5,
+  "Reindeer": -1,
+  "Rudolph": -1,
+  "Sakura": -20,
+  "Sakura Set": -40,
+  "Sands": -5,
+  "Santa's Set (Legend.)": -4,
+  "Scratch Set": -1,
+  "Seahorsey": -1,
+  "Shadow Pumpkin": -2,
+  "Shark": -3,
+  "Sidewinder": -1,
+  "Silent Night (Gun)": -1,
+  "Silent Night (Knife)": -5,
+  "Silent Night Set": -1,
+  "Skate Set": -2,
+  "Sketchy": 1,
+  "Skulls": -1,
+  "Skully": 3,
+  "Slashed": 1,
+  "Slasher": -2,
+  "Slasher Set": -1,
+  "Slime (Gun)": -1,
+  "Slime (Knife)": -1,
+  "Slime Set": -1,
+  "Slimy": 2,
+  "Small Set (103)": -5,
+  "Small Set (107)": 2,
+  "Snakebite (Knife)": -2,
+  "Snakebite Set": -2,
+  "Snow Dagger": -10,
+  "Snow Set": -35,
+  "Snowbear": 1,
+  "Snowcannon": -25,
+  "Snowflake (Knife)": 5,
+  "Snowflakes": 2,
+  "Snowflakes (Gun)": 5,
+  "Snowman (Gun)": 2,
+  "Snowstorm": -10,
+  "Soul": -10,
+  "Soul Set": -20,
+  "Sparkle Set": 2,
+  "Sparkle2": 1,
+  "Sparkle4": 2,
+  "Spectral (Gun)": 1,
+  "Spectral (Knife)": -5,
+  "Spectral Set": -5,
+  "Spectre": -2,
+  "Spectre Set": -4,
+  "Spider": -2,
+  "Spirit": -10,
+  "Starry": 2,
+  "Starry (Gun)": -3,
+  "Stars (Knife)": 1,
+  "Steel (Gun)": 1,
+  "Sub": 1,
+  "Sugar": -1,
+  "Sun": -1,
+  "Sun Set": -25,
+  "Sunrise": -25,
+  "Sunset": -25,
+  "Sweater (Knife)": 5,
+  "Sweet": -5,
+  "Sweet Set": -10,
+  "Swirl": -2,
+  "Swirly Axe": -2,
+  "Swirly Blade": -1,
+  "Swirly Gun": -2,
+  "Swirly Set": -2,
+  "Tailslide": -1,
+  "Tankie": -1,
+  "Tides": -2,
+  "Toxic (Knife)": -2,
+  "Toxic Set": -2,
+  "Traveler (Gun)": -5,
+  "Traveler (Knife)": 1,
+  "Traveler Set": -5,
+  "Traveler's Axe": 100,
+  "Traveler's Gun": -100,
+  "Traveler's Set": 100,
+  "Treat": -5,
+  "Tree (2021)": 1,
+  "Turkey": -50,
+  "UFO": -1,
+  "Ultra Wrap": -1,
+  "Vampire (Gun)": -5,
+  "Vampire (Knife)": 1,
+  "Vampire Bat": -1,
+  "Vampire Set (Legend.)": -5,
+  "Vampire Set (Rare)": -2,
+  "Vampire's Axe": -50,
+  "Vampire's Gun": 25,
+  "Vampire's Set": -50,
+  "Vintage Set": -2,
+  "Virtual": -2,
+  "Virtual Set": -3,
+  "Void": 2,
+  "Watcher (Gun)": -5,
+  "Watergun": -5,
+  "Waves": -5,
+  "Webbed (Gun)": 5,
+  "Winter's Edge": -2,
+  "Witched": -1,
+  "Wraith (Knife)": 2,
+  "Wrap (Gun)": 2,
+  "Wrap (Knife)": 2,
+  "Wrap Set": 4,
+  "Wrapped (Gun)": 3,
+  "Wrapping Paper Set": -2,
+  "Xeno Set": 10,
+  "Xenoknife": 5,
+  "Xenoshot": 5,
+  "Xmas": -1,
+  "Zombie": 2,
+  "Zombie (2023)": 2,
+  "Zombie (Gun)": -2,
+  "Zombie (Knife)": -1,
+  "Zombie Dog": -25,
+  "Zombie Set": -2,
+  "Zombified": -5,
+  "Zombified (Knife)": 5,
+  "Zombified Set": 5
+ },
+ "history": {
+  "<3": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Alex": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Alien Set": [
+   [
+    1791930360,
+    3925
+   ],
+   [
+    1792242458,
+    3975
+   ],
+   [
+    1792086973,
+    3975
+   ],
+   [
+    1792269983,
+    4025
+   ]
+  ],
+  "Alienbeam": [
+   [
+    1791930360,
+    1975
+   ],
+   [
+    1792242458,
+    2000
+   ],
+   [
+    1792086973,
+    2000
+   ],
+   [
+    1792269983,
+    2025
+   ]
+  ],
+  "America": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Amerilaser": [
+   [
+    1791930360,
+    23
+   ],
+   [
+    1792242458,
+    22
+   ]
+  ],
+  "Apocalypse": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Apocalypse (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Arctic": [
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Arctic (Gun)": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Asteroid": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Aurora (Gun)": [
+   [
+    1791930360,
+    50
+   ],
+   [
+    1792242458,
+    45
+   ]
+  ],
+  "Aurora (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Aurora Set (Legend.)": [
+   [
+    1791930360,
+    53
+   ],
+   [
+    1792242458,
+    48
+   ]
+  ],
+  "Aurora Set (Rare)": [
+   [
+    1791930360,
+    9
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Australis": [
+   [
+    1791930360,
+    145
+   ],
+   [
+    1792242458,
+    140
+   ]
+  ],
+  "Badger": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Bat": [
+   [
+    1791930360,
+    120
+   ],
+   [
+    1792242458,
+    125
+   ]
+  ],
+  "Bat Set": [
+   [
+    1791930360,
+    153
+   ],
+   [
+    1792242458,
+    158
+   ]
+  ],
+  "Bats": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Bats (2020)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Bats (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Bats (Knife)": [
+   [
+    1791930360,
+    230
+   ],
+   [
+    1792242458,
+    240
+   ]
+  ],
+  "Bats Set": [
+   [
+    1791930360,
+    231
+   ],
+   [
+    1792242458,
+    241
+   ]
+  ],
+  "Battleaxe": [
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Battleaxe II": [
+   [
+    1791930360,
+    18
+   ],
+   [
+    1792242458,
+    17
+   ]
+  ],
+  "Batwing": [
+   [
+    1791930360,
+    43
+   ],
+   [
+    1792242458,
+    42
+   ]
+  ],
+  "Bauble": [
+   [
+    1791930360,
+    700
+   ],
+   [
+    1792242458,
+    675
+   ]
+  ],
+  "Bauble Set": [
+   [
+    1791930360,
+    745
+   ],
+   [
+    1792242458,
+    740
+   ]
+  ],
+  "Beach": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Beach Set": [
+   [
+    1791930360,
+    180
+   ],
+   [
+    1792242458,
+    170
+   ]
+  ],
+  "Beachy": [
+   [
+    1791930360,
+    90
+   ],
+   [
+    1792242458,
+    85
+   ]
+  ],
+  "Bioblade": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Black Cat": [
+   [
+    1791930360,
+    70
+   ],
+   [
+    1792242458,
+    75
+   ]
+  ],
+  "Blaster": [
+   [
+    1791930360,
+    18
+   ],
+   [
+    1792242458,
+    17
+   ]
+  ],
+  "Blizzard": [
+   [
+    1791930360,
+    280
+   ],
+   [
+    1792242458,
+    275
+   ],
+   [
+    1792086973,
+    275
+   ],
+   [
+    1792269983,
+    265
+   ]
+  ],
+  "Blizzard Set": [
+   [
+    1791930360,
+    560
+   ],
+   [
+    1792242458,
+    550
+   ],
+   [
+    1792086973,
+    550
+   ],
+   [
+    1792269983,
+    530
+   ]
+  ],
+  "Blood": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Bloom": [
+   [
+    1791930360,
+    400
+   ],
+   [
+    1792242458,
+    395
+   ]
+  ],
+  "Bloom Set": [
+   [
+    1791930360,
+    805
+   ],
+   [
+    1792242458,
+    795
+   ]
+  ],
+  "Blossom": [
+   [
+    1791930360,
+    1260
+   ],
+   [
+    1792242458,
+    1240
+   ],
+   [
+    1792086973,
+    1240
+   ],
+   [
+    1792269983,
+    1220
+   ]
+  ],
+  "Blue Elite": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Blue Papers": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Blue Pumpkin": [
+   [
+    1791930360,
+    210
+   ],
+   [
+    1792242458,
+    220
+   ]
+  ],
+  "Blue Scratch": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Blue Seer": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Boneblade": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Bones": [
+   [
+    1791930360,
+    215
+   ],
+   [
+    1792242458,
+    210
+   ]
+  ],
+  "Borealis": [
+   [
+    1791930360,
+    150
+   ],
+   [
+    1792242458,
+    145
+   ]
+  ],
+  "Borealis Set": [
+   [
+    1791930360,
+    295
+   ],
+   [
+    1792242458,
+    285
+   ]
+  ],
+  "Bow Set": [
+   [
+    1791930360,
+    430
+   ],
+   [
+    1792242458,
+    410
+   ]
+  ],
+  "Box of Fertilizer": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Brains": [
+   [
+    1791930360,
+    140
+   ],
+   [
+    1792242458,
+    135
+   ]
+  ],
+  "Branches": [
+   [
+    1791930360,
+    45
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Bringer Set": [
+   [
+    1791930360,
+    66
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Broken": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Bunnies": [
+   [
+    1791930360,
+    13
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "C. Constellation": [
+   [
+    1791930360,
+    28000
+   ],
+   [
+    1792242458,
+    27000
+   ]
+  ],
+  "C. Elderwood Blade": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    37
+   ]
+  ],
+  "C. Traveler's Gun": [
+   [
+    1791930360,
+    145000
+   ],
+   [
+    1792242458,
+    140000
+   ]
+  ],
+  "C. Vampire's Gun": [
+   [
+    1791930360,
+    25000
+   ],
+   [
+    1792242458,
+    24500
+   ]
+  ],
+  "Candleflame": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Candy": [
+   [
+    1791930360,
+    85
+   ],
+   [
+    1792242458,
+    80
+   ]
+  ],
+  "Candy Corn": [
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Candy Corn (2019)": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Candy Set": [
+   [
+    1791930360,
+    113
+   ],
+   [
+    1792242458,
+    112
+   ]
+  ],
+  "Candy Swirl (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Candy Swirl (Knife)": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Candy Swirl Set": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "CandyCorn": [
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "CandyCorn (2017)": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Cane": [
+   [
+    1792242458,
+    525
+   ]
+  ],
+  "Cane (Knife)": [
+   [
+    1791930360,
+    550
+   ],
+   [
+    1792242458,
+    525
+   ]
+  ],
+  "Cavern (Gun)": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Cavern (Knife)": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Cavern Set": [
+   [
+    1791930360,
+    9
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Celestial": [
+   [
+    1791930360,
+    2100
+   ],
+   [
+    1792242458,
+    2050
+   ],
+   [
+    1792086973,
+    2050
+   ],
+   [
+    1792269983,
+    2000
+   ]
+  ],
+  "Celestial Set": [
+   [
+    1791930360,
+    4700
+   ],
+   [
+    1792242458,
+    4650
+   ],
+   [
+    1792086973,
+    4650
+   ],
+   [
+    1792269983,
+    4550
+   ]
+  ],
+  "Chill": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Chilly": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Alien Set": [
+   [
+    1791930360,
+    38500
+   ],
+   [
+    1792242458,
+    38250
+   ],
+   [
+    1792086973,
+    38250
+   ],
+   [
+    1792269983,
+    38000
+   ]
+  ],
+  "Chroma Alienbeam": [
+   [
+    1791930360,
+    25000
+   ],
+   [
+    1792242458,
+    24000
+   ]
+  ],
+  "Chroma Bauble": [
+   [
+    1791930360,
+    30000
+   ],
+   [
+    1792242458,
+    29000
+   ]
+  ],
+  "Chroma Bauble Set": [
+   [
+    1791930360,
+    31825
+   ],
+   [
+    1792242458,
+    30825
+   ]
+  ],
+  "Chroma Beach Set": [
+   [
+    1791930360,
+    2450
+   ],
+   [
+    1792242458,
+    2350
+   ],
+   [
+    1792269983,
+    2400
+   ]
+  ],
+  "Chroma Beachy": [
+   [
+    1791930360,
+    1200
+   ],
+   [
+    1792242458,
+    1150
+   ],
+   [
+    1792269983,
+    1175
+   ]
+  ],
+  "Chroma Blizzard": [
+   [
+    1791930360,
+    5250
+   ],
+   [
+    1792242458,
+    5500
+   ]
+  ],
+  "Chroma Blizzard Set": [
+   [
+    1791930360,
+    9500
+   ],
+   [
+    1792242458,
+    9750
+   ]
+  ],
+  "Chroma Boneblade": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    22
+   ]
+  ],
+  "Chroma Bringer Set": [
+   [
+    1791930360,
+    135
+   ],
+   [
+    1792242458,
+    125
+   ]
+  ],
+  "Chroma Candleflame": [
+   [
+    1791930360,
+    42
+   ],
+   [
+    1792242458,
+    40
+   ]
+  ],
+  "Chroma Constellation": [
+   [
+    1791930360,
+    28000
+   ],
+   [
+    1792242458,
+    27000
+   ]
+  ],
+  "Chroma Cookiecane": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Chroma Darkbringer": [
+   [
+    1791930360,
+    70
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Chroma Deathshard": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Chroma Elderwood Blade": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    37
+   ]
+  ],
+  "Chroma Ever Set": [
+   [
+    1791930360,
+    92000
+   ],
+   [
+    1792242458,
+    90000
+   ],
+   [
+    1792086973,
+    90000
+   ],
+   [
+    1792269983,
+    88000
+   ]
+  ],
+  "Chroma Evergreen": [
+   [
+    1791930360,
+    39000
+   ],
+   [
+    1792242458,
+    38000
+   ],
+   [
+    1792086973,
+    38000
+   ],
+   [
+    1792269983,
+    37000
+   ]
+  ],
+  "Chroma Evergun": [
+   [
+    1791930360,
+    53000
+   ],
+   [
+    1792242458,
+    52000
+   ],
+   [
+    1792086973,
+    52000
+   ],
+   [
+    1792269983,
+    51000
+   ]
+  ],
+  "Chroma Fang": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Chroma Fire Bat": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Bear": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Bunny": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Cat": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Dog": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Fox": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Fire Pig": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Chroma Gemstone": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Chroma Gingerblade": [
+   [
+    1791930360,
+    28
+   ],
+   [
+    1792242458,
+    27
+   ]
+  ],
+  "Chroma Heart Wand": [
+   [
+    1791930360,
+    3600
+   ],
+   [
+    1792242458,
+    3500
+   ]
+  ],
+  "Chroma Heat": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    28
+   ]
+  ],
+  "Chroma Icecream": [
+   [
+    1791930360,
+    1800
+   ],
+   [
+    1792242458,
+    1850
+   ]
+  ],
+  "Chroma Laser": [
+   [
+    1791930360,
+    42
+   ],
+   [
+    1792242458,
+    40
+   ]
+  ],
+  "Chroma Lightbringer": [
+   [
+    1791930360,
+    65
+   ],
+   [
+    1792242458,
+    60
+   ]
+  ],
+  "Chroma Luger": [
+   [
+    1791930360,
+    52
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Chroma Ornament": [
+   [
+    1791930360,
+    1800
+   ],
+   [
+    1792242458,
+    1825
+   ]
+  ],
+  "Chroma Pet Set": [
+   [
+    1791930360,
+    28
+   ],
+   [
+    1792242458,
+    21
+   ]
+  ],
+  "Chroma Raygun": [
+   [
+    1791930360,
+    14500
+   ],
+   [
+    1792242458,
+    14250
+   ],
+   [
+    1792086973,
+    14250
+   ],
+   [
+    1792269983,
+    14000
+   ]
+  ],
+  "Chroma Sands": [
+   [
+    1791930360,
+    1250
+   ],
+   [
+    1792242458,
+    1200
+   ],
+   [
+    1792269983,
+    1225
+   ]
+  ],
+  "Chroma Saw": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    23
+   ]
+  ],
+  "Chroma Seer": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    28
+   ]
+  ],
+  "Chroma Shark": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Chroma Slasher": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Chroma Slasher Set": [
+   [
+    1791930360,
+    73
+   ],
+   [
+    1792242458,
+    72
+   ]
+  ],
+  "Chroma Snow Dagger": [
+   [
+    1791930360,
+    2450
+   ],
+   [
+    1792242458,
+    2350
+   ]
+  ],
+  "Chroma Snow Set": [
+   [
+    1791930360,
+    10200
+   ],
+   [
+    1792242458,
+    10100
+   ]
+  ],
+  "Chroma Snowcannon": [
+   [
+    1791930360,
+    8000
+   ],
+   [
+    1792242458,
+    7750
+   ]
+  ],
+  "Chroma Snowstorm": [
+   [
+    1791930360,
+    4200
+   ],
+   [
+    1792242458,
+    4250
+   ]
+  ],
+  "Chroma Sun Set": [
+   [
+    1791930360,
+    16750
+   ],
+   [
+    1792242458,
+    16250
+   ],
+   [
+    1792086973,
+    16250
+   ],
+   [
+    1792269983,
+    15750
+   ]
+  ],
+  "Chroma Sunrise": [
+   [
+    1791930360,
+    10250
+   ],
+   [
+    1792242458,
+    10000
+   ],
+   [
+    1792086973,
+    10000
+   ],
+   [
+    1792269983,
+    9750
+   ]
+  ],
+  "Chroma Sunset": [
+   [
+    1791930360,
+    6500
+   ],
+   [
+    1792242458,
+    6250
+   ],
+   [
+    1792086973,
+    6250
+   ],
+   [
+    1792269983,
+    6000
+   ]
+  ],
+  "Chroma Sweet": [
+   [
+    1791930360,
+    1750
+   ],
+   [
+    1792242458,
+    1725
+   ]
+  ],
+  "Chroma Sweet Set": [
+   [
+    1791930360,
+    3600
+   ],
+   [
+    1792242458,
+    3500
+   ]
+  ],
+  "Chroma Swirly Gun": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Chroma Tides": [
+   [
+    1791930360,
+    28
+   ],
+   [
+    1792242458,
+    27
+   ]
+  ],
+  "Chroma Traveler's Gun": [
+   [
+    1791930360,
+    145000
+   ],
+   [
+    1792242458,
+    140000
+   ]
+  ],
+  "Chroma Treat": [
+   [
+    1791930360,
+    1850
+   ],
+   [
+    1792242458,
+    1775
+   ]
+  ],
+  "Chroma Vampire's Gun": [
+   [
+    1791930360,
+    25000
+   ],
+   [
+    1792242458,
+    24500
+   ]
+  ],
+  "Chroma Watergun": [
+   [
+    1791930360,
+    2350
+   ],
+   [
+    1792242458,
+    2300
+   ]
+  ],
+  "Chroma Weapon Set": [
+   [
+    1791930360,
+    545
+   ],
+   [
+    1792242458,
+    535
+   ]
+  ],
+  "Chromatic": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Chromatic (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Clockwork": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Coal": [
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Coal (Knife)": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Colored Seer Set": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    16
+   ]
+  ],
+  "Combat II": [
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Constellation": [
+   [
+    1791930360,
+    2650
+   ],
+   [
+    1792242458,
+    2600
+   ],
+   [
+    1792269983,
+    2550
+   ]
+  ],
+  "Cookie": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Cookie (Knife)": [
+   [
+    1791930360,
+    0
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Cookie Set": [
+   [
+    1791930360,
+    26
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Cookieblade": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Cookiecane": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Corl": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Corrupt": [
+   [
+    1791930360,
+    340
+   ],
+   [
+    1792242458,
+    330
+   ],
+   [
+    1792086973,
+    330
+   ],
+   [
+    1792269983,
+    320
+   ]
+  ],
+  "Corrupt Set": [
+   [
+    1791930360,
+    358
+   ],
+   [
+    1792242458,
+    348
+   ],
+   [
+    1792086973,
+    348
+   ],
+   [
+    1792269983,
+    338
+   ]
+  ],
+  "Cotton Candy": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Cowboy": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Dark Set": [
+   [
+    1791930360,
+    3525
+   ],
+   [
+    1792242458,
+    3575
+   ],
+   [
+    1792269983,
+    3525
+   ]
+  ],
+  "Dark Set (Rare)": [
+   [
+    1791930360,
+    76
+   ],
+   [
+    1792242458,
+    71
+   ]
+  ],
+  "Darkbringer": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Darkgun": [
+   [
+    1791930360,
+    0
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Darkknife": [
+   [
+    1791930360,
+    75
+   ],
+   [
+    1792242458,
+    70
+   ]
+  ],
+  "Darkshot": [
+   [
+    1791930360,
+    1775
+   ],
+   [
+    1792242458,
+    1800
+   ],
+   [
+    1792269983,
+    1775
+   ]
+  ],
+  "Darksword": [
+   [
+    1791930360,
+    1750
+   ],
+   [
+    1792242458,
+    1775
+   ],
+   [
+    1792269983,
+    1750
+   ]
+  ],
+  "Deathshard": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Denis": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Dogey": [
+   [
+    1791930360,
+    155
+   ],
+   [
+    1792242458,
+    150
+   ]
+  ],
+  "Dungeon": [
+   [
+    1791930360,
+    130
+   ],
+   [
+    1792242458,
+    120
+   ]
+  ],
+  "Ecto": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Eggblade": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Elderwood Blade": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Elderwood Revolver": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Elderwood Scythe": [
+   [
+    1791930360,
+    40
+   ],
+   [
+    1792242458,
+    38
+   ]
+  ],
+  "Elderwood Set": [
+   [
+    1791930360,
+    75
+   ],
+   [
+    1792242458,
+    71
+   ]
+  ],
+  "Elf": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Elf (2018)": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Elf (2019)": [
+   [
+    1791930360,
+    575
+   ],
+   [
+    1792242458,
+    625
+   ]
+  ],
+  "Elf (Knife)": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Energized": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Energized (Gun)": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Eternal": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Eternal II": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Eternal III": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Eternal IV": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Eternal Set": [
+   [
+    1791930360,
+    51
+   ],
+   [
+    1792242458,
+    43
+   ]
+  ],
+  "Eternalcane": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Eternalcane Set": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    26
+   ]
+  ],
+  "Euro": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Ever Set": [
+   [
+    1791930360,
+    6125
+   ],
+   [
+    1792242458,
+    6150
+   ]
+  ],
+  "Evergreen": [
+   [
+    1791930360,
+    2675
+   ],
+   [
+    1792242458,
+    2700
+   ]
+  ],
+  "Evergun": [
+   [
+    1791930360,
+    3475
+   ],
+   [
+    1792242458,
+    3450
+   ]
+  ],
+  "Eye Set": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Eyeball": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Fairy": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Fang": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Flames": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Flora": [
+   [
+    1791930360,
+    405
+   ],
+   [
+    1792242458,
+    400
+   ]
+  ],
+  "Floral": [
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Floral (Knife)": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Flowerwood": [
+   [
+    1791930360,
+    240
+   ],
+   [
+    1792242458,
+    235
+   ]
+  ],
+  "Flowerwood Gun": [
+   [
+    1791930360,
+    245
+   ],
+   [
+    1792242458,
+    240
+   ]
+  ],
+  "Flowerwood Set": [
+   [
+    1791930360,
+    485
+   ],
+   [
+    1792242458,
+    475
+   ]
+  ],
+  "Frostbite": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Frosted": [
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Frosted (Knife)": [
+   [
+    1791930360,
+    28
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Frostfade": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Frostfade (Knife)": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Frostsaber": [
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Frozen (Gun)": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Frozen (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Frozen Set": [
+   [
+    1791930360,
+    6
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Full Bringer Set": [
+   [
+    1791930360,
+    191
+   ],
+   [
+    1792242458,
+    190
+   ]
+  ],
+  "Full Chroma Set": [
+   [
+    1791930360,
+    570
+   ],
+   [
+    1792242458,
+    555
+   ]
+  ],
+  "Full Colored Seer Set": [
+   [
+    1791930360,
+    46
+   ],
+   [
+    1792242458,
+    44
+   ]
+  ],
+  "Full Elderwood Set": [
+   [
+    1791930360,
+    110
+   ],
+   [
+    1792242458,
+    104
+   ]
+  ],
+  "Full Elite Set": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Full Ice Set": [
+   [
+    1791930360,
+    260
+   ],
+   [
+    1792242458,
+    258
+   ]
+  ],
+  "Full Luger Set": [
+   [
+    1791930360,
+    158
+   ],
+   [
+    1792242458,
+    156
+   ]
+  ],
+  "Full Swirly Set": [
+   [
+    1791930360,
+    71
+   ],
+   [
+    1792242458,
+    68
+   ]
+  ],
+  "Gemstone": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Ghastly": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Ghastly (Gun)": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Ghost": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Ghost (Gun)": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Ghost (Knife)": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Ghost Set": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Ghostblade": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Ghostfire": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Ghosty": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Ghoulish": [
+   [
+    1791930360,
+    95
+   ],
+   [
+    1792242458,
+    90
+   ]
+  ],
+  "Gifts": [
+   [
+    1792242458,
+    95
+   ]
+  ],
+  "Gifts (Knife)": [
+   [
+    1791930360,
+    90
+   ],
+   [
+    1792242458,
+    95
+   ]
+  ],
+  "Ginger": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Ginger (Gun)": [
+   [
+    1791930360,
+    6
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Ginger Luger": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    17
+   ]
+  ],
+  "Ginger Set (Godly)": [
+   [
+    1791930360,
+    32
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Gingerblade": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Gingerbread": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Gingerbread (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Gingerbread (Knife)": [
+   [
+    1791930360,
+    80
+   ],
+   [
+    1792242458,
+    85
+   ]
+  ],
+  "Gingerbread Set": [
+   [
+    1791930360,
+    81
+   ],
+   [
+    1792242458,
+    86
+   ]
+  ],
+  "Gingermint": [
+   [
+    1791930360,
+    13
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Gingerscope": [
+   [
+    1791930360,
+    15250
+   ],
+   [
+    1792242458,
+    15000
+   ],
+   [
+    1792086973,
+    15000
+   ],
+   [
+    1792269983,
+    14750
+   ]
+  ],
+  "Glitch1": [
+   [
+    1791930360,
+    70
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Glitch2": [
+   [
+    1791930360,
+    40
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Gold Papers": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Golden": [
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Gothic": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Gothic (Gun)": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Grave": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Grave (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Grave (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Grave Set": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Green Elite": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Green Luger": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    23
+   ]
+  ],
+  "Green Marble": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Green Papers": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Green Pumpkin": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    60
+   ]
+  ],
+  "Grind": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Hallow Set": [
+   [
+    1791930360,
+    52
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Hallow's Blade": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Hallow's Edge": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Hallowgun": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Hallowscythe": [
+   [
+    1791930360,
+    32
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Handsaw": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Harvester": [
+   [
+    1791930360,
+    260
+   ],
+   [
+    1792242458,
+    250
+   ]
+  ],
+  "Haunted": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Haunted (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Haunted (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Haunted Set": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Hazard": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Hazard (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Heart Wand": [
+   [
+    1791930360,
+    330
+   ],
+   [
+    1792242458,
+    340
+   ]
+  ],
+  "Heartblade": [
+   [
+    1791930360,
+    67
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Heat": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Holly": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Holly (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Ice Dragon": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Ice Set": [
+   [
+    1791930360,
+    100
+   ],
+   [
+    1792242458,
+    98
+   ]
+  ],
+  "Ice Shard": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Icebeam": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Iceblaster": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Icebreaker": [
+   [
+    1791930360,
+    67
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Icecracker": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Icecream": [
+   [
+    1791930360,
+    150
+   ],
+   [
+    1792242458,
+    155
+   ]
+  ],
+  "Icedriller": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Icedriller Set": [
+   [
+    1791930360,
+    9
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Iceflake": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Iceflake Set": [
+   [
+    1791930360,
+    37
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Icepiercer": [
+   [
+    1791930360,
+    170
+   ],
+   [
+    1792242458,
+    160
+   ]
+  ],
+  "Icewing": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Icicles": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Icicles (Gun)": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Indy": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Infected": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Infected (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "JD": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    28
+   ]
+  ],
+  "Jack": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Jetstream": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Jinglegun": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Lantern": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Laser": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Latte": [
+   [
+    1792242458,
+    140
+   ]
+  ],
+  "Latte (Gun)": [
+   [
+    1791930360,
+    145
+   ],
+   [
+    1792242458,
+    140
+   ]
+  ],
+  "Latte (Knife)": [
+   [
+    1791930360,
+    145
+   ],
+   [
+    1792242458,
+    140
+   ]
+  ],
+  "Latte Set": [
+   [
+    1791930360,
+    290
+   ],
+   [
+    1792242458,
+    280
+   ]
+  ],
+  "Lightbringer": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Lights (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Lights (Knife)": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Lights Set": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Lil' Alien": [
+   [
+    1791930360,
+    0
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Logchopper": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Logchopper Set": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    31
+   ]
+  ],
+  "Luger": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Luger Set": [
+   [
+    1791930360,
+    108
+   ],
+   [
+    1792242458,
+    106
+   ]
+  ],
+  "Lugercane": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Magma": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Magma (Gun)": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Makeshift": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Makeshift (Knife)": [
+   [
+    1791930360,
+    40
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Marble Set": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Mechbug": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Meltdown": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Minty": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Monster": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Moonlight": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Moons": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Mr. Reindeer": [
+   [
+    1791930360,
+    50
+   ],
+   [
+    1792242458,
+    55
+   ],
+   [
+    1792269983,
+    50
+   ]
+  ],
+  "Mr. Snowman": [
+   [
+    1791930360,
+    18
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Mummified": [
+   [
+    1791930360,
+    30
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Mummy (2017)": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Mummy (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Mummy (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Mummy Set": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Mystery Key": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Nebula": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Nightblade": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Nightsky": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Nobledragon": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Ocean": [
+   [
+    1791930360,
+    250
+   ],
+   [
+    1792242458,
+    245
+   ]
+  ],
+  "Ocean Set": [
+   [
+    1791930360,
+    495
+   ],
+   [
+    1792242458,
+    485
+   ]
+  ],
+  "Old Glory": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Old Glory Set": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    37
+   ]
+  ],
+  "Ollie": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Orange Marble": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Orange Seer": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Ornament": [
+   [
+    1791930360,
+    70
+   ],
+   [
+    1792242458,
+    65
+   ]
+  ],
+  "Overseer Eye": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Pals Set": [
+   [
+    1791930360,
+    16
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Pearl": [
+   [
+    1791930360,
+    80
+   ],
+   [
+    1792242458,
+    75
+   ]
+  ],
+  "Pearl Set": [
+   [
+    1791930360,
+    165
+   ],
+   [
+    1792242458,
+    155
+   ]
+  ],
+  "Pearlshine": [
+   [
+    1791930360,
+    85
+   ],
+   [
+    1792242458,
+    80
+   ]
+  ],
+  "Pengy": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Peppermint": [
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Phantom": [
+   [
+    1791930360,
+    37
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Phaser": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Piggy": [
+   [
+    1791930360,
+    50
+   ],
+   [
+    1792242458,
+    55
+   ]
+  ],
+  "Pine": [
+   [
+    1792242458,
+    85
+   ]
+  ],
+  "Pine (Knife)": [
+   [
+    1791930360,
+    80
+   ],
+   [
+    1792242458,
+    85
+   ]
+  ],
+  "Pixel": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    17
+   ]
+  ],
+  "Plasma Set": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    33
+   ]
+  ],
+  "Plasmabeam": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Plasmablade": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Potion (2017)": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Potion (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Potion (Knife)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Potion Set": [
+   [
+    1791930360,
+    6
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Prince": [
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Prism": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Prismatic": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Pumpkin (2017)": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Pumpkin (2019)": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Pumpkin Pie": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Pumpkin Set": [
+   [
+    1791930360,
+    404
+   ],
+   [
+    1792242458,
+    403
+   ]
+  ],
+  "Pumpkin Set (2019)": [
+   [
+    1791930360,
+    9
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Pumpkin Set (2020)": [
+   [
+    1791930360,
+    42
+   ],
+   [
+    1792242458,
+    39
+   ]
+  ],
+  "Pumpkin Set (2021)": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Pumpking": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Purple Papers": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Purple Pumpkin": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Purple Seer": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "RIP": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    17
+   ]
+  ],
+  "Rainbow": [
+   [
+    1791930360,
+    405
+   ],
+   [
+    1792242458,
+    400
+   ]
+  ],
+  "Rainbow Gun": [
+   [
+    1791930360,
+    410
+   ],
+   [
+    1792242458,
+    405
+   ]
+  ],
+  "Rainbow Set": [
+   [
+    1791930360,
+    815
+   ],
+   [
+    1792242458,
+    805
+   ]
+  ],
+  "Raygun": [
+   [
+    1791930360,
+    1950
+   ],
+   [
+    1792242458,
+    1975
+   ],
+   [
+    1792086973,
+    1975
+   ],
+   [
+    1792269983,
+    2000
+   ]
+  ],
+  "Red Fire": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Red Luger": [
+   [
+    1791930360,
+    37
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Red Papers": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Red Pumpkin": [
+   [
+    1791930360,
+    115
+   ],
+   [
+    1792242458,
+    120
+   ]
+  ],
+  "Red Scratch": [
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Red Seer": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Reindeer": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Retro Set": [
+   [
+    1792242458,
+    70
+   ]
+  ],
+  "Rudolph": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Sakura": [
+   [
+    1791930360,
+    1250
+   ],
+   [
+    1792242458,
+    1230
+   ],
+   [
+    1792086973,
+    1230
+   ],
+   [
+    1792269983,
+    1210
+   ]
+  ],
+  "Sakura Set": [
+   [
+    1791930360,
+    2510
+   ],
+   [
+    1792242458,
+    2470
+   ],
+   [
+    1792086973,
+    2470
+   ],
+   [
+    1792269983,
+    2430
+   ]
+  ],
+  "Sands": [
+   [
+    1791930360,
+    90
+   ],
+   [
+    1792242458,
+    85
+   ]
+  ],
+  "Santa's Magic": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Santa's Set (Legend.)": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Santa's Spirit": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Saw": [
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Scratch Set": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Seahorsey": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Seer": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Shadow": [
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Shadow Pumpkin": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Shark": [
+   [
+    1791930360,
+    23
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Sidewinder": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Silent Night (Gun)": [
+   [
+    1791930360,
+    13
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Silent Night (Knife)": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Silent Night Set": [
+   [
+    1791930360,
+    63
+   ],
+   [
+    1792242458,
+    62
+   ]
+  ],
+  "Skate Set": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    23
+   ]
+  ],
+  "Skeleton Key": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Sketchy": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Skool": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Skulls": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Skully": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Slashed": [
+   [
+    1791930360,
+    0
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Slasher": [
+   [
+    1791930360,
+    17
+   ],
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Slasher Set": [
+   [
+    1791930360,
+    38
+   ],
+   [
+    1792242458,
+    37
+   ]
+  ],
+  "Slime": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Slime (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Slime (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Slime Set": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Slimy": [
+   [
+    1791930360,
+    18
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Small Set (103)": [
+   [
+    1791930360,
+    1240
+   ],
+   [
+    1792242458,
+    1235
+   ]
+  ],
+  "Small Set (107)": [
+   [
+    1791930360,
+    1268
+   ],
+   [
+    1792242458,
+    1270
+   ]
+  ],
+  "Snakebite (Gun)": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Snakebite (Knife)": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Snakebite Set": [
+   [
+    1791930360,
+    6
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Snow Dagger": [
+   [
+    1791930360,
+    185
+   ],
+   [
+    1792242458,
+    175
+   ]
+  ],
+  "Snow Set": [
+   [
+    1791930360,
+    885
+   ],
+   [
+    1792242458,
+    850
+   ]
+  ],
+  "Snowbear": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Snowcannon": [
+   [
+    1791930360,
+    700
+   ],
+   [
+    1792242458,
+    675
+   ]
+  ],
+  "Snowflake": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Snowflake (Knife)": [
+   [
+    1791930360,
+    50
+   ],
+   [
+    1792242458,
+    55
+   ]
+  ],
+  "Snowflakes": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Snowflakes (Gun)": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Snowman": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Snowman (Gun)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Snowstorm": [
+   [
+    1791930360,
+    280
+   ],
+   [
+    1792242458,
+    275
+   ],
+   [
+    1792086973,
+    275
+   ],
+   [
+    1792269983,
+    265
+   ]
+  ],
+  "Soul": [
+   [
+    1791930360,
+    670
+   ],
+   [
+    1792242458,
+    665
+   ],
+   [
+    1792086973,
+    665
+   ],
+   [
+    1792269983,
+    655
+   ]
+  ],
+  "Soul Set": [
+   [
+    1791930360,
+    1330
+   ],
+   [
+    1792242458,
+    1320
+   ],
+   [
+    1792086973,
+    1320
+   ],
+   [
+    1792269983,
+    1300
+   ]
+  ],
+  "Sparkle Set": [
+   [
+    1791930360,
+    125
+   ],
+   [
+    1792242458,
+    127
+   ]
+  ],
+  "Sparkle1": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Sparkle10": [
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Sparkle2": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Sparkle3": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Sparkle4": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Sparkle5": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Sparkle6": [
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Sparkle7": [
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Sparkle8": [
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Sparkle9": [
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Spectral (Gun)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Spectral (Knife)": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Spectral Set": [
+   [
+    1791930360,
+    58
+   ],
+   [
+    1792242458,
+    53
+   ]
+  ],
+  "Spectre": [
+   [
+    1791930360,
+    37
+   ],
+   [
+    1792242458,
+    35
+   ]
+  ],
+  "Spectre Set": [
+   [
+    1791930360,
+    74
+   ],
+   [
+    1792242458,
+    70
+   ]
+  ],
+  "Spider": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Spirit": [
+   [
+    1791930360,
+    660
+   ],
+   [
+    1792242458,
+    655
+   ],
+   [
+    1792086973,
+    655
+   ],
+   [
+    1792269983,
+    645
+   ]
+  ],
+  "Splitter": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Starry": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Starry (Gun)": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    22
+   ]
+  ],
+  "Stars": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Stars (Knife)": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Steel": [
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Steel (Gun)": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    8
+   ]
+  ],
+  "Sub": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Sugar": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    32
+   ]
+  ],
+  "Sun": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Sun Set": [
+   [
+    1791930360,
+    1525
+   ],
+   [
+    1792242458,
+    1500
+   ],
+   [
+    1792086973,
+    1500
+   ],
+   [
+    1792269983,
+    1475
+   ]
+  ],
+  "Sunrise": [
+   [
+    1791930360,
+    875
+   ],
+   [
+    1792242458,
+    850
+   ],
+   [
+    1792086973,
+    850
+   ],
+   [
+    1792269983,
+    825
+   ]
+  ],
+  "Sunset": [
+   [
+    1791930360,
+    675
+   ],
+   [
+    1792242458,
+    650
+   ]
+  ],
+  "Sweater": [
+   [
+    1792242458,
+    60
+   ]
+  ],
+  "Sweater (Knife)": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    60
+   ]
+  ],
+  "Sweet": [
+   [
+    1791930360,
+    155
+   ],
+   [
+    1792242458,
+    150
+   ]
+  ],
+  "Sweet Set": [
+   [
+    1791930360,
+    315
+   ],
+   [
+    1792242458,
+    305
+   ]
+  ],
+  "Swirl": [
+   [
+    1791930360,
+    22
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Swirly Axe": [
+   [
+    1791930360,
+    40
+   ],
+   [
+    1792242458,
+    38
+   ]
+  ],
+  "Swirly Blade": [
+   [
+    1791930360,
+    13
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Swirly Gun": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    18
+   ]
+  ],
+  "Swirly Set": [
+   [
+    1791930360,
+    58
+   ],
+   [
+    1792242458,
+    56
+   ]
+  ],
+  "Tailslide": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Tankie": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Tides": [
+   [
+    1791930360,
+    12
+   ],
+   [
+    1792242458,
+    10
+   ]
+  ],
+  "Toxic (Gun)": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Toxic (Knife)": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Toxic Set": [
+   [
+    1791930360,
+    9
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Traveler (Gun)": [
+   [
+    1791930360,
+    55
+   ],
+   [
+    1792242458,
+    50
+   ]
+  ],
+  "Traveler (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Traveler Set": [
+   [
+    1791930360,
+    58
+   ],
+   [
+    1792242458,
+    53
+   ]
+  ],
+  "Traveler's Axe": [
+   [
+    1791930360,
+    7100
+   ],
+   [
+    1792242458,
+    7000
+   ],
+   [
+    1792086973,
+    7000
+   ],
+   [
+    1792269983,
+    7100
+   ]
+  ],
+  "Traveler's Gun": [
+   [
+    1791930360,
+    5300
+   ],
+   [
+    1792242458,
+    5200
+   ]
+  ],
+  "Traveler's Set": [
+   [
+    1791930360,
+    12300
+   ],
+   [
+    1792242458,
+    12200
+   ],
+   [
+    1792086973,
+    12200
+   ],
+   [
+    1792269983,
+    12300
+   ]
+  ],
+  "Treat": [
+   [
+    1791930360,
+    160
+   ],
+   [
+    1792242458,
+    155
+   ]
+  ],
+  "Tree": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Tree (2021)": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Turkey": [
+   [
+    1791930360,
+    1900
+   ],
+   [
+    1792242458,
+    1850
+   ]
+  ],
+  "UFO": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Ultra Wrap": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Vampire": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Vampire (Gun)": [
+   [
+    1791930360,
+    50
+   ],
+   [
+    1792242458,
+    45
+   ]
+  ],
+  "Vampire (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Vampire Bat": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Vampire Set (Legend.)": [
+   [
+    1791930360,
+    53
+   ],
+   [
+    1792242458,
+    48
+   ]
+  ],
+  "Vampire Set (Rare)": [
+   [
+    1791930360,
+    6
+   ],
+   [
+    1792242458,
+    4
+   ]
+  ],
+  "Vampire's Axe": [
+   [
+    1791930360,
+    1500
+   ],
+   [
+    1792242458,
+    1450
+   ],
+   [
+    1792086973,
+    1450
+   ],
+   [
+    1792269983,
+    1400
+   ]
+  ],
+  "Vampire's Edge": [
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Vampire's Gun": [
+   [
+    1791930360,
+    1875
+   ],
+   [
+    1792242458,
+    1900
+   ]
+  ],
+  "Vampire's Set": [
+   [
+    1791930360,
+    3400
+   ],
+   [
+    1792242458,
+    3350
+   ],
+   [
+    1792086973,
+    3350
+   ],
+   [
+    1792269983,
+    3300
+   ]
+  ],
+  "Vintage Set": [
+   [
+    1791930360,
+    61
+   ],
+   [
+    1792242458,
+    59
+   ]
+  ],
+  "Virtual": [
+   [
+    1791930360,
+    15
+   ],
+   [
+    1792242458,
+    13
+   ]
+  ],
+  "Virtual Set": [
+   [
+    1791930360,
+    33
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Void": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Watcher": [
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Watcher (Gun)": [
+   [
+    1791930360,
+    25
+   ],
+   [
+    1792242458,
+    20
+   ]
+  ],
+  "Watergun": [
+   [
+    1791930360,
+    160
+   ],
+   [
+    1792242458,
+    155
+   ]
+  ],
+  "Waves": [
+   [
+    1791930360,
+    245
+   ],
+   [
+    1792242458,
+    240
+   ]
+  ],
+  "Webbed": [
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Webbed (Gun)": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    25
+   ]
+  ],
+  "Webs": [
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Winter's Edge": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Witched": [
+   [
+    1791930360,
+    4
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Wolf": [
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Wraith": [
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Wraith (Knife)": [
+   [
+    1791930360,
+    3
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Wrap": [
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Wrap (Gun)": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Wrap (Knife)": [
+   [
+    1791930360,
+    10
+   ],
+   [
+    1792242458,
+    12
+   ]
+  ],
+  "Wrap Set": [
+   [
+    1791930360,
+    20
+   ],
+   [
+    1792242458,
+    24
+   ]
+  ],
+  "Wrapped": [
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Wrapped (Gun)": [
+   [
+    1791930360,
+    27
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Wrapping Paper Set": [
+   [
+    1791930360,
+    16
+   ],
+   [
+    1792242458,
+    14
+   ]
+  ],
+  "Xeno Set": [
+   [
+    1791930360,
+    810
+   ],
+   [
+    1792242458,
+    820
+   ],
+   [
+    1792086973,
+    820
+   ],
+   [
+    1792269983,
+    830
+   ]
+  ],
+  "Xenoknife": [
+   [
+    1791930360,
+    405
+   ],
+   [
+    1792242458,
+    410
+   ],
+   [
+    1792086973,
+    410
+   ],
+   [
+    1792269983,
+    415
+   ]
+  ],
+  "Xenoshot": [
+   [
+    1791930360,
+    405
+   ],
+   [
+    1792242458,
+    410
+   ],
+   [
+    1792086973,
+    410
+   ],
+   [
+    1792269983,
+    415
+   ]
+  ],
+  "Xmas": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Yellow Seer": [
+   [
+    1792242458,
+    2
+   ]
+  ],
+  "Zombie": [
+   [
+    1791930360,
+    5
+   ],
+   [
+    1792242458,
+    7
+   ]
+  ],
+  "Zombie (2023)": [
+   [
+    1791930360,
+    1
+   ],
+   [
+    1792242458,
+    3
+   ]
+  ],
+  "Zombie (Gun)": [
+   [
+    1791930360,
+    7
+   ],
+   [
+    1792242458,
+    5
+   ]
+  ],
+  "Zombie (Knife)": [
+   [
+    1791930360,
+    2
+   ],
+   [
+    1792242458,
+    1
+   ]
+  ],
+  "Zombie Dog": [
+   [
+    1791930360,
+    775
+   ],
+   [
+    1792242458,
+    750
+   ]
+  ],
+  "Zombie Set": [
+   [
+    1791930360,
+    8
+   ],
+   [
+    1792242458,
+    6
+   ]
+  ],
+  "Zombified": [
+   [
+    1791930360,
+    35
+   ],
+   [
+    1792242458,
+    30
+   ]
+  ],
+  "Zombified (Gun)": [
+   [
+    1792242458,
+    15
+   ]
+  ],
+  "Zombified (Knife)": [
+   [
+    1791930360,
+    115
+   ],
+   [
+    1792242458,
+    120
+   ]
+  ],
+  "Zombified Set": [
+   [
+    1791930360,
+    130
+   ],
+   [
+    1792242458,
+    135
+   ]
+  ]
+ },
+ "info": {
+  "<3": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Alex": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Alien Set": {
+   "d": 6,
+   "r": "3,975 - 4,075",
+   "s": "Doing Well",
+   "y": 4
+  },
+  "Alienbeam": {
+   "d": 6,
+   "r": "2,000 - 2,050",
+   "s": "Doing Well",
+   "y": 4
+  },
+  "America": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Amerilaser": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Apocalypse (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Arctic (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Asteroid": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Aurora (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Aurora (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Aurora Set (Legend.)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Aurora Set (Rare)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Australis": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Badger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bat": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bat Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bats": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Bats (2020)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Bats (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Bats (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 5
+  },
+  "Bats Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 5
+  },
+  "Battleaxe": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Battleaxe II": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Batwing": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bauble": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Bauble Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Beach": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Beach Set": {
+   "d": 2,
+   "r": "160 - 180",
+   "s": "Fluctuating",
+   "y": 3
+  },
+  "Beachy": {
+   "d": 2,
+   "r": "80 - 90",
+   "s": "Fluctuating",
+   "y": 3
+  },
+  "Bioblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Black Cat": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Blaster": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Blizzard": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blizzard Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blood": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bloom": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Bloom Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blossom": {
+   "d": 5,
+   "r": "1,220 - 1,240",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Blue Elite": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blue Papers": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blue Pumpkin": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Blue Scratch": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Blue Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Boneblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bones": {
+   "d": 3,
+   "s": "Stable",
+   "y": 5
+  },
+  "Borealis": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Borealis Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Bow Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 2
+  },
+  "Box of Fertilizer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Brains": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Branches": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Bringer Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Broken": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Bunnies": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "C. Constellation": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "C. Elderwood Blade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "C. Traveler's Gun": {
+   "d": 8,
+   "s": "Stable",
+   "y": 10
+  },
+  "C. Vampire's Gun": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "Candleflame": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Candy": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Candy Corn (2019)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Candy Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Candy Swirl (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Candy Swirl (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Candy Swirl Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "CandyCorn (2017)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Cane (Knife)": {
+   "d": 4,
+   "s": "Stable",
+   "y": 5
+  },
+  "Cavern (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Cavern (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Cavern Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Celestial": {
+   "d": 5,
+   "r": "1,950 - 2,050",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Celestial Set": {
+   "d": 5,
+   "r": "4,550 - 4,650",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Chill": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chilly": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Alien Set": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Alienbeam": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Bauble": {
+   "d": 7,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Bauble Set": {
+   "d": 7,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Beach Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Beachy": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Blizzard": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Blizzard Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Boneblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Bringer Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Candleflame": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Constellation": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Cookiecane": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Darkbringer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Deathshard": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Elderwood Blade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Ever Set": {
+   "d": 7,
+   "s": "Stable",
+   "y": 8
+  },
+  "Chroma Evergreen": {
+   "d": 7,
+   "s": "Stable",
+   "y": 7
+  },
+  "Chroma Evergun": {
+   "d": 7,
+   "s": "Stable",
+   "y": 8
+  },
+  "Chroma Fang": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Fire Bat": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Bear": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Bunny": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Cat": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Dog": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Fox": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Fire Pig": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Gemstone": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Gingerblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Heart Wand": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Heat": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Icecream": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Laser": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Lightbringer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Luger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Ornament": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Pet Set": {
+   "d": 1,
+   "r": "14 - 21",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Chroma Raygun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Sands": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Saw": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Shark": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Slasher": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Slasher Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Snow Dagger": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Snow Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Snowcannon": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Snowstorm": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Sun Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Sunrise": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Sunset": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Sweet": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Sweet Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Swirly Gun": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Tides": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chroma Traveler's Gun": {
+   "d": 8,
+   "s": "Stable",
+   "y": 10
+  },
+  "Chroma Treat": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Chroma Vampire's Gun": {
+   "d": 6,
+   "s": "Stable",
+   "y": 6
+  },
+  "Chroma Watergun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Chroma Weapon Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Chromatic (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Clockwork": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Coal": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Coal (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Colored Seer Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Combat II": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Constellation": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Cookie (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Cookie Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Cookieblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Cookiecane": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Corl": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Corrupt": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Corrupt Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Cotton Candy": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Cowboy": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Dark Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Dark Set (Rare)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Darkbringer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Darkgun": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Darkknife": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Darkshot": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Darksword": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Deathshard": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Denis": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Dogey": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Dungeon": {
+   "d": 3,
+   "s": "Stable",
+   "y": 5
+  },
+  "Ecto": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Eggblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Elderwood Blade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Elderwood Revolver": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Elderwood Scythe": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Elderwood Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Elf": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Elf (2018)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Elf (2019)": {
+   "d": 4,
+   "s": "Stable",
+   "y": 5
+  },
+  "Elf (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Energized (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternal": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternal II": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternal III": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternal IV": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternal Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternalcane": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Eternalcane Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Euro": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ever Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Evergreen": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Evergun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Eye Set": {
+   "d": 1,
+   "r": "4 - 6",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Eyeball": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Fairy": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Fang": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Flames": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Flora": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Floral": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Floral (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Flowerwood": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Flowerwood Gun": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Flowerwood Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Frostbite": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Frosted (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Frostfade (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Frostsaber": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Frozen (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Frozen (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Frozen Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Full Bringer Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Full Chroma Set": {
+   "d": 1,
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Full Colored Seer Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Full Elderwood Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Full Elite Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Full Ice Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 2
+  },
+  "Full Luger Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Full Swirly Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gemstone": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ghastly (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Ghost": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ghost (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ghost (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ghost Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ghostblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ghostfire": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ghosty": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ghoulish": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Gifts (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Ginger (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ginger Luger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ginger Set (Godly)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gingerblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gingerbread": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Gingerbread (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Gingerbread (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gingerbread Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Gingermint": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gingerscope": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Glitch1": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Glitch2": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Gold Papers": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Golden": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Gothic (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Grave (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Grave (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Grave Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Green Elite": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Green Luger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Green Marble": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Green Papers": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Green Pumpkin": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Grind": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Hallow Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Hallow's Blade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Hallow's Edge": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Hallowgun": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Hallowscythe": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Handsaw": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Harvester": {
+   "d": 3,
+   "s": "Stable",
+   "y": 2
+  },
+  "Haunted": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Haunted (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Haunted (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Haunted Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Hazard (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Heart Wand": {
+   "d": 4,
+   "s": "Stable",
+   "y": 3
+  },
+  "Heartblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Heat": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Holly (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ice Dragon": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ice Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ice Shard": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icebeam": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Iceblaster": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icebreaker": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icecracker": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icecream": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Icedriller": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icedriller Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Iceflake": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Iceflake Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icepiercer": {
+   "d": 3,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icewing": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Icicles (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Indy": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Infected": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Infected (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "JD": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Jack": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Jetstream": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Jinglegun": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Lantern": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Laser": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Latte (Gun)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Latte (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Latte Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Lightbringer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Lights (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Lights (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Lights Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Lil' Alien": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Logchopper": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Logchopper Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Luger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Luger Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Lugercane": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Magma": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Magma (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Makeshift": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Makeshift (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Marble Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Mechbug": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Meltdown": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Minty": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Monster": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Moonlight": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Moons": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Mr. Reindeer": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Mr. Snowman": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Mummified": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Mummy (2017)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Mummy (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Mummy (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Mummy Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Mystery Key": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Nebula": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Nightblade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Nightsky": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Nobledragon": {
+   "d": 1,
+   "r": "3 - 5",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Ocean": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Ocean Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Old Glory": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Old Glory Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Ollie": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Orange Marble": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Orange Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Ornament": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Overseer Eye": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Pals Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Pearl": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Pearl Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Pearlshine": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Pengy": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Peppermint": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Phantom": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Phaser": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Piggy": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Pine (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Pixel": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Plasma Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Plasmabeam": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Plasmablade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Potion (2017)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Potion (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Potion (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Potion Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Prince": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Prism": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Prismatic": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Pumpkin (2017)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 5
+  },
+  "Pumpkin (2019)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Pumpkin Pie": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Pumpkin Set": {
+   "d": 3,
+   "r": "402 - 403",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Pumpkin Set (2019)": {
+   "d": 1,
+   "r": "5 - 7",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Pumpkin Set (2020)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Pumpkin Set (2021)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Pumpking": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Purple Papers": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Purple Pumpkin": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Purple Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "RIP": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Rainbow": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Rainbow Gun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Rainbow Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Raygun": {
+   "d": 6,
+   "r": "1,975 - 2,025",
+   "s": "Doing Well",
+   "y": 3
+  },
+  "Red Fire": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Red Luger": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Red Papers": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Red Pumpkin": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Red Scratch": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Red Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Reindeer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Retro Set": {
+   "d": 3,
+   "r": "55 - 85",
+   "s": "Fluctuating",
+   "y": 4
+  },
+  "Rudolph": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Sakura": {
+   "d": 5,
+   "r": "1,210 - 1,230",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Sakura Set": {
+   "d": 5,
+   "r": "2,430 - 2,470",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Sands": {
+   "d": 2,
+   "r": "80 - 90",
+   "s": "Fluctuating",
+   "y": 3
+  },
+  "Santa's Magic": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Santa's Set (Legend.)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Santa's Spirit": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Saw": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Scratch Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Seahorsey": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Shadow": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Shadow Pumpkin": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Shark": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sidewinder": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Silent Night (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Silent Night (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Silent Night Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Skate Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Skeleton Key": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sketchy": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Skool": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Skulls": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Skully": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Slashed": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Slasher": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Slasher Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Slime (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Slime (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Slime Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Slimy": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Small Set (103)": {
+   "d": 4,
+   "r": "1,185 - 1,285",
+   "s": "Fluctuating",
+   "y": 4
+  },
+  "Small Set (107)": {
+   "d": 4,
+   "r": "1,220 - 1,320",
+   "s": "Fluctuating",
+   "y": 4
+  },
+  "Snakebite (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Snakebite (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snakebite Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snow Dagger": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snow Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snowbear": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snowcannon": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snowflake": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Snowflake (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Snowflakes": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Snowflakes (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Snowman (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Snowstorm": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Soul": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Soul Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle1": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sparkle10": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle2": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sparkle3": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sparkle4": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sparkle5": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle6": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle7": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle8": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sparkle9": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Spectral (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Spectral (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Spectral Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Spectre": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Spectre Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Spider": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Spirit": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Splitter": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Starry": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Starry (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Stars (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Steel (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sub": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sugar": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Sun": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sun Set": {
+   "d": 5,
+   "r": "1,475 - 1,500",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Sunrise": {
+   "d": 5,
+   "r": "825 - 850",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Sunset": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sweater": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sweater (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Sweet": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Sweet Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Swirl": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Swirly Axe": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Swirly Blade": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Swirly Gun": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Swirly Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Tailslide": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Tankie": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Tides": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Toxic (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Toxic (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Toxic Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Traveler (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Traveler (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Traveler Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Traveler's Axe": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Traveler's Gun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Traveler's Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 5
+  },
+  "Treat": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Tree (2021)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Turkey": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "UFO": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Ultra Wrap": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Vampire": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Vampire (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Vampire (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Vampire Bat": {
+   "d": 1,
+   "r": "2 - 3",
+   "s": "Underpaid For",
+   "y": 2
+  },
+  "Vampire Set (Legend.)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Vampire Set (Rare)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Vampire's Axe": {
+   "d": 5,
+   "r": "1,425 - 1,450",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Vampire's Edge": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Vampire's Gun": {
+   "d": 5,
+   "s": "Stable",
+   "y": 4
+  },
+  "Vampire's Set": {
+   "d": 5,
+   "r": "3,325 - 3,350",
+   "s": "Underpaid For",
+   "y": 4
+  },
+  "Vintage Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Virtual": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Virtual Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Void": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Watcher (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Watergun": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Waves": {
+   "d": 3,
+   "s": "Stable",
+   "y": 3
+  },
+  "Webbed (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Webs": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Winter's Edge": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Witched": {
+   "d": 2,
+   "s": "Stable",
+   "y": 2
+  },
+  "Wolf": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Wraith (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Wrap (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Wrap (Knife)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Wrap Set": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Wrapped (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Wrapping Paper Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Xeno Set": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Xenoknife": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Xenoshot": {
+   "d": 5,
+   "s": "Stable",
+   "y": 3
+  },
+  "Xmas": {
+   "d": 1,
+   "s": "Stable",
+   "y": 2
+  },
+  "Yellow Seer": {
+   "d": 1,
+   "s": "Stable",
+   "y": 1
+  },
+  "Zombie": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Zombie (2023)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 3
+  },
+  "Zombie (Gun)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Zombie (Knife)": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Zombie Dog": {
+   "d": 4,
+   "s": "Stable",
+   "y": 5
+  },
+  "Zombie Set": {
+   "d": 1,
+   "s": "Stable",
+   "y": 3
+  },
+  "Zombified": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Zombified (Gun)": {
+   "d": 2,
+   "s": "Stable",
+   "y": 4
+  },
+  "Zombified (Knife)": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  },
+  "Zombified Set": {
+   "d": 3,
+   "s": "Stable",
+   "y": 4
+  }
+ },
+ "last_message_id": 1561384975335563335,
+ "updated": "2026-10-17T20:46:23.067000+00:00",
+ "values": {
+  "<3": 7,
+  "Alex": 4,
+  "Alien Set": 4025,
+  "Alienbeam": 2025,
+  "America": 7,
+  "Amerilaser": 22,
+  "Apocalypse": 3,
+  "Apocalypse (Gun)": 3,
+  "Arctic": 10,
+  "Arctic (Gun)": 10,
+  "Asteroid": 2,
+  "Aurora (Gun)": 45,
+  "Aurora (Knife)": 3,
+  "Aurora Set (Legend.)": 48,
+  "Aurora Set (Rare)": 8,
+  "Australis": 140,
+  "Badger": 1,
+  "Bat": 125,
+  "Bat Set": 158,
+  "Bats": 2,
+  "Bats (2020)": 3,
+  "Bats (Gun)": 1,
+  "Bats (Knife)": 240,
+  "Bats Set": 241,
+  "Battleaxe": 12,
+  "Battleaxe II": 17,
+  "Batwing": 42,
+  "Bauble": 675,
+  "Bauble Set": 740,
+  "Beach": 35,
+  "Beach Set": 170,
+  "Beachy": 85,
+  "Bioblade": 8,
+  "Black Cat": 75,
+  "Blaster": 17,
+  "Blizzard": 265,
+  "Blizzard Set": 530,
+  "Blood": 8,
+  "Bloom": 395,
+  "Bloom Set": 795,
+  "Blossom": 1220,
+  "Blue Elite": 3,
+  "Blue Papers": 2,
+  "Blue Pumpkin": 220,
+  "Blue Scratch": 2,
+  "Blue Seer": 3,
+  "Boneblade": 7,
+  "Bones": 210,
+  "Borealis": 145,
+  "Borealis Set": 285,
+  "Bow Set": 410,
+  "Box of Fertilizer": 2,
+  "Brains": 135,
+  "Branches": 50,
+  "Bringer Set": 65,
+  "Broken": 7,
+  "Bunnies": 15,
+  "C. Constellation": 27000,
+  "C. Elderwood Blade": 37,
+  "C. Traveler's Gun": 140000,
+  "C. Vampire's Gun": 24500,
+  "Candleflame": 33,
+  "Candy": 80,
+  "Candy Corn": 12,
+  "Candy Corn (2019)": 12,
+  "Candy Set": 112,
+  "Candy Swirl (Gun)": 2,
+  "Candy Swirl (Knife)": 1,
+  "Candy Swirl Set": 3,
+  "CandyCorn": 25,
+  "CandyCorn (2017)": 25,
+  "Cane": 525,
+  "Cane (Knife)": 525,
+  "Cavern (Gun)": 1,
+  "Cavern (Knife)": 7,
+  "Cavern Set": 8,
+  "Celestial": 2000,
+  "Celestial Set": 4550,
+  "Chill": 10,
+  "Chilly": 3,
+  "Chroma Alien Set": 38000,
+  "Chroma Alienbeam": 24000,
+  "Chroma Bauble": 29000,
+  "Chroma Bauble Set": 30825,
+  "Chroma Beach Set": 2400,
+  "Chroma Beachy": 1175,
+  "Chroma Blizzard": 5500,
+  "Chroma Blizzard Set": 9750,
+  "Chroma Boneblade": 22,
+  "Chroma Bringer Set": 125,
+  "Chroma Candleflame": 40,
+  "Chroma Constellation": 27000,
+  "Chroma Cookiecane": 32,
+  "Chroma Darkbringer": 65,
+  "Chroma Deathshard": 35,
+  "Chroma Elderwood Blade": 37,
+  "Chroma Ever Set": 88000,
+  "Chroma Evergreen": 37000,
+  "Chroma Evergun": 51000,
+  "Chroma Fang": 32,
+  "Chroma Fire Bat": 3,
+  "Chroma Fire Bear": 3,
+  "Chroma Fire Bunny": 3,
+  "Chroma Fire Cat": 3,
+  "Chroma Fire Dog": 3,
+  "Chroma Fire Fox": 3,
+  "Chroma Fire Pig": 3,
+  "Chroma Gemstone": 32,
+  "Chroma Gingerblade": 27,
+  "Chroma Heart Wand": 3500,
+  "Chroma Heat": 28,
+  "Chroma Icecream": 1850,
+  "Chroma Laser": 40,
+  "Chroma Lightbringer": 60,
+  "Chroma Luger": 50,
+  "Chroma Ornament": 1825,
+  "Chroma Pet Set": 21,
+  "Chroma Raygun": 14000,
+  "Chroma Sands": 1225,
+  "Chroma Saw": 23,
+  "Chroma Seer": 28,
+  "Chroma Shark": 32,
+  "Chroma Slasher": 32,
+  "Chroma Slasher Set": 72,
+  "Chroma Snow Dagger": 2350,
+  "Chroma Snow Set": 10100,
+  "Chroma Snowcannon": 7750,
+  "Chroma Snowstorm": 4250,
+  "Chroma Sun Set": 15750,
+  "Chroma Sunrise": 9750,
+  "Chroma Sunset": 6000,
+  "Chroma Sweet": 1725,
+  "Chroma Sweet Set": 3500,
+  "Chroma Swirly Gun": 35,
+  "Chroma Tides": 27,
+  "Chroma Traveler's Gun": 140000,
+  "Chroma Treat": 1775,
+  "Chroma Vampire's Gun": 24500,
+  "Chroma Watergun": 2300,
+  "Chroma Weapon Set": 535,
+  "Chromatic": 1,
+  "Chromatic (Knife)": 1,
+  "Clockwork": 10,
+  "Coal": 15,
+  "Coal (Knife)": 15,
+  "Colored Seer Set": 16,
+  "Combat II": 10,
+  "Constellation": 2550,
+  "Cookie": 1,
+  "Cookie (Knife)": 1,
+  "Cookie Set": 25,
+  "Cookieblade": 3,
+  "Cookiecane": 13,
+  "Corl": 4,
+  "Corrupt": 320,
+  "Corrupt Set": 338,
+  "Cotton Candy": 35,
+  "Cowboy": 4,
+  "Dark Set": 3525,
+  "Dark Set (Rare)": 71,
+  "Darkbringer": 33,
+  "Darkgun": 1,
+  "Darkknife": 70,
+  "Darkshot": 1775,
+  "Darksword": 1750,
+  "Deathshard": 13,
+  "Denis": 4,
+  "Dogey": 150,
+  "Dungeon": 120,
+  "Ecto": 25,
+  "Eggblade": 5,
+  "Elderwood Blade": 33,
+  "Elderwood Revolver": 33,
+  "Elderwood Scythe": 38,
+  "Elderwood Set": 71,
+  "Elf": 25,
+  "Elf (2018)": 20,
+  "Elf (2019)": 625,
+  "Elf (Knife)": 15,
+  "Energized": 2,
+  "Energized (Gun)": 2,
+  "Eternal": 7,
+  "Eternal II": 7,
+  "Eternal III": 8,
+  "Eternal IV": 8,
+  "Eternal Set": 43,
+  "Eternalcane": 13,
+  "Eternalcane Set": 26,
+  "Euro": 4,
+  "Ever Set": 6150,
+  "Evergreen": 2700,
+  "Evergun": 3450,
+  "Eye Set": 6,
+  "Eyeball": 3,
+  "Fairy": 3,
+  "Fang": 10,
+  "Flames": 5,
+  "Flora": 400,
+  "Floral": 10,
+  "Floral (Knife)": 10,
+  "Flowerwood": 235,
+  "Flowerwood Gun": 240,
+  "Flowerwood Set": 475,
+  "Frostbite": 7,
+  "Frosted": 30,
+  "Frosted (Knife)": 30,
+  "Frostfade": 2,
+  "Frostfade (Knife)": 2,
+  "Frostsaber": 10,
+  "Frozen (Gun)": 3,
+  "Frozen (Knife)": 1,
+  "Frozen Set": 4,
+  "Full Bringer Set": 190,
+  "Full Chroma Set": 555,
+  "Full Colored Seer Set": 44,
+  "Full Elderwood Set": 104,
+  "Full Elite Set": 6,
+  "Full Ice Set": 258,
+  "Full Luger Set": 156,
+  "Full Swirly Set": 68,
+  "Gemstone": 15,
+  "Ghastly": 7,
+  "Ghastly (Gun)": 7,
+  "Ghost": 8,
+  "Ghost (Gun)": 2,
+  "Ghost (Knife)": 5,
+  "Ghost Set": 7,
+  "Ghostblade": 7,
+  "Ghostfire": 10,
+  "Ghosty": 3,
+  "Ghoulish": 90,
+  "Gifts": 95,
+  "Gifts (Knife)": 95,
+  "Ginger": 5,
+  "Ginger (Gun)": 5,
+  "Ginger Luger": 17,
+  "Ginger Set (Godly)": 30,
+  "Gingerblade": 13,
+  "Gingerbread": 1,
+  "Gingerbread (Gun)": 3,
+  "Gingerbread (Knife)": 85,
+  "Gingerbread Set": 86,
+  "Gingermint": 12,
+  "Gingerscope": 14750,
+  "Glitch1": 65,
+  "Glitch2": 35,
+  "Gold Papers": 2,
+  "Golden": 4,
+  "Gothic": 7,
+  "Gothic (Gun)": 7,
+  "Grave": 1,
+  "Grave (Gun)": 1,
+  "Grave (Knife)": 1,
+  "Grave Set": 2,
+  "Green Elite": 3,
+  "Green Luger": 23,
+  "Green Marble": 2,
+  "Green Papers": 2,
+  "Green Pumpkin": 60,
+  "Grind": 2,
+  "Hallow Set": 50,
+  "Hallow's Blade": 8,
+  "Hallow's Edge": 8,
+  "Hallowgun": 20,
+  "Hallowscythe": 30,
+  "Handsaw": 8,
+  "Harvester": 250,
+  "Haunted": 1,
+  "Haunted (Gun)": 1,
+  "Haunted (Knife)": 1,
+  "Haunted Set": 2,
+  "Hazard": 5,
+  "Hazard (Gun)": 5,
+  "Heart Wand": 340,
+  "Heartblade": 65,
+  "Heat": 10,
+  "Holly": 1,
+  "Holly (Gun)": 1,
+  "Ice Dragon": 7,
+  "Ice Set": 98,
+  "Ice Shard": 7,
+  "Icebeam": 18,
+  "Iceblaster": 33,
+  "Icebreaker": 65,
+  "Icecracker": 1,
+  "Icecream": 155,
+  "Icedriller": 5,
+  "Icedriller Set": 6,
+  "Iceflake": 15,
+  "Iceflake Set": 33,
+  "Icepiercer": 160,
+  "Icewing": 13,
+  "Icicles": 3,
+  "Icicles (Gun)": 3,
+  "Indy": 2,
+  "Infected": 3,
+  "Infected (Gun)": 3,
+  "JD": 28,
+  "Jack": 3,
+  "Jetstream": 3,
+  "Jinglegun": 13,
+  "Lantern": 3,
+  "Laser": 8,
+  "Latte": 140,
+  "Latte (Gun)": 140,
+  "Latte (Knife)": 140,
+  "Latte Set": 280,
+  "Lightbringer": 32,
+  "Lights (Gun)": 2,
+  "Lights (Knife)": 1,
+  "Lights Set": 3,
+  "Lil' Alien": 1,
+  "Logchopper": 18,
+  "Logchopper Set": 31,
+  "Luger": 18,
+  "Luger Set": 106,
+  "Lugercane": 13,
+  "Magma": 3,
+  "Magma (Gun)": 13,
+  "Makeshift": 33,
+  "Makeshift (Knife)": 35,
+  "Marble Set": 4,
+  "Mechbug": 3,
+  "Meltdown": 2,
+  "Minty": 13,
+  "Monster": 1,
+  "Moonlight": 2,
+  "Moons": 1,
+  "Mr. Reindeer": 50,
+  "Mr. Snowman": 20,
+  "Mummified": 35,
+  "Mummy (2017)": 25,
+  "Mummy (Gun)": 2,
+  "Mummy (Knife)": 1,
+  "Mummy Set": 3,
+  "Mystery Key": 1,
+  "Nebula": 13,
+  "Nightblade": 20,
+  "Nightsky": 5,
+  "Nobledragon": 5,
+  "Ocean": 245,
+  "Ocean Set": 485,
+  "Old Glory": 15,
+  "Old Glory Set": 37,
+  "Ollie": 4,
+  "Orange Marble": 2,
+  "Orange Seer": 2,
+  "Ornament": 65,
+  "Overseer Eye": 3,
+  "Pals Set": 20,
+  "Pearl": 75,
+  "Pearl Set": 155,
+  "Pearlshine": 80,
+  "Pengy": 3,
+  "Peppermint": 4,
+  "Phantom": 35,
+  "Phaser": 5,
+  "Piggy": 55,
+  "Pine": 85,
+  "Pine (Knife)": 85,
+  "Pixel": 17,
+  "Plasma Set": 33,
+  "Plasmabeam": 18,
+  "Plasmablade": 15,
+  "Potion (2017)": 3,
+  "Potion (Gun)": 2,
+  "Potion (Knife)": 2,
+  "Potion Set": 4,
+  "Prince": 6,
+  "Prism": 12,
+  "Prismatic": 7,
+  "Pumpkin (2017)": 50,
+  "Pumpkin (2019)": 12,
+  "Pumpkin Pie": 2,
+  "Pumpkin Set": 403,
+  "Pumpkin Set (2019)": 7,
+  "Pumpkin Set (2020)": 39,
+  "Pumpkin Set (2021)": 32,
+  "Pumpking": 7,
+  "Purple Papers": 2,
+  "Purple Pumpkin": 3,
+  "Purple Seer": 3,
+  "RIP": 17,
+  "Rainbow": 400,
+  "Rainbow Gun": 405,
+  "Rainbow Set": 805,
+  "Raygun": 2000,
+  "Red Fire": 1,
+  "Red Luger": 35,
+  "Red Papers": 2,
+  "Red Pumpkin": 120,
+  "Red Scratch": 4,
+  "Red Seer": 3,
+  "Reindeer": 3,
+  "Retro Set": 70,
+  "Rudolph": 3,
+  "Sakura": 1210,
+  "Sakura Set": 2430,
+  "Sands": 85,
+  "Santa's Magic": 3,
+  "Santa's Set (Legend.)": 6,
+  "Santa's Spirit": 3,
+  "Saw": 7,
+  "Scratch Set": 6,
+  "Seahorsey": 3,
+  "Seer": 3,
+  "Shadow": 6,
+  "Shadow Pumpkin": 5,
+  "Shark": 20,
+  "Sidewinder": 4,
+  "Silent Night (Gun)": 12,
+  "Silent Night (Knife)": 50,
+  "Silent Night Set": 62,
+  "Skate Set": 23,
+  "Skeleton Key": 5,
+  "Sketchy": 4,
+  "Skool": 8,
+  "Skulls": 4,
+  "Skully": 15,
+  "Slashed": 1,
+  "Slasher": 15,
+  "Slasher Set": 37,
+  "Slime": 1,
+  "Slime (Gun)": 1,
+  "Slime (Knife)": 1,
+  "Slime Set": 2,
+  "Slimy": 20,
+  "Small Set (103)": 1235,
+  "Small Set (107)": 1270,
+  "Snakebite (Gun)": 1,
+  "Snakebite (Knife)": 3,
+  "Snakebite Set": 4,
+  "Snow Dagger": 175,
+  "Snow Set": 850,
+  "Snowbear": 3,
+  "Snowcannon": 675,
+  "Snowflake": 5,
+  "Snowflake (Knife)": 55,
+  "Snowflakes": 12,
+  "Snowflakes (Gun)": 30,
+  "Snowman": 5,
+  "Snowman (Gun)": 5,
+  "Snowstorm": 265,
+  "Soul": 655,
+  "Soul Set": 1300,
+  "Sparkle Set": 127,
+  "Sparkle1": 3,
+  "Sparkle10": 20,
+  "Sparkle2": 3,
+  "Sparkle3": 3,
+  "Sparkle4": 10,
+  "Sparkle5": 8,
+  "Sparkle6": 12,
+  "Sparkle7": 18,
+  "Sparkle8": 20,
+  "Sparkle9": 30,
+  "Spectral (Gun)": 3,
+  "Spectral (Knife)": 50,
+  "Spectral Set": 53,
+  "Spectre": 35,
+  "Spectre Set": 70,
+  "Spider": 10,
+  "Spirit": 645,
+  "Splitter": 3,
+  "Starry": 5,
+  "Starry (Gun)": 22,
+  "Stars": 2,
+  "Stars (Knife)": 2,
+  "Steel": 8,
+  "Steel (Gun)": 8,
+  "Sub": 4,
+  "Sugar": 32,
+  "Sun": 2,
+  "Sun Set": 1475,
+  "Sunrise": 825,
+  "Sunset": 650,
+  "Sweater": 60,
+  "Sweater (Knife)": 60,
+  "Sweet": 150,
+  "Sweet Set": 305,
+  "Swirl": 20,
+  "Swirly Axe": 38,
+  "Swirly Blade": 12,
+  "Swirly Gun": 18,
+  "Swirly Set": 56,
+  "Tailslide": 7,
+  "Tankie": 3,
+  "Tides": 10,
+  "Toxic (Gun)": 2,
+  "Toxic (Knife)": 5,
+  "Toxic Set": 7,
+  "Traveler (Gun)": 50,
+  "Traveler (Knife)": 3,
+  "Traveler Set": 53,
+  "Traveler's Axe": 7100,
+  "Traveler's Gun": 5200,
+  "Traveler's Set": 12300,
+  "Treat": 155,
+  "Tree": 2,
+  "Tree (2021)": 2,
+  "Turkey": 1850,
+  "UFO": 3,
+  "Ultra Wrap": 2,
+  "Vampire": 1,
+  "Vampire (Gun)": 45,
+  "Vampire (Knife)": 3,
+  "Vampire Bat": 3,
+  "Vampire Set (Legend.)": 48,
+  "Vampire Set (Rare)": 4,
+  "Vampire's Axe": 1400,
+  "Vampire's Edge": 15,
+  "Vampire's Gun": 1900,
+  "Vampire's Set": 3300,
+  "Vintage Set": 59,
+  "Virtual": 13,
+  "Virtual Set": 30,
+  "Void": 12,
+  "Watcher": 20,
+  "Watcher (Gun)": 20,
+  "Watergun": 155,
+  "Waves": 240,
+  "Webbed": 25,
+  "Webbed (Gun)": 25,
+  "Webs": 3,
+  "Winter's Edge": 5,
+  "Witched": 3,
+  "Wolf": 1,
+  "Wraith": 5,
+  "Wraith (Knife)": 5,
+  "Wrap": 12,
+  "Wrap (Gun)": 12,
+  "Wrap (Knife)": 12,
+  "Wrap Set": 24,
+  "Wrapped": 30,
+  "Wrapped (Gun)": 30,
+  "Wrapping Paper Set": 14,
+  "Xeno Set": 830,
+  "Xenoknife": 415,
+  "Xenoshot": 415,
+  "Xmas": 7,
+  "Yellow Seer": 2,
+  "Zombie": 7,
+  "Zombie (2023)": 3,
+  "Zombie (Gun)": 5,
+  "Zombie (Knife)": 1,
+  "Zombie Dog": 750,
+  "Zombie Set": 6,
+  "Zombified": 30,
+  "Zombified (Gun)": 15,
+  "Zombified (Knife)": 120,
+  "Zombified Set": 135
+ }
+}

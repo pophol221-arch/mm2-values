@@ -22,7 +22,7 @@ local function on(sig, fn) local c = sig:Connect(fn); table.insert(conns, c); re
 ------------------------------------------------------------------
 -- Настройки (сохраняются в файл Delta, если он умеет writefile)
 ------------------------------------------------------------------
-local S = { textSize = 16, theme = 1, font = 1, lang = "ru", showDiff = true, iconX = 0.02, iconY = 0.35, autoOffer = false, target = 20, enabled = true, highlight = true, autoAdd = true, tolerance = false, uiScale = 1, autoAccept = false, fillOver = true, mirrorEmpty = true, emptyDecline = true, junkDecline = true, giftAccept = true, ordersOn = true, orders = {}, antiAfk = false, antiFling = false, autoRequest = false, chatAds = false, chatInTrade = false, chatRequests = true, declineMsg = true, autoDecline = false, blacklist = {} }
+local S = { textSize = 16, theme = 1, font = 1, lang = "ru", showDiff = true, iconX = 0.02, iconY = 0.35, autoOffer = false, target = 20, enabled = true, highlight = true, autoAdd = true, tolerance = false, uiScale = 1, autoAccept = false, fillOver = true, mirrorEmpty = true, emptyDecline = true, junkDecline = true, giftAccept = true, ordersOn = true, orders = {}, antiAfk = false, antiFling = false, autoRequest = false, chatAds = false, chatInTrade = false, chatRequests = true, declineMsg = true, autoDecline = false, blacklist = {}, keep = {} }
 local function saveSettings()
     if writefile then pcall(writefile, SETTINGS_FILE, HttpService:JSONEncode(S)) end
 end
@@ -63,7 +63,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать (нельзя трейдить или жалко)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +76,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give (untradable or keeping)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -567,6 +567,19 @@ do
     stroke(X.ordOpen)
     themed(function() X.ordOpen.Font = fontBold() end)
 end
+-- «Не отдавать»: свои предметы, которые скрипт никогда не кладёт в трейд
+do
+    local r, l = row()
+    l.Size = UDim2.new(0.6, 0, 1, 0)
+    X.keepLabel = l
+    X.keepOpen = new("TextButton", {
+        Size = UDim2.fromOffset(96, 30), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, 0, 0.5, 0),
+        BackgroundColor3 = C.bg, BackgroundTransparency = 0.2, Text = "", TextColor3 = C.text, TextSize = 13, AutoButtonColor = false,
+    }, r)
+    corner(X.keepOpen, 9)
+    stroke(X.keepOpen)
+    themed(function() X.keepOpen.Font = fontBold() end)
+end
 
 -- сброс позиции плашки (последний ряд вкладки «Трейд»)
 -- автопринятие (ссылки в одной таблице: в Luau не больше 200 локальных на уровень)
@@ -704,19 +717,22 @@ local scroll = new("ScrollingFrame", {
 list(scroll, Enum.FillDirection.Vertical, 4)
 themed(function() scroll.ScrollBarImageColor3 = accent() end)
 
+local curCat = "godlies"
+local mode = "bl" -- "bl" = нежелательные с галочками, "keep" = не отдавать (тоже галочки), "values" = таблица цен как на сайте
+local function marks()
+    S.keep = S.keep or {}
+    return mode == "keep" and S.keep or S.blacklist
+end
 local function blCount()
     local n = 0
-    for _ in pairs(S.blacklist) do n += 1 end
+    for _ in pairs(marks()) do n += 1 end
     return n
 end
-
-local curCat = "godlies"
-local mode = "bl" -- "bl" = нежелательные с галочками, "values" = таблица цен как на сайте
 local renderList, renderSide
 local STAB_COLORS = { ["Stable"] = C.muted, ["Doing Well"] = C.good, ["Fluctuating"] = C.fair, ["Underpaid For"] = C.bad, ["Overpaid For"] = C.good }
 
 local function itemRow(it, order)
-    local on_ = mode == "bl" and S.blacklist[it.key] ~= nil
+    local on_ = mode ~= "values" and marks()[it.key] ~= nil
     local info = mode == "values" and (env.TV_info or {})[it.name] or nil
     local r = new("TextButton", {
         Size = UDim2.new(1, -6, 0, info and 54 or 40), BackgroundColor3 = C.card, BackgroundTransparency = on_ and 0.1 or 0.6,
@@ -734,7 +750,7 @@ local function itemRow(it, order)
     new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -168 - nameX, 0, info and 30 or 40), Position = UDim2.fromOffset(nameX, info and 4 or 0), Text = it.name,
         TextColor3 = C.text, TextSize = 14, Font = fontBold(), TextXAlignment = Enum.TextXAlignment.Left,
         TextTruncate = Enum.TextTruncate.AtEnd }, r)
-    local rightPad = mode == "bl" and 30 or 4
+    local rightPad = mode ~= "values" and 30 or 4
     new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(70, info and 30 or 40), AnchorPoint = Vector2.new(1, 0),
         Position = UDim2.new(1, -rightPad, 0, info and 4 or 0), TextXAlignment = Enum.TextXAlignment.Right,
         TextColor3 = info and C.text or C.muted, TextSize = info and 14 or 12, Font = info and fontBold() or fontReg(),
@@ -772,7 +788,7 @@ local function itemRow(it, order)
     if mode == "values" then
         on(r.Activated, function() if env.TV_showChart then env.TV_showChart(it) end end)
     end
-    if mode ~= "bl" then return end
+    if mode == "values" then return end
     local box = new("Frame", { Size = UDim2.fromOffset(20, 20), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, -2, 0.5, 0),
         BackgroundColor3 = on_ and accent() or C.bg, BackgroundTransparency = on_ and 0 or 0.3 }, r)
     corner(box, 6)
@@ -782,7 +798,8 @@ local function itemRow(it, order)
             BackgroundColor3 = rgb(255, 255, 255) }, box), 3)
     end
     on(r.Activated, function()
-        if S.blacklist[it.key] then S.blacklist[it.key] = nil else S.blacklist[it.key] = it.name end
+        local m = marks()
+        if m[it.key] then m[it.key] = nil else m[it.key] = it.name end
         saveSettings()
         renderList()
         renderSide()
@@ -792,7 +809,8 @@ end
 local function sourceList()
     if curCat == "marked" then
         local lst = {}
-        for _, it in ipairs(itemList) do if S.blacklist[it.key] then table.insert(lst, it) end end
+        local m = marks()
+        for _, it in ipairs(itemList) do if m[it.key] then table.insert(lst, it) end end
         return lst
     elseif curCat == "all" then
         return itemList
@@ -811,12 +829,13 @@ renderList = function()
             itemRow(it, shown)
         end
     end
-    blSub.Text = mode == "bl" and T("blCount"):format(blCount()) or ("Supreme Values · " .. #itemList)
+    blSub.Text = mode == "values" and ("Supreme Values · " .. #itemList) or mode == "keep" and (T("blCount"):format(blCount()) .. " · " .. T("keepHint"))
+        or T("blCount"):format(blCount())
 end
 
 renderSide = function()
     for _, c in ipairs(side:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
-    local entries = mode == "bl" and { { "marked", T("marked") .. " (" .. blCount() .. ")" }, { "all", T("all") } } or { { "all", T("all") } }
+    local entries = mode ~= "values" and { { "marked", T("marked") .. " (" .. blCount() .. ")" }, { "all", T("all") } } or { { "all", T("all") } }
     for _, cat in ipairs(catOrder) do
         if itemsByCat[cat] then table.insert(entries, { cat, ((L[S.lang] or L.ru).cats or {})[cat] or cat }) end
     end
@@ -840,7 +859,7 @@ renderSide = function()
 end
 
 local function refreshBl()
-    blTitle.Text = mode == "bl" and T("bl") or T("valuesTitle")
+    blTitle.Text = mode == "bl" and T("bl") or mode == "keep" and T("keepTitle") or T("valuesTitle")
     declBox.Visible = mode == "bl"
     lDecl.Text = T("autoDecline")
     searchBox.PlaceholderText = T("search")
@@ -868,6 +887,7 @@ local function openPage(m)
     tween(blScale, 0.25, { Scale = target }, Enum.EasingStyle.Back)
 end
 on(blOpen.Activated, function() openPage("bl") end)
+on(X.keepOpen.Activated, function() openPage("keep") end)
 on(X.valuesOpen.Activated, function() openPage("values") end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
@@ -919,6 +939,10 @@ local function refresh()
     blOpen.Text = T("blCount"):format(blN) .. "  >"
     X.ordLabel.Text = T("orders")
     X.ordOpen.Text = tostring(#(S.orders or {})) .. "  >"
+    X.keepLabel.Text = T("keep")
+    local keepN = 0
+    for _ in pairs(S.keep or {}) do keepN += 1 end
+    X.keepOpen.Text = T("blCount"):format(keepN) .. "  >"
     lOn.Text = T("enabled")
     tabMainBtn.Text, tabTradeBtn.Text, X.tabGameBtn.Text = T("tabMain"), T("tabTrade"), T("tabGame")
     X.afkLabel.Text, X.flingLabel.Text = T("antiAfk"), T("antiFling")
@@ -1192,7 +1216,7 @@ local function scanInventory(tg, mine, theirs)
            and not d:IsDescendantOf(mine) and not d:IsDescendantOf(theirs)
            and d.Parent and (d.Parent:FindFirstChildWhichIsA("UIGridLayout") or d.Parent:FindFirstChildWhichIsA("UIListLayout")) then
             local price, amount, name = readItem(d)
-            if price and price > 0 then
+            if price and price > 0 and not (S.keep and name and S.keep[norm(name)]) then
                 table.insert(items, { frame = d, price = price, amount = amount, name = name })
             end
         end

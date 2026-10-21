@@ -119,8 +119,23 @@ end
 -- текст кнопки: имя + Text + все ВИДИМЫЕ надписи внутри (скрытая «Please wait (2)…» внутри «Принять» не мешает)
 env.TV_btnText = function(b)
     local parts = { b.Name, b:IsA("TextButton") and b.Text or "" }
+    local own = b:IsA("TextButton") and b.Text ~= ""
     for _, l in ipairs(b:GetDescendants()) do
-        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Visible and l.Text ~= "" then table.insert(parts, l.Text) end
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" and env.TV_vis(l) then table.insert(parts, l.Text); own = true end
+    end
+    -- у MM2 кнопка бывает пустой («ActionButton»), а «ПРИНЯТЬ»/«ОТКАЗ» — отдельная надпись поверх неё:
+    -- берём видимые надписи рядом, центр которых лежит на кнопке
+    if not own and b.Parent then
+        local scope = b.Parent.Parent or b.Parent
+        local p0, sz = b.AbsolutePosition, b.AbsoluteSize
+        for _, l in ipairs(scope:GetDescendants()) do
+            if (l:IsA("TextLabel") or l:IsA("TextButton")) and l ~= b and l.Text ~= "" and not l:IsDescendantOf(b) then
+                local c = l.AbsolutePosition + l.AbsoluteSize / 2
+                if c.X >= p0.X and c.X <= p0.X + sz.X and c.Y >= p0.Y and c.Y <= p0.Y + sz.Y and env.TV_vis(l) then
+                    table.insert(parts, l.Text)
+                end
+            end
+        end
     end
     return env.TV_low(table.concat(parts, " "))
 end

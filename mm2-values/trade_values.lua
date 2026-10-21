@@ -63,7 +63,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать (нельзя трейдить или жалко)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой инвентарь MM2 или трейд — твои предметы появятся здесь", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +76,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give (untradable or keeping)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open the MM2 inventory or a trade — your items will show up here", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -815,8 +815,36 @@ local function itemRow(it, order)
     end)
 end
 
+-- свои предметы: то, что скрипт видел в трейдах, + открытый инвентарь MM2
+local function scanMyInv()
+    S.myInv = S.myInv or {}
+    local added = false
+    for _, d in ipairs(PlayerGui:GetDescendants()) do
+        if d:IsA("TextLabel") and d.Text ~= "" and not d:IsDescendantOf(ui) then
+            local k = norm(d.Text)
+            if valueMap[k] and not S.myInv[k] then
+                local a = d.Parent
+                for _ = 1, 10 do
+                    if not a or a == PlayerGui then break end
+                    local n = a.Name:lower()
+                    if n:find("inventory") or n:find("^inv") then S.myInv[k] = d.Text; added = true; break end
+                    a = a.Parent
+                end
+            end
+        end
+    end
+    if added then saveSettings() end
+end
+local function myInvList()
+    local lst = {}
+    for _, it in ipairs(itemList) do if (S.myInv or {})[it.key] then table.insert(lst, it) end end
+    return lst
+end
+
 local function sourceList()
-    if curCat == "marked" then
+    if curCat == "inv" then
+        return myInvList()
+    elseif curCat == "marked" then
         local lst = {}
         local m = marks()
         for _, it in ipairs(itemList) do if m[it.key] then table.insert(lst, it) end end
@@ -838,6 +866,10 @@ renderList = function()
             itemRow(it, shown)
         end
     end
+    if shown == 0 and curCat == "inv" and q == "" then
+        new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -12, 0, 60), Text = T("invHint"), TextWrapped = true,
+            TextColor3 = C.muted, TextSize = 13, Font = fontReg(), LayoutOrder = 1 }, scroll)
+    end
     blSub.Text = mode == "values" and ("Supreme Values · " .. #itemList) or mode == "keep" and (T("blCount"):format(blCount()) .. " · " .. T("keepHint"))
         or T("blCount"):format(blCount())
 end
@@ -845,6 +877,7 @@ end
 renderSide = function()
     for _, c in ipairs(side:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
     local entries = mode ~= "values" and { { "marked", T("marked") .. " (" .. blCount() .. ")" }, { "all", T("all") } } or { { "all", T("all") } }
+    if mode == "keep" then table.insert(entries, 2, { "inv", T("myInv") .. " (" .. #myInvList() .. ")" }) end
     for _, cat in ipairs(catOrder) do
         if itemsByCat[cat] then table.insert(entries, { cat, ((L[S.lang] or L.ru).cats or {})[cat] or cat }) end
     end
@@ -885,6 +918,7 @@ end)
 local function openPage(m)
     mode = m
     if mode == "values" and curCat == "marked" then curCat = "godlies" end
+    if mode == "keep" then pcall(scanMyInv); curCat = "inv" elseif curCat == "inv" then curCat = "godlies" end
     panel.Visible = false
     refreshBl()
     renderSide()
@@ -1227,8 +1261,8 @@ local function scanInventory(tg, mine, theirs)
            and not d:IsDescendantOf(mine) and not d:IsDescendantOf(theirs)
            and d.Parent and (d.Parent:FindFirstChildWhichIsA("UIGridLayout") or d.Parent:FindFirstChildWhichIsA("UIListLayout")) then
             local price, amount, name = readItem(d)
-            if price and price > 0 and not (S.keep and name and S.keep[norm(name)]) then
-                table.insert(items, { frame = d, price = price, amount = amount, name = name })
+            if price and price > 0 then
+                table.insert(items, { frame = d, price = price, amount = amount, name = name, kept = S.keep and S.keep[norm(name)] ~= nil })
             end
         end
     end
@@ -1241,9 +1275,13 @@ local function scanInventory(tg, mine, theirs)
         end
         if not isContainer then
             harvestImage(it.frame, it.name)
-            table.insert(cells, it)
+            -- запоминаем свои предметы для «Мой инвентарь» в разделе «Не отдавать»
+            S.myInv = S.myInv or {}
+            if not S.myInv[norm(it.name)] then S.myInv[norm(it.name)] = it.name; env.TV_invDirty = true end
+            if not it.kept then table.insert(cells, it) end
         end
     end
+    if env.TV_invDirty then env.TV_invDirty = nil; saveSettings() end
     return cells
 end
 

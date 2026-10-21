@@ -22,7 +22,7 @@ local function on(sig, fn) local c = sig:Connect(fn); table.insert(conns, c); re
 ------------------------------------------------------------------
 -- Настройки (сохраняются в файл Delta, если он умеет writefile)
 ------------------------------------------------------------------
-local S = { textSize = 16, theme = 1, font = 1, lang = "ru", showDiff = true, iconX = 0.02, iconY = 0.35, autoOffer = false, target = 20, enabled = true, highlight = true, autoAdd = true, tolerance = false, uiScale = 1, autoAccept = false, fillOver = true, mirrorEmpty = true, emptyDecline = true, junkDecline = true, giftAccept = true, ordersOn = true, orders = {}, antiAfk = false, antiFling = false, autoRequest = false, chatAds = false, chatInTrade = false, chatRequests = true, declineMsg = true, autoDecline = false, blacklist = {}, keep = {} }
+local S = { textSize = 16, theme = 1, font = 1, lang = "ru", showDiff = true, iconX = 0.02, iconY = 0.35, autoOffer = false, target = 20, enabled = true, highlight = true, autoAdd = true, tolerance = false, uiScale = 1, autoAccept = false, fillOver = true, mirrorEmpty = true, emptyDecline = true, junkDecline = true, giftAccept = true, ordersOn = true, orders = {}, antiAfk = false, antiFling = false, autoRequest = false, chatAds = false, chatInTrade = false, chatRequests = true, declineMsg = true, autoDecline = false, blacklist = {}, keep = {}, idleDecline = true }
 local function saveSettings()
     if writefile then pcall(writefile, SETTINGS_FILE, HttpService:JSONEncode(S)) end
 end
@@ -63,7 +63,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой в MM2 инвентарь с оружием или трейд — твои предметы появятся здесь", invClear = "Очистить список (соберётся заново)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой в MM2 инвентарь с оружием или трейд — твои предметы появятся здесь", invClear = "Очистить список (соберётся заново)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +76,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open your MM2 weapon inventory or a trade — your items will show up here", invClear = "Clear the list (it refills itself)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open your MM2 weapon inventory or a trade — your items will show up here", invClear = "Clear the list (it refills itself)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -613,6 +613,10 @@ do
     l.Size = UDim2.new(0.75, 0, 1, 0)
     X.giftLabel = l
     X.giftToggle, X.drawGift = makeToggle(r)
+    r, l = row()
+    l.Size = UDim2.new(0.75, 0, 1, 0)
+    X.idleLabel = l
+    X.idleToggle, X.drawIdle = makeToggle(r)
 end
 
 -- вход в раздел нежелательных предметов
@@ -1053,6 +1057,8 @@ local function refresh()
     X.drawJunk(S.junkDecline)
     X.giftLabel.Text = T("giftAccept")
     X.drawGift(S.giftAccept)
+    X.idleLabel.Text = T("idleDecline")
+    X.drawIdle(S.idleDecline)
     X.accLabel.Text = T("autoAccept")
     X.reqLabel.Text = T("autoRequest")
     X.chatLabel.Text = T("chatAds")
@@ -1130,6 +1136,7 @@ on(X.mirrorToggle.Activated, change(function() S.mirrorEmpty = not S.mirrorEmpty
 on(X.emptyToggle.Activated, change(function() S.emptyDecline = not S.emptyDecline end))
 on(X.junkToggle.Activated, change(function() S.junkDecline = not S.junkDecline end))
 on(X.giftToggle.Activated, change(function() S.giftAccept = not S.giftAccept end))
+on(X.idleToggle.Activated, change(function() S.idleDecline = not S.idleDecline end))
 on(X.accToggle.Activated, change(function() S.autoAccept = not S.autoAccept end))
 on(X.reqToggle.Activated, change(function() S.autoRequest = not S.autoRequest end))
 on(X.chatToggle.Activated, change(function() S.chatAds = not S.chatAds end))
@@ -2254,6 +2261,32 @@ function auto.handleOrders(theirs)
         orderName = order.name }
 end
 
+-- трейд «завис»: 20 с ничего не меняется (он что-то положил, скрипт ответил, а он молчит) — отказ, чтобы не терять время
+function auto.handleIdle(tg, mine, theirs, my, th)
+    if not S.idleDecline or th <= 0 then auto.idleSig = nil; return false end
+    local parts = { tostring(my), tostring(th) }
+    for k, e in pairs(auto.readOffer(mine)) do table.insert(parts, "m" .. k .. e.count) end
+    for k, e in pairs(auto.readOffer(theirs)) do table.insert(parts, "t" .. k .. e.count) end
+    table.sort(parts)
+    local sig = table.concat(parts, "|")
+    if sig ~= auto.idleSig or auto.busy then
+        auto.idleSig, auto.idleSince, auto.idleTries = sig, os.clock(), 0
+        return false
+    end
+    local left = 20 - (os.clock() - auto.idleSince)
+    if left > 10 then return false end -- последние 10 с показываем отсчёт
+    sugLine.Visible = true
+    hideHighlights()
+    if left > 0 then sugText.Text = T("idleWait"):format(math.ceil(left)); return true end
+    if os.clock() - (auto.declLast or 0) < 1.5 or (auto.idleTries or 0) >= 9 then return true end
+    local btn = auto.findDecline(tg)
+    if not btn then return true end
+    auto.declLast = os.clock()
+    auto.idleTries = (auto.idleTries or 0) + 1
+    clickCell(btn, tg, auto.idleTries % 2 == 1 and 4 or 3)
+    return true
+end
+
 -- я отдаю больше цели: убрать из своего оффера как можно меньше, но не меньше лишнего
 -- (последний предмет целиком не убираем — пустой оффер он всё равно не примет)
 function auto.removeExcess(tg, mine, excess, th, my)
@@ -2483,7 +2516,7 @@ local function tick()
         auto.emptySince, auto.hadTheirs, auto.nudged, auto.nudgeDone = nil, false, false, nil
         auto.junkSig, auto.junkSince = nil, nil
         auto.giftTries, auto.giftLast = 0, 0
-        auto.ord, auto.remFor = {}, nil
+        auto.ord, auto.remFor, auto.idleSig = {}, nil, nil
         -- трейд закрылся после нашего отказа — теперь этот человек в блоке на 3 минуты (на следующие трейды)
         if auto.pendingBlock then auto.block(auto.pendingBlock); auto.pendingBlock = nil end
         auto.accSig, auto.accTries, auto.accDone = "", 0, false
@@ -2541,6 +2574,7 @@ local function tick()
     if auto.handleBlocked(tg) then return end
     if autoDecline(tg, theirs) then return end
     if auto.handleEmpty(tg, mine, theirs, my, th) then return end
+    if auto.handleIdle(tg, mine, theirs, my, th) then return end
     updateAutoOffer(tg, mine, theirs, my, th)
     auto.tryAccept(tg, theirs, my, th, myUnk)
 end

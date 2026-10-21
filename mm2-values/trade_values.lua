@@ -118,10 +118,17 @@ local function loadValues()
     local seen = {}
     for _, it in ipairs(arr) do seen[it.key] = it end
     local byCat = {}
+    local catVals = res.cat_values or {}
     for cat, names in pairs(res.categories or {}) do
         local lst, inCat = {}, {}
         for _, name in ipairs(names) do
             local it = seen[norm(name)]
+            local cv = catVals[cat] and tonumber(catVals[cat][name])
+            if it and cv then
+                -- тот же предмет по названию, но другой категории: отдельная строка со своей ценой и картинкой
+                it = { name = name, price = cv, key = it.key, cat = cat,
+                    img = cat .. "_" .. ((name:find(" Set", 1, true) and "set" or "") .. norm(name)) }
+            end
             if it and not inCat[it] then inCat[it] = true; table.insert(lst, it) end
         end
         byCat[cat] = lst
@@ -133,6 +140,7 @@ local function loadValues()
     local listed, inAny = {}, {}
     for _, lst in pairs(byCat) do for _, it in ipairs(lst) do inAny[it] = true end end
     for _, it in ipairs(arr) do if inAny[it] or not res.categories then table.insert(listed, it) end end
+    for _, lst in pairs(byCat) do for _, it in ipairs(lst) do if it.cat then table.insert(listed, it) end end end
     table.sort(listed, function(a, b) return (a.price or -1) > (b.price or -1) end)
     table.sort(arr, function(a, b) return (a.price or -1) > (b.price or -1) end)
     itemList, itemsByCat, catOrder = listed, byCat, res.category_order or {}
@@ -286,12 +294,17 @@ placeHud()
 ------------------------------------------------------------------
 local gear = new("TextButton", {
     Size = UDim2.fromOffset(46, 46), Position = UDim2.fromScale(S.iconX, S.iconY),
-    BackgroundColor3 = C.bg, BackgroundTransparency = 0.08, Text = "⚙️", TextSize = 22,
-    Font = Enum.Font.GothamBold, TextColor3 = C.text, AutoButtonColor = false,
+    BackgroundColor3 = rgb(255, 255, 255), Text = "", AutoButtonColor = false,
 }, ui)
-corner(gear, 23)
-local gearRing = stroke(gear, accent(), 0.35, 1.5)
-themed(function() gearRing.Color = accent() end)
+corner(gear, 14)
+local gearRing = stroke(gear, rgb(255, 255, 255), 0.75, 1.5)
+do
+    -- фон — градиент акцента; надпись отдельным объектом, иначе градиент перекрасит и её
+    local g = new("UIGradient", { Rotation = 45 }, gear)
+    themed(function() g.Color = ColorSequence.new(accent():Lerp(rgb(255, 255, 255), 0.12), accent():Lerp(rgb(0, 0, 0), 0.4)) end)
+    new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
+        TextSize = 19, Font = Enum.Font.GothamBlack }, gear)
+end
 local gearScale = new("UIScale", {}, gear)
 on(gear.MouseEnter, function() tween(gearScale, 0.15, { Scale = sf() * 1.08 }) end)
 on(gear.MouseLeave, function() tween(gearScale, 0.15, { Scale = sf() }) end)
@@ -313,9 +326,11 @@ local panelScale = new("UIScale", {}, panel)
 -- шапка: логотип, название, закрыть
 local head = new("Frame", { BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 40), LayoutOrder = 0 }, panel)
 local logo = new("TextLabel", {
-    Size = UDim2.fromOffset(38, 38), BackgroundColor3 = accent(), Text = "TV", TextColor3 = rgb(255, 255, 255),
+    Size = UDim2.fromOffset(38, 38), BackgroundColor3 = accent(), Text = "", TextColor3 = rgb(255, 255, 255),
     TextSize = 15, Font = Enum.Font.GothamBold,
 }, head)
+new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
+    TextSize = 16, Font = Enum.Font.GothamBlack }, logo)
 corner(logo, 11)
 local logoGrad = new("UIGradient", { Rotation = 45 }, logo)
 themed(function()
@@ -752,7 +767,7 @@ local function itemRow(it, order)
     -- картинка предмета (если удалось достать из игры)
     local pic = new("ImageLabel", { Size = UDim2.fromOffset(info and 44 or 32, info and 44 or 32), Position = UDim2.fromOffset(0, info and 5 or 4), BackgroundColor3 = C.bg,
         BackgroundTransparency = 0.4, ScaleType = Enum.ScaleType.Fit, Image = "" }, r)
-    pic.Image = env.TV_image and env.TV_image(it.name, function(asset) if pic.Parent then pic.Image = asset end end) or ""
+    pic.Image = env.TV_image and env.TV_image(it.name, function(asset) if pic.Parent then pic.Image = asset end end, it.img) or ""
     corner(pic, 7)
     -- надписи строк создаются напрямую (не через label), чтобы не копить подписки на тему
     local nameX = info and 54 or 42
@@ -1788,9 +1803,9 @@ local function siteImageWorker()
     imgWorkers -= 1
 end
 -- вернуть картинку сразу (если уже скачана) или скачать и отдать в cb
-local function siteImage(name, cb)
+local function siteImage(name, cb, keyOverride)
     if not canFiles then return nil end
-    local key = imgKey(name)
+    local key = keyOverride or imgKey(name)
     if imgMissing[key] then return nil end
     local path = IMG_DIR .. "/" .. key .. ".png"
     local okF, exists = pcall(isfile, path)
@@ -1809,7 +1824,12 @@ local function siteImage(name, cb)
     return nil
 end
 
-env.TV_image = function(name, cb)
+env.TV_image = function(name, cb, key)
+    if key and not imgMissing[key] then
+        local own = siteImage(name, cb, key) -- своя картинка категории; если её нет — обычная
+        if own then return own end
+        if canFiles then return "" end
+    end
     local site = siteImage(name, cb)
     if site then return site end
     if canFiles and not imgMissing[imgKey(name)] then return "" end -- ждём картинку с сайта

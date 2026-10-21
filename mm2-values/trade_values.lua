@@ -1,4 +1,4 @@
---// MM2 Trade Values — цены Supreme Values над окном трейда (цены обновляет бот на GitHub)
+--// MM2 Auto Trade — цены Supreme Values над окном трейда (цены обновляет бот на GitHub)
 local VALUES_URL = "https://raw.githubusercontent.com/pophol221-arch/mm2-values/main/mm2-values/values.json"
 local SETTINGS_FILE = "TradeValues_settings.json"
 
@@ -88,7 +88,7 @@ local L = {
 local function T(k) return (L[S.lang] or L.ru)[k] end
 
 local function notify(text)
-    pcall(function() StarterGui:SetCore("SendNotification", { Title = "Trade Values", Text = text, Duration = 6 }) end)
+    pcall(function() StarterGui:SetCore("SendNotification", { Title = "Auto Trade", Text = text, Duration = 6 }) end)
 end
 
 ------------------------------------------------------------------
@@ -289,6 +289,8 @@ local function placeHud()
 end
 placeHud()
 
+local X = {} -- ссылки на элементы интерфейса (в одной таблице: в Luau не больше 200 локальных)
+
 ------------------------------------------------------------------
 -- Кнопка ⚙️
 ------------------------------------------------------------------
@@ -302,8 +304,10 @@ do
     -- фон — градиент акцента; надпись отдельным объектом, иначе градиент перекрасит и её
     local g = new("UIGradient", { Rotation = 45 }, gear)
     themed(function() g.Color = ColorSequence.new(accent():Lerp(rgb(255, 255, 255), 0.12), accent():Lerp(rgb(0, 0, 0), 0.4)) end)
-    new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
+    X.gearText = new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
         TextSize = 19, Font = Enum.Font.GothamBlack }, gear)
+    X.gearImg = new("ImageLabel", { Size = UDim2.fromScale(0.8, 0.8), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+        BackgroundTransparency = 1, Image = "", ScaleType = Enum.ScaleType.Fit }, gear)
 end
 local gearScale = new("UIScale", {}, gear)
 on(gear.MouseEnter, function() tween(gearScale, 0.15, { Scale = sf() * 1.08 }) end)
@@ -329,8 +333,10 @@ local logo = new("TextLabel", {
     Size = UDim2.fromOffset(38, 38), BackgroundColor3 = accent(), Text = "", TextColor3 = rgb(255, 255, 255),
     TextSize = 15, Font = Enum.Font.GothamBold,
 }, head)
-new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
+X.logoText = new("TextLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = "AT", TextColor3 = rgb(255, 255, 255),
     TextSize = 16, Font = Enum.Font.GothamBlack }, logo)
+X.logoImg = new("ImageLabel", { Size = UDim2.fromScale(0.82, 0.82), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+    BackgroundTransparency = 1, Image = "", ScaleType = Enum.ScaleType.Fit }, logo)
 corner(logo, 11)
 local logoGrad = new("UIGradient", { Rotation = 45 }, logo)
 themed(function()
@@ -493,7 +499,6 @@ lDiff.Size = UDim2.new(0.75, 0, 1, 0)
 local toggle, drawDiff = makeToggle(rDiff)
 
 -- ссылки на элементы настроек (в одной таблице: в Luau не больше 200 локальных на уровень)
-local X = {}
 
 -- строка состояния автопринятия под плашкой
 X.accLine = label(hud, { AutomaticSize = Enum.AutomaticSize.XY, Size = UDim2.new(), TextSize = 12, TextColor3 = C.muted, LayoutOrder = 3, Visible = false })
@@ -972,7 +977,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
 local function refresh()
     for _, fn in ipairs(onTheme) do fn() end
     local a = accent()
-    title.Text, subtitle.Text = "Trade Values", T("settings")
+    title.Text, subtitle.Text = "Auto Trade", T("settings")
     lSize.Text, lTheme.Text, lFont.Text, lLang.Text, lDiff.Text = T("size"), T("theme"), T("font"), T("lang"), T("diff")
     resetBtn.Text = T("reset")
     footer.Text = "Supreme Values · " .. (valueCount > 0 and T("loaded"):format(valueCount) or "…")
@@ -1862,6 +1867,14 @@ env.TV_image = function(name, cb, key)
     end
     return img or ""
 end
+
+-- значок Auto Trade (белый знак; фон — градиент акцента). Пока не скачался — буквы «AT»
+local function setLogo(a)
+    if not a or a == "" then return end
+    X.gearImg.Image, X.logoImg.Image = a, a
+    X.gearText.Visible, X.logoText.Visible = false, false
+end
+pcall(function() setLogo(env.TV_image("", function(a) pcall(setLogo, a) end, "autotradelogo")) end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
 -- кнопка «Отклонить» в окне трейда (Text у кнопок остаётся английским даже при переводе игры)

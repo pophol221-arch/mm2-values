@@ -1,4 +1,76 @@
 {
+ "cat_values": {
+  "commons": {
+   "Blossom": 41,
+   "Bones": 41,
+   "Brains": 41,
+   "Cane (Gun)": 21,
+   "Cane (Knife)": 31,
+   "Carrot": 41,
+   "Clown (Gun)": 11,
+   "Eyeball": 21,
+   "Frozen (Gun)": 21,
+   "Frozen (Knife)": 31,
+   "Leaves": 21,
+   "Lights (Gun)": 21,
+   "Lights (Knife)": 21,
+   "Neon": 31,
+   "Ornament": 41,
+   "Phantom": 10,
+   "Reindeer": 11,
+   "Snowman (Gun)": 25,
+   "Snowman (Knife)": 31,
+   "Watcher (Gun)": 31,
+   "Watcher (Knife)": 21,
+   "Webs": 21,
+   "Wrapped (Knife)": 31,
+   "Zombie": 10
+  },
+  "godlies": {
+   "Batwing": 1000000,
+   "Laser": 22
+  },
+  "legendaries": {
+   "Frozen (Gun)": 41,
+   "Frozen (Knife)": 31,
+   "Golden": 10,
+   "Shadow": 10
+  },
+  "pets": {
+   "Bat": 21,
+   "Cat": 11,
+   "Pumpkin (2019)": 31
+  },
+  "rares": {
+   "Aurora (Gun)": 1,
+   "Aurora (Knife)": 7,
+   "Cowboy": 10,
+   "Ginger (Gun)": 41,
+   "Ginger (Knife)": 41,
+   "Gingerbread (Gun)": 41,
+   "Gingerbread (Knife)": 11,
+   "Laser": 10,
+   "Phaser": 10,
+   "Prince": 10,
+   "Snowflake": 21,
+   "Sunset": 31,
+   "Tree (Gun)": 21,
+   "Tree (Knife)": 31,
+   "Vampire (Gun)": 3,
+   "Vampire (Knife)": 1,
+   "Waves": 21
+  },
+  "uncommons": {
+   "Blossom": 21,
+   "Bones (Knife)": 21,
+   "Ghost": 10,
+   "Monster": 31,
+   "Skulls": 15,
+   "Snowy": 41,
+   "Starry": 21,
+   "Wrapped (Gun)": 41
+  }
+ },
  "categories": {
   "ancients": [
    "Nik's Scythe",

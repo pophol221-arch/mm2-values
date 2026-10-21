@@ -59,7 +59,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -72,7 +72,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
@@ -105,6 +105,16 @@ env.TV_low = function(str)
         table.insert(out, utf8.char(c))
     end
     return table.concat(out)
+end
+-- объект реально на экране: он и все родители видимы, окно включено
+env.TV_vis = function(g)
+    if not (g and g:IsA("GuiObject")) or g.AbsoluteSize.X < 4 then return false end
+    local o = g
+    while o and not o:IsA("ScreenGui") do
+        if o:IsA("GuiObject") and not o.Visible then return false end
+        o = o.Parent
+    end
+    return o ~= nil and o.Enabled
 end
 -- текст кнопки: имя + Text + все ВИДИМЫЕ надписи внутри (скрытая «Please wait (2)…» внутри «Принять» не мешает)
 env.TV_btnText = function(b)
@@ -1190,9 +1200,17 @@ refresh()
 -- Чтение окна трейда
 ------------------------------------------------------------------
 local function findTradeGui()
+    -- окон трейда может быть несколько (для телефона и для ПК); берём то, где оффер реально на экране
+    local first
     for _, g in ipairs(PlayerGui:GetChildren()) do
-        if g ~= ui and g.Name ~= "TVHighlightUI" and g:IsA("ScreenGui") and g.Enabled and g.Name:lower():find("trade") then return g end
+        if g ~= ui and g.Name ~= "TVHighlightUI" and g:IsA("ScreenGui") and g.Enabled and g.Name:lower():find("trade") then
+            first = first or g
+            for _, d in ipairs(g:GetDescendants()) do
+                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then return g end
+            end
+        end
     end
+    return first
 end
 
 local function readItem(frame)
@@ -1224,9 +1242,17 @@ local function sumOffer(offer)
 end
 
 local function findOffer(root, names)
+    -- видимый вариант важнее скрытого (у MM2 внутри окна бывает две раскладки)
+    local first
     for _, d in ipairs(root:GetDescendants()) do
-        for _, n in ipairs(names) do if d.Name == n then return d end end
+        for _, n in ipairs(names) do
+            if d.Name == n then
+                if env.TV_vis(d) then return d end
+                first = first or d
+            end
+        end
     end
+    return first
 end
 
 local function fmt(n)
@@ -1834,7 +1860,18 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     -- открыт полноэкранный выбор предметов: сначала закрываем его, принимаем на следующем шаге
     if auto.closePicker(tg) then auto.accLast = os.clock(); auto.setAcc("hold", 1); return end
     local btn = auto.findAccept(tg)
-    if not btn then auto.setAcc("nobtn"); return end
+    if not btn then
+        -- подсказка для отладки: окно и видимые кнопки, которые скрипт видит
+        local seen = {}
+        for _, d in ipairs(tg:GetDescendants()) do
+            if d:IsA("GuiButton") and env.TV_vis(d) and #seen < 6 then
+                local t = env.TV_btnText(d):gsub("%s+", " ")
+                table.insert(seen, t:sub(1, 22))
+            end
+        end
+        auto.setAcc("nobtn", tg.Name .. ": " .. table.concat(seen, " | "))
+        return
+    end
     -- надпись на кнопке сменилась («Принять» -> «Вы уверены?» или обратно после отмены) — новый этап, попытки заново
     local lbl = btn:FindFirstChildWhichIsA("TextLabel", true)
     local btnText = (btn:IsA("TextButton") and btn.Text or "") .. "|" .. (lbl and lbl.Text or "")

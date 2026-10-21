@@ -2277,12 +2277,18 @@ end
 
 -- «Заявки»: если соперник кладёт предмет, на который есть заявка, кладём один из её включённых вариантов
 auto.ord = {}
+-- в игре нет приписок сайта: «Latte (Gun)» там просто «Latte» — ключ без скобок
+function auto.gameKey(name, key)
+    local base = norm(((name or ""):gsub("%s*%b()$", "")))
+    if base ~= "" and base ~= key then return base end
+    return key
+end
 function auto.handleOrders(theirs)
     if not (S.enabled and S.ordersOn) then return end
     local their = auto.readOffer(theirs)
     local order, enabled
     for _, o in ipairs(S.orders or {}) do
-        if their[o.target] then
+        if their[o.target] or their[auto.gameKey(o.name, o.target)] then
             local en = {}
             for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
             if #en > 0 then order, enabled = o, en; break end
@@ -2312,7 +2318,9 @@ function auto.handleOrders(theirs)
     st.target, st.idx = order.target, pick
     local items = {}
     for _, it in ipairs(order.offers[pick].items) do
-        table.insert(items, { key = it.key, name = it.name, count = it.count, price = valueMap[it.key] or 0 })
+        local gk = auto.gameKey(it.name, it.key)
+        if not valueMap[gk] then gk = it.key end
+        table.insert(items, { key = gk, name = it.name, count = it.count, price = valueMap[it.key] or valueMap[gk] or 0 })
     end
     auto.reqSeq = (auto.reqSeq or 0) + 1
     auto.partnerReq = { partner = auto.partner, items = items, kind = "order", t = os.clock() + 1e6, id = auto.reqSeq,

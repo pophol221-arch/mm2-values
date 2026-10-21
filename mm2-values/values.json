@@ -3356,6 +3356,10 @@
    [
     1792518735,
     290
+   ],
+   [
+    1792543071,
+    280
    ]
   ],
   "Corrupt Set": [
@@ -3382,6 +3386,10 @@
    [
     1792518735,
     308
+   ],
+   [
+    1792543071,
+    298
    ]
   ],
   "Cotton Candy": [
@@ -6704,6 +6712,10 @@
    [
     1792518735,
     7300
+   ],
+   [
+    1792543071,
+    7400
    ]
   ],
   "Traveler's Gun": [
@@ -6740,6 +6752,10 @@
    [
     1792518735,
     12500
+   ],
+   [
+    1792543071,
+    12600
    ]
   ],
   "Treat": [
@@ -9964,8 +9980,8 @@
    "y": 4
   }
  },
- "last_message_id": 1562161542567567422,
- "updated": "2026-10-20T17:52:15.306000+00:00",
+ "last_message_id": 1562263614872748064,
+ "updated": "2026-10-21T00:37:51.240000+00:00",
  "values": {
   "<3": 7,
   "Alex": 4,
@@ -10128,8 +10144,8 @@
   "Cookieblade": 3,
   "Cookiecane": 13,
   "Corl": 4,
-  "Corrupt": 290,
-  "Corrupt Set": 308,
+  "Corrupt": 280,
+  "Corrupt Set": 298,
   "Cotton Candy": 35,
   "Cowboy": 4,
   "Dark Set": 3425,
@@ -10474,9 +10490,9 @@
   "Traveler (Gun)": 50,
   "Traveler (Knife)": 3,
   "Traveler Set": 53,
-  "Traveler's Axe": 7300,
+  "Traveler's Axe": 7400,
   "Traveler's Gun": 5200,
-  "Traveler's Set": 12500,
+  "Traveler's Set": 12600,
   "Treat": 155,
   "Tree": 2,
   "Tree (2021)": 2,

@@ -69,7 +69,7 @@ local L = {
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
                     uncommons = "Необычные", commons = "Обычные", pets = "Питомцы", misc = "Разное" }, declined = "Отклонено: %s", declineFail = "Не нашёл кнопку «Отклонить»", sugAuto = "Цель %s: добавляю ~%s: %s",
            sugPick = "Цель %s: выбери ~%s: %s (есть варианты)", sugAdd = "Цель %s: добавь ~%s: %s",
-           sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugNone = "Цель %s: нечем добить (~%s)",
+           sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
            noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
@@ -82,7 +82,7 @@ local L = {
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
                     uncommons = "Uncommons", commons = "Commons", pets = "Pets", misc = "Misc" }, declined = "Declined: %s", declineFail = "Decline button not found", sugAuto = "Target %s: adding ~%s: %s",
            sugPick = "Target %s: choose ~%s: %s (several options)", sugAdd = "Target %s: add ~%s: %s",
-           sugOk = "Target %s reached", sugRemove = "Target %s: remove ~%s", sugNone = "Target %s: nothing fits (~%s)",
+           sugOk = "Target %s reached", sugRemove = "Target %s: remove ~%s", sugRemoving = "Target %s: removing extra (~%s)", sugNone = "Target %s: nothing fits (~%s)",
            sugWait = "Target %s: waiting for their items" },
 }
 local function T(k) return (L[S.lang] or L.ru)[k] end
@@ -2145,6 +2145,57 @@ function auto.handleOrders(theirs)
         orderName = order.name }
 end
 
+-- я отдаю больше цели: убрать из своего оффера как можно меньше, но не меньше лишнего
+-- (последний предмет целиком не убираем — пустой оффер он всё равно не примет)
+function auto.removeExcess(tg, mine, excess, th, my)
+    if th ~= auto.lastTh then auto.lastTh, auto.stableSince = th, os.clock() end
+    if auto.busy or os.clock() - (auto.stableSince or 0) < 1.5 then return false end
+    local sig = th .. ":" .. my
+    if auto.remFor == sig then return false end
+    local units, total = {}, 0
+    for _, e in pairs(auto.readOffer(mine)) do total += e.price * e.count; table.insert(units, e) end
+    -- вариант 1: k штук одного предмета
+    local best, bestSum
+    for _, e in ipairs(units) do
+        local k = math.ceil(excess / e.price - 1e-9)
+        if k <= e.count and (not bestSum or k * e.price < bestSum) then best, bestSum = { [e] = k }, k * e.price end
+    end
+    -- вариант 2: от дорогих, не перебирая, и один дешёвый сверху
+    table.sort(units, function(a, b) return a.price > b.price end)
+    local plan, sum = {}, 0
+    for _, e in ipairs(units) do
+        local k = math.max(0, math.min(e.count, math.floor((excess - sum) / e.price + 1e-9)))
+        if k > 0 then plan[e] = k; sum += k * e.price end
+    end
+    if sum < excess - 1e-9 then
+        for i = #units, 1, -1 do
+            local e = units[i]
+            if (plan[e] or 0) < e.count then plan[e] = (plan[e] or 0) + 1; sum += e.price; break end
+        end
+    end
+    if sum >= excess - 1e-9 and (not bestSum or sum < bestSum) then best, bestSum = plan, sum end
+    if not best or bestSum >= total - 1e-9 then return false end
+    auto.remFor, auto.busy = sig, true
+    task.spawn(function()
+        pcall(function()
+            for e, k in pairs(best) do
+                local key = norm(e.name)
+                for _ = 1, k do
+                    if not (S.enabled and S.autoOffer and S.autoAdd) then break end
+                    -- после каждого нажатия стопка меняется — берём ячейку заново
+                    local fresh = auto.readOffer(mine)[key]
+                    local cell = fresh and fresh.cells[1]
+                    if not (cell and cell.Parent) then break end
+                    clickCell(cell, tg)
+                    task.wait(0.35)
+                end
+            end
+        end)
+        auto.busy = false
+    end)
+    return true
+end
+
 local function updateAutoOffer(tg, mine, theirs, my, th)
     auto.handleOrders(theirs)
     if auto.handlePartnerRequest(tg, mine, theirs, my, th) then hideHighlights(); return end
@@ -2162,6 +2213,9 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     end
     if need < -math.max(1, maxMine * 0.02) then
         sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.bad), T("sugRemove"):format(tgt, fmt(-need)))
+        if S.autoAdd and (auto.busy or auto.removeExcess(tg, mine, -need, th, my)) then
+            sugText.Text = T("sugRemoving"):format(tgt, fmt(-need))
+        end
         hideHighlights(); return
     end
 
@@ -2316,7 +2370,7 @@ local function tick()
         auto.emptySince, auto.hadTheirs, auto.nudged, auto.nudgeDone = nil, false, false, nil
         auto.junkSig, auto.junkSince = nil, nil
         auto.giftTries, auto.giftLast = 0, 0
-        auto.ord = {}
+        auto.ord, auto.remFor = {}, nil
         -- трейд закрылся после нашего отказа — теперь этот человек в блоке на 3 минуты (на следующие трейды)
         if auto.pendingBlock then auto.block(auto.pendingBlock); auto.pendingBlock = nil end
         auto.accSig, auto.accTries, auto.accDone = "", 0, false

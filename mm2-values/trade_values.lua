@@ -95,6 +95,25 @@ end
 -- Цены
 ------------------------------------------------------------------
 local function norm(s) return (s or ""):lower():gsub("[%s%p]", "") end
+-- lower() в Luau не трогает кириллицу («ОТКАЗ» так и остаётся заглавными) — переводим сами
+env.TV_low = function(str)
+    str = (str or ""):lower()
+    if not str:find("[\208\209]") then return str end
+    local out = {}
+    for _, c in utf8.codes(str) do
+        if c >= 1040 and c <= 1071 then c = c + 32 elseif c == 1025 then c = 1105 end
+        table.insert(out, utf8.char(c))
+    end
+    return table.concat(out)
+end
+-- текст кнопки: имя + Text + все ВИДИМЫЕ надписи внутри (скрытая «Please wait (2)…» внутри «Принять» не мешает)
+env.TV_btnText = function(b)
+    local parts = { b.Name, b:IsA("TextButton") and b.Text or "" }
+    for _, l in ipairs(b:GetDescendants()) do
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Visible and l.Text ~= "" then table.insert(parts, l.Text) end
+    end
+    return env.TV_low(table.concat(parts, " "))
+end
 
 local valueMap, valueCount = {}, 0
 local itemList = {}    -- все предметы { name, price, key } для раздела нежелательных
@@ -1353,7 +1372,7 @@ env.TV_findBack = function(tg)
     local tabs = false
     for _, d in ipairs(tg:GetDescendants()) do
         if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and isShown(d) then
-            local t = d.Text:lower():gsub("^%s+", ""):gsub("%s+$", "")
+            local t = env.TV_low(d.Text):gsub("^%s+", ""):gsub("%s+$", "")
             if t == "weapons" or t == "оружие" then tabs = true; break end
         end
     end
@@ -1433,8 +1452,7 @@ end
 local function findAddButton(tg)
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("GuiButton") and isShown(d) then
-            local lbl = d:FindFirstChildWhichIsA("TextLabel", true)
-            local all = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "") .. " " .. (lbl and lbl.Text or "")):lower()
+            local all = env.TV_btnText(d)
             if all:find("add item") or all:find("additem") or all:find("добавить") then return d end
         end
     end
@@ -1452,8 +1470,7 @@ end
 function auto.findAccept(tg)
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("GuiButton") and isShown(d) then
-            local lbl = d:FindFirstChildWhichIsA("TextLabel", true)
-            local all = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "") .. " " .. (lbl and lbl.Text or "")):lower()
+            local all = env.TV_btnText(d)
             local isAccept = all:find("accept") or all:find("принят") or all:find("sure") or all:find("уверен") or all:find("confirm") or all:find("подтверд")
             -- «Please wait (2) before accepting» — это отсчёт, а не кнопка
             if all:find("wait") or all:find("подожд") or all:find("%(%d+%)") then isAccept = false end
@@ -1526,8 +1543,7 @@ function auto.tryAcceptRequest()
             if not (offer and offer:IsA("GuiObject") and isShown(offer)) then
                 for _, d in ipairs(g:GetDescendants()) do
                     if d:IsA("GuiButton") and isShown(d) then
-                        local lbl = d:FindFirstChildWhichIsA("TextLabel", true)
-                        local txt = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "") .. " " .. (lbl and lbl.Text or "")):lower()
+                        local txt = env.TV_btnText(d)
                         if (txt:find("accept") or txt:find("принят")) and not (txt:find("decline") or txt:find("отклон")) then
                             local ctx = auto.reqContext(d, g)
                             local blockedName
@@ -1539,8 +1555,7 @@ function auto.tryAcceptRequest()
                                 local box = d.Parent
                                 for _, b in ipairs(box and box:GetDescendants() or {}) do
                                     if b:IsA("GuiButton") and b ~= d and isShown(b) then
-                                        local bl = b:FindFirstChildWhichIsA("TextLabel", true)
-                                        local bt = (b.Name .. " " .. (b:IsA("TextButton") and b.Text or "") .. " " .. (bl and bl.Text or "")):lower()
+                                        local bt = env.TV_btnText(b)
                                         if bt:find("decline") or bt:find("отклон") or bt:find("отказ") or bt:find("deny") or bt:find("reject") then
                                             auto.reqLast = os.clock()
                                             clickCell(b, g)
@@ -1742,7 +1757,7 @@ function auto.tryGift(tg, theirs, my, myUnk)
     local accepted = false
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("TextLabel") and d.Text ~= "" then
-            local t = d.Text:lower()
+            local t = env.TV_low(d.Text)
             if (t:find("принял") or t:find("accepted")) and isShown(d) then accepted = true; break end
         end
     end
@@ -1812,7 +1827,7 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     if os.clock() - auto.accLast < 1.5 then return end
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("TextLabel") and d.Visible and d.Text ~= "" then
-            local t = d.Text:lower()
+            local t = env.TV_low(d.Text)
             if (t:find("wait") or t:find("подожд")) and isShown(d) then auto.setAcc("countdown"); return end
         end
     end
@@ -1915,8 +1930,7 @@ local function findDeclineButton(tg)
     local best, bestArea = nil, 0
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("GuiButton") and isShown(d) then
-            local lbl = d:FindFirstChildWhichIsA("TextLabel", true)
-            local all = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "") .. " " .. (lbl and lbl.Text or "")):lower()
+            local all = env.TV_btnText(d)
             if all:find("decline") or all:find("отклон") or all:find("отказ") then
                 local area = d.AbsoluteSize.X * d.AbsoluteSize.Y
                 if area > bestArea then best, bestArea = d, area end

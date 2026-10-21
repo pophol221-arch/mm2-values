@@ -1694,13 +1694,16 @@ function auto.handleEmpty(tg, mine, theirs, my, th)
         sugText.Text = T("emptyCleared")
         task.spawn(function()
             pcall(function()
-                for _, e in pairs(auto.readOffer(mine)) do
-                    for _ = 1, e.count do
-                        local cell = e.cells[1]
-                        if not (cell and cell.Parent and isShown(cell)) then break end
-                        clickCell(cell, tg)
-                        task.wait(0.35)
+                for _ = 1, 40 do -- не больше 40 нажатий (4 ячейки по большим стопкам)
+                    if not S.enabled then break end
+                    local cell
+                    for key in pairs(auto.readOffer(mine)) do
+                        cell = auto.myCell(mine, key)
+                        if cell then break end
                     end
+                    if not cell then break end -- мой оффер пуст
+                    clickCell(cell, tg)
+                    task.wait(0.35)
                 end
             end)
             auto.busy = false
@@ -1746,10 +1749,9 @@ function auto.handleEmpty(tg, mine, theirs, my, th)
                 -- убираем только то, что положили сами
                 local have = auto.readOffer(mine)
                 for key, n in pairs(added) do
-                    local e = have[key]
                     for _ = 1, n do
-                        local cell = e and e.cells[1]
-                        if not (cell and cell.Parent and isShown(cell)) then break end
+                        local cell = have[key] and auto.myCell(mine, key)
+                        if not cell then break end
                         clickCell(cell, tg)
                         task.wait(0.3)
                     end
@@ -2072,6 +2074,15 @@ function auto.readOffer(offer)
     return res
 end
 
+-- свежая видимая ячейка предмета в моём оффере: после каждого нажатия MM2 перерисовывает стопку,
+-- старая ячейка пропадает — поэтому перед каждым кликом ищем заново
+function auto.myCell(mine, key)
+    local e = auto.readOffer(mine)[key]
+    for _, c in ipairs(e and e.cells or {}) do
+        if c.Parent and isShown(c) then return c end
+    end
+end
+
 -- просьба соперника из чата: привести мой оффер к списку предметов, которые он просит
 function auto.handlePartnerRequest(tg, mine, theirs, my, th)
     local req = auto.partnerReq
@@ -2124,7 +2135,7 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
     for key, e in pairs(have) do
         local extra = kind == "exact" and e.count - (want[key] or 0) or 0 -- убираем только при «только / just»
         if extra > 0 then
-            table.insert(removes, { cells = e.cells, count = extra })
+            table.insert(removes, { key = key, count = extra })
             table.insert(remText, e.name .. (extra > 1 and (" x" .. extra) or ""))
         end
     end
@@ -2148,8 +2159,8 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
             -- сначала убираем лишнее (клик по предмету в своём оффере убирает его)
             for _, rm in ipairs(removes) do
                 for _ = 1, rm.count do
-                    local cell = rm.cells[1]
-                    if not (cell and cell.Parent and isShown(cell)) then break end
+                    local cell = auto.myCell(mine, rm.key)
+                    if not cell then break end
                     clickCell(cell, tg)
                     task.wait(0.35)
                 end
@@ -2266,9 +2277,8 @@ function auto.removeExcess(tg, mine, excess, th, my)
                 for _ = 1, k do
                     if not (S.enabled and S.autoOffer and S.autoAdd) then break end
                     -- после каждого нажатия стопка меняется — берём ячейку заново
-                    local fresh = auto.readOffer(mine)[key]
-                    local cell = fresh and fresh.cells[1]
-                    if not (cell and cell.Parent) then break end
+                    local cell = auto.myCell(mine, key)
+                    if not cell then break end
                     clickCell(cell, tg)
                     task.wait(0.35)
                 end

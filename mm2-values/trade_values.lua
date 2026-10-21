@@ -1322,6 +1322,11 @@ local function scanInventory(tg, mine, theirs)
         end
     end
     if env.TV_invDirty then env.TV_invDirty = nil; saveSettings() end
+    -- у MM2 два варианта окна трейда; скрытый может хранить старый инвентарь (уже отданные предметы).
+    -- Если что-то видно на экране — берём только видимое.
+    local shownCells = {}
+    for _, it in ipairs(cells) do if isShown(it.frame) then table.insert(shownCells, it) end end
+    if #shownCells > 0 then return shownCells end
     return cells
 end
 
@@ -1343,6 +1348,26 @@ end
 -- способы: 1 — вызвать обработчики кнопки, 2 — firesignal, 3 — виртуальный клик мышью в центр.
 -- method = nil: пробуем по порядку до первого сработавшего; число: только этот способ.
 local GuiService = game:GetService("GuiService")
+-- полноэкранный выбор предметов MM2 (вкладки «Оружие/Питомцы» и кнопка «<»): закрыть, чтобы была видна кнопка «Принять»
+env.TV_findBack = function(tg)
+    local tabs = false
+    for _, d in ipairs(tg:GetDescendants()) do
+        if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and isShown(d) then
+            local t = d.Text:lower():gsub("^%s+", ""):gsub("%s+$", "")
+            if t == "weapons" or t == "оружие" then tabs = true; break end
+        end
+    end
+    if not tabs then return nil end
+    for _, d in ipairs(tg:GetDescendants()) do
+        if d:IsA("GuiButton") and isShown(d) then
+            local lbl = d:FindFirstChildWhichIsA("TextLabel", true)
+            local txt = ((d:IsA("TextButton") and d.Text or "") .. (lbl and lbl.Text or "")):gsub("%s", "")
+            local n = d.Name:lower()
+            if txt == "<" or txt == "‹" or txt == "←" or n == "back" or n:find("^back") or n:find("return") then return d end
+        end
+    end
+end
+
 local function clickCell(cell, tg, method)
     local btn = cell:IsA("GuiButton") and cell or cell:FindFirstChildWhichIsA("GuiButton", true) or cell
     local SIGNALS = { "MouseButton1Click", "Activated", "MouseButton1Down" }
@@ -1417,6 +1442,11 @@ end
 
 local auto = { busy = false, lastTh = -1, stableSince = 0, doneFor = -1, declined = false,
                accSig = "", accSince = 0, accTries = 0, accDone = false, accLast = 0 }
+function auto.closePicker(tg)
+    local b = env.TV_findBack(tg)
+    if b then clickCell(b, tg); return true end
+    return false
+end
 
 -- кнопка «Принять» (не «Отменить/Unaccept»)
 function auto.findAccept(tg)
@@ -1786,6 +1816,8 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
             if (t:find("wait") or t:find("подожд")) and isShown(d) then auto.setAcc("countdown"); return end
         end
     end
+    -- открыт полноэкранный выбор предметов: сначала закрываем его, принимаем на следующем шаге
+    if auto.closePicker(tg) then auto.accLast = os.clock(); auto.setAcc("hold", 1); return end
     local btn = auto.findAccept(tg)
     if not btn then auto.setAcc("nobtn"); return end
     -- надпись на кнопке сменилась («Принять» -> «Вы уверены?» или обратно после отмены) — новый этап, попытки заново
@@ -2292,6 +2324,9 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                 if anyHidden then
                     local addBtn = findAddButton(tg)
                     if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
+                    -- теперь инвентарь на экране: набираем заново только из того, что реально есть
+                    local again = pickItems(scanInventory(tg, mine, theirs), need)
+                    if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do
                     for _ = 1, pk.count do
@@ -2301,6 +2336,8 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                         task.wait(0.35)
                     end
                 end
+                task.wait(0.3)
+                auto.closePicker(tg)
               end)
                 auto.busy = false
             end)

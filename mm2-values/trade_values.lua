@@ -59,7 +59,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: способ %d, попытка %d (%s)", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: способ %d, попытка %d (%s)", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -72,7 +72,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: method %d, try %d (%s)", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: method %d, try %d (%s)", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
@@ -558,6 +558,15 @@ do
     corner(X.valuesOpen, 9)
     stroke(X.valuesOpen)
     themed(function() X.valuesOpen.Font = fontBold() end)
+    r, l = row()
+    X.statsLabel = l
+    X.statsOpen = new("TextButton", {
+        Size = UDim2.fromOffset(96, 30), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, 0, 0.5, 0),
+        BackgroundColor3 = C.bg, BackgroundTransparency = 0.2, Text = "", TextColor3 = C.text, TextSize = 13, AutoButtonColor = false,
+    }, r)
+    corner(X.statsOpen, 9)
+    stroke(X.statsOpen)
+    themed(function() X.statsOpen.Font = fontBold() end)
 end
 
 body = bodyTrade
@@ -1096,6 +1105,8 @@ local function refresh()
     X.tabChatBtn.Text = T("tabChat")
     X.valuesLabel.Text = T("valuesTitle")
     X.valuesOpen.Text = T("openValues") .. "  >"
+    X.statsLabel.Text = T("invStats")
+    X.statsOpen.Text = T("openValues") .. "  >"
     X.chatTradeLabel.Text = T("chatInTrade")
     X.drawChatTrade(S.chatInTrade)
     X.chatReqLabel.Text = T("chatRequests")
@@ -1349,6 +1360,13 @@ task.spawn(function()
             if type(data) == "table" and data.Image then
                 local img = tostring(data.Image)
                 if tonumber(img) then img = "rbxassetid://" .. img end
+                -- по картинке ячейки можно узнать тип (нож/пистолет) и редкость: «Latte» бывает и тем и другим
+                local digits = img:match("%d+")
+                if digits then
+                    env.TV_dbImg = env.TV_dbImg or {}
+                    env.TV_dbImg[digits] = { kind = tostring(data.ItemType or data.Type or data.WeaponType or data.Class or ""):lower(),
+                        rarity = tostring(data.Rarity or ""):lower() }
+                end
                 if data.ItemName then
                     -- у хромы в базе то же имя, что у обычного предмета: различаем по флагу/id
                     local isChroma = data.Chroma or data.IsChroma or data.chroma
@@ -1366,6 +1384,21 @@ task.spawn(function()
     end)
 end)
 
+-- тип предмета в ячейке по её картинке: "gun" / "knife" / nil (не знаем)
+env.TV_cellKind = function(cell)
+    local img, best = nil, 0
+    for _, d in ipairs(cell:GetDescendants()) do
+        if (d:IsA("ImageLabel") or d:IsA("ImageButton")) and d.Image:find("%d") then
+            local area = d.AbsoluteSize.X * d.AbsoluteSize.Y
+            if area >= best then img, best = d.Image, area end
+        end
+    end
+    local info = img and (env.TV_dbImg or {})[img:match("%d+")]
+    local k = info and info.kind or ""
+    if k:find("gun") then return "gun" elseif k:find("knife") then return "knife" end
+    return nil
+end
+
 -- свои предметы в окне трейда: ячейки в сетке/списке вне обоих офферов (в том числе скрытые)
 local function scanInventory(tg, mine, theirs)
     local items = {}
@@ -1381,7 +1414,7 @@ local function scanInventory(tg, mine, theirs)
         end
     end
     -- убираем «контейнеры»: если внутри кандидата есть другой кандидат, это не ячейка предмета
-    local cells = {}
+    local cells, seenNow = {}, {}
     for _, it in ipairs(items) do
         local isContainer = false
         for _, other in ipairs(items) do
@@ -1389,13 +1422,11 @@ local function scanInventory(tg, mine, theirs)
         end
         if not isContainer then
             harvestImage(it.frame, it.name)
-            -- запоминаем свои предметы для «Мой инвентарь» в разделе «Не отдавать»
-            S.myInv = S.myInv or {}
-            if not S.myInv[norm(it.name)] and isShown(it.frame) then S.myInv[norm(it.name)] = it.name; env.TV_invDirty = true end
+            if isShown(it.frame) then table.insert(seenNow, it) end -- для «Мой инвентарь» и статистики
             if not it.kept then table.insert(cells, it) end
         end
     end
-    if env.TV_invDirty then env.TV_invDirty = nil; saveSettings() end
+    if #seenNow > 0 and env.TV_invSnapshot then pcall(env.TV_invSnapshot, seenNow, mine) end
     -- у MM2 два варианта окна трейда; скрытый может хранить старый инвентарь (уже отданные предметы).
     -- Если что-то видно на экране — берём только видимое.
     local shownCells = {}
@@ -2283,12 +2314,28 @@ function auto.gameKey(name, key)
     if base ~= "" and base ~= key then return base end
     return key
 end
+function auto.orderMatches(o, their)
+    if their[o.target] then return true end
+    local e = their[auto.gameKey(o.name, o.target)]
+    if not e then return false end
+    local suf = ((o.name or ""):match("%((%a+)%)%s*$") or ""):lower()
+    if suf ~= "gun" and suf ~= "knife" then return true end
+    local known = false
+    for _, c in ipairs(e.cells) do
+        local k = env.TV_cellKind(c)
+        if k then
+            known = true
+            if k == suf then return true end
+        end
+    end
+    return not known -- тип по картинке не узнать — сравниваем только по названию
+end
 function auto.handleOrders(theirs)
     if not (S.enabled and S.ordersOn) then return end
     local their = auto.readOffer(theirs)
     local order, enabled
     for _, o in ipairs(S.orders or {}) do
-        if their[o.target] or their[auto.gameKey(o.name, o.target)] then
+        if auto.orderMatches(o, their) then
             local en = {}
             for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
             if #en > 0 then order, enabled = o, en; break end
@@ -3458,12 +3505,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             TextXAlignment = ax == 1 and Enum.TextXAlignment.Right or Enum.TextXAlignment.Left, ZIndex = 23 }, canvas)
     end
 
-    env.TV_showChart = function(it)
+    env.TV_showChart = function(it, custom)
         for _, c in ipairs(canvas:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
         local hist = {}
-        for _, pnt in ipairs((env.TV_hist or {})[it.name] or {}) do table.insert(hist, { tonumber(pnt[1]), tonumber(pnt[2]) }) end
+        local src = custom and custom.hist or (env.TV_hist or {})[it.name] or {}
+        for _, pnt in ipairs(src) do table.insert(hist, { tonumber(pnt[1]), tonumber(pnt[2]) }) end
         local now = os.time()
-        if #hist == 0 and it.price then hist = { { now - 86400, it.price } } end
+        if #hist == 0 and it and it.price then hist = { { now - 86400, it.price } } end
         if #hist == 0 then return end
         table.insert(hist, { now, hist[#hist][2] }) -- до сегодняшнего дня цена держится
         local tMin, tMax, vMin, vMax = hist[1][1], now, math.huge, -math.huge
@@ -3496,12 +3544,72 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 Position = UDim2.fromOffset(px(hist[k][1]), py(hist[k][2])), BackgroundColor3 = col, ZIndex = 23 }, canvas)
             corner(d, 3)
         end
-        cTitle.Text = T("chartTitle"):format(it.name, env.TV_fmt(it.price or hist[#hist][2]))
-        cNote.Text = #hist <= 3 and T("chartFew"):format(dateStr(hist[1][1])) or ""
+        cTitle.Text = custom and custom.title or T("chartTitle"):format(it.name, env.TV_fmt(it.price or hist[#hist][2]))
+        cNote.Text = custom and custom.note or (#hist <= 3 and T("chartFew"):format(dateStr(hist[1][1])) or "")
         win.Visible = true
         local abs = ui.AbsoluteSize
         wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 110))
     end
+end)() -- отдельная функция: у неё свой лимит 200 локальных
+
+------------------------------------------------------------------
+-- «Мой инвентарь» (что есть сейчас) и история стоимости инвентаря
+------------------------------------------------------------------
+;(function()
+    local snapAt = 0
+    env.TV_invSnapshot = function(seen, mine)
+        if os.clock() - snapAt < 2 then return end
+        snapAt = os.clock()
+        local pets = {}
+        for _, it in ipairs(itemsByCat.pets or {}) do pets[it.key] = true end
+        local snap, petCount, total = {}, 0, 0
+        for _, it in ipairs(seen) do
+            local k = norm(it.name)
+            snap[k] = it.name
+            if pets[k] then petCount += 1 end
+            total += (it.price or 0) * (it.amount or 1)
+        end
+        local offerEmpty = true
+        for k, e in pairs(auto.readOffer(mine)) do snap[k] = e.name; offerEmpty = false end
+        -- открыта вкладка питомцев — заменяем только питомцев, оружие не трогаем (и наоборот)
+        local isPets = petCount * 2 > #seen
+        local old, new = S.myInv or {}, {}
+        for k, n in pairs(old) do if (pets[k] == true) ~= isPets then new[k] = n end end
+        for k, n in pairs(snap) do new[k] = n end
+        local changed = false
+        for k in pairs(new) do if not old[k] then changed = true; break end end
+        if not changed then for k in pairs(old) do if not new[k] then changed = true; break end end end
+        if changed then S.myInv = new end
+        -- стоимость оружия: пишем, когда мой оффер пуст (иначе часть предметов «в трейде»)
+        if not isPets and offerEmpty and total > 0 then
+            S.invHist = S.invHist or {}
+            local h, now = S.invHist, os.time()
+            local last = h[#h]
+            if not last or (last[2] ~= total and now - last[1] >= 30) or now - last[1] >= 3600 then
+                table.insert(h, { now, total })
+                while #h > 300 do table.remove(h, 1) end
+                changed = true
+            end
+        end
+        if changed then saveSettings() end
+    end
+
+    local function change(h, secs)
+        local now, cur = os.time(), h[#h][2]
+        local base = h[1][2]
+        for _, pnt in ipairs(h) do if pnt[1] <= now - secs then base = pnt[2] end end
+        local d = cur - base
+        local pct = base > 0 and d / base * 100 or 0
+        local col = d > 0 and C.good or d < 0 and C.bad or C.muted
+        return ('<font color="%s">%s%s (%s%d%%)</font>'):format(hex(col), d >= 0 and "+" or "-", env.TV_fmt(math.abs(d)),
+            pct >= 0 and "+" or "-", math.floor(math.abs(pct) + 0.5))
+    end
+    on(X.statsOpen.Activated, function()
+        local h = S.invHist or {}
+        if #h == 0 then notify(T("invEmpty")); return end
+        env.TV_showChart(nil, { hist = h, title = T("invTitle"):format(env.TV_fmt(h[#h][2])),
+            note = T("invNote"):format(change(h, 86400), change(h, 7 * 86400), #h) })
+    end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
 env.TV_cleanup = function()

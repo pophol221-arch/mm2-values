@@ -59,7 +59,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -72,7 +72,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
@@ -354,10 +354,10 @@ makeDraggable(logo, panel)
 local tabBar = new("Frame", { Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = C.card, BackgroundTransparency = 0.3, LayoutOrder = 1 }, panel)
 corner(tabBar, 10)
 stroke(tabBar)
-local tabKnob = new("Frame", { Size = UDim2.new(1 / 4, -6, 1, -6), Position = UDim2.fromOffset(3, 3), BackgroundColor3 = accent() }, tabBar)
+local tabKnob = new("Frame", { Size = UDim2.new(1 / 5, -6, 1, -6), Position = UDim2.fromOffset(3, 3), BackgroundColor3 = accent() }, tabBar)
 corner(tabKnob, 8)
-local tabMainBtn = new("TextButton", { Size = UDim2.fromScale(1 / 4, 1), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
-local tabTradeBtn = new("TextButton", { Size = UDim2.fromScale(1 / 4, 1), Position = UDim2.fromScale(1 / 4, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
+local tabMainBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
+local tabTradeBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), Position = UDim2.fromScale(1 / 5, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
 themed(function() tabMainBtn.Font, tabTradeBtn.Font = fontBold(), fontBold() end)
 
 -- ряды настроек на «карточках» (по одной на вкладку)
@@ -527,6 +527,12 @@ do
     l.Size = UDim2.new(0.75, 0, 1, 0)
     X.fillLabel = l
     X.fillToggle, X.drawFill = makeToggle(r)
+    -- дальше — вкладка «Принятие»: отказы, подарки, запросы, автопринятие
+    X.tabTrade2Btn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), Position = UDim2.fromScale(2 / 5, 0), BackgroundTransparency = 1,
+        Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
+    themed(function() X.tabTrade2Btn.Font = fontBold() end)
+    X.bodyTrade2 = makeBody(false)
+    body = X.bodyTrade2
     r, l = row()
     l.Size = UDim2.new(0.75, 0, 1, 0)
     X.mirrorLabel = l
@@ -555,6 +561,7 @@ local blOpen = new("TextButton", {
 corner(blOpen, 9)
 stroke(blOpen)
 themed(function() blOpen.Font = fontBold() end)
+body = bodyTrade
 do
     local r, l = row()
     l.Size = UDim2.new(0.6, 0, 1, 0)
@@ -583,6 +590,7 @@ end
 
 -- сброс позиции плашки (последний ряд вкладки «Трейд»)
 -- автопринятие (ссылки в одной таблице: в Luau не больше 200 локальных на уровень)
+body = X.bodyTrade2
 do
     local r, l = row()
     l.Size = UDim2.new(0.75, 0, 1, 0)
@@ -596,6 +604,7 @@ do
     X.accToggle, X.drawAcc = makeToggle(r)
 end
 
+body = bodyTrade
 local rReset = row()
 local resetBtn = new("TextButton", {
     Size = UDim2.new(1, 0, 0, 32), AnchorPoint = Vector2.new(0, 0.5), Position = UDim2.fromScale(0, 0.5),
@@ -609,7 +618,7 @@ hover(resetBtn, C.card, rgb(35, 38, 50))
 local footer = label(panel, { Size = UDim2.new(1, 0, 0, 14), TextSize = 11, TextColor3 = C.muted, TextXAlignment = Enum.TextXAlignment.Center, LayoutOrder = 3 })
 
 -- вкладка «Игрок»
-X.tabGameBtn = new("TextButton", { Size = UDim2.fromScale(1 / 4, 1), Position = UDim2.fromScale(2 / 4, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
+X.tabGameBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), Position = UDim2.fromScale(3 / 5, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
 themed(function() X.tabGameBtn.Font = fontBold() end)
 X.bodyGame = makeBody(false)
 body = X.bodyGame
@@ -625,7 +634,7 @@ do
 end
 
 -- вкладка «Чат»
-X.tabChatBtn = new("TextButton", { Size = UDim2.fromScale(1 / 4, 1), Position = UDim2.fromScale(3 / 4, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
+X.tabChatBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), Position = UDim2.fromScale(4 / 5, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
 themed(function() X.tabChatBtn.Font = fontBold() end)
 X.bodyChat = makeBody(false)
 body = X.bodyChat
@@ -949,9 +958,10 @@ local function refresh()
     X.drawAfk(S.antiAfk)
     X.drawFling(S.antiFling)
     tabKnob.BackgroundColor3 = a
-    local tabIndex = ({ main = 0, trade = 1, game = 2, chat = 3 })[curTab] or 0
-    tween(tabKnob, 0.2, { Position = UDim2.new(tabIndex / 4, 3, 0, 3) })
-    bodyMain.Visible, bodyTrade.Visible = curTab == "main", curTab == "trade"
+    local tabIndex = ({ main = 0, trade = 1, trade2 = 2, game = 3, chat = 4 })[curTab] or 0
+    tween(tabKnob, 0.2, { Position = UDim2.new(tabIndex / 5, 3, 0, 3) })
+    bodyMain.Visible, bodyTrade.Visible, X.bodyTrade2.Visible = curTab == "main", curTab == "trade", curTab == "trade2"
+    X.tabTrade2Btn.Text = T("tabTrade2")
     X.bodyGame.Visible, X.bodyChat.Visible = curTab == "game", curTab == "chat"
     X.tabChatBtn.Text = T("tabChat")
     X.valuesLabel.Text = T("valuesTitle")
@@ -975,6 +985,7 @@ env.TV_refresh = refresh
 local function change(fn) return function() fn(); saveSettings(); refresh() end end
 on(tabMainBtn.Activated, function() curTab = "main"; refresh() end)
 on(tabTradeBtn.Activated, function() curTab = "trade"; refresh() end)
+on(X.tabTrade2Btn.Activated, function() curTab = "trade2"; refresh() end)
 on(X.tabGameBtn.Activated, function() curTab = "game"; refresh() end)
 on(X.tabChatBtn.Activated, function() curTab = "chat"; refresh() end)
 on(X.chatTradeToggle.Activated, change(function() S.chatInTrade = not S.chatInTrade end))

@@ -149,14 +149,16 @@ local function loadValues()
         return HttpService:JSONDecode(game:HttpGet(VALUES_URL .. "?t=" .. os.time()))
     end)
     if not ok or type(res) ~= "table" then warn("[TV] не загрузил цены:", res) return false end
+    -- не показываем и не считаем: заглушки сайта и то, что нельзя передать
+    local SKIP = { ["Black Luger"] = true, ["Nik's Scythe"] = true, ["Default Knife"] = true, ["Default Gun"] = true }
     local map, n = {}, 0
     for k, v in pairs(res.values or res) do
-        if tonumber(v) then map[norm(k)] = tonumber(v); n += 1 end
+        if tonumber(v) and not SKIP[k] and tonumber(v) < 1000000 then map[norm(k)] = tonumber(v); n += 1 end
     end
     valueMap, valueCount = map, n
     local arr = {}
     for k, v in pairs(res.values or res) do
-        if tonumber(v) then table.insert(arr, { name = k, price = tonumber(v), key = norm(k) }) end
+        if map[norm(k)] and not SKIP[k] then table.insert(arr, { name = k, price = tonumber(v), key = norm(k) }) end
     end
     -- в списках только предметы с ценой (без цены = уникальные с владельцем и т.п., их не передать)
     local seen = {}
@@ -177,7 +179,7 @@ local function loadValues()
                     key = norm(name), cat = cat,
                     img = cat .. "_" .. ((name:find(" Set", 1, true) and "set" or "") .. norm(name)) }
             end
-            if it and not inCat[it] then inCat[it] = true; table.insert(lst, it) end
+            if it and not SKIP[name] and not inCat[it] then inCat[it] = true; table.insert(lst, it) end
         end
         byCat[cat] = lst
     end

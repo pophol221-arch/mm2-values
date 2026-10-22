@@ -14,7 +14,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-from parser import parse_update
+from parser import parse_info, parse_update
 
 HERE = Path(__file__).parent
 VALUES = HERE / "values.json"
@@ -51,6 +51,12 @@ def main() -> int:
     channel = os.environ["CHANNEL_ID"].strip()
     state = json.loads(VALUES.read_text(encoding="utf-8"))
     after = int(state.get("last_message_id") or 0)
+    # REPLAY=N — разово перечитать последние N сообщений (догнать то, что раньше не разбиралось)
+    replay = int(os.environ.get("REPLAY") or 0)
+    if replay:
+        recent = discord_get(f"/channels/{channel}/messages?limit={min(replay, 100)}")
+        if recent:
+            after = min(int(m["id"]) for m in recent) - 1
 
     # все сообщения после last_message_id, по 100 за запрос, от старых к новым
     msgs = []
@@ -69,7 +75,21 @@ def main() -> int:
         mid = int(m["id"])
         if mid > int(state.get("last_message_id") or 0):
             state["last_message_id"] = mid
-        changes = parse_update(message_text(m))
+        text = message_text(m)
+        changes = parse_update(text)
+        # диапазон, спрос, редкость, стабильность — как на сайте
+        infos = state.setdefault("info", {})
+        for name, upd in parse_info(text).items():
+            cur = infos.setdefault(name, {})
+            cur.update(upd)
+            if name in changes and "r" not in upd and cur.get("r"):
+                # цена поменялась, а нового диапазона нет: старый, если цена в него не попадает, — устарел
+                try:
+                    lo, hi = (float(x.replace(",", "")) for x in cur["r"].split(" - "))
+                    if not lo <= changes[name] <= hi:
+                        del cur["r"]
+                except ValueError:
+                    pass
         if not changes:
             continue
         ts = datetime.fromisoformat(m["timestamp"])
@@ -84,7 +104,10 @@ def main() -> int:
             hist = state.setdefault("history", {}).setdefault(name, [])
             if not hist and old is not None:
                 hist.append([unix - 1, old])
-            hist.append([unix, value])
+            # повтор той же цены или более старое сообщение (перечитывание) в историю не пишем
+            if not (hist and (hist[-1][1] == value or hist[-1][0] >= unix)):
+                hist.append([unix, value])
+            hist.sort(key=lambda p: p[0])
             del hist[:-200]
             print(f"  {name}: {old} -> {value}")
         state["updated"] = ts.astimezone(timezone.utc).isoformat()

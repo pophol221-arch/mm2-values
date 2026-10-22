@@ -63,7 +63,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", kindGun = "пистолет", kindKnife = "нож", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", kindGun = "пистолет", kindKnife = "нож", ordUnsure = "Заявка: не понял, нож это или пистолет — ничего не кладу [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +76,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", kindGun = "gun", kindKnife = "knife", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", kindGun = "gun", kindKnife = "knife", ordUnsure = "Order: can't tell knife from gun — adding nothing [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -1356,7 +1356,9 @@ task.spawn(function()
         local rs = game:GetService("ReplicatedStorage")
         local mod = rs:FindFirstChild("Database") and rs.Database:FindFirstChild("Sync") and rs.Database.Sync:FindFirstChild("Item")
         if not mod then return end
+        env.TV_dbCount = 0
         for id, data in pairs(require(mod)) do
+            env.TV_dbCount += 1
             if type(data) == "table" and data.Image then
                 local img = tostring(data.Image)
                 if tonumber(img) then img = "rbxassetid://" .. img end
@@ -1404,10 +1406,24 @@ env.TV_cellKind = function(cell)
             if area >= best then img, best = d.Image, area end
         end
     end
-    local info = img and (env.TV_dbImg or {})[img:match("%d+")]
-    local k = info and info.kind or ""
-    if k:find("gun") or k:find("pistol") or k:find("revolver") then return "gun" elseif k:find("knife") then return "knife" end
-    return nil
+    local digits = img and img:match("%d+")
+    local info = digits and (env.TV_dbImg or {})[digits]
+    local function kindOf(str)
+        str = (str or ""):lower()
+        if str:find("gun") or str:find("pistol") or str:find("revolver") then return "gun" end
+        if str:find("knife") then return "knife" end
+    end
+    -- 1) база MM2 по картинке; 2) имя ячейки и её атрибуты (бывает «LatteGun» / ItemType = "Knife")
+    local k = info and kindOf(info.kind)
+    if not k then
+        local parts = { cell.Name }
+        for an, av in pairs(cell:GetAttributes()) do table.insert(parts, tostring(an) .. "=" .. tostring(av)) end
+        k = kindOf(table.concat(parts, " "))
+    end
+    -- для плашки: что скрипт знает об этой ячейке
+    env.TV_kindDiag = ("%s · img %s · база: %s"):format(cell.Name, digits or "—",
+        info and (info.kind ~= "" and info.kind or "нет типа") or ("нет (" .. tostring(env.TV_dbCount or 0) .. ")"))
+    return k
 end
 
 -- свои предметы в окне трейда: ячейки в сетке/списке вне обоих офферов (в том числе скрытые)
@@ -2341,6 +2357,7 @@ function auto.gameKey(name, key)
     if base ~= "" and base ~= key then return base end
     return key
 end
+-- true — точно подходит, "maybe" — по названию да, а нож это или пистолет — не понять
 function auto.orderMatches(o, their)
     if their[o.target] then return true end
     local e = their[auto.gameKey(o.name, o.target)]
@@ -2355,19 +2372,27 @@ function auto.orderMatches(o, their)
             if k == suf then return true end
         end
     end
-    return not known -- тип по картинке не узнать — сравниваем только по названию
+    return (not known) and "maybe" or false
 end
 function auto.handleOrders(theirs)
     if not (S.enabled and S.ordersOn) then return end
     local their = auto.readOffer(theirs)
     local order, enabled
+    local maybes = {}
     for _, o in ipairs(S.orders or {}) do
-        if auto.orderMatches(o, their) then
+        local m = auto.orderMatches(o, their)
+        if m then
             local en = {}
             for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
-            if #en > 0 then order, enabled = o, en; break end
+            if #en > 0 then
+                if m == true then order, enabled = o, en; break end
+                table.insert(maybes, { o, en })
+            end
         end
     end
+    -- нож/пистолет не различить: одна подходящая заявка — берём её, несколько — ничего не кладём (лучше, чем не то)
+    if not order and #maybes == 1 then order, enabled = maybes[1][1], maybes[1][2] end
+    auto.ordUnsure = (not order and #maybes > 1) and env.TV_kindDiag or nil
     local st = auto.ord
     if not order then
         -- предмет пропал из его оффера: запоминаем момент (вернёт быстро — сменим вариант)
@@ -2403,7 +2428,7 @@ function auto.handleOrders(theirs)
         seenKind = seenKind or env.TV_cellKind(c)
     end
     auto.partnerReq = { partner = auto.partner, items = items, kind = "order", t = os.clock() + 1e6, id = auto.reqSeq,
-        orderName = order.name .. " [" .. (seenKind == "gun" and T("kindGun") or seenKind == "knife" and T("kindKnife") or "?") .. "]" }
+        orderName = order.name .. " [" .. (seenKind == "gun" and T("kindGun") or seenKind == "knife" and T("kindKnife") or ("? " .. (env.TV_kindDiag or ""))) .. "]" }
 end
 
 -- он кладёт только мелочь (винтажи, легендарки, редкие, необычные, обычные) — в ответ ровно 1 самый дешёвый годли,
@@ -2572,6 +2597,12 @@ end
 
 local function updateAutoOffer(tg, mine, theirs, my, th)
     auto.handleOrders(theirs)
+    if auto.ordUnsure then
+        sugLine.Visible = true
+        sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.fair), T("ordUnsure"):format(auto.ordUnsure))
+        hideHighlights()
+        return
+    end
     if auto.handlePartnerRequest(tg, mine, theirs, my, th) then hideHighlights(); return end
     if S.autoOffer and auto.handleCheap(tg, mine, theirs, my, th) then return end
     if not S.autoOffer then sugLine.Visible = false; hideHighlights(); return end

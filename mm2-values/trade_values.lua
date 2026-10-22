@@ -63,7 +63,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", kindGun = "пистолет", kindKnife = "нож", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +76,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", kindGun = "gun", kindKnife = "knife", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -1363,9 +1363,20 @@ task.spawn(function()
                 -- по картинке ячейки можно узнать тип (нож/пистолет) и редкость: «Latte» бывает и тем и другим
                 local digits = img:match("%d+")
                 if digits then
+                    -- тип ищем в любом текстовом поле записи («Gun»/«Knife»), иначе — в её ключе
+                    local kind = ""
+                    for _, fv in pairs(data) do
+                        if type(fv) == "string" then
+                            local lv = fv:lower()
+                            if lv == "gun" or lv == "knife" or lv == "pistol" or lv == "revolver" then kind = lv; break end
+                        end
+                    end
+                    if kind == "" then
+                        local idl = tostring(id):lower()
+                        if idl:find("gun") or idl:find("pistol") then kind = "gun" elseif idl:find("knife") then kind = "knife" end
+                    end
                     env.TV_dbImg = env.TV_dbImg or {}
-                    env.TV_dbImg[digits] = { kind = tostring(data.ItemType or data.Type or data.WeaponType or data.Class or ""):lower(),
-                        rarity = tostring(data.Rarity or ""):lower() }
+                    env.TV_dbImg[digits] = { kind = kind, rarity = tostring(data.Rarity or ""):lower() }
                 end
                 if data.ItemName then
                     -- у хромы в базе то же имя, что у обычного предмета: различаем по флагу/id
@@ -1395,7 +1406,7 @@ env.TV_cellKind = function(cell)
     end
     local info = img and (env.TV_dbImg or {})[img:match("%d+")]
     local k = info and info.kind or ""
-    if k:find("gun") then return "gun" elseif k:find("knife") then return "knife" end
+    if k:find("gun") or k:find("pistol") or k:find("revolver") then return "gun" elseif k:find("knife") then return "knife" end
     return nil
 end
 
@@ -2370,8 +2381,13 @@ function auto.handleOrders(theirs)
         table.insert(items, { key = gk, name = it.name, count = it.count, price = valueMap[it.key] or valueMap[gk] or 0 })
     end
     auto.reqSeq = (auto.reqSeq or 0) + 1
+    -- какой тип предмета распознал скрипт — видно в строке заявки (пистолет / нож / ?)
+    local seenKind
+    for _, c in ipairs((their[order.target] or their[auto.gameKey(order.name, order.target)] or { cells = {} }).cells) do
+        seenKind = seenKind or env.TV_cellKind(c)
+    end
     auto.partnerReq = { partner = auto.partner, items = items, kind = "order", t = os.clock() + 1e6, id = auto.reqSeq,
-        orderName = order.name }
+        orderName = order.name .. " [" .. (seenKind == "gun" and T("kindGun") or seenKind == "knife" and T("kindKnife") or "?") .. "]" }
 end
 
 -- он кладёт только мелочь (винтажи, легендарки, редкие, необычные, обычные) — в ответ ровно 1 самый дешёвый годли,
@@ -3461,17 +3477,18 @@ end)() -- отдельная функция: у неё свой лимит 200 �
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
 ------------------------------------------------------------------
--- График цены: нажатие на предмет в «Таблице цен»
+-- График цены: нажатие на предмет в «Таблице цен» (и стоимость инвентаря)
 ------------------------------------------------------------------
 ;(function()
-    local CW, CH = 420, 180
-    local win = new("Frame", { Size = UDim2.fromOffset(CW + 32, CH + 110), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+    local CW, CH = 480, 210
+    local win = new("Frame", { Size = UDim2.fromOffset(CW + 32, CH + 132), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
         Visible = false, BackgroundColor3 = C.bg, BackgroundTransparency = 0.02, ZIndex = 20 }, ui)
     corner(win, 16)
     stroke(win)
     pad(win, 16, 14)
     local wscale = new("UIScale", {}, win)
-    local cTitle = label(win, { Size = UDim2.new(1, -40, 0, 20), TextSize = 15, ZIndex = 21 }, true)
+    local cTitle = label(win, { Size = UDim2.new(1, -40, 0, 20), TextSize = 16, ZIndex = 21 }, true)
+    local cSub = label(win, { Size = UDim2.new(1, -40, 0, 16), Position = UDim2.fromOffset(0, 23), TextSize = 12, TextColor3 = C.muted, ZIndex = 21 })
     local cNote = label(win, { Size = UDim2.new(1, 0, 0, 30), Position = UDim2.new(0, 0, 1, -30), TextSize = 11, TextWrapped = true,
         TextColor3 = C.muted, ZIndex = 21 })
     local close = new("TextButton", { Size = UDim2.fromOffset(28, 28), AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, 0, 0, -4),
@@ -3481,14 +3498,14 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         corner(new("Frame", { BackgroundColor3 = C.muted, BorderSizePixel = 0, AnchorPoint = Vector2.new(0.5, 0.5), ZIndex = 22,
             Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(12, 2), Rotation = rot }, close), 1)
     end
-    local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 30), BackgroundColor3 = C.card,
+    local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 48), BackgroundColor3 = C.card,
         BackgroundTransparency = 0.4, ClipsDescendants = true, ZIndex = 21 }, win)
     corner(canvas, 10)
     makeDraggable(cTitle, win)
     on(close.Activated, function() win.Visible = false end)
 
-    local function dateStr(t)
-        local ok, s = pcall(function() return DateTime.fromUnixTimestamp(t):FormatLocalTime("DD.MM", "ru-ru") end)
+    local function dateStr(t, f)
+        local ok, s = pcall(function() return DateTime.fromUnixTimestamp(t):FormatLocalTime(f or "DD.MM", "ru-ru") end)
         return ok and s or ""
     end
     local function seg(x1, y1, x2, y2, col, th)
@@ -3500,55 +3517,102 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             BackgroundColor3 = col, BorderSizePixel = 0, ZIndex = 22 }, canvas)
     end
     local function txt(text, x, y, ax)
-        new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(80, 14), AnchorPoint = Vector2.new(ax or 0, 0.5),
+        new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(90, 14), AnchorPoint = Vector2.new(ax or 0, 0.5),
             Position = UDim2.fromOffset(x, y), Text = text, TextColor3 = C.muted, TextSize = 10, Font = Enum.Font.Gotham,
-            TextXAlignment = ax == 1 and Enum.TextXAlignment.Right or Enum.TextXAlignment.Left, ZIndex = 23 }, canvas)
+            TextXAlignment = (ax == 1 and Enum.TextXAlignment.Right) or (ax == 0.5 and Enum.TextXAlignment.Center) or Enum.TextXAlignment.Left,
+            ZIndex = 23 }, canvas)
+    end
+    local function delta(d, base)
+        local pct = base > 0 and d / base * 100 or 0
+        local col = d > 0 and C.good or d < 0 and C.bad or C.muted
+        return ('<font color="%s">%s%s (%s%.1f%%)</font>'):format(hex(col), d >= 0 and "+" or "−", env.TV_fmt(math.abs(d)),
+            pct >= 0 and "+" or "−", math.abs(pct))
     end
 
     env.TV_showChart = function(it, custom)
         for _, c in ipairs(canvas:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
         local hist = {}
         local src = custom and custom.hist or (env.TV_hist or {})[it.name] or {}
-        for _, pnt in ipairs(src) do table.insert(hist, { tonumber(pnt[1]), tonumber(pnt[2]) }) end
+        for _, pnt in ipairs(src) do
+            local t, v = tonumber(pnt[1]), tonumber(pnt[2])
+            if t and v then table.insert(hist, { t, v }) end
+        end
+        table.sort(hist, function(a, b) return a[1] < b[1] end)
         local now = os.time()
         if #hist == 0 and it and it.price then hist = { { now - 86400, it.price } } end
         if #hist == 0 then return end
-        table.insert(hist, { now, hist[#hist][2] }) -- до сегодняшнего дня цена держится
+        local first, cur = hist[1][2], hist[#hist][2]
+        local points = #hist
+        table.insert(hist, { now, cur }) -- до сегодняшнего дня цена держится
         local tMin, tMax, vMin, vMax = hist[1][1], now, math.huge, -math.huge
         for _, pnt in ipairs(hist) do vMin, vMax = math.min(vMin, pnt[2]), math.max(vMax, pnt[2]) end
         if vMax - vMin < 1 then vMin, vMax = vMin - 1, vMax + 1 end
-        local padV = (vMax - vMin) * 0.12
-        vMin, vMax = vMin - padV, vMax + padV
+        local padV = (vMax - vMin) * 0.15
+        vMin, vMax = math.max(0, vMin - padV), vMax + padV
         if tMax - tMin < 3600 then tMin = tMax - 3600 end
-        local L_, R_, T_, B_ = 46, 10, 12, 22
+        local L_, R_, T_, B_ = 52, 14, 14, 26
         local function px(t) return L_ + (t - tMin) / (tMax - tMin) * (CW - L_ - R_) end
         local function py(v) return T_ + (1 - (v - vMin) / (vMax - vMin)) * (CH - T_ - B_) end
-        -- сетка и подписи
+        -- сетка: 4 линии цены и 5 отметок времени
         for k = 0, 3 do
             local v = vMin + (vMax - vMin) * k / 3
             seg(L_, py(v), CW - R_, py(v), C.line, 1).BackgroundTransparency = 0.9
             txt(env.TV_fmt(v), L_ - 6, py(v), 1)
         end
-        txt(dateStr(tMin), L_, CH - 10)
-        txt(dateStr(tMax), CW - R_, CH - 10, 1)
-        -- ступенчатая линия цены (цена меняется скачками)
-        local up = hist[#hist][2] >= hist[1][2]
-        local col = up and C.good or C.bad
+        local span = tMax - tMin
+        local fx = span > 2 * 86400 and "DD.MM" or "DD.MM HH:mm"
+        for k = 0, 4 do
+            local t = tMin + span * k / 4
+            seg(px(t), T_, px(t), CH - B_, C.line, 1).BackgroundTransparency = 0.95
+            txt(dateStr(t, fx), px(t), CH - 11, k == 0 and 0 or k == 4 and 1 or 0.5)
+        end
+        -- цвет по итогу периода; заливка под ступенчатой линией
+        local col = cur > first and C.good or cur < first and C.bad or accent()
         for k = 1, #hist - 1 do
             local a, b = hist[k], hist[k + 1]
-            seg(px(a[1]), py(a[2]), px(b[1]), py(a[2]), col, 2)
-            if b[2] ~= a[2] then seg(px(b[1]), py(a[2]), px(b[1]), py(b[2]), col, 2) end
+            local x1, x2, y = px(a[1]), px(b[1]), py(a[2])
+            new("Frame", { Position = UDim2.fromOffset(x1, y), Size = UDim2.fromOffset(math.max(1, x2 - x1), math.max(0, CH - B_ - y)),
+                BackgroundColor3 = col, BackgroundTransparency = 0.88, BorderSizePixel = 0, ZIndex = 21 }, canvas)
+            seg(x1, y, x2, y, col, 2)
+            if b[2] ~= a[2] then seg(x2, y, x2, py(b[2]), col, 2) end
         end
-        for k = 1, #hist - 1 do
-            local d = new("Frame", { Size = UDim2.fromOffset(6, 6), AnchorPoint = Vector2.new(0.5, 0.5),
-                Position = UDim2.fromOffset(px(hist[k][1]), py(hist[k][2])), BackgroundColor3 = col, ZIndex = 23 }, canvas)
-            corner(d, 3)
+        -- точки: нажми или наведи — дата и цена
+        local tip = new("TextLabel", { BackgroundColor3 = C.bg, BackgroundTransparency = 0.05, AutomaticSize = Enum.AutomaticSize.XY,
+            Size = UDim2.fromOffset(0, 0), Text = "", RichText = true, TextColor3 = C.text, TextSize = 11, Font = Enum.Font.Gotham,
+            Visible = false, ZIndex = 30 }, canvas)
+        corner(tip, 6)
+        pad(tip, 6, 4)
+        for k = 1, points do
+            local pnt = hist[k]
+            local x, y = px(pnt[1]), py(pnt[2])
+            local hit = new("TextButton", { Size = UDim2.fromOffset(18, 18), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(x, y),
+                BackgroundTransparency = 1, Text = "", AutoButtonColor = false, ZIndex = 24 }, canvas)
+            corner(new("Frame", { Size = UDim2.fromOffset(7, 7), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+                BackgroundColor3 = col, ZIndex = 25 }, hit), 4)
+            local prev = hist[k - 1]
+            local function show()
+                tip.Text = ("<b>%s</b>%s\n%s"):format(env.TV_fmt(pnt[2]), prev and ("  " .. delta(pnt[2] - prev[2], prev[2])) or "",
+                    dateStr(pnt[1], "DD.MM.YYYY HH:mm"))
+                tip.Position = UDim2.fromOffset(math.clamp(x + 10, 2, CW - 150), math.clamp(y - 44, 2, CH - 44))
+                tip.Visible = true
+            end
+            on(hit.MouseEnter, show)
+            on(hit.Activated, show)
+            on(hit.MouseLeave, function() tip.Visible = false end)
         end
-        cTitle.Text = custom and custom.title or T("chartTitle"):format(it.name, env.TV_fmt(it.price or hist[#hist][2]))
-        cNote.Text = custom and custom.note or (#hist <= 3 and T("chartFew"):format(dateStr(hist[1][1])) or "")
+        -- текущая цена справа на линии
+        local badge = new("TextLabel", { BackgroundColor3 = col, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 16),
+            AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.fromOffset(CW - 2, math.clamp(py(cur), 10, CH - B_ - 8)), Text = env.TV_fmt(cur),
+            TextColor3 = rgb(255, 255, 255), TextSize = 10, Font = Enum.Font.GothamBold, ZIndex = 26 }, canvas)
+        corner(badge, 5)
+        pad(badge, 5, 0)
+
+        cTitle.Text = custom and custom.title or T("chartTitle"):format(it.name, env.TV_fmt(it.price or cur))
+        cSub.Text = T("chartSince"):format(delta(cur - first, first), dateStr(hist[1][1], "DD.MM.YYYY"), points)
+        cNote.Text = custom and custom.note or (points <= 2 and T("chartFew"):format(dateStr(hist[1][1])) or "")
         win.Visible = true
         local abs = ui.AbsoluteSize
-        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 110))
+        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 132))
     end
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 

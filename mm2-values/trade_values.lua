@@ -2145,17 +2145,17 @@ local function autoDecline(tg, theirs)
     local bad = findUnwanted(theirs)
     if not bad then return false end
     if os.clock() - (auto.declLast or 0) < 1.5 then return true end
+    -- один раз за трейд: сразу, как он положил ненужное, объясняем в чате (до нажатия «Отказ»)
+    if S.declineMsg and not auto.declMsgSent then
+        auto.declMsgSent = true
+        auto.sayChat("No thanks, I don't need: " .. table.concat(auto.allUnwanted(theirs), ", "))
+    end
     if (auto.declTries or 0) >= 9 then return true end -- 9 попыток без результата — больше не долбим
     local btn = findDeclineButton(tg)
     if not btn then
         if not auto.declined then notify(T("declineFail")); auto.declined = true end
         auto.noDecline(tg)
         return true
-    end
-    -- один раз за трейд: объяснить сопернику в чате
-    if S.declineMsg and not auto.declMsgSent then
-        auto.declMsgSent = true
-        auto.sayChat("No thanks, I don't need: " .. table.concat(auto.allUnwanted(theirs), ", "))
     end
     auto.declLast = os.clock()
     auto.declTries = (auto.declTries or 0) + 1
@@ -2213,6 +2213,22 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
     -- просьба уже выполнена: больше ничего не трогаем. Поменял оффер сам — просьбу забываем.
     if req.applied then
         if auto.busy then return true end
+        if req.kind == "order" then
+            -- заявка: оффер держим ровно таким, как в варианте; сбился — кладём заново (не больше 3 раз)
+            local have, want, same = auto.readOffer(mine), {}, true
+            for _, it in ipairs(req.items) do want[it.key] = (want[it.key] or 0) + it.count end
+            for k, n in pairs(want) do if not (have[k] and have[k].count == n) then same = false end end
+            for k in pairs(have) do if not want[k] then same = false end end
+            if not same and (req.redo or 0) < 3 and os.clock() - (req.doneAt or 0) > 2.5 then
+                req.redo, req.applied, auto.reqDoneId = (req.redo or 0) + 1, false, nil
+            end
+            sugLine.Visible = true
+            if same then
+                sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.good), T("reqDone"))
+                auto.fillTh, auto.fillMy = th, my -- для автопринятия: это и есть договорённость
+            end
+            return true
+        end
         if req.myAfter == nil then req.myAfter = my end
         if math.abs(my - req.myAfter) > 0.01 then auto.partnerReq = nil; return false end
         sugLine.Visible = true
@@ -2274,7 +2290,7 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
     if not (S.autoAdd and not auto.busy and auto.reqDoneId ~= req.id) then return true end
 
     auto.busy, auto.reqDoneId = true, req.id
-    req.applied, req.myAfter = true, nil -- снимок оффера сделаем, когда скрипт закончит
+    req.applied, req.myAfter, req.doneAt = true, nil, os.clock() -- снимок оффера сделаем, когда скрипт закончит
     sugText.Text = T("reqDoing"):format(listText)
     task.spawn(function()
         pcall(function()
@@ -2411,6 +2427,7 @@ function auto.catSets()
 end
 function auto.handleCheap(tg, mine, theirs, my, th)
     if not (S.cheapGodly and th > 0) then return false end
+    if auto.partnerReq and auto.partnerReq.kind == "order" then return false end -- есть заявка — она главнее
     local low, god = auto.catSets()
     local their = auto.readOffer(theirs)
     local any = false

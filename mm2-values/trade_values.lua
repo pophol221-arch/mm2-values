@@ -2142,7 +2142,8 @@ end
 -- есть ли в предложении соперника нежелательный предмет; возвращает его название
 local function findUnwanted(theirs)
     for _, d in ipairs(theirs:GetDescendants()) do
-        if d:IsA("TextLabel") and d.Text ~= "" then
+        -- только то, что видно: в окне трейда остаются скрытые ячейки от прошлого трейда
+        if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
             local hit = S.blacklist[norm(d.Text)]
             if hit then return hit end
         end
@@ -2154,7 +2155,7 @@ auto.findUnwanted = findUnwanted -- нужна автопринятию, кот�
 function auto.allUnwanted(theirs)
     local list, seen = {}, {}
     for _, d in ipairs(theirs:GetDescendants()) do
-        if d:IsA("TextLabel") and d.Text ~= "" then
+        if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
             local hit = S.blacklist[norm(d.Text)]
             if hit and not seen[hit] then seen[hit] = true; table.insert(list, hit) end
         end

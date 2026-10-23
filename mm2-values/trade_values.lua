@@ -2437,7 +2437,8 @@ end
 -- просьба соперника из чата: привести мой оффер к списку предметов, которые он просит
 function auto.handlePartnerRequest(tg, mine, theirs, my, th)
     local req = auto.partnerReq
-    if not (S.chatRequests and req and os.clock() - req.t < 90) then return false end
+    -- заявки работают сами по себе; «Выполнять просьбы из чата» отключает только просьбы из чата
+    if not (req and (S.chatRequests or req.kind == "order") and os.clock() - req.t < 90) then return false end
     if req.partner ~= auto.partner then return false end
     -- просьба уже выполнена: больше ничего не трогаем. Поменял оффер сам — просьбу забываем.
     if req.applied then
@@ -2746,10 +2747,20 @@ function auto.handleCheap(tg, mine, theirs, my, th)
     for _, it in ipairs(scanInventory(tg, mine, theirs)) do
         if god[norm(it.name)] and (not g or it.price < g.price) then g = it end
     end
+    if not g then
+        -- в инвентаре годли не осталось, но один уже лежит в моём оффере — тоже годится
+        for key, e in pairs(auto.readOffer(mine)) do if god[key] then g = { name = e.name, price = e.price, frame = e.cells[1] } end end
+    end
     if not g then return false end
     sugLine.Visible = true
     hideHighlights()
     local mineNow = auto.readOffer(mine)
+    -- в моём оффере уже лежит ровно один годли (из инвентаря он пропал — не ищем «новый» самый дешёвый)
+    local only, cnt = nil, 0
+    for key, e in pairs(mineNow) do cnt += 1; only = { key = key, e = e } end
+    if cnt == 1 and only.e.count == 1 and god[only.key] and only.e.price * 2 <= th then
+        g = { name = only.e.name, price = only.e.price, frame = only.e.cells[1] }
+    end
     local gKey = norm(g.name)
     if th < g.price * 2 then
         sugText.Text = T("cheapNeed"):format(g.name, fmt(g.price * 2), fmt(th))

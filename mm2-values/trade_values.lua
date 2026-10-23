@@ -1452,8 +1452,9 @@ env.TV_cellKind = function(cell)
                 end)
                 env.TV_imgName[digits] = (ok and type(inf) == "table" and tostring(inf.Name or "")) or ""
             end)
-        elseif nm then
-            k, src = kindOf(nm), "картинка «" .. nm .. "»"
+        elseif nm and nm ~= "" then
+            -- у MM2 пистолеты обычно с «Gun» в названии картинки, а ножи — без приписки
+            k, src = kindOf(nm) or "knife", "картинка «" .. nm .. "»"
         end
     end
     if not k then
@@ -2487,12 +2488,26 @@ function auto.orderMatches(o, their)
     if not e then return false end
     local suf = ((o.name or ""):match("%((%a+)%)%s*$") or ""):lower()
     if suf ~= "gun" and suf ~= "knife" then return true end
-    local known = false
-    for _, c in ipairs(e.cells) do
-        local k = env.TV_cellKind(c)
-        if k then
+    -- тип каждой ячейки; две ячейки с одним названием, но разными картинками: если одну знаем, вторая — другая
+    local kinds, imgs, known = {}, {}, false
+    for i, c in ipairs(e.cells) do
+        kinds[i] = env.TV_cellKind(c)
+        imgs[i] = (env.TV_kindDiag or ""):match("^img (%d+)")
+    end
+    for i in ipairs(e.cells) do
+        if not kinds[i] then
+            for j in ipairs(e.cells) do
+                if kinds[j] and imgs[j] and imgs[i] and imgs[j] ~= imgs[i] then
+                    kinds[i] = kinds[j] == "gun" and "knife" or "gun"
+                    break
+                end
+            end
+        end
+    end
+    for i in ipairs(e.cells) do
+        if kinds[i] then
             known = true
-            if k == suf then return true end
+            if kinds[i] == suf then return true end
         end
     end
     return (not known) and "maybe" or false

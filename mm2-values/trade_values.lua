@@ -196,6 +196,7 @@ local function loadValues()
         byCat[cat] = lst
     end
     env.TV_changes = res.changes or {}
+    env.TV_globalKinds = res.img_kinds or {} -- общие для всех: номер картинки -> "knife"/"gun"
     env.TV_info = res.info or {}
     env.TV_hist = res.history or {}
     -- «Все» = только предметы из категорий сайта (без моих вспомогательных названий вроде «C. X» / «Latte»)
@@ -1515,10 +1516,11 @@ env.TV_cellKind = function(cell)
     S.imgKinds = S.imgKinds or {}
     for d in pairs(S.imgKinds) do if #d < 5 then S.imgKinds[d] = nil end end -- «250» и т.п. — это был размер, а не картинка
     for _, d in ipairs(imgs) do
-        if S.imgKinds[d] then
-            env.TV_kindDiag = cell.Name .. ": " .. d .. " → " .. S.imgKinds[d] .. " (запомнено)"
+        local kk = S.imgKinds[d] or (env.TV_globalKinds or {})[d]
+        if kk then
+            env.TV_kindDiag = cell.Name .. ": " .. d .. " → " .. kk .. " (запомнено)"
             env.TV_kindTaught = true
-            return S.imgKinds[d]
+            return kk
         end
     end
     env.TV_kindTaught = false
@@ -3116,8 +3118,8 @@ local function tick()
     if auto.handleBlocked(tg) then return end
     if autoDecline(tg, theirs) then return end
     if auto.handleEmpty(tg, mine, theirs, my, th) then return end
+    updateAutoOffer(tg, mine, theirs, my, th) -- заявки и автооффер работают и во время отсчёта «20 с ничего не меняется»
     if auto.handleIdle(tg, mine, theirs, my, th) then return end
-    updateAutoOffer(tg, mine, theirs, my, th)
     auto.tryAccept(tg, theirs, my, th, myUnk)
 end
 

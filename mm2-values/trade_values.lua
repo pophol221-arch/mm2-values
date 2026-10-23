@@ -2500,58 +2500,78 @@ end
 function auto.handleOrders(theirs)
     if not (S.enabled and S.ordersOn) then return end
     local their = auto.readOffer(theirs)
-    local order, enabled
-    local maybes = {}
+    -- все заявки, чьи предметы лежат у него (нож и пистолет Latte — две разные заявки)
+    local matched, unsure = {}, false
     for _, o in ipairs(S.orders or {}) do
         local m = auto.orderMatches(o, their)
         if m then
             local en = {}
             for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
             if #en > 0 then
-                if m == true then order, enabled = o, en; break end
-                table.insert(maybes, { o, en })
+                if m == true then table.insert(matched, { o = o, en = en }) else unsure = true end
             end
         end
     end
-    -- нож/пистолет не различить — ничего не кладём (лучше, чем не то) и один раз за трейд показываем, что видно
-    auto.ordUnsure = (not order and #maybes > 0) and (env.TV_kindDiag or "?") or nil
+    -- нож/пистолет пока не понятен — ничего не кладём (лучше, чем не то)
+    auto.ordUnsure = unsure and (env.TV_kindDiag or "?") or nil
 
     local st = auto.ord
-    if not order then
-        -- предмет пропал из его оффера: запоминаем момент (вернёт быстро — сменим вариант)
-        if st.target and not st.lostAt then st.lostAt = os.clock() end
+    st.picks, st.lost = st.picks or {}, st.lost or {}
+    local now = {}
+    for _, m in ipairs(matched) do now[m.o.target] = true end
+    -- заявка пропала из его оффера: запоминаем момент (вернёт быстро — сменим вариант)
+    for target in pairs(st.picks) do
+        if not now[target] and not st.lost[target] then st.lost[target] = os.clock() end
+    end
+    if #matched == 0 or auto.ordUnsure then
         if auto.partnerReq and auto.partnerReq.kind == "order" then auto.partnerReq = nil end
+        st.sig = nil
         return
     end
-    local pick
-    if st.target ~= order.target then
-        pick = enabled[math.random(1, #enabled)]                 -- новая заявка: вариант наугад из включённых
-    elseif st.lostAt then
-        if os.clock() - st.lostAt < 8 and #enabled > 1 then      -- убрал и быстро вернул: другой вариант
-            local others = {}
-            for _, i in ipairs(enabled) do if i ~= st.idx then table.insert(others, i) end end
-            pick = others[math.random(1, #others)]
-        else
-            pick = st.idx
+    -- вариант для каждой заявки
+    local sigParts = {}
+    for _, m in ipairs(matched) do
+        local o, en, idx = m.o, m.en, st.picks[m.o.target]
+        local lostAt = st.lost[o.target]
+        if not idx or not table.find(en, idx) then
+            idx = en[math.random(1, #en)]                                  -- новая заявка: вариант наугад из включённых
+        elseif lostAt and os.clock() - lostAt < 8 and #en > 1 then
+            local others = {}                                              -- убрал и быстро вернул: другой вариант
+            for _, i in ipairs(en) do if i ~= idx then table.insert(others, i) end end
+            idx = others[math.random(1, #others)]
         end
+        st.picks[o.target], st.lost[o.target], m.idx = idx, nil, idx
+        table.insert(sigParts, o.target .. ":" .. idx)
     end
-    st.lostAt = nil
-    if not pick then return end
-    st.target, st.idx = order.target, pick
+    table.sort(sigParts)
+    local sig = table.concat(sigParts, "|")
+    if sig == st.sig then return end
+    st.sig = sig
+    -- складываем варианты всех заявок; в трейде 4 ячейки — больше 4 разных предметов: оставляем 4 самых дорогих
+    local byKey, names = {}, {}
+    for _, m in ipairs(matched) do
+        for _, it in ipairs(m.o.offers[m.idx].items) do
+            local gk = auto.gameKey(it.name, it.key)
+            if not valueMap[gk] then gk = it.key end
+            local e = byKey[gk]
+            if not e then
+                e = { key = gk, name = it.name, count = 0, price = valueMap[it.key] or valueMap[gk] or 0 }
+                byKey[gk] = e
+            end
+            e.count += it.count
+        end
+        local seenKind
+        local cellsOf = their[m.o.target] or their[auto.gameKey(m.o.name, m.o.target)] or { cells = {} }
+        for _, c in ipairs(cellsOf.cells) do seenKind = seenKind or env.TV_cellKind(c) end
+        table.insert(names, m.o.name .. " [" .. (seenKind == "gun" and T("kindGun") or seenKind == "knife" and T("kindKnife") or "?") .. "]")
+    end
     local items = {}
-    for _, it in ipairs(order.offers[pick].items) do
-        local gk = auto.gameKey(it.name, it.key)
-        if not valueMap[gk] then gk = it.key end
-        table.insert(items, { key = gk, name = it.name, count = it.count, price = valueMap[it.key] or valueMap[gk] or 0 })
-    end
+    for _, e in pairs(byKey) do table.insert(items, e) end
+    table.sort(items, function(a, b) return a.price * a.count > b.price * b.count end)
+    while #items > 4 do table.remove(items) end
     auto.reqSeq = (auto.reqSeq or 0) + 1
-    -- какой тип предмета распознал скрипт — видно в строке заявки (пистолет / нож / ?)
-    local seenKind
-    for _, c in ipairs((their[order.target] or their[auto.gameKey(order.name, order.target)] or { cells = {} }).cells) do
-        seenKind = seenKind or env.TV_cellKind(c)
-    end
     auto.partnerReq = { partner = auto.partner, items = items, kind = "order", t = os.clock() + 1e6, id = auto.reqSeq,
-        orderName = order.name .. " [" .. (seenKind == "gun" and T("kindGun") or seenKind == "knife" and T("kindKnife") or ("? " .. (env.TV_kindDiag or ""))) .. "]" }
+        orderName = table.concat(names, " + ") }
 end
 
 -- он кладёт только мелочь (винтажи, легендарки, редкие, необычные, обычные) — в ответ ровно 1 самый дешёвый годли,

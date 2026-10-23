@@ -119,6 +119,15 @@ env.TV_vis = function(g)
     end
     return o ~= nil and o.Enabled
 end
+-- номер картинки из ссылки: «...?width=250&height=250&assetId=123» — нужен assetId, а не первое число (250)
+env.TV_imgId = function(img)
+    img = tostring(img or "")
+    local id = img:match("[?&][Aa]sset[Ii]d=(%d+)") or img:match("[?&][Ii]d=(%d+)") or img:match("rbxassetid://(%d+)")
+    if id then return id end
+    local best = nil
+    for run in img:gmatch("%d+") do if not best or #run > #best then best = run end end
+    return best
+end
 -- текст кнопки: имя + Text + все ВИДИМЫЕ надписи внутри (скрытая «Please wait (2)…» внутри «Принять» не мешает)
 env.TV_btnText = function(b)
     local parts = { b.Name, b:IsA("TextButton") and b.Text or "" }
@@ -1393,7 +1402,7 @@ task.spawn(function()
                 local img = tostring(data.Image)
                 if tonumber(img) then img = "rbxassetid://" .. img end
                 -- по картинке ячейки можно узнать тип (нож/пистолет) и редкость: «Latte» бывает и тем и другим
-                local digits = img:match("%d+")
+                local digits = env.TV_imgId(img)
                 if digits then
                     -- тип ищем в любом текстовом поле записи («Gun»/«Knife»), иначе — в её ключе
                     local kind = ""
@@ -1448,8 +1457,8 @@ env.TV_cellImgs = function(cell)
     local list, seen = {}, {}
     for _, d in ipairs(cell:GetDescendants()) do
         if (d:IsA("ImageLabel") or d:IsA("ImageButton")) and d.Image:find("%d") then
-            local digits = d.Image:match("%d+")
-            if digits and not seen[digits] then
+            local digits = env.TV_imgId(d.Image)
+            if digits and #digits >= 5 and not seen[digits] then
                 seen[digits] = true
                 table.insert(list, { digits, d.AbsoluteSize.X * d.AbsoluteSize.Y })
             end
@@ -1486,7 +1495,7 @@ env.TV_freq = function(cell)
         local imgs, names = {}, {}
         for _, d in ipairs(g:GetDescendants()) do
             if d:IsA("ImageLabel") or d:IsA("ImageButton") then
-                local dg = d.Image:match("%d+")
+                local dg = env.TV_imgId(d.Image)
                 if dg then imgs[dg] = (imgs[dg] or 0) + 1 end
             end
             names[d.Name] = (names[d.Name] or 0) + 1
@@ -1504,6 +1513,7 @@ env.TV_cellKind = function(cell)
     local k
     -- 0) то, что ты сам показал кнопками «Нож / Пистолет» (запоминается навсегда)
     S.imgKinds = S.imgKinds or {}
+    for d in pairs(S.imgKinds) do if #d < 5 then S.imgKinds[d] = nil end end -- «250» и т.п. — это был размер, а не картинка
     for _, d in ipairs(imgs) do
         if S.imgKinds[d] then
             env.TV_kindDiag = cell.Name .. ": " .. d .. " → " .. S.imgKinds[d] .. " (запомнено)"

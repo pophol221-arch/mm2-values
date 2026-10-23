@@ -555,6 +555,9 @@ local toggle, drawDiff = makeToggle(rDiff)
 
 -- строка состояния автопринятия под плашкой
 X.accLine = label(hud, { AutomaticSize = Enum.AutomaticSize.XY, Size = UDim2.new(), TextSize = 12, TextColor3 = C.muted, LayoutOrder = 3, Visible = false })
+-- что скрипт видит в ячейках предметов с двумя видами (нож/пистолет с одним названием)
+X.kindLine = label(hud, { AutomaticSize = Enum.AutomaticSize.XY, Size = UDim2.new(), TextSize = 11, TextColor3 = C.muted, LayoutOrder = 4,
+    Visible = false, TextWrapped = false })
 
 -- «Таблица цен» (как на сайте) — последний ряд вкладки «Основное»
 do
@@ -1426,47 +1429,64 @@ end)
 -- тип предмета в ячейке: "gun" / "knife" / nil (пока не знаем). «Latte» бывает и ножом, и пистолетом —
 -- различаем по картинке: 1) база MM2; 2) название этой картинки в Roblox (спрашиваем один раз, ответ запоминаем)
 env.TV_imgName = env.TV_imgName or {}
-env.TV_cellKind = function(cell)
-    local img, best = nil, 0
+-- все картинки ячейки (номера), от крупной к мелкой: крупная обычно фон редкости, сам предмет — другая
+env.TV_cellImgs = function(cell)
+    local list, seen = {}, {}
     for _, d in ipairs(cell:GetDescendants()) do
         if (d:IsA("ImageLabel") or d:IsA("ImageButton")) and d.Image:find("%d") then
-            local area = d.AbsoluteSize.X * d.AbsoluteSize.Y
-            if area >= best then img, best = d.Image, area end
+            local digits = d.Image:match("%d+")
+            if digits and not seen[digits] then
+                seen[digits] = true
+                table.insert(list, { digits, d.AbsoluteSize.X * d.AbsoluteSize.Y })
+            end
         end
     end
-    local digits = img and img:match("%d+")
-    local function kindOf(str)
-        str = (str or ""):lower()
-        if str:find("knife") or str:find("нож") then return "knife" end
-        if str:find("gun") or str:find("pistol") or str:find("revolver") or str:find("пистолет") then return "gun" end
-    end
-    local info = digits and (env.TV_dbImg or {})[digits]
-    local k, src = info and kindOf(info.kind), "база"
-    if not k and digits then
-        local nm = env.TV_imgName[digits]
-        if nm == nil then
-            env.TV_imgName[digits] = false -- спрашиваем один раз
-            task.spawn(function()
-                local ok, inf = pcall(function()
-                    return game:GetService("MarketplaceService"):GetProductInfo(tonumber(digits), Enum.InfoType.Asset)
-                end)
-                env.TV_imgName[digits] = (ok and type(inf) == "table" and tostring(inf.Name or "")) or ""
+    table.sort(list, function(a, b) return a[2] > b[2] end)
+    local out = {}
+    for _, e in ipairs(list) do table.insert(out, e[1]) end
+    return out
+end
+env.TV_kindOf = function(str)
+    str = (str or ""):lower()
+    if str:find("knife") or str:find("нож") then return "knife" end
+    if str:find("gun") or str:find("pistol") or str:find("revolver") or str:find("пистолет") then return "gun" end
+end
+env.TV_imgNameOf = function(digits)
+    local nm = env.TV_imgName[digits]
+    if nm == nil then
+        env.TV_imgName[digits] = false -- спрашиваем у Roblox один раз
+        task.spawn(function()
+            local ok, inf = pcall(function()
+                return game:GetService("MarketplaceService"):GetProductInfo(tonumber(digits), Enum.InfoType.Asset)
             end)
-        elseif nm and nm ~= "" then
-            -- у MM2 пистолеты обычно с «Gun» в названии картинки, а ножи — без приписки
-            k, src = kindOf(nm) or "knife", "картинка «" .. nm .. "»"
-        end
+            env.TV_imgName[digits] = (ok and type(inf) == "table" and tostring(inf.Name or "")) or ""
+        end)
+        return nil
     end
-    if not k then
-        -- видимые надписи ячейки (если игра пишет тип)
-        local parts = {}
-        for _, d in ipairs(cell:GetDescendants()) do
-            if d:IsA("TextLabel") and d.Text ~= "" and d.Visible then table.insert(parts, d.Text) end
-        end
-        k, src = kindOf(table.concat(parts, " ")), "надписи"
+    return nm or nil
+end
+env.TV_cellKind = function(cell)
+    local imgs = env.TV_cellImgs(cell)
+    local k
+    -- 1) имя ячейки и её атрибуты («LatteGun», ItemType = "Knife»)
+    local parts = { cell.Name }
+    for an, av in pairs(cell:GetAttributes()) do table.insert(parts, tostring(an) .. "=" .. tostring(av)) end
+    k = env.TV_kindOf(table.concat(parts, " "))
+    -- 2) база MM2 по любой картинке ячейки; 3) название картинки в Roblox — только если там прямо написано
+    for _, d in ipairs(imgs) do
+        if k then break end
+        local info = (env.TV_dbImg or {})[d]
+        k = info and env.TV_kindOf(info.kind) or nil
     end
-    env.TV_kindDiag = ("img %s · %s · %s"):format(digits or "—", k or "?", k and src or
-        ("база: " .. tostring(env.TV_dbCount or 0) .. ", картинка: " .. tostring(digits and env.TV_imgName[digits] or "—")))
+    local diag = {}
+    for _, d in ipairs(imgs) do
+        local nm = env.TV_imgNameOf(d)
+        if not k and nm then k = env.TV_kindOf(nm) end
+        local info = (env.TV_dbImg or {})[d]
+        table.insert(diag, d .. "=" .. (nm and ("«" .. nm .. "»") or "…") .. (info and ("/база " .. (info.kind ~= "" and info.kind or "?")) or ""))
+        if #diag >= 3 then break end
+    end
+    env.TV_kindDiag = cell.Name .. ": " .. table.concat(diag, ", ") .. " → " .. (k or "?")
     return k
 end
 
@@ -2489,21 +2509,24 @@ function auto.orderMatches(o, their)
     local suf = ((o.name or ""):match("%((%a+)%)%s*$") or ""):lower()
     if suf ~= "gun" and suf ~= "knife" then return true end
     -- тип каждой ячейки; две ячейки с одним названием, но разными картинками: если одну знаем, вторая — другая
-    local kinds, imgs, known = {}, {}, false
+    local kinds, imgs, known, diags = {}, {}, false, {}
     for i, c in ipairs(e.cells) do
         kinds[i] = env.TV_cellKind(c)
-        imgs[i] = (env.TV_kindDiag or ""):match("^img (%d+)")
+        imgs[i] = table.concat(env.TV_cellImgs(c), ",")
+        table.insert(diags, env.TV_kindDiag)
     end
     for i in ipairs(e.cells) do
         if not kinds[i] then
             for j in ipairs(e.cells) do
-                if kinds[j] and imgs[j] and imgs[i] and imgs[j] ~= imgs[i] then
-                    kinds[i] = kinds[j] == "gun" and "knife" or "gun"
+                if kinds[j] and imgs[j] ~= imgs[i] then
+                    kinds[i] = kinds[j] == "gun" and "knife" or "gun" -- те же названия, другие картинки — другой вид
                     break
                 end
             end
         end
     end
+    X.kindLine.Text = table.concat(diags, "\n")
+    X.kindLine.Visible = true
     for i in ipairs(e.cells) do
         if kinds[i] then
             known = true
@@ -2946,6 +2969,7 @@ local function tick()
         auto.fillTh, auto.fillMy = nil, nil
         auto.partner, auto.partnerReq = nil, nil
         X.accLine.Visible = false
+        X.kindLine.Visible = false
         return
     end
     gear.Visible = panel.Visible or blPage.Visible or (X.ordPage and X.ordPage.Visible) or (X.ordPicker and X.ordPicker.Visible) or false -- во время трейда кнопка не мешает

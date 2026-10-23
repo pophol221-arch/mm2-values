@@ -1657,6 +1657,7 @@ local function clickCell(cell, tg, method)
         return false
     end
     local function viaMouse()
+        if not env.TV_vis(btn) then return false end
         return (pcall(function()
             local vim = game:GetService("VirtualInputManager")
             local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
@@ -2292,8 +2293,11 @@ function auto.pressDecline(btn, tg, tries)
             if m ~= 3 and clickCell(t, tg, m) then fired[m] = true end
         end
     end
-    -- мышью — один раз и через раз (иначе двойной клик)
-    if tries % 2 == 1 and clickCell(btn, tg, 3) then fired[3] = true end
+    -- мышью — только если ничего другое не сработало и кнопка ещё на экране (иначе щелчок уйдёт в лобби: магазин, коробки)
+    if not next(fired) and tries % 2 == 1 then
+        task.delay(0.15, function() if env.TV_vis(btn) then clickCell(btn, tg, 3) end end)
+        fired[3] = true
+    end
     local list = {}
     for m in pairs(fired) do table.insert(list, tostring(m)) end
     table.sort(list)
@@ -3808,7 +3812,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
 ------------------------------------------------------------------
 ;(function()
     local CW, CH = 480, 210
-    local win = new("Frame", { Size = UDim2.fromOffset(CW + 32, CH + 132), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+    local win = new("Frame", { Size = UDim2.fromOffset(CW + 32, CH + 164), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
         Visible = false, BackgroundColor3 = C.bg, BackgroundTransparency = 0.02, ZIndex = 20 }, ui)
     corner(win, 16)
     stroke(win)
@@ -3836,9 +3840,28 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     local bCandle = new("TextButton", { Size = UDim2.fromScale(0.5, 1), Position = UDim2.fromScale(0.5, 0), BackgroundTransparency = 1, Text = "",
         TextColor3 = C.text, TextSize = 11, ZIndex = 23 }, seg)
     themed(function() bLine.Font, bCandle.Font = fontBold(), fontBold() end)
-    local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 48), BackgroundColor3 = C.card,
+    local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 80), BackgroundColor3 = C.card,
         BackgroundTransparency = 0.4, ClipsDescendants = true, ZIndex = 21 }, win)
     corner(canvas, 10)
+    -- период (1Д / 7Д / 30Д / Всё) и масштаб по цене (− / +); колесо мыши над графиком — тоже период
+    local RANGES = { { "1Д", 86400 }, { "7Д", 7 * 86400 }, { "30Д", 30 * 86400 }, { "Всё", 0 } }
+    local vZoom = 1
+    local chips = new("Frame", { Size = UDim2.new(1, 0, 0, 26), Position = UDim2.fromOffset(0, 46), BackgroundTransparency = 1, ZIndex = 21 }, win)
+    list(chips, Enum.FillDirection.Horizontal, 6)
+    local chipBtns = {}
+    local function chip(text, order, w)
+        local b = new("TextButton", { Size = UDim2.fromOffset(w or 44, 24), BackgroundColor3 = C.card, Text = text, TextColor3 = C.text,
+            TextSize = 11, AutoButtonColor = false, LayoutOrder = order, ZIndex = 22 }, chips)
+        corner(b, 7)
+        stroke(b)
+        themed(function() b.Font = fontBold() end)
+        return b
+    end
+    for i, r in ipairs(RANGES) do chipBtns[i] = chip(r[1], i) end
+    new("Frame", { Size = UDim2.fromOffset(18, 1), BackgroundTransparency = 1, LayoutOrder = 10 }, chips)
+    local zOut = chip("−", 11, 28)
+    local zIn = chip("+", 12, 28)
+    local zLabel = label(chips, { Size = UDim2.fromOffset(60, 24), TextSize = 11, TextColor3 = C.muted, LayoutOrder = 13, ZIndex = 22 })
     makeDraggable(cTitle, win)
     on(close.Activated, function() win.Visible = false end)
 
@@ -3884,12 +3907,31 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         local now = os.time()
         if #hist == 0 and it and it.price then hist = { { now - 86400, it.price } } end
         if #hist == 0 then return false end
-        local first, cur = hist[1][2], hist[#hist][2]
-        local points = #hist
+        local cur = hist[#hist][2]
         table.insert(hist, { now, cur }) -- до сегодняшнего дня цена держится
+        -- выбранный период: точка на его начало + всё, что внутри
+        local range = S.chartRange or 0
+        if range > 0 and now - range > hist[1][1] then
+            local start, v0 = now - range, hist[1][2]
+            for _, pnt in ipairs(hist) do if pnt[1] <= start then v0 = pnt[2] else break end end
+            local vis = { { start, v0 } }
+            for _, pnt in ipairs(hist) do if pnt[1] > start then table.insert(vis, pnt) end end
+            hist = vis
+        end
+        local first = hist[1][2]
+        local points = #hist - 1
+        for i, r in ipairs(RANGES) do
+            local active = (r[2] == range)
+            chipBtns[i].BackgroundColor3 = active and accent() or C.card
+            chipBtns[i].TextColor3 = active and C.bg or C.text
+        end
+        zLabel.Text = vZoom ~= 1 and ("×" .. (vZoom >= 1 and tostring(vZoom) or ("1/" .. tostring(1 / vZoom)))) or ""
         local tMin, tMax, vMin, vMax = hist[1][1], now, math.huge, -math.huge
         for _, pnt in ipairs(hist) do vMin, vMax = math.min(vMin, pnt[2]), math.max(vMax, pnt[2]) end
         if vMax - vMin < 1 then vMin, vMax = vMin - 1, vMax + 1 end
+        -- масштаб по цене: + приближает к середине, − отдаляет
+        local mid, half = (vMin + vMax) / 2, (vMax - vMin) / 2 / vZoom
+        vMin, vMax = mid - half, mid + half
         local padV = (vMax - vMin) * 0.15
         vMin, vMax = math.max(0, vMin - padV), vMax + padV
         if tMax - tMin < 3600 then tMin = tMax - 3600 end
@@ -3996,12 +4038,27 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     end
 
     env.TV_showChart = function(it, custom)
-        last = { it, custom }
+        last, vZoom = { it, custom }, 1
         if not draw(it, custom) then return end
         win.Visible = true
         local abs = ui.AbsoluteSize
-        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 132))
+        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 164))
     end
+    local function redraw() if last then draw(last[1], last[2]) end end
+    for i, r in ipairs(RANGES) do
+        on(chipBtns[i].Activated, function() S.chartRange = r[2]; saveSettings(); redraw() end)
+    end
+    on(zIn.Activated, function() vZoom = math.min(16, vZoom * 2); redraw() end)
+    on(zOut.Activated, function() vZoom = math.max(1 / 4, vZoom / 2); redraw() end)
+    -- колесо мыши над графиком: вверх — короче период (ближе), вниз — длиннее
+    on(canvas.InputChanged, function(inp)
+        if inp.UserInputType ~= Enum.UserInputType.MouseWheel then return end
+        local idx = 4
+        for i, r in ipairs(RANGES) do if r[2] == (S.chartRange or 0) then idx = i end end
+        idx = math.clamp(idx + (inp.Position.Z > 0 and -1 or 1), 1, #RANGES)
+        S.chartRange = RANGES[idx][2]
+        redraw()
+    end)
     local function setMode(m)
         S.chartMode = m
         saveSettings()

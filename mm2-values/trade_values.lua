@@ -1794,8 +1794,22 @@ function auto.hasWords(b)
     for _, l in ipairs(b:GetDescendants()) do
         if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Visible then table.insert(texts, l.Text) end
     end
+    -- и надписи поверх кнопки (у переключателя «Запросы на обмен: ВКЛЮЧЕНО» текст лежит сверху, а не внутри)
+    local p0, sz = b.AbsolutePosition, b.AbsoluteSize
+    local scope = b.Parent and (b.Parent.Parent or b.Parent)
+    for _, l in ipairs(scope and scope:GetDescendants() or {}) do
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l ~= b and l.Visible and l.Text ~= "" then
+            local c = l.AbsolutePosition + l.AbsoluteSize / 2
+            if c.X >= p0.X - 4 and c.X <= p0.X + sz.X + 4 and c.Y >= p0.Y - 4 and c.Y <= p0.Y + sz.Y + 4 then table.insert(texts, l.Text) end
+        end
+    end
     local t = env.TV_low(table.concat(texts, " "))
-    return t:find("%a") ~= nil or t:find("[89]") ~= nil
+    -- переключатели запросов, приглашения и т.п. — никогда (по надписям, не по имени кнопки)
+    for _, w in ipairs({ "запрос", "request", "включ", "выключ", "enabl", "disabl", " on", " off", "invite", "приглас" }) do
+        if t:find(w, 1, true) then return true end
+    end
+    local own = env.TV_low(table.concat(texts, " "))
+    return own:find("%a") ~= nil or own:find("[89]") ~= nil
 end
 -- вкладка инвентаря в окне трейда: "weapons" (Оружие) или "pets" (Питомцы)
 function auto.openTab(tg, which)
@@ -1833,7 +1847,7 @@ function auto.findBadge()
                 -- или кнопка рядом (бейдж лежит поверх «+»)
                 if not btn then
                     local c = t.AbsolutePosition + t.AbsoluteSize / 2
-                    local best, bestD = nil, 140
+                    local best, bestD = nil, 70 -- «+» под «!» совсем рядом; дальше — уже другие кнопки
                     local scope = t.Parent and t.Parent.Parent or t.Parent
                     for _, b in ipairs(scope and scope:GetDescendants() or {}) do
                         if b:IsA("GuiButton") and isShown(b) and not auto.hasWords(b) then

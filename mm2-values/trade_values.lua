@@ -1299,7 +1299,7 @@ local function sumOffer(offer)
     local total, unknown = 0, 0
     for _, item in ipairs(offer:GetDescendants()) do
         if (item:IsA("Frame") or item:IsA("ImageLabel") or item:IsA("ImageButton"))
-           and item.Visible and item.Parent.Name == "Container" then
+           and item.Parent.Name == "Container" and env.TV_vis(item) then
             local price, amount = readItem(item)
             if price then
                 total += price * amount
@@ -1583,18 +1583,31 @@ local function scanInventory(tg, mine, theirs)
     return cells
 end
 
--- жадно набираем предметы, не превышая нужную сумму
-local function pickItems(items, need)
+-- набираем предметы, не превышая нужную сумму. По возможности: разные предметы (не стопки одинаковых)
+-- и не то, что положил он сам (avoid = ключи его предметов). Не набирается — возвращаемся к обычному набору.
+local function pickItems(items, need, avoid)
+    avoid = avoid or {}
     table.sort(items, function(a, b) return a.price > b.price end)
-    local picks, sum = {}, 0
-    for _, it in ipairs(items) do
-        local n = 0
-        while n < it.amount and sum + it.price <= need do
-            sum += it.price; n += 1
+    local function greedy(distinct, skipAvoid)
+        local picks, sum = {}, 0
+        for _, it in ipairs(items) do
+            if not (skipAvoid and avoid[norm(it.name)]) and not (distinct and #picks >= 4) then
+                local n = 0
+                while n < (distinct and 1 or it.amount) and sum + it.price <= need do
+                    sum += it.price; n += 1
+                end
+                if n > 0 then table.insert(picks, { item = it, count = n }) end
+            end
         end
-        if n > 0 then table.insert(picks, { item = it, count = n }) end
+        return picks, sum
     end
-    return picks, sum
+    local slack = math.max(1, need * 0.03)
+    local bestP, bestS = greedy(true, true)          -- разные, без его предметов
+    for _, mode in ipairs({ { false, true }, { true, false }, { false, false } }) do
+        local p2, s2 = greedy(mode[1], mode[2])
+        if s2 > bestS + slack then bestP, bestS = p2, s2 end -- заметно точнее — берём
+    end
+    return bestP, bestS
 end
 
 -- нажать на кнопку/ячейку так же, как это делает игрок.
@@ -2398,7 +2411,7 @@ function auto.readOffer(offer)
     local res = {}
     for _, item in ipairs(offer:GetDescendants()) do
         if (item:IsA("Frame") or item:IsA("ImageLabel") or item:IsA("ImageButton"))
-           and item.Visible and item.Parent.Name == "Container" then
+           and item.Parent.Name == "Container" and env.TV_vis(item) then
             local price, amount, name = readItem(item)
             if price and name then
                 local key = norm(name)
@@ -2893,12 +2906,14 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     end
 
     local items = scanInventory(tg, mine, theirs)
-    local picks, sum = pickItems(items, need)
+    local avoid = {}
+    for k in pairs(auto.readOffer(theirs)) do avoid[k] = true end
+    local picks, sum = pickItems(items, need, avoid)
     -- допуск ±1%: если с ослабленной на 1% целью можно добить точнее, берём этот вариант
     local tolUsed = false
     if S.tolerance then
         local needTol = th / (1 + (S.target - 1) / 100) - my
-        local picks2, sum2 = pickItems(items, needTol)
+        local picks2, sum2 = pickItems(items, needTol, avoid)
         if sum2 > sum then picks, sum, need, tolUsed = picks2, sum2, needTol, true end
     end
     if tolUsed then tgt = tgt .. " (±1%)" end
@@ -2966,7 +2981,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                     local addBtn = findAddButton(tg)
                     if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
                     -- теперь инвентарь на экране: набираем заново только из того, что реально есть
-                    local again = pickItems(scanInventory(tg, mine, theirs), need)
+                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid)
                     if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do

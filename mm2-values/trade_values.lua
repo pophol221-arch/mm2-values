@@ -35,17 +35,19 @@ if readfile and isfile then
 end
 
 local function rgb(r, g, b) return Color3.fromRGB(r, g, b) end
+-- цвета как на сайте YomiRead (тёмная тема): тёплая «бумага», коралловый акцент
 local C = {
-    bg = rgb(15, 16, 21), card = rgb(25, 27, 35), line = rgb(255, 255, 255),
-    text = rgb(238, 240, 246), muted = rgb(135, 140, 158),
-    good = rgb(70, 215, 130), fair = rgb(245, 195, 70), bad = rgb(240, 85, 95),
+    bg = rgb(19, 17, 14), card = rgb(36, 33, 27), line = rgb(238, 230, 216),
+    text = rgb(238, 230, 216), muted = rgb(166, 156, 141),
+    good = rgb(125, 192, 140), fair = rgb(214, 174, 82), bad = rgb(255, 138, 128),
 }
 -- темы = акцентный цвет
 local ACCENTS = {
-    rgb(90, 140, 255), rgb(150, 110, 255), rgb(50, 205, 160),
-    rgb(255, 95, 155), rgb(255, 155, 60), rgb(210, 215, 228),
+    rgb(238, 111, 78), rgb(122, 166, 204), rgb(127, 176, 139),
+    rgb(156, 147, 214), rgb(214, 174, 82), rgb(197, 122, 166),
 }
 local FONTS = {
+    { "YomiRead", Enum.Font.Merriweather, Enum.Font.GothamMedium }, -- заголовки с засечками, текст — простой
     { "Gotham", Enum.Font.GothamBold, Enum.Font.GothamMedium },
     { "Fredoka", Enum.Font.FredokaOne, Enum.Font.FredokaOne },
     { "Ubuntu", Enum.Font.Ubuntu, Enum.Font.Ubuntu },
@@ -53,6 +55,7 @@ local FONTS = {
     { "Luckiest", Enum.Font.LuckiestGuy, Enum.Font.LuckiestGuy },
     { "Arcade", Enum.Font.Arcade, Enum.Font.Arcade },
 }
+if S.styleV ~= 2 then S.theme, S.font, S.styleV = 1, 1, 2 end -- новый вид: как на сайте
 local function accent() return ACCENTS[S.theme] or ACCENTS[1] end
 local function fontBold() return (FONTS[S.font] or FONTS[1])[2] end
 local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
@@ -63,7 +66,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", kindGun = "пистолет", kindKnife = "нож", ordUnsure = "Заявка: не понял, нож это или пистолет — ничего не кладу [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", ordUnsure = "Заявка: не понял, нож это или пистолет — ничего не кладу [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 3 мин)", blockedTrade = "%s в блоке на 3 мин — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -76,7 +79,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", kindGun = "gun", kindKnife = "knife", ordUnsure = "Order: can't tell knife from gun — adding nothing [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", ordUnsure = "Order: can't tell knife from gun — adding nothing [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (3 min block)", blockedTrade = "%s is blocked for 3 min — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -1379,6 +1382,19 @@ task.spawn(function()
                     end
                     env.TV_dbImg = env.TV_dbImg or {}
                     env.TV_dbImg[digits] = { kind = kind, rarity = tostring(data.Rarity or ""):lower() }
+                    -- для отладки ножа/пистолета: какие записи с этим именем есть в базе и что в них
+                    if data.ItemName then
+                        local fields = {}
+                        for fk, fv in pairs(data) do
+                            if (type(fv) == "string" or type(fv) == "number" or type(fv) == "boolean") and fk ~= "Image" and fk ~= "ItemName" and #fields < 5 then
+                                table.insert(fields, tostring(fk) .. "=" .. tostring(fv):sub(1, 10))
+                            end
+                        end
+                        local nk = norm(tostring(data.ItemName))
+                        env.TV_dbByName = env.TV_dbByName or {}
+                        env.TV_dbByName[nk] = env.TV_dbByName[nk] or {}
+                        table.insert(env.TV_dbByName[nk], tostring(id):sub(1, 16) .. " img" .. digits .. " " .. table.concat(fields, ","))
+                    end
                 end
                 if data.ItemName then
                     -- у хромы в базе то же имя, что у обычного предмета: различаем по флагу/id
@@ -1421,8 +1437,11 @@ env.TV_cellKind = function(cell)
         k = kindOf(table.concat(parts, " "))
     end
     -- для плашки: что скрипт знает об этой ячейке
-    env.TV_kindDiag = ("%s · img %s · база: %s"):format(cell.Name, digits or "—",
-        info and (info.kind ~= "" and info.kind or "нет типа") or ("нет (" .. tostring(env.TV_dbCount or 0) .. ")"))
+    local _, _, nm = readItem(cell)
+    local same = nm and (env.TV_dbByName or {})[norm(nm)] or {}
+    env.TV_kindDiag = ("%s · img %s · база: %s · в базе %s: %s"):format(cell.Name, digits or "—",
+        info and (info.kind ~= "" and info.kind or "нет типа") or ("нет (" .. tostring(env.TV_dbCount or 0) .. ")"),
+        tostring(nm), #same > 0 and table.concat(same, " | ", 1, math.min(#same, 3)) or "—")
     return k
 end
 
@@ -1641,6 +1660,39 @@ function auto.hasReqWord(ctx)
     return false
 end
 -- красный «!» (непрочитанные запросы): метка «!» на экране игры и кнопка рядом с ней
+-- у кнопки есть надпись из букв («выключить», «Пригласить»…) — значит это не «+» со списком запросов
+function auto.hasWords(b)
+    local texts = { b:IsA("TextButton") and b.Text or "" }
+    for _, l in ipairs(b:GetDescendants()) do
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Visible then table.insert(texts, l.Text) end
+    end
+    local t = env.TV_low(table.concat(texts, " "))
+    return t:find("%a") ~= nil or t:find("[89]") ~= nil
+end
+-- вкладка инвентаря в окне трейда: "weapons" (Оружие) или "pets" (Питомцы)
+function auto.openTab(tg, which)
+    local words = which == "pets" and { pets = true, ["питомцы"] = true } or { weapons = true, ["оружие"] = true }
+    for _, d in ipairs(tg:GetDescendants()) do
+        if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and isShown(d) then
+            local t = env.TV_low(d.Text):gsub("^%s+", ""):gsub("%s+$", "")
+            if words[t] then
+                local b = d:IsA("GuiButton") and d or d:FindFirstAncestorWhichIsA("GuiButton")
+                if not b and d.Parent then
+                    local c = d.AbsolutePosition + d.AbsoluteSize / 2
+                    for _, x in ipairs(d.Parent:GetDescendants()) do
+                        if x:IsA("GuiButton") and isShown(x) then
+                            local p0, sz = x.AbsolutePosition, x.AbsoluteSize
+                            if c.X >= p0.X and c.X <= p0.X + sz.X and c.Y >= p0.Y and c.Y <= p0.Y + sz.Y then b = x; break end
+                        end
+                    end
+                end
+                if b then clickCell(b, tg); return true end
+            end
+        end
+    end
+    return false
+end
+
 function auto.findBadge()
     local roots = { PlayerGui }
     pcall(function() table.insert(roots, game:GetService("CoreGui")) end)
@@ -1656,7 +1708,7 @@ function auto.findBadge()
                     local best, bestD = nil, 140
                     local scope = t.Parent and t.Parent.Parent or t.Parent
                     for _, b in ipairs(scope and scope:GetDescendants() or {}) do
-                        if b:IsA("GuiButton") and isShown(b) then
+                        if b:IsA("GuiButton") and isShown(b) and not auto.hasWords(b) then
                             local d = ((b.AbsolutePosition + b.AbsoluteSize / 2) - c).Magnitude
                             if d < bestD then best, bestD = b, d end
                         end
@@ -2270,7 +2322,7 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
             end
             sugLine.Visible = true
             if same then
-                sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.good), T("reqDone"))
+                sugText.Text = ('<font color="%s">%s</font> · %s'):format(hex(C.good), T("reqDone"), req.orderName or "")
                 auto.fillTh, auto.fillMy = th, my -- для автопринятия: это и есть договорённость
             end
             return true
@@ -2337,7 +2389,7 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
 
     auto.busy, auto.reqDoneId = true, req.id
     req.applied, req.myAfter, req.doneAt = true, nil, os.clock() -- снимок оффера сделаем, когда скрипт закончит
-    sugText.Text = T("reqDoing"):format(listText)
+    sugText.Text = T("reqDoing"):format(listText) .. (isOrder and (" · " .. (req.orderName or "")) or "")
     task.spawn(function()
         pcall(function()
             -- сначала убираем лишнее (клик по предмету в своём оффере убирает его)
@@ -2362,15 +2414,20 @@ function auto.handlePartnerRequest(tg, mine, theirs, my, th)
                 if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
             end
             for _, a in ipairs(adds) do
-                for _, it in ipairs(inv) do
-                    if norm(it.name) == a.key then
-                        for _ = 1, math.min(a.count, it.amount) do
-                            if not (it.frame.Parent and isShown(it.frame)) then break end
-                            clickCell(it.frame, tg)
-                            task.wait(0.35)
-                        end
-                        break
+                local function find()
+                    for _, it in ipairs(scanInventory(tg, mine, theirs)) do
+                        if norm(it.name) == a.key and it.frame.Parent and isShown(it.frame) then return it end
                     end
+                end
+                -- нет на открытой вкладке (например, открыты «Питомцы») — смотрим «Оружие», потом «Питомцы»
+                local found = find()
+                if not found and auto.openTab(tg, "weapons") then task.wait(0.6); found = find() end
+                if not found and auto.openTab(tg, "pets") then task.wait(0.6); found = find() end
+                for _ = 1, math.min(a.count, found and found.amount or 0) do
+                    local it = find()
+                    if not it then break end
+                    clickCell(it.frame, tg)
+                    task.wait(0.35)
                 end
             end
         end)
@@ -3565,7 +3622,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     stroke(win)
     pad(win, 16, 14)
     local wscale = new("UIScale", {}, win)
-    local cTitle = label(win, { Size = UDim2.new(1, -40, 0, 20), TextSize = 16, ZIndex = 21 }, true)
+    local cTitle = label(win, { Size = UDim2.new(1, -150, 0, 20), TextSize = 16, ZIndex = 21 }, true)
     local cSub = label(win, { Size = UDim2.new(1, -40, 0, 16), Position = UDim2.fromOffset(0, 23), TextSize = 12, TextColor3 = C.muted, ZIndex = 21 })
     local cNote = label(win, { Size = UDim2.new(1, 0, 0, 30), Position = UDim2.new(0, 0, 1, -30), TextSize = 11, TextWrapped = true,
         TextColor3 = C.muted, ZIndex = 21 })
@@ -3576,6 +3633,17 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         corner(new("Frame", { BackgroundColor3 = C.muted, BorderSizePixel = 0, AnchorPoint = Vector2.new(0.5, 0.5), ZIndex = 22,
             Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(12, 2), Rotation = rot }, close), 1)
     end
+    -- переключатель «Линия / Свечи»
+    local seg = new("Frame", { Size = UDim2.fromOffset(112, 26), AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, -36, 0, -3),
+        BackgroundColor3 = C.card, ZIndex = 21 }, win)
+    corner(seg, 8)
+    stroke(seg)
+    local segKnob = new("Frame", { Size = UDim2.new(0.5, -4, 1, -4), Position = UDim2.fromOffset(2, 2), BackgroundColor3 = accent(), ZIndex = 22 }, seg)
+    corner(segKnob, 6)
+    local bLine = new("TextButton", { Size = UDim2.fromScale(0.5, 1), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 11, ZIndex = 23 }, seg)
+    local bCandle = new("TextButton", { Size = UDim2.fromScale(0.5, 1), Position = UDim2.fromScale(0.5, 0), BackgroundTransparency = 1, Text = "",
+        TextColor3 = C.text, TextSize = 11, ZIndex = 23 }, seg)
+    themed(function() bLine.Font, bCandle.Font = fontBold(), fontBold() end)
     local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 48), BackgroundColor3 = C.card,
         BackgroundTransparency = 0.4, ClipsDescendants = true, ZIndex = 21 }, win)
     corner(canvas, 10)
@@ -3586,7 +3654,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         local ok, s = pcall(function() return DateTime.fromUnixTimestamp(t):FormatLocalTime(f or "DD.MM", "ru-ru") end)
         return ok and s or ""
     end
-    local function seg(x1, y1, x2, y2, col, th)
+    local function seg_(x1, y1, x2, y2, col, th)
         local dx, dy = x2 - x1, y2 - y1
         local len = math.sqrt(dx * dx + dy * dy)
         if len < 0.5 then len = 0.5 end
@@ -3596,7 +3664,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     end
     local function txt(text, x, y, ax)
         new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(90, 14), AnchorPoint = Vector2.new(ax or 0, 0.5),
-            Position = UDim2.fromOffset(x, y), Text = text, TextColor3 = C.muted, TextSize = 10, Font = Enum.Font.Gotham,
+            Position = UDim2.fromOffset(x, y), Text = text, TextColor3 = C.muted, TextSize = 10, Font = Enum.Font.RobotoMono,
             TextXAlignment = (ax == 1 and Enum.TextXAlignment.Right) or (ax == 0.5 and Enum.TextXAlignment.Center) or Enum.TextXAlignment.Left,
             ZIndex = 23 }, canvas)
     end
@@ -3607,8 +3675,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             pct >= 0 and "+" or "−", math.abs(pct))
     end
 
-    env.TV_showChart = function(it, custom)
+    local last -- что показано сейчас (для перерисовки при смене вида)
+    local function draw(it, custom)
         for _, c in ipairs(canvas:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
+        local candles = S.chartMode == "candles"
+        tween(segKnob, 0.2, { Position = candles and UDim2.new(0.5, 2, 0, 2) or UDim2.fromOffset(2, 2) })
+        segKnob.BackgroundColor3 = accent()
+        bLine.Text, bCandle.Text = T("chartLine"), T("chartCandles")
         local hist = {}
         local src = custom and custom.hist or (env.TV_hist or {})[it.name] or {}
         for _, pnt in ipairs(src) do
@@ -3618,7 +3691,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         table.sort(hist, function(a, b) return a[1] < b[1] end)
         local now = os.time()
         if #hist == 0 and it and it.price then hist = { { now - 86400, it.price } } end
-        if #hist == 0 then return end
+        if #hist == 0 then return false end
         local first, cur = hist[1][2], hist[#hist][2]
         local points = #hist
         table.insert(hist, { now, cur }) -- до сегодняшнего дня цена держится
@@ -3634,64 +3707,116 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         -- сетка: 4 линии цены и 5 отметок времени
         for k = 0, 3 do
             local v = vMin + (vMax - vMin) * k / 3
-            seg(L_, py(v), CW - R_, py(v), C.line, 1).BackgroundTransparency = 0.9
+            seg_(L_, py(v), CW - R_, py(v), C.line, 1).BackgroundTransparency = 0.9
             txt(env.TV_fmt(v), L_ - 6, py(v), 1)
         end
         local span = tMax - tMin
         local fx = span > 2 * 86400 and "DD.MM" or "DD.MM HH:mm"
         for k = 0, 4 do
             local t = tMin + span * k / 4
-            seg(px(t), T_, px(t), CH - B_, C.line, 1).BackgroundTransparency = 0.95
+            seg_(px(t), T_, px(t), CH - B_, C.line, 1).BackgroundTransparency = 0.95
             txt(dateStr(t, fx), px(t), CH - 11, k == 0 and 0 or k == 4 and 1 or 0.5)
         end
-        -- цвет по итогу периода; заливка под ступенчатой линией
         local col = cur > first and C.good or cur < first and C.bad or accent()
-        for k = 1, #hist - 1 do
-            local a, b = hist[k], hist[k + 1]
-            local x1, x2, y = px(a[1]), px(b[1]), py(a[2])
-            new("Frame", { Position = UDim2.fromOffset(x1, y), Size = UDim2.fromOffset(math.max(1, x2 - x1), math.max(0, CH - B_ - y)),
-                BackgroundColor3 = col, BackgroundTransparency = 0.88, BorderSizePixel = 0, ZIndex = 21 }, canvas)
-            seg(x1, y, x2, y, col, 2)
-            if b[2] ~= a[2] then seg(x2, y, x2, py(b[2]), col, 2) end
-        end
-        -- точки: нажми или наведи — дата и цена
         local tip = new("TextLabel", { BackgroundColor3 = C.bg, BackgroundTransparency = 0.05, AutomaticSize = Enum.AutomaticSize.XY,
-            Size = UDim2.fromOffset(0, 0), Text = "", RichText = true, TextColor3 = C.text, TextSize = 11, Font = Enum.Font.Gotham,
+            Size = UDim2.fromOffset(0, 0), Text = "", RichText = true, TextColor3 = C.text, TextSize = 11, Font = Enum.Font.RobotoMono,
             Visible = false, ZIndex = 30 }, canvas)
         corner(tip, 6)
         pad(tip, 6, 4)
-        for k = 1, points do
-            local pnt = hist[k]
-            local x, y = px(pnt[1]), py(pnt[2])
-            local hit = new("TextButton", { Size = UDim2.fromOffset(18, 18), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(x, y),
-                BackgroundTransparency = 1, Text = "", AutoButtonColor = false, ZIndex = 24 }, canvas)
-            corner(new("Frame", { Size = UDim2.fromOffset(7, 7), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
-                BackgroundColor3 = col, ZIndex = 25 }, hit), 4)
-            local prev = hist[k - 1]
+        local function hover(hit, text, x, y)
             local function show()
-                tip.Text = ("<b>%s</b>%s\n%s"):format(env.TV_fmt(pnt[2]), prev and ("  " .. delta(pnt[2] - prev[2], prev[2])) or "",
-                    dateStr(pnt[1], "DD.MM.YYYY HH:mm"))
-                tip.Position = UDim2.fromOffset(math.clamp(x + 10, 2, CW - 150), math.clamp(y - 44, 2, CH - 44))
+                tip.Text = text
+                tip.Position = UDim2.fromOffset(math.clamp(x + 10, 2, CW - 170), math.clamp(y - 50, 2, CH - 56))
                 tip.Visible = true
             end
             on(hit.MouseEnter, show)
             on(hit.Activated, show)
             on(hit.MouseLeave, function() tip.Visible = false end)
         end
-        -- текущая цена справа на линии
+
+        if candles then
+            -- свечи: период подбираем так, чтобы их было не больше ~36
+            local size = 3600
+            for _, sz in ipairs({ 3600, 3 * 3600, 6 * 3600, 12 * 3600, 86400, 2 * 86400, 7 * 86400, 30 * 86400 }) do
+                size = sz
+                if span / sz <= 36 then break end
+            end
+            local function valueAt(t) -- цена на момент t (последняя точка не позже t)
+                local v = hist[1][2]
+                for _, pnt in ipairs(hist) do if pnt[1] <= t then v = pnt[2] else break end end
+                return v
+            end
+            local b0 = math.floor(hist[1][1] / size) * size
+            local bucket = b0
+            while bucket <= tMax do
+                local open, close = valueAt(bucket), valueAt(bucket + size - 1)
+                if bucket < hist[1][1] then open = hist[1][2] end
+                local hi, lo = math.max(open, close), math.min(open, close)
+                for _, pnt in ipairs(hist) do
+                    if pnt[1] >= bucket and pnt[1] < bucket + size then hi, lo = math.max(hi, pnt[2]), math.min(lo, pnt[2]) end
+                end
+                local x1, x2 = px(math.max(bucket, tMin)), px(math.min(bucket + size, tMax))
+                local cx, w = (x1 + x2) / 2, math.max(3, (x2 - x1) * 0.62)
+                local ccol = close > open and C.good or close < open and C.bad or C.muted
+                seg_(cx, py(hi), cx, py(lo), ccol, 1)
+                local top, bot = py(math.max(open, close)), py(math.min(open, close))
+                local body = new("TextButton", { Text = "", AutoButtonColor = false, AnchorPoint = Vector2.new(0.5, 0),
+                    Position = UDim2.fromOffset(cx, top), Size = UDim2.fromOffset(w, math.max(2, bot - top)),
+                    BackgroundColor3 = ccol, BorderSizePixel = 0, ZIndex = 23 }, canvas)
+                corner(body, 2)
+                hover(body, T("candleTip"):format(dateStr(bucket, size >= 86400 and "DD.MM.YYYY" or "DD.MM HH:mm"),
+                    env.TV_fmt(open), env.TV_fmt(hi), env.TV_fmt(lo), env.TV_fmt(close), delta(close - open, open)), cx, top)
+                bucket += size
+            end
+        else
+            -- линия: заливка под ступеньками и точки с подсказкой
+            for k = 1, #hist - 1 do
+                local a, b = hist[k], hist[k + 1]
+                local x1, x2, y = px(a[1]), px(b[1]), py(a[2])
+                new("Frame", { Position = UDim2.fromOffset(x1, y), Size = UDim2.fromOffset(math.max(1, x2 - x1), math.max(0, CH - B_ - y)),
+                    BackgroundColor3 = col, BackgroundTransparency = 0.88, BorderSizePixel = 0, ZIndex = 21 }, canvas)
+                seg_(x1, y, x2, y, col, 2)
+                if b[2] ~= a[2] then seg_(x2, y, x2, py(b[2]), col, 2) end
+            end
+            for k = 1, points do
+                local pnt = hist[k]
+                local x, y = px(pnt[1]), py(pnt[2])
+                local hit = new("TextButton", { Size = UDim2.fromOffset(18, 18), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(x, y),
+                    BackgroundTransparency = 1, Text = "", AutoButtonColor = false, ZIndex = 24 }, canvas)
+                corner(new("Frame", { Size = UDim2.fromOffset(7, 7), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5),
+                    BackgroundColor3 = col, ZIndex = 25 }, hit), 4)
+                local prev = hist[k - 1]
+                hover(hit, ("<b>%s</b>%s\n%s"):format(env.TV_fmt(pnt[2]), prev and ("  " .. delta(pnt[2] - prev[2], prev[2])) or "",
+                    dateStr(pnt[1], "DD.MM.YYYY HH:mm")), x, y)
+            end
+        end
+        -- текущая цена справа
         local badge = new("TextLabel", { BackgroundColor3 = col, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 16),
             AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.fromOffset(CW - 2, math.clamp(py(cur), 10, CH - B_ - 8)), Text = env.TV_fmt(cur),
-            TextColor3 = rgb(255, 255, 255), TextSize = 10, Font = Enum.Font.GothamBold, ZIndex = 26 }, canvas)
+            TextColor3 = C.bg, TextSize = 10, Font = Enum.Font.RobotoMono, ZIndex = 26 }, canvas)
         corner(badge, 5)
         pad(badge, 5, 0)
 
         cTitle.Text = custom and custom.title or T("chartTitle"):format(it.name, env.TV_fmt(it.price or cur))
         cSub.Text = T("chartSince"):format(delta(cur - first, first), dateStr(hist[1][1], "DD.MM.YYYY"), points)
         cNote.Text = custom and custom.note or (points <= 2 and T("chartFew"):format(dateStr(hist[1][1])) or "")
+        return true
+    end
+
+    env.TV_showChart = function(it, custom)
+        last = { it, custom }
+        if not draw(it, custom) then return end
         win.Visible = true
         local abs = ui.AbsoluteSize
         wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 132))
     end
+    local function setMode(m)
+        S.chartMode = m
+        saveSettings()
+        if last then draw(last[1], last[2]) end
+    end
+    on(bLine.Activated, function() setMode("line") end)
+    on(bCandle.Activated, function() setMode("candles") end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
 ------------------------------------------------------------------

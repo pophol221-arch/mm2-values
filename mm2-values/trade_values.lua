@@ -1465,11 +1465,32 @@ env.TV_imgNameOf = function(digits)
     end
     return nm or nil
 end
+-- сколько раз картинка / имя встречаются во всём окне трейда: общее для многих ячеек (фон, иконка, шаблон) — не про предмет
+env.TV_freq = function(cell)
+    local g = cell:FindFirstAncestorWhichIsA("ScreenGui")
+    if g and (env.TV_freqG ~= g or os.clock() - (env.TV_freqAt or 0) > 1) then
+        local imgs, names = {}, {}
+        for _, d in ipairs(g:GetDescendants()) do
+            if d:IsA("ImageLabel") or d:IsA("ImageButton") then
+                local dg = d.Image:match("%d+")
+                if dg then imgs[dg] = (imgs[dg] or 0) + 1 end
+            end
+            names[d.Name] = (names[d.Name] or 0) + 1
+        end
+        env.TV_freqG, env.TV_freqAt, env.TV_freqImg, env.TV_freqName = g, os.clock(), imgs, names
+    end
+    return env.TV_freqImg or {}, env.TV_freqName or {}
+end
 env.TV_cellKind = function(cell)
-    local imgs = env.TV_cellImgs(cell)
+    local fImg, fName = env.TV_freq(cell)
+    local imgs = {}
+    for _, d in ipairs(env.TV_cellImgs(cell)) do
+        if (fImg[d] or 0) <= 6 then table.insert(imgs, d) end -- картинка самого предмета (а не общий фон/значок)
+    end
     local k
-    -- 1) имя ячейки и её атрибуты («LatteGun», ItemType = "Knife»)
-    local parts = { cell.Name }
+    -- 1) имя ячейки и её атрибуты («LatteGun», ItemType = "Knife») — если имя не общее для всех ячеек
+    local parts = {}
+    if (fName[cell.Name] or 0) <= 6 then table.insert(parts, cell.Name) end
     for an, av in pairs(cell:GetAttributes()) do table.insert(parts, tostring(an) .. "=" .. tostring(av)) end
     k = env.TV_kindOf(table.concat(parts, " "))
     -- 2) база MM2 по любой картинке ячейки; 3) название картинки в Roblox — только если там прямо написано
@@ -2512,7 +2533,10 @@ function auto.orderMatches(o, their)
     local kinds, imgs, known, diags = {}, {}, false, {}
     for i, c in ipairs(e.cells) do
         kinds[i] = env.TV_cellKind(c)
-        imgs[i] = table.concat(env.TV_cellImgs(c), ",")
+        local fImg = env.TV_freq(c)
+        local own = {}
+        for _, d in ipairs(env.TV_cellImgs(c)) do if (fImg[d] or 0) <= 6 then table.insert(own, d) end end
+        imgs[i] = table.concat(own, ",")
         table.insert(diags, env.TV_kindDiag)
     end
     for i in ipairs(e.cells) do

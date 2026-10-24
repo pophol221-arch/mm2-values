@@ -1302,7 +1302,11 @@ env.TV_layout = function()
     local wide = abs.Y < 620 and abs.X > abs.Y * 1.3
     if env.TV_wide == wide then return end
     env.TV_wide = wide
-    panel.Size = UDim2.fromOffset(wide and 780 or 440, 0)
+    panel.Size = UDim2.fromOffset(wide and 700 or 440, 0)
+    -- вкладки не растягиваем на всю ширину: компактная полоса по центру
+    tabBar.Size = wide and UDim2.fromOffset(460, 36) or UDim2.new(1, 0, 0, 36)
+    local pl = panel:FindFirstChildOfClass("UIListLayout")
+    if pl then pl.HorizontalAlignment = Enum.HorizontalAlignment.Center end
     for _, b in ipairs({ bodyMain, bodyTrade, X.bodyTrade2, X.bodyGame, X.bodyChat }) do
         local ll = b:FindFirstChildOfClass("UIListLayout") or env.TV_lists and env.TV_lists[b]
         env.TV_lists = env.TV_lists or {}

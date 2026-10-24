@@ -1282,6 +1282,34 @@ end, function()
     gear.Position = UDim2.fromScale(S.iconX, S.iconY)
     saveSettings()
 end)
+-- меньше переключателей: второстепенные работают сами (включены), строки с ними не показываем
+do
+    if S.simpleV ~= 1 then
+        for _, k in ipairs({ "highlight", "autoAdd", "tolerance", "fillOver", "cheapGodly", "mirrorEmpty", "emptyDecline",
+            "junkDecline", "giftAccept", "idleDecline", "declineMsg" }) do S[k] = true end
+        S.chatInTrade, S.simpleV = false, 1
+        saveSettings()
+    end
+    for _, lbl in ipairs({ lHl, lAdd, lTol, X.fillLabel, X.cheapLabel, X.mirrorLabel, X.emptyLabel, X.junkLabel, X.giftLabel,
+        X.idleLabel, X.chatTradeLabel, X.declMsgLabel }) do
+        if lbl and lbl.Parent then lbl.Parent.Visible = false end
+    end
+    -- разделители: только между видимыми строками
+    for _, b in ipairs({ bodyMain, bodyTrade, X.bodyTrade2, X.bodyGame, X.bodyChat }) do
+        local items = {}
+        for _, c in ipairs(b:GetChildren()) do if c:IsA("GuiObject") then table.insert(items, c) end end
+        table.sort(items, function(x, y) return x.LayoutOrder < y.LayoutOrder end)
+        local seenRow = false
+        for i, c in ipairs(items) do
+            if c.LayoutOrder % 2 == 1 then -- разделитель
+                local nextRow = items[i + 1]
+                c.Visible = seenRow and nextRow ~= nil and nextRow.Visible
+            elseif c.Visible then
+                seenRow = true
+            end
+        end
+    end
+end
 refresh()
 
 ------------------------------------------------------------------

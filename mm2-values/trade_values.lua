@@ -66,7 +66,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", kindAsk = "%s: это нож или пистолет? (скрипт думает: %s)", kindBtnKnife = "Нож", kindBtnGun = "Пистолет", ordUnsure = "Заявка: определяю, нож это или пистолет… [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 80 с)", blockedTrade = "%s в блоке на 80 с — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordProfit = "Своя прибыль за этот предмет", ordProfitOn = "автооффер наберёт +%d%% (варианты не используются)", ordProfitOff = "выкл. — кладутся варианты ниже", ordProfitTag = " · заявка", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", kindAsk = "%s: это нож или пистолет? (скрипт думает: %s)", kindBtnKnife = "Нож", kindBtnGun = "Пистолет", ordUnsure = "Заявка: определяю, нож это или пистолет… [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 80 с)", blockedTrade = "%s в блоке на 80 с — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -79,7 +79,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", kindAsk = "%s: knife or gun? (script thinks: %s)", kindBtnKnife = "Knife", kindBtnGun = "Gun", ordUnsure = "Order: checking whether it is a knife or a gun… [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (80 s block)", blockedTrade = "%s is blocked for 80 s — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordProfit = "Own profit for this item", ordProfitOn = "auto-offer aims for +%d%% (variants are not used)", ordProfitOff = "off — the variants below are used", ordProfitTag = " · order", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", kindAsk = "%s: knife or gun? (script thinks: %s)", kindBtnKnife = "Knife", kindBtnGun = "Gun", ordUnsure = "Order: checking whether it is a knife or a gun… [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (80 s block)", blockedTrade = "%s is blocked for 80 s — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -2252,7 +2252,7 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     if S.autoDecline and auto.findUnwanted(theirs) then auto.setAcc("bad"); return end
     local profit = my > 0 and (th - my) / my * 100 or math.huge
     -- тот же запас, что у подсказки «Цель достигнута»: перебор до ~1 value (или 2%) считается целью
-    local maxMine = th / (1 + (S.target - (S.tolerance and 1 or 0)) / 100)
+    local maxMine = th / (1 + ((auto.ordProfit or S.target) - (S.tolerance and 1 or 0)) / 100)
     if S.fillOver and auto.fillTh == th and auto.fillMy then
         maxMine = math.max(maxMine, auto.fillMy) -- скрипт сам добил сверх цели: такой оффер тоже принимаем
     end
@@ -2747,12 +2747,21 @@ function auto.orderMatches(o, their)
     return (not known) and "maybe" or false
 end
 function auto.handleOrders(theirs)
+    auto.ordProfit, auto.ordProfitName = nil, nil
     if not (S.enabled and S.ordersOn) then return end
     local their = auto.readOffer(theirs)
     -- все заявки, чьи предметы лежат у него (нож и пистолет Latte — две разные заявки)
     local matched, unsure = {}, false
+    auto.ordProfit, auto.ordProfitName = nil, nil
     for _, o in ipairs(S.orders or {}) do
         local m = auto.orderMatches(o, their)
+        if m == true and (o.profit or 0) > 0 then
+            -- своя прибыль за этот предмет: автооффер наберёт с этим процентом (самый большой из подходящих)
+            if not auto.ordProfit or o.profit > auto.ordProfit then auto.ordProfit, auto.ordProfitName = o.profit, o.name end
+            m = false
+        elseif m and (o.profit or 0) > 0 then
+            unsure, m = true, false
+        end
         if m then
             local en = {}
             for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
@@ -2856,7 +2865,7 @@ function auto.catSets()
 end
 function auto.handleCheap(tg, mine, theirs, my, th)
     if not (S.cheapGodly and th > 0) then return false end
-    if auto.partnerReq and auto.partnerReq.kind == "order" then return false end -- есть заявка — она главнее
+    if (auto.partnerReq and auto.partnerReq.kind == "order") or auto.ordProfit then return false end -- есть заявка — она главнее
     local low, god = auto.catSets()
     local their = auto.readOffer(theirs)
     local any = false
@@ -3021,10 +3030,11 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     if S.autoOffer and auto.handleCheap(tg, mine, theirs, my, th) then return end
     if not S.autoOffer then sugLine.Visible = false; hideHighlights(); return end
     sugLine.Visible = true
-    local tgt = ("+%d%%"):format(S.target)
+    local pctT = auto.ordProfit or S.target -- своя прибыль из заявки за его предмет — важнее общей
+    local tgt = ("+%d%%"):format(pctT) .. (auto.ordProfit and T("ordProfitTag") or "")
     if th <= 0 then sugText.Text = T("sugWait"):format(tgt); hideHighlights(); return end
 
-    local maxMine = th / (1 + S.target / 100)  -- столько можно отдать, чтобы остаться в цели
+    local maxMine = th / (1 + pctT / 100)  -- столько можно отдать, чтобы остаться в цели
     local need = maxMine - my
     -- оффер уже добит сверх цели самим скриптом — это и есть результат, «убери» не пишем
     if S.fillOver and auto.fillTh == th and auto.fillMy and my <= auto.fillMy + 0.5 and my >= maxMine then
@@ -3046,7 +3056,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     -- допуск ±1%: если с ослабленной на 1% целью можно добить точнее, берём этот вариант
     local tolUsed = false
     if S.tolerance then
-        local needTol = th / (1 + (S.target - 1) / 100) - my
+        local needTol = th / (1 + (pctT - 1) / 100) - my
         local picks2, sum2 = pickItems(items, needTol, avoid)
         if sum2 > sum then picks, sum, need, tolUsed = picks2, sum2, needTol, true end
     end
@@ -3197,7 +3207,7 @@ local function tick()
         auto.emptySince, auto.hadTheirs, auto.nudged, auto.nudgeDone = nil, false, false, nil
         auto.junkSig, auto.junkSince = nil, nil
         auto.giftTries, auto.giftLast = 0, 0
-        auto.ord, auto.remFor, auto.idleSig, auto.kindNotified = {}, nil, nil, nil
+        auto.ord, auto.remFor, auto.idleSig, auto.kindNotified, auto.ordProfit = {}, nil, nil, nil, nil
         -- трейд закрылся после нашего отказа — теперь этот человек в блоке на 80 секунд (на следующие трейды)
         if auto.pendingBlock then auto.block(auto.pendingBlock); auto.pendingBlock = nil end
         auto.accSig, auto.accTries, auto.accDone = "", 0, false
@@ -3790,8 +3800,30 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         rTitle.Text = o.name
         rSub.Text = env.TV_fmt(orderValue(o))
         rPic.Image = env.TV_image and env.TV_image(o.name, function(a) if rPic.Parent then rPic.Image = a end end) or ""
-        if #(o.offers or {}) == 0 then
-            label(vars, { Size = UDim2.new(1, 0, 0, 30), Text = T("ordNoVars"), TextColor3 = C.muted, TextSize = 13 })
+        -- своя прибыль за этот предмет (вместо вариантов): 0 = выкл
+        do
+            local card = new("Frame", { Size = UDim2.new(1, -6, 0, 54), BackgroundColor3 = C.card, BackgroundTransparency = (o.profit or 0) > 0 and 0.1 or 0.6,
+                LayoutOrder = 0 }, vars)
+            corner(card, 10)
+            pad(card, 10, 0)
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -130, 0, 22), Position = UDim2.fromOffset(0, 6), Text = T("ordProfit"),
+                TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Left }, card)
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -130, 0, 18), Position = UDim2.fromOffset(0, 28),
+                Text = (o.profit or 0) > 0 and T("ordProfitOn"):format(o.profit) or T("ordProfitOff"),
+                TextColor3 = C.muted, TextSize = 12, Font = Enum.Font.Gotham, TextXAlignment = Enum.TextXAlignment.Left,
+                TextTruncate = Enum.TextTruncate.AtEnd }, card)
+            local box = new("Frame", { Size = UDim2.fromOffset(118, 30), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, 0, 0.5, 0),
+                BackgroundColor3 = C.bg, BackgroundTransparency = 0.2 }, card)
+            corner(box, 9)
+            local minus = btn(box, "−", UDim2.fromOffset(32, 30), UDim2.fromOffset(0, 0))
+            local plus = btn(box, "+", UDim2.new(0, 32, 0, 30), UDim2.new(1, -32, 0, 0))
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -64, 1, 0), Position = UDim2.fromOffset(32, 0),
+                Text = (o.profit or 0) > 0 and ("+" .. o.profit .. "%") or "—", TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold }, box)
+            on(minus.Activated, function() o.profit = math.max(0, (o.profit or 0) - 5); if o.profit == 0 then o.profit = nil end; save(); renderSide(); renderRight() end)
+            on(plus.Activated, function() o.profit = math.min(500, (o.profit or 0) + 5); save(); renderSide(); renderRight() end)
+        end
+        if #(o.offers or {}) == 0 and not ((o.profit or 0) > 0) then
+            label(vars, { Size = UDim2.new(1, 0, 0, 30), Text = T("ordNoVars"), TextColor3 = C.muted, TextSize = 13, LayoutOrder = 1 })
         end
         for i, v in ipairs(o.offers or {}) do
             local txt, sum = offerText(v)

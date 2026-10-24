@@ -1087,7 +1087,7 @@ local function refresh()
     scaleVal.Text = ("%d%%"):format(math.floor((S.uiScale or 1) * 100 + 0.5))
     gearScale.Scale = sf()
     hudScale.Scale = sf()
-    if panel.Visible then panelScale.Scale = sf() end
+    if panel.Visible and env.TV_fitPanel then panelScale.Scale = env.TV_fitPanel() end
     fontName.Text = (FONTS[S.font] or FONTS[1])[1]
     for i, d in ipairs(dots) do
         d.ring.Transparency = (i == S.theme) and 0 or 1
@@ -1260,9 +1260,14 @@ on(resetBtn.Activated, change(function() S.hudX, S.hudY = nil, nil; placeHud() e
 local function showPanel(v)
     if v then
         refresh()
+        if env.TV_layout then env.TV_layout() end
+        panel.AnchorPoint, panel.Position = Vector2.new(0.5, 0.5), UDim2.fromScale(0.5, 0.5)
         panel.Visible = true
-        panelScale.Scale = sf() * 0.92
-        tween(panelScale, 0.25, { Scale = sf() }, Enum.EasingStyle.Back)
+        task.defer(function()
+            local target = env.TV_fitPanel and env.TV_fitPanel() or sf()
+            panelScale.Scale = target * 0.92
+            tween(panelScale, 0.25, { Scale = target }, Enum.EasingStyle.Back)
+        end)
     else
         panel.Visible = false
     end
@@ -1282,6 +1287,47 @@ end, function()
     gear.Position = UDim2.fromScale(S.iconX, S.iconY)
     saveSettings()
 end)
+-- окно настроек целиком на экране: уменьшаем, если не помещается по высоте/ширине
+env.TV_fitPanel = function()
+    local abs = ui.AbsoluteSize
+    local cur = math.max(panelScale.Scale, 0.01)
+    local h = panel.AbsoluteSize.Y / cur
+    local w = panel.Size.X.Offset + 32
+    if h < 50 or abs.Y < 50 then return sf() end
+    return math.min(sf(), (abs.Y - 16) / h, (abs.X - 16) / w)
+end
+-- телефон боком (широко и низко): строки настроек в две колонки — «таблицей», окно шире и ниже
+env.TV_layout = function()
+    local abs = ui.AbsoluteSize
+    local wide = abs.Y < 620 and abs.X > abs.Y * 1.3
+    if env.TV_wide == wide then return end
+    env.TV_wide = wide
+    panel.Size = UDim2.fromOffset(wide and 780 or 440, 0)
+    for _, b in ipairs({ bodyMain, bodyTrade, X.bodyTrade2, X.bodyGame, X.bodyChat }) do
+        local ll = b:FindFirstChildOfClass("UIListLayout") or env.TV_lists and env.TV_lists[b]
+        env.TV_lists = env.TV_lists or {}
+        env.TV_lists[b] = ll
+        local gl = b:FindFirstChild("TVGrid")
+        if not gl then
+            gl = new("UIGridLayout", { Name = "TVGrid", CellSize = UDim2.new(0.5, -6, 0, 44), CellPadding = UDim2.fromOffset(4, 0),
+                SortOrder = Enum.SortOrder.LayoutOrder, HorizontalAlignment = Enum.HorizontalAlignment.Center })
+        end
+        if ll then ll.Parent = (not wide) and b or nil end
+        gl.Parent = wide and b or nil
+        -- в таблице разделители не нужны
+        for _, c in ipairs(b:GetChildren()) do
+            if c:IsA("GuiObject") and c.LayoutOrder % 2 == 1 and c.Size.Y.Offset <= 1 then
+                if wide then c:SetAttribute("TVWasVisible", c.Visible); c.Visible = false
+                elseif c:GetAttribute("TVWasVisible") ~= nil then c.Visible = c:GetAttribute("TVWasVisible") end
+            end
+        end
+    end
+end
+on(ui:GetPropertyChangedSignal("AbsoluteSize"), function()
+    if env.TV_layout then env.TV_layout() end
+    if panel.Visible then panelScale.Scale = env.TV_fitPanel() end
+end)
+
 -- меньше переключателей: второстепенные работают сами (включены), строки с ними не показываем
 do
     if S.simpleV ~= 1 then

@@ -62,7 +62,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Игрок", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Прочее", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -75,7 +75,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Player", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Other", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", highlight = "Highlight", autoAdd = "Auto-add",
@@ -1139,11 +1139,12 @@ local function refresh()
     X.drawAfk(S.antiAfk)
     X.drawFling(S.antiFling)
     tabKnob.BackgroundColor3 = a
-    local tabIndex = ({ main = 0, trade = 1, trade2 = 2, game = 3, chat = 4 })[curTab] or 0
-    tween(tabKnob, 0.2, { Position = UDim2.new(tabIndex / 5, 3, 0, 3) })
-    bodyMain.Visible, bodyTrade.Visible, X.bodyTrade2.Visible = curTab == "main", curTab == "trade", curTab == "trade2"
+    if curTab == "trade2" then curTab = "trade" elseif curTab == "chat" then curTab = "game" end -- разделы объединены
+    local tabIndex = ({ main = 0, trade = 1, game = 2 })[curTab] or 0
+    tween(tabKnob, 0.2, { Position = UDim2.new(tabIndex / 3, 3, 0, 3) })
+    bodyMain.Visible, bodyTrade.Visible, X.bodyTrade2.Visible = curTab == "main", curTab == "trade", false
     X.tabTrade2Btn.Text = T("tabTrade2")
-    X.bodyGame.Visible, X.bodyChat.Visible = curTab == "game", curTab == "chat"
+    X.bodyGame.Visible, X.bodyChat.Visible = curTab == "game", false
     X.tabChatBtn.Text = T("tabChat")
     X.valuesLabel.Text = T("valuesTitle")
     X.valuesOpen.Text = T("openValues") .. "  >"
@@ -1304,7 +1305,7 @@ env.TV_layout = function()
     env.TV_wide = wide
     panel.Size = UDim2.fromOffset(wide and 700 or 440, 0)
     -- вкладки не растягиваем на всю ширину: компактная полоса по центру
-    tabBar.Size = wide and UDim2.fromOffset(460, 36) or UDim2.new(1, 0, 0, 36)
+    tabBar.Size = wide and UDim2.fromOffset(360, 36) or UDim2.new(1, 0, 0, 36)
     local pl = panel:FindFirstChildOfClass("UIListLayout")
     if pl then pl.HorizontalAlignment = Enum.HorizontalAlignment.Center end
     for _, b in ipairs({ bodyMain, bodyTrade, X.bodyTrade2, X.bodyGame, X.bodyChat }) do
@@ -1343,6 +1344,18 @@ do
     for _, lbl in ipairs({ lHl, lAdd, lTol, X.fillLabel, X.cheapLabel, X.mirrorLabel, X.emptyLabel, X.junkLabel, X.giftLabel,
         X.idleLabel, X.chatTradeLabel, X.declMsgLabel }) do
         if lbl and lbl.Parent then lbl.Parent.Visible = false end
+    end
+    -- разделы объединены: строки «Принятия» — в «Трейд», «Чата» — в «Прочее» (порядок сохраняем, сдвигая номера)
+    for _, mv in ipairs({ { X.bodyTrade2, bodyTrade }, { X.bodyChat, X.bodyGame } }) do
+        for _, c in ipairs(mv[1]:GetChildren()) do
+            if c:IsA("GuiObject") then c.LayoutOrder += 1000; c.Parent = mv[2] end
+        end
+    end
+    rReset.LayoutOrder = 5000 -- «Вернуть плашку на место» — последней строкой
+    X.tabTrade2Btn.Visible, X.tabChatBtn.Visible = false, false
+    tabKnob.Size = UDim2.new(1 / 3, -6, 1, -6)
+    for i, b in ipairs({ tabMainBtn, tabTradeBtn, X.tabGameBtn }) do
+        b.Size, b.Position = UDim2.fromScale(1 / 3, 1), UDim2.fromScale((i - 1) / 3, 0)
     end
     -- разделители: только между видимыми строками
     for _, b in ipairs({ bodyMain, bodyTrade, X.bodyTrade2, X.bodyGame, X.bodyChat }) do

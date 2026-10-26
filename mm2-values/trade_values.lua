@@ -4375,6 +4375,21 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         if changed then saveSettings() end
     end
 
+    -- ячейка предмета: лежит в сетке/списке и внутри ровно одно название предмета (ряд с несколькими — не ячейка)
+    local function isCell(d)
+        if not ((d:IsA("Frame") or d:IsA("ImageButton") or d:IsA("ImageLabel") or d:IsA("TextButton")) and d.Name ~= "TVPrice") then return false end
+        local par = d.Parent
+        if not (par and (par:IsA("ScrollingFrame") or par:FindFirstChildWhichIsA("UIGridLayout") or par:FindFirstChildWhichIsA("UIListLayout"))) then return false end
+        if d.AbsoluteSize.X < 40 or d.AbsoluteSize.Y < 40 then return false end
+        local n = 0
+        for _, l in ipairs(d:GetDescendants()) do
+            if l:IsA("TextLabel") and l.Name ~= "TVPrice" and l.Text ~= "" and valueMap[norm(l.Text)] then
+                n += 1
+                if n > 1 then return false end
+            end
+        end
+        return n == 1
+    end
     -- инвентарь MM2 (кнопка INVENTORY): пока он открыт, раз в 3 с записываем, что там лежит и сколько стоит
     local SKIP = { "shop", "store", "crate", "box", "preview", "reward", "spin", "unbox", "craft", "battle", "pass", "trade", "offer", "event" }
     task.spawn(function()
@@ -4397,8 +4412,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 local seen, got = {}, {}
                 for _, r in ipairs(roots) do
                     for _, d in ipairs(r:GetDescendants()) do
-                        if not got[d] and (d:IsA("Frame") or d:IsA("ImageButton") or d:IsA("ImageLabel") or d:IsA("TextButton"))
-                           and d.Parent and d.Parent:FindFirstChildWhichIsA("UIGridLayout") and env.TV_vis(d) then
+                        if not got[d] and isCell(d) and env.TV_vis(d) then
                             got[d] = true
                             local price, amount, name = readItem(d)
                             if price and price > 0 then table.insert(seen, { frame = d, price = price, amount = amount, name = name }) end
@@ -4418,8 +4432,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 for _, g in ipairs(PlayerGui:GetChildren()) do
                     if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
                         for _, d in ipairs(g:GetDescendants()) do
-                            if (d:IsA("Frame") or d:IsA("ImageButton") or d:IsA("ImageLabel") or d:IsA("TextButton"))
-                               and d.Name ~= "TVPrice" and d.Parent and d.Parent:FindFirstChildWhichIsA("UIGridLayout") and d.AbsoluteSize.X >= 40 then
+                            if d:IsA("GuiObject") and d.Name ~= "TVPrice" and (d:FindFirstChild("TVPrice") or isCell(d)) then
                                 local badge = d:FindFirstChild("TVPrice")
                                 local price = S.enabled and env.TV_vis(d) and readItem(d) or nil
                                 if price and price > 0 then

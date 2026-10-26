@@ -67,7 +67,7 @@ local L = {
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", allOffDone = "Все функции выключены", allOnDone = "Все функции включены", highlight = "Подсветка", autoAdd = "Авто-добавление",
            bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordProfit = "Своя прибыль за этот предмет", ordGone = "Заявка больше не подходит — убираю её предметы", ordProfitOn = "автооффер наберёт +%d%% (варианты не используются)", ordProfitOff = "выкл. — кладутся варианты ниже", ordProfitTag = " · заявка", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", kindAsk = "%s: это нож или пистолет? (скрипт думает: %s)", kindBtnKnife = "Нож", kindBtnGun = "Пистолет", ordUnsure = "Заявка: определяю, нож это или пистолет… [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 80 с)", blockedTrade = "%s в блоке на 80 с — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
-           search = "Поиск…", marked = "Отмеченные", all = "Все",
+           search = "Поиск…", marked = "Отмеченные", catMark = "Отметить всю категорию", catUnmark = "Снять отметки со всей категории", ordAddProfit = "+ Вариант: % прибыли", ordProfitVar = "Прибыль +%d%%", ordProfitVarSub = "автооффер наберёт с этой прибылью", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
                     uncommons = "Необычные", commons = "Обычные", pets = "Питомцы", misc = "Разное" }, declined = "Отклонено: %s", declineFail = "Не нашёл кнопку «Отклонить»", sugAuto = "Цель %s: добавляю ~%s: %s",
@@ -80,7 +80,7 @@ local L = {
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", allOffDone = "All features are off", allOnDone = "All features are on", highlight = "Highlight", autoAdd = "Auto-add",
            bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordProfit = "Own profit for this item", ordGone = "Order no longer matches — taking its items back", ordProfitOn = "auto-offer aims for +%d%% (variants are not used)", ordProfitOff = "off — the variants below are used", ordProfitTag = " · order", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", kindAsk = "%s: knife or gun? (script thinks: %s)", kindBtnKnife = "Knife", kindBtnGun = "Gun", ordUnsure = "Order: checking whether it is a knife or a gun… [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (80 s block)", blockedTrade = "%s is blocked for 80 s — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
-           search = "Search…", marked = "Marked", all = "All",
+           search = "Search…", marked = "Marked", catMark = "Mark the whole category", catUnmark = "Unmark the whole category", ordAddProfit = "+ Variant: profit %", ordProfitVar = "Profit +%d%%", ordProfitVarSub = "auto-offer aims for this profit", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
                     uncommons = "Uncommons", commons = "Commons", pets = "Pets", misc = "Misc" }, declined = "Declined: %s", declineFail = "Decline button not found", sugAuto = "Target %s: adding ~%s: %s",
@@ -162,7 +162,8 @@ local function loadValues()
     end)
     if not ok or type(res) ~= "table" then warn("[TV] не загрузил цены:", res) return false end
     -- не показываем и не считаем: заглушки сайта и то, что нельзя передать
-    local SKIP = { ["Black Luger"] = true, ["Nik's Scythe"] = true, ["Default Knife"] = true, ["Default Gun"] = true }
+    local SKIP = { ["Black Luger"] = true, ["Nik's Scythe"] = true, ["Default Knife"] = true, ["Default Gun"] = true,
+        ["Small Set (107)"] = true, ["Small Set (103)"] = true, ["Full Chroma Set"] = true, ["Chroma Weapon Set"] = true } -- наборы «всего подряд»
     local map, n = {}, 0
     for k, v in pairs(res.values or res) do
         if tonumber(v) and not SKIP[k] and tonumber(v) < 1000000 then map[norm(k)] = tonumber(v); n += 1 end
@@ -209,8 +210,17 @@ local function loadValues()
                     key = norm(name), cat = cat,
                     img = cat .. "_" .. ((name:find(" Set", 1, true) and "set" or "") .. norm(name)) }
             end
+            if it and cat == "pets" and not it.cat then
+                -- у питомца своя картинка (у ножа «Reindeer» и питомца «Reindeer» одно название)
+                it = { name = it.name, price = it.price, key = it.key, cat = "pets", primary = true, img = "pets_" .. it.key }
+            end
             if it and not SKIP[name] and not inCat[it] then inCat[it] = true; table.insert(lst, it) end
         end
+        -- дорогие сверху; предметы с ценой текстом («x2 T1 Commons») — после
+        table.sort(lst, function(a, b)
+            if (a.price ~= nil) ~= (b.price ~= nil) then return a.price ~= nil end
+            return (a.price or 0) > (b.price or 0)
+        end)
         byCat[cat] = lst
     end
     env.TV_changes = res.changes or {}
@@ -220,8 +230,13 @@ local function loadValues()
     -- «Все» = только предметы из категорий сайта (без моих вспомогательных названий вроде «C. X» / «Latte»)
     local listed, inAny = {}, {}
     for _, lst in pairs(byCat) do for _, it in ipairs(lst) do inAny[it] = true end end
-    for _, it in ipairs(arr) do if inAny[it] or not res.categories then table.insert(listed, it) end end
-    for _, lst in pairs(byCat) do for _, it in ipairs(lst) do if it.cat then table.insert(listed, it) end end end
+    local petKeys = {}
+    for _, it in ipairs(byCat.pets or {}) do if it.primary then petKeys[it.key] = it end end
+    for _, it in ipairs(arr) do
+        if petKeys[it.key] then table.insert(listed, petKeys[it.key])
+        elseif inAny[it] or not res.categories then table.insert(listed, it) end
+    end
+    for _, lst in pairs(byCat) do for _, it in ipairs(lst) do if it.cat and not it.primary then table.insert(listed, it) end end end
     table.sort(listed, function(a, b) return (a.price or -1) > (b.price or -1) end)
     table.sort(arr, function(a, b) return (a.price or -1) > (b.price or -1) end)
     itemList, itemsByCat, catOrder = listed, byCat, res.category_order or {}
@@ -877,6 +892,16 @@ local function marks()
     S.keep = S.keep or {}
     return mode == "keep" and S.keep or S.blacklist
 end
+local function rowKey(it) return (it.cat and not it.primary) and (it.cat .. ":" .. it.key) or it.key end
+-- в трейде видно только название: отмечен хоть один предмет с таким названием — значит, отмечено
+env.TV_markSet = function(tbl)
+    local set = {}
+    for k, name in pairs(tbl or {}) do
+        set[norm(tostring(name))] = name
+        if not k:find(":", 1, true) then set[k] = name end
+    end
+    return set
+end
 local function blCount()
     local n = 0
     for _ in pairs(marks()) do n += 1 end
@@ -886,7 +911,7 @@ local renderList, renderSide
 local STAB_COLORS = { ["Stable"] = C.muted, ["Doing Well"] = C.good, ["Fluctuating"] = C.fair, ["Underpaid For"] = C.bad, ["Overpaid For"] = C.good }
 
 local function itemRow(it, order)
-    local on_ = mode ~= "values" and marks()[it.key] ~= nil
+    local on_ = mode ~= "values" and marks()[rowKey(it)] ~= nil
     local info = mode == "values" and (env.TV_info or {})[it.name] or nil
     local r = new("TextButton", {
         Size = UDim2.new(1, -6, 0, info and 54 or 40), BackgroundColor3 = C.card, BackgroundTransparency = on_ and 0.1 or 0.6,
@@ -925,7 +950,7 @@ local function itemRow(it, order)
             TextTruncate = Enum.TextTruncate.AtEnd, Text = line }, r)
     end
     -- стрелка изменения цены (как «Change in Value» на сайте)
-    local ch = not it.cat and (env.TV_changes or {})[it.name] or nil -- стрелки — только у «своего» предмета
+    local ch = (not it.cat or it.primary) and (env.TV_changes or {})[it.name] or nil -- стрелки — только у «своего» предмета
     if ch and ch ~= 0 then
         local up = ch > 0
         local arrow = new("Frame", { Size = UDim2.fromOffset(12, 12), AnchorPoint = Vector2.new(1, 0.5),
@@ -940,7 +965,7 @@ local function itemRow(it, order)
             Font = fontReg(), TextColor3 = up and C.good or C.bad, Text = (up and "+" or "-") .. env.TV_fmt(math.abs(ch)) }, r)
     end
     if mode == "values" then
-        on(r.Activated, function() if env.TV_showChart then env.TV_showChart(it, it.cat and { hist = {} } or nil) end end)
+        on(r.Activated, function() if env.TV_showChart then env.TV_showChart(it, (it.cat and not it.primary) and { hist = {} } or nil) end end)
     end
     if mode == "values" then return end
     local box = new("Frame", { Size = UDim2.fromOffset(20, 20), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, -2, 0.5, 0),
@@ -952,8 +977,8 @@ local function itemRow(it, order)
             BackgroundColor3 = rgb(255, 255, 255) }, box), 3)
     end
     on(r.Activated, function()
-        local m = marks()
-        if m[it.key] then m[it.key] = nil else m[it.key] = it.name end
+        local m, rk = marks(), rowKey(it)
+        if m[rk] then m[rk] = nil else m[rk] = it.name end
         saveSettings()
         renderList()
         renderSide()
@@ -1000,7 +1025,7 @@ local function sourceList()
     elseif curCat == "marked" then
         local lst = {}
         local m = marks()
-        for _, it in ipairs(itemList) do if m[it.key] then table.insert(lst, it) end end
+        for _, it in ipairs(itemList) do if m[rowKey(it)] then table.insert(lst, it) end end
         return lst
     elseif curCat == "all" then
         return itemList
@@ -1015,9 +1040,23 @@ renderList = function()
     for _, it in ipairs(sourceList()) do
         if q == "" or it.key:find(q, 1, true) then
             shown += 1
-            if shown > 150 then break end
             itemRow(it, shown)
         end
+    end
+    -- отметить / снять всю категорию одной кнопкой
+    if mode ~= "values" and q == "" and itemsByCat[curCat] and #itemsByCat[curCat] > 0 then
+        local m, all = marks(), true
+        for _, it in ipairs(itemsByCat[curCat]) do if not m[rowKey(it)] then all = false; break end end
+        local b = new("TextButton", { Size = UDim2.new(1, -6, 0, 32), BackgroundColor3 = accent(), BackgroundTransparency = all and 0.7 or 0.2,
+            Text = all and T("catUnmark") or T("catMark"), TextColor3 = all and C.text or C.bg, TextSize = 13, Font = fontBold(),
+            AutoButtonColor = false, LayoutOrder = -1 }, scroll)
+        corner(b, 8)
+        on(b.Activated, function()
+            for _, it in ipairs(itemsByCat[curCat]) do
+                if all then m[rowKey(it)] = nil else m[rowKey(it)] = it.name end
+            end
+            saveSettings(); renderList(); renderSide()
+        end)
     end
     if curCat == "inv" and q == "" and shown > 0 then
         local b = new("TextButton", { Size = UDim2.new(1, -6, 0, 30), BackgroundColor3 = C.card, BackgroundTransparency = 0.5, Text = T("invClear"),
@@ -1697,7 +1736,7 @@ local function scanInventory(tg, mine, theirs)
            and d.Parent and (d.Parent:FindFirstChildWhichIsA("UIGridLayout") or d.Parent:FindFirstChildWhichIsA("UIListLayout")) then
             local price, amount, name = readItem(d)
             if price and price > 0 then
-                table.insert(items, { frame = d, price = price, amount = amount, name = name, kept = S.keep and S.keep[norm(name)] ~= nil })
+                table.insert(items, { frame = d, price = price, amount = amount, name = name, kept = env.TV_markSet(S.keep)[norm(name)] ~= nil })
             end
         end
     end
@@ -2481,7 +2520,7 @@ local function findUnwanted(theirs)
     for _, d in ipairs(theirs:GetDescendants()) do
         -- только то, что видно: в окне трейда остаются скрытые ячейки от прошлого трейда
         if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
-            local hit = S.blacklist[norm(d.Text)]
+            local hit = env.TV_markSet(S.blacklist)[norm(d.Text)]
             if hit then return hit end
         end
     end
@@ -2493,7 +2532,7 @@ function auto.allUnwanted(theirs)
     local list, seen = {}, {}
     for _, d in ipairs(theirs:GetDescendants()) do
         if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
-            local hit = S.blacklist[norm(d.Text)]
+            local hit = env.TV_markSet(S.blacklist)[norm(d.Text)]
             if hit and not seen[hit] then seen[hit] = true; table.insert(list, hit) end
         end
     end
@@ -2785,17 +2824,17 @@ function auto.handleOrders(theirs)
     local matched, unsure = {}, false
     auto.ordProfit, auto.ordProfitName = nil, nil
     for _, o in ipairs(S.orders or {}) do
-        local m = auto.orderMatches(o, their)
-        if m == true and (o.profit or 0) > 0 then
-            -- своя прибыль за этот предмет: автооффер наберёт с этим процентом (самый большой из подходящих)
-            if not auto.ordProfit or o.profit > auto.ordProfit then auto.ordProfit, auto.ordProfitName = o.profit, o.name end
-            m = false
-        elseif m and (o.profit or 0) > 0 then
-            unsure, m = true, false
+        -- старая «своя прибыль за предмет» — теперь это обычный вариант заявки
+        if (o.profit or 0) > 0 then
+            o.offers = o.offers or {}
+            table.insert(o.offers, 1, { on = true, profit = o.profit })
+            o.profit = nil
+            saveSettings()
         end
+        local m = auto.orderMatches(o, their)
         if m then
             local en = {}
-            for i, v in ipairs(o.offers or {}) do if v.on and #(v.items or {}) > 0 then table.insert(en, i) end end
+            for i, v in ipairs(o.offers or {}) do if v.on and (#(v.items or {}) > 0 or (v.profit or 0) > 0) then table.insert(en, i) end end
             if #en > 0 then
                 if m == true then table.insert(matched, { o = o, en = en }) else unsure = true end
             end
@@ -2839,12 +2878,17 @@ function auto.handleOrders(theirs)
     end
     table.sort(sigParts)
     local sig = table.concat(sigParts, "|")
+    -- выпал вариант «% прибыли»: автооффер наберёт с этим процентом (самый большой из выпавших)
+    for _, m in ipairs(matched) do
+        local pf = m.o.offers[m.idx].profit
+        if pf and pf > 0 and (not auto.ordProfit or pf > auto.ordProfit) then auto.ordProfit, auto.ordProfitName = pf, m.o.name end
+    end
     if sig == st.sig then return end
     st.sig = sig
     -- складываем варианты всех заявок; в трейде 4 ячейки — больше 4 разных предметов: оставляем 4 самых дорогих
     local byKey, names = {}, {}
     for _, m in ipairs(matched) do
-        for _, it in ipairs(m.o.offers[m.idx].items) do
+        for _, it in ipairs(m.o.offers[m.idx].items or {}) do
             local gk = auto.gameKey(it.name, it.key)
             if not valueMap[gk] then gk = it.key end
             local e = byKey[gk]
@@ -2863,6 +2907,11 @@ function auto.handleOrders(theirs)
     for _, e in pairs(byKey) do table.insert(items, e) end
     table.sort(items, function(a, b) return a.price * a.count > b.price * b.count end)
     while #items > 4 do table.remove(items) end
+    if #items == 0 then
+        -- выпали только варианты «% прибыли»: класть нечего, набирает автооффер
+        if auto.partnerReq and auto.partnerReq.kind == "order" then auto.partnerReq = nil end
+        return
+    end
     auto.reqSeq = (auto.reqSeq or 0) + 1
     auto.partnerReq = { partner = auto.partner, items = items, kind = "order", t = os.clock() + 1e6, id = auto.reqSeq,
         orderName = table.concat(names, " + ") }
@@ -3858,32 +3907,40 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         rTitle.Text = o.name
         rSub.Text = env.TV_fmt(orderValue(o))
         rPic.Image = env.TV_image and env.TV_image(o.name, function(a) if rPic.Parent then rPic.Image = a end end) or ""
-        -- своя прибыль за этот предмет (вместо вариантов): 0 = выкл
-        do
-            local card = new("Frame", { Size = UDim2.new(1, -6, 0, 54), BackgroundColor3 = C.card, BackgroundTransparency = (o.profit or 0) > 0 and 0.1 or 0.6,
-                LayoutOrder = 0 }, vars)
-            corner(card, 10)
-            pad(card, 10, 0)
-            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -130, 0, 22), Position = UDim2.fromOffset(0, 6), Text = T("ordProfit"),
-                TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Left }, card)
-            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -130, 0, 18), Position = UDim2.fromOffset(0, 28),
-                Text = (o.profit or 0) > 0 and T("ordProfitOn"):format(o.profit) or T("ordProfitOff"),
-                TextColor3 = C.muted, TextSize = 12, Font = Enum.Font.Gotham, TextXAlignment = Enum.TextXAlignment.Left,
-                TextTruncate = Enum.TextTruncate.AtEnd }, card)
-            local box = new("Frame", { Size = UDim2.fromOffset(118, 30), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, 0, 0.5, 0),
-                BackgroundColor3 = C.bg, BackgroundTransparency = 0.2 }, card)
-            corner(box, 9)
-            local minus = btn(box, "−", UDim2.fromOffset(32, 30), UDim2.fromOffset(0, 0))
-            local plus = btn(box, "+", UDim2.new(0, 32, 0, 30), UDim2.new(1, -32, 0, 0))
-            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -64, 1, 0), Position = UDim2.fromOffset(32, 0),
-                Text = (o.profit or 0) > 0 and ("+" .. o.profit .. "%") or "—", TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold }, box)
-            on(minus.Activated, function() o.profit = math.max(0, (o.profit or 0) - 5); if o.profit == 0 then o.profit = nil end; save(); renderSide(); renderRight() end)
-            on(plus.Activated, function() o.profit = math.min(500, (o.profit or 0) + 5); save(); renderSide(); renderRight() end)
-        end
-        if #(o.offers or {}) == 0 and not ((o.profit or 0) > 0) then
+        if #(o.offers or {}) == 0 then
             label(vars, { Size = UDim2.new(1, 0, 0, 30), Text = T("ordNoVars"), TextColor3 = C.muted, TextSize = 13, LayoutOrder = 1 })
         end
         for i, v in ipairs(o.offers or {}) do
+          if (v.profit or 0) > 0 then
+            -- вариант «% прибыли»
+            local card = new("Frame", { Size = UDim2.new(1, -6, 0, 54), BackgroundColor3 = C.card, BackgroundTransparency = v.on and 0.1 or 0.6,
+                LayoutOrder = i }, vars)
+            corner(card, 10)
+            pad(card, 10, 0)
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -220, 0, 22), Position = UDim2.fromOffset(0, 6), Text = T("ordProfitVar"):format(v.profit),
+                TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Left }, card)
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -220, 0, 18), Position = UDim2.fromOffset(0, 28), Text = T("ordProfitVarSub"),
+                TextColor3 = C.muted, TextSize = 12, Font = Enum.Font.Gotham, TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd }, card)
+            local box = new("Frame", { Size = UDim2.fromOffset(110, 30), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, -84, 0.5, 0),
+                BackgroundColor3 = C.bg, BackgroundTransparency = 0.2 }, card)
+            corner(box, 9)
+            local minus = btn(box, "−", UDim2.fromOffset(30, 30), UDim2.fromOffset(0, 0))
+            local plus = btn(box, "+", UDim2.fromOffset(30, 30), UDim2.new(1, -30, 0, 0))
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -60, 1, 0), Position = UDim2.fromOffset(30, 0), Text = "+" .. v.profit .. "%",
+                TextColor3 = C.text, TextSize = 13, Font = Enum.Font.GothamBold }, box)
+            on(minus.Activated, function() v.profit = math.max(5, v.profit - 5); save(); renderRight() end)
+            on(plus.Activated, function() v.profit = math.min(500, v.profit + 5); save(); renderRight() end)
+            local tg_, draw = makeToggle(card)
+            tg_.Position = UDim2.new(1, -36, 0.5, 0)
+            draw(v.on)
+            on(tg_.Activated, function() v.on = not v.on; save(); renderSide(); renderRight() end)
+            local del = btn(card, "", UDim2.fromOffset(28, 28), UDim2.new(1, -28, 0.5, -14))
+            for _, rot in ipairs({ 45, -45 }) do
+                corner(new("Frame", { BackgroundColor3 = C.muted, BorderSizePixel = 0, AnchorPoint = Vector2.new(0.5, 0.5),
+                    Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(12, 2), Rotation = rot }, del), 1)
+            end
+            on(del.Activated, function() table.remove(o.offers, i); save(); renderSide(); renderRight() end)
+          else
             local txt, sum = offerText(v)
             local card = new("Frame", { Size = UDim2.new(1, -6, 0, 54), BackgroundColor3 = C.card, BackgroundTransparency = v.on and 0.1 or 0.6,
                 LayoutOrder = i }, vars)
@@ -3907,7 +3964,16 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                     Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(12, 2), Rotation = rot }, del), 1)
             end
             on(del.Activated, function() table.remove(o.offers, i); save(); renderSide(); renderRight() end)
+          end
         end
+        -- добавить вариант «% прибыли» (по умолчанию +50%)
+        local addP = btn(vars, T("ordAddProfit"), UDim2.new(1, -6, 0, 34), UDim2.new())
+        addP.LayoutOrder = 9999
+        on(addP.Activated, function()
+            o.offers = o.offers or {}
+            table.insert(o.offers, { on = true, profit = 50 })
+            save(); renderSide(); renderRight()
+        end)
     end
 
     local function closePicker()
@@ -3940,7 +4006,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         for _, it in ipairs(source) do
             if it.price and (q == "" or it.key:find(q, 1, true)) then
                 shown += 1
-                if shown > 120 then break end
+                if shown > 3000 then break end
                 local n = draft[it.key] and draft[it.key].count or 0
                 local r = new("TextButton", { Size = UDim2.new(1, -6, 0, 40), BackgroundColor3 = C.card, BackgroundTransparency = n > 0 and 0.1 or 0.6,
                     Text = "", AutoButtonColor = false, LayoutOrder = shown }, pList)
@@ -4394,11 +4460,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     end
 
     -- ячейка предмета: лежит в сетке/списке и внутри ровно одно название предмета (ряд с несколькими — не ячейка)
-    local function isCell(d)
+    local function isCell(d, noSize)
         if not ((d:IsA("Frame") or d:IsA("ImageButton") or d:IsA("ImageLabel") or d:IsA("TextButton")) and d.Name ~= "TVPrice") then return false end
         local par = d.Parent
         if not (par and (par:IsA("ScrollingFrame") or par:FindFirstChildWhichIsA("UIGridLayout") or par:FindFirstChildWhichIsA("UIListLayout"))) then return false end
-        if d.AbsoluteSize.X < 40 or d.AbsoluteSize.Y < 40 then return false end
+        if not noSize and (d.AbsoluteSize.X < 40 or d.AbsoluteSize.Y < 40) then return false end
+        -- раздел («Хэллоуин» с одним предметом) — не ячейка: внутри него своя сетка/прокрутка
+        if d:FindFirstChildWhichIsA("UIGridLayout", true) or d:FindFirstChildWhichIsA("ScrollingFrame", true) then return false end
         local n = 0
         for _, l in ipairs(d:GetDescendants()) do
             if l:IsA("TextLabel") and l.Name ~= "TVPrice" and l.Text ~= "" and valueMap[norm(l.Text)] then
@@ -4427,16 +4495,46 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         end
                     end
                 end
-                local seen, got = {}, {}
+                -- профиль другого игрока выглядит так же — его не записываем
+                local others = {}
+                for _, pl in ipairs(Players:GetPlayers()) do
+                    if pl ~= Players.LocalPlayer then table.insert(others, pl.Name:lower()); table.insert(others, pl.DisplayName:lower()) end
+                end
+                -- все вкладки («Сезон 1», «Классический», «Праздник»), в том числе скрытые; по каждой сетке — сумма,
+                -- по одинаковым сеткам (у MM2 две раскладки окна) — максимум, чтобы не посчитать дважды
+                local best = {}
                 for _, r in ipairs(roots) do
-                    for _, d in ipairs(r:GetDescendants()) do
-                        if not got[d] and isCell(d) and env.TV_vis(d) then
-                            got[d] = true
-                            local price, amount, name = readItem(d)
-                            if price and price > 0 then table.insert(seen, { frame = d, price = price, amount = amount, name = name }) end
+                    local foreign = false
+                    for _, l in ipairs(r:GetDescendants()) do
+                        if l:IsA("TextLabel") and l.Text ~= "" and env.TV_vis(l) then
+                            local t = l.Text:lower()
+                            for _, nm in ipairs(others) do if #nm >= 3 and t:find(nm, 1, true) then foreign = true; break end end
+                        end
+                        if foreign then break end
+                    end
+                    if not foreign then
+                        local perGrid = {}
+                        for _, d in ipairs(r:GetDescendants()) do
+                            if isCell(d, true) then
+                                local price, amount, name = readItem(d)
+                                if price and price > 0 and name then
+                                    local g = perGrid[d.Parent] or {}
+                                    perGrid[d.Parent] = g
+                                    local k = norm(name)
+                                    g[k] = g[k] or { name = name, price = price, amount = 0 }
+                                    g[k].amount += amount or 1
+                                end
+                            end
+                        end
+                        for _, g in pairs(perGrid) do
+                            for k, e in pairs(g) do
+                                if not best[k] or e.amount > best[k].amount then best[k] = e end
+                            end
                         end
                     end
                 end
+                local seen = {}
+                for _, e in pairs(best) do table.insert(seen, { price = e.price, amount = e.amount, name = e.name }) end
                 if #seen > 0 then env.TV_invSnapshot(seen, nil) end
             end)
         end
@@ -4450,10 +4548,11 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 for _, g in ipairs(PlayerGui:GetChildren()) do
                     if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
                         for _, d in ipairs(g:GetDescendants()) do
-                            if d:IsA("GuiObject") and d.Name ~= "TVPrice" and (d:FindFirstChild("TVPrice") or isCell(d)) then
+                            local cell = d:IsA("GuiObject") and d.Name ~= "TVPrice" and isCell(d)
+                            if cell or (d:IsA("GuiObject") and d:FindFirstChild("TVPrice")) then
                                 local badge = d:FindFirstChild("TVPrice")
                                 local price, _, iname = nil, nil, nil
-                                if S.enabled and env.TV_vis(d) then price, _, iname = readItem(d) end
+                                if cell and S.enabled and env.TV_vis(d) then price, _, iname = readItem(d) end
                                 if iname and (env.TV_ambig or {})[norm(iname)] then price = nil end -- несколько предметов с этим названием — не гадаем
                                 if price and price > 0 then
                                     if not badge then

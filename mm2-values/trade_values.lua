@@ -4445,11 +4445,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     end
                                     local txt = env.TV_fmt(price)
                                     if badge.Text ~= txt then badge.Text = txt end
-                                    -- шрифт по размеру ячейки: крупно и читаемо
-                                    local ts = math.floor(math.clamp(d.AbsoluteSize.Y * 0.14, 18, 34))
-                                    if badge.TextSize ~= ts then
-                                        badge.TextSize, badge.Size = ts, UDim2.fromOffset(0, ts + 8)
-                                        badge.Position = UDim2.fromOffset(math.floor(ts / 3), math.floor(ts / 3))
+                                    -- размер — доля самой ячейки (у окон MM2 свой масштаб, пиксели там мелкие), текст заполняет плашку
+                                    if not badge.TextScaled then
+                                        badge.AutomaticSize = Enum.AutomaticSize.None
+                                        badge.Size, badge.Position = UDim2.fromScale(0.5, 0.18), UDim2.fromScale(0.03, 0.03)
+                                        badge.TextScaled = true
+                                        local pd = badge:FindFirstChildOfClass("UIPadding")
+                                        if pd then pd.PaddingLeft, pd.PaddingRight = UDim.new(0.06, 0), UDim.new(0.06, 0) end
                                     end
                                     badge.TextColor3, badge.Visible = accent(), true
                                 elseif badge then

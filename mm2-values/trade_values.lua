@@ -4037,6 +4037,12 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     local canvas = new("Frame", { Size = UDim2.fromOffset(CW, CH), Position = UDim2.fromOffset(0, 80), BackgroundColor3 = C.card,
         BackgroundTransparency = 0.4, ClipsDescendants = true, ZIndex = 21 }, win)
     corner(canvas, 10)
+    -- список предметов под графиком (для статистики инвентаря)
+    local LISTH = 160
+    local listF = new("ScrollingFrame", { Size = UDim2.fromOffset(CW, LISTH), Position = UDim2.fromOffset(0, 80 + CH + 8), BackgroundTransparency = 1,
+        BorderSizePixel = 0, ScrollBarThickness = 3, AutomaticCanvasSize = Enum.AutomaticSize.Y, CanvasSize = UDim2.new(), Visible = false, ZIndex = 21 }, win)
+    list(listF, Enum.FillDirection.Vertical, 4)
+    themed(function() listF.ScrollBarImageColor3 = accent() end)
     -- период (1Д / 7Д / 30Д / Всё) и масштаб по цене (− / +); колесо мыши над графиком — тоже период
     local RANGES = { { "1Д", 86400 }, { "7Д", 7 * 86400 }, { "30Д", 30 * 86400 }, { "Всё", 0 } }
     local vZoom = 1
@@ -4225,6 +4231,25 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         corner(badge, 5)
         pad(badge, 5, 0)
 
+        -- предметы инвентаря: картинка, название xN, цена за штуку и всего
+        for _, c in ipairs(listF:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
+        local items = custom and custom.items
+        listF.Visible = items ~= nil and #items > 0
+        win.Size = UDim2.fromOffset(CW + 32, CH + 164 + (listF.Visible and (LISTH + 8) or 0))
+        for i, e in ipairs(items or {}) do
+            local r = new("Frame", { Size = UDim2.new(1, -6, 0, 34), BackgroundColor3 = C.card, BackgroundTransparency = 0.4, LayoutOrder = i, ZIndex = 21 }, listF)
+            corner(r, 8)
+            local pic = new("ImageLabel", { Size = UDim2.fromOffset(28, 28), Position = UDim2.fromOffset(4, 3), BackgroundTransparency = 1,
+                ScaleType = Enum.ScaleType.Fit, Image = "", ZIndex = 22 }, r)
+            pic.Image = env.TV_image and env.TV_image(e.name, function(a) if pic.Parent then pic.Image = a end end) or ""
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -220, 1, 0), Position = UDim2.fromOffset(40, 0),
+                Text = e.name .. (e.count > 1 and ("  ×" .. e.count) or ""), TextColor3 = C.text, TextSize = 13, Font = fontBold(),
+                TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 22 }, r)
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(170, 34), AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, -10, 0, 0),
+                Text = (e.count > 1 and (env.TV_fmt(e.price) .. " × " .. e.count .. " = ") or "") .. "<b>" .. env.TV_fmt(e.total) .. "</b>",
+                RichText = true, TextColor3 = C.muted, TextSize = 12, Font = Enum.Font.RobotoMono, TextXAlignment = Enum.TextXAlignment.Right, ZIndex = 22 }, r)
+        end
+
         cTitle.Text = custom and custom.title or T("chartTitle"):format(it.name, env.TV_fmt(it.price or cur))
         cSub.Text = T("chartSince"):format(delta(cur - first, first), dateStr(hist[1][1], "DD.MM.YYYY"), points)
         cNote.Text = custom and custom.note or (points <= 2 and T("chartFew"):format(dateStr(hist[1][1])) or "")
@@ -4236,7 +4261,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         if not draw(it, custom) then return end
         win.Visible = true
         local abs = ui.AbsoluteSize
-        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / (CH + 164))
+        wscale.Scale = math.min(sf(), (abs.X - 24) / (CW + 32), (abs.Y - 24) / win.Size.Y.Offset)
     end
     local function redraw() if last then draw(last[1], last[2]) end end
     for i, r in ipairs(RANGES) do
@@ -4292,6 +4317,18 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         if changed then S.myInv = new end
         -- стоимость оружия: пишем, когда мой оффер пуст (иначе часть предметов «в трейде»)
         if not isPets and offerEmpty and total > 0 then
+            -- что именно лежит в инвентаре (для списка в статистике): название и количество
+            local items, sig = {}, {}
+            for _, it in ipairs(seen) do
+                local k = norm(it.name)
+                local e = items[k] or { it.name, 0 }
+                e[2] += it.amount or 1
+                items[k] = e
+            end
+            for k, e in pairs(items) do table.insert(sig, k .. "=" .. e[2]) end
+            table.sort(sig)
+            sig = table.concat(sig, ",")
+            if sig ~= S.invItemsSig then S.invItems, S.invItemsSig, changed = items, sig, true end
             S.invHist = S.invHist or {}
             local h, now = S.invHist, os.time()
             local last = h[#h]
@@ -4317,8 +4354,15 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     on(X.statsOpen.Activated, function()
         local h = S.invHist or {}
         if #h == 0 then notify(T("invEmpty")); return end
+        -- список предметов: по сегодняшним ценам, самые дорогие сверху
+        local items = {}
+        for k, e in pairs(S.invItems or {}) do
+            local price = valueMap[k] or 0
+            table.insert(items, { name = e[1], count = e[2], price = price, total = price * e[2] })
+        end
+        table.sort(items, function(x, y) return x.total > y.total end)
         env.TV_showChart(nil, { hist = h, title = T("invTitle"):format(env.TV_fmt(h[#h][2])),
-            note = T("invNote"):format(change(h, 86400), change(h, 7 * 86400), #h) })
+            note = T("invNote"):format(change(h, 86400), change(h, 7 * 86400), #h), items = items })
     end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 

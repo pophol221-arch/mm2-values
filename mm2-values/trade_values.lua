@@ -4445,6 +4445,12 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     end
                                     local txt = env.TV_fmt(price)
                                     if badge.Text ~= txt then badge.Text = txt end
+                                    -- шрифт по размеру ячейки: крупно и читаемо
+                                    local ts = math.floor(math.clamp(d.AbsoluteSize.Y * 0.14, 18, 34))
+                                    if badge.TextSize ~= ts then
+                                        badge.TextSize, badge.Size = ts, UDim2.fromOffset(0, ts + 8)
+                                        badge.Position = UDim2.fromOffset(math.floor(ts / 3), math.floor(ts / 3))
+                                    end
                                     badge.TextColor3, badge.Visible = accent(), true
                                 elseif badge then
                                     badge.Visible = false

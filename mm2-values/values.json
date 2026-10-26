@@ -1394,11 +1394,7 @@
    "Skate Set",
    "Pals Set",
    "Colored Seer Set",
-   "Wrapping Paper Set",
-   "Small Set (107)",
-   "Small Set (103)",
-   "Full Chroma Set",
-   "Chroma Weapon Set"
+   "Wrapping Paper Set"
   ],
   "uncommons": [
    "Bones",
@@ -1728,7 +1724,6 @@
   "Chroma Treat": -75,
   "Chroma Vampire's Gun": -500,
   "Chroma Watergun": -50,
-  "Chroma Weapon Set": -10,
   "Chromatic (Knife)": -1,
   "Clockwork": -2,
   "Coal (Knife)": 3,
@@ -1796,7 +1791,6 @@
   "Frozen Set": -2,
   "Full Bringer Set": -1,
   "Full Chroma Ember Set": -200,
-  "Full Chroma Set": -15,
   "Full Colored Seer Set": -2,
   "Full Elderwood Set": -6,
   "Full Elite Set": -2,
@@ -1966,8 +1960,6 @@
   "Slime (Knife)": -1,
   "Slime Set": -1,
   "Slimy": 2,
-  "Small Set (103)": -5,
-  "Small Set (107)": 2,
   "Snakebite (Knife)": -2,
   "Snakebite Set": -2,
   "Snow Dagger": -10,
@@ -3982,16 +3974,6 @@
     2300
    ]
   ],
-  "Chroma Weapon Set": [
-   [
-    1791930360,
-    545
-   ],
-   [
-    1792242458,
-    535
-   ]
-  ],
   "Chromatic": [
    [
     1792242458,
@@ -4990,16 +4972,6 @@
    [
     1792959953,
     23700
-   ]
-  ],
-  "Full Chroma Set": [
-   [
-    1791930360,
-    570
-   ],
-   [
-    1792242458,
-    555
    ]
   ],
   "Full Colored Seer Set": [
@@ -7140,26 +7112,6 @@
     20
    ]
   ],
-  "Small Set (103)": [
-   [
-    1791930360,
-    1240
-   ],
-   [
-    1792242458,
-    1235
-   ]
-  ],
-  "Small Set (107)": [
-   [
-    1791930360,
-    1268
-   ],
-   [
-    1792242458,
-    1270
-   ]
-  ],
   "Snakebite (Gun)": [
    [
     1792242458,
@@ -9253,11 +9205,6 @@
    "s": "Stable",
    "y": 5
   },
-  "Chroma Weapon Set": {
-   "d": 1,
-   "s": "Stable",
-   "y": 2
-  },
   "Chromatic (Knife)": {
    "d": 2,
    "s": "Stable",
@@ -9644,11 +9591,6 @@
    "r": "23,500 - 26,800",
    "s": "Fluctuating",
    "y": 7
-  },
-  "Full Chroma Set": {
-   "d": 1,
-   "s": "Underpaid For",
-   "y": 2
   },
   "Full Colored Seer Set": {
    "d": 1,
@@ -10707,18 +10649,6 @@
    "s": "Stable",
    "y": 4
   },
-  "Small Set (103)": {
-   "d": 4,
-   "r": "1,185 - 1,285",
-   "s": "Fluctuating",
-   "y": 4
-  },
-  "Small Set (107)": {
-   "d": 4,
-   "r": "1,220 - 1,320",
-   "s": "Fluctuating",
-   "y": 4
-  },
   "Snakebite (Gun)": {
    "d": 1,
    "s": "Stable",
@@ -11322,7 +11252,7 @@
   "Badger": 1,
   "Bat": 125,
   "Bat Set": 158,
-  "Bats": 2,
+  "Bats": 0,
   "Bats (2020)": 3,
   "Bats (Gun)": 1,
   "Bats (Knife)": 240,
@@ -11366,13 +11296,13 @@
   "C. Vampire's Gun": 24500,
   "Candleflame": 33,
   "Candy": 80,
-  "Candy Corn": 12,
+  "Candy Corn": 0,
   "Candy Corn (2019)": 12,
   "Candy Set": 112,
   "Candy Swirl (Gun)": 2,
   "Candy Swirl (Knife)": 1,
   "Candy Swirl Set": 3,
-  "CandyCorn": 25,
+  "CandyCorn": 0,
   "CandyCorn (2017)": 25,
   "Cane": 525,
   "Cane (Knife)": 525,
@@ -11450,7 +11380,6 @@
   "Chroma Treat": 1775,
   "Chroma Vampire's Gun": 24500,
   "Chroma Watergun": 2300,
-  "Chroma Weapon Set": 535,
   "Chromatic": 1,
   "Chromatic (Knife)": 1,
   "Clockwork": 10,
@@ -11491,7 +11420,7 @@
   "Elf (2019)": 625,
   "Elf (Knife)": 15,
   "Emberbow": 1700,
-  "Emberknife": 5,
+  "Emberknife": 0,
   "Emberscythe": 1450,
   "Emberscythe Set": 3150,
   "Embersickle": 100,
@@ -11531,7 +11460,6 @@
   "Frozen Set": 4,
   "Full Bringer Set": 190,
   "Full Chroma Ember Set": 23700,
-  "Full Chroma Set": 555,
   "Full Colored Seer Set": 44,
   "Full Elderwood Set": 104,
   "Full Elite Set": 6,
@@ -11739,7 +11667,7 @@
   "Skeleton Key": 5,
   "Sketchy": 4,
   "Skool": 8,
-  "Skulls": 4,
+  "Skulls": 0,
   "Skully": 15,
   "Slashed": 1,
   "Slasher": 15,
@@ -11749,8 +11677,6 @@
   "Slime (Knife)": 1,
   "Slime Set": 2,
   "Slimy": 20,
-  "Small Set (103)": 1235,
-  "Small Set (107)": 1270,
   "Snakebite (Gun)": 1,
   "Snakebite (Knife)": 3,
   "Snakebite Set": 4,
@@ -11848,7 +11774,7 @@
   "Webs": 3,
   "Winter's Edge": 5,
   "Witched": 3,
-  "Wolf": 1,
+  "Wolf": 0,
   "Wraith": 5,
   "Wraith (Knife)": 5,
   "Wrap": 12,

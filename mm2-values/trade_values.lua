@@ -4410,6 +4410,40 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         end
     end)
 
+    -- цены прямо на ячейках предметов в экранах MM2 (профиль игрока, инвентарь, «Оружие»): плашка в углу ячейки
+    task.spawn(function()
+        while ui.Parent do
+            task.wait(1.5)
+            pcall(function()
+                for _, g in ipairs(PlayerGui:GetChildren()) do
+                    if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
+                        for _, d in ipairs(g:GetDescendants()) do
+                            if (d:IsA("Frame") or d:IsA("ImageButton") or d:IsA("ImageLabel") or d:IsA("TextButton"))
+                               and d.Name ~= "TVPrice" and d.Parent and d.Parent:FindFirstChildWhichIsA("UIGridLayout") and d.AbsoluteSize.X >= 40 then
+                                local badge = d:FindFirstChild("TVPrice")
+                                local price = S.enabled and env.TV_vis(d) and readItem(d) or nil
+                                if price and price > 0 then
+                                    if not badge then
+                                        badge = new("TextLabel", { Name = "TVPrice", AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18),
+                                            Position = UDim2.fromOffset(4, 4), BackgroundColor3 = C.bg, BackgroundTransparency = 0.15,
+                                            TextColor3 = accent(), TextSize = 13, Font = Enum.Font.GothamBold, ZIndex = (d.ZIndex or 1) + 10, Text = "" }, d)
+                                        corner(badge, 6)
+                                        pad(badge, 5, 0)
+                                    end
+                                    local txt = env.TV_fmt(price)
+                                    if badge.Text ~= txt then badge.Text = txt end
+                                    badge.TextColor3, badge.Visible = accent(), true
+                                elseif badge then
+                                    badge.Visible = false
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end)
+
     local function change(h, secs)
         local now, cur = os.time(), h[#h][2]
         local base = h[1][2]

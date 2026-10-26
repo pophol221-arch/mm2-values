@@ -4316,8 +4316,8 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         if not changed then for k in pairs(old) do if not new[k] then changed = true; break end end end
         if changed then S.myInv = new end
         -- стоимость оружия: пишем, когда мой оффер пуст (иначе часть предметов «в трейде»)
-        if not isPets and offerEmpty and total > 0 then
-            -- что именно лежит в инвентаре (для списка в статистике): название и количество
+        if not isPets then
+            -- что именно лежит в инвентаре (для списка в статистике): название и количество, вместе с тем, что уже в моём оффере
             local items, sig = {}, {}
             for _, it in ipairs(seen) do
                 local k = norm(it.name)
@@ -4325,10 +4325,17 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 e[2] += it.amount or 1
                 items[k] = e
             end
+            for k, e in pairs(auto.readOffer(mine)) do
+                local x = items[k] or { e.name, 0 }
+                x[2] += e.count
+                items[k] = x
+            end
             for k, e in pairs(items) do table.insert(sig, k .. "=" .. e[2]) end
             table.sort(sig)
             sig = table.concat(sig, ",")
             if sig ~= S.invItemsSig then S.invItems, S.invItemsSig, changed = items, sig, true end
+        end
+        if not isPets and offerEmpty and total > 0 then
             S.invHist = S.invHist or {}
             local h, now = S.invHist, os.time()
             local last = h[#h]
@@ -4356,7 +4363,12 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         if #h == 0 then notify(T("invEmpty")); return end
         -- список предметов: по сегодняшним ценам, самые дорогие сверху
         local items = {}
-        for k, e in pairs(S.invItems or {}) do
+        local src = S.invItems
+        if not src or next(src) == nil then
+            src = {}
+            for k, nm in pairs(S.myInv or {}) do src[k] = { nm, 1 } end
+        end
+        for k, e in pairs(src) do
             local price = valueMap[k] or 0
             table.insert(items, { name = e[1], count = e[2], price = price, total = price * e[2] })
         end

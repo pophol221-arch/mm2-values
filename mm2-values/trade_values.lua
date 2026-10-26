@@ -168,6 +168,24 @@ local function loadValues()
         if tonumber(v) and not SKIP[k] and tonumber(v) < 1000000 then map[norm(k)] = tonumber(v); n += 1 end
     end
     valueMap, valueCount = map, n
+    -- одно игровое название — несколько разных предметов с разной ценой («CandyCorn» 2017 и «Candy Corn» 2019/2026,
+    -- godly и vintage «Laser»): по названию цену не угадать
+    local ambig, firstV = {}, {}
+    for k, v in pairs(res.values or res) do
+        local nk, nv = norm(k), tonumber(v)
+        if nv and not k:find(" Set", 1, true) then -- сеты в инвентаре не лежат («Sun Set» ≠ «Sunset»)
+            if firstV[nk] and firstV[nk] ~= nv then ambig[nk] = true end
+            firstV[nk] = firstV[nk] or nv
+        end
+    end
+    for _, names in pairs(res.cat_values or {}) do
+        for name, cv in pairs(names) do
+            for _, key in ipairs(name:find(" Set", 1, true) and {} or { norm(name), norm((name:gsub("%s*%b()$", ""))) }) do
+                if map[key] and tonumber(cv) ~= map[key] then ambig[key] = true end
+            end
+        end
+    end
+    env.TV_ambig = ambig
     local arr = {}
     for k, v in pairs(res.values or res) do
         if map[norm(k)] and not SKIP[k] then table.insert(arr, { name = k, price = tonumber(v), key = norm(k) }) end
@@ -4434,7 +4452,9 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         for _, d in ipairs(g:GetDescendants()) do
                             if d:IsA("GuiObject") and d.Name ~= "TVPrice" and (d:FindFirstChild("TVPrice") or isCell(d)) then
                                 local badge = d:FindFirstChild("TVPrice")
-                                local price = S.enabled and env.TV_vis(d) and readItem(d) or nil
+                                local price, _, iname = nil, nil, nil
+                                if S.enabled and env.TV_vis(d) then price, _, iname = readItem(d) end
+                                if iname and (env.TV_ambig or {})[norm(iname)] then price = nil end -- несколько предметов с этим названием — не гадаем
                                 if price and price > 0 then
                                     if not badge then
                                         badge = new("TextLabel", { Name = "TVPrice", AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18),

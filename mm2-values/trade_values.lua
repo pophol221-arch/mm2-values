@@ -2107,9 +2107,11 @@ local function clickCell(cell, tg, method)
         local ins = GuiService:GetGuiInset()
         for _, dy in ipairs({ 0, ins.Y, -ins.Y }) do -- с отступом верхней панели и без: куда бы ни попал щелчок
             local okP, under = pcall(function() return PlayerGui:GetGuiObjectsAtPosition(p0.X + sz0.X / 2, p0.Y + sz0.Y / 2 + dy) end)
-            for _, o in ipairs(okP and under or {}) do
-                local b = o:IsA("GuiButton") and o or o:FindFirstAncestorWhichIsA("GuiButton")
-                if b and env.TV_forbidden(b) then return false end
+            -- только то, во что реально попадёт щелчок (самый верхний), а не панели позади окна трейда
+            local top = okP and under and under[1]
+            if top and not top:IsDescendantOf(ui) then
+                local b = top:IsA("GuiButton") and top or top:FindFirstAncestorWhichIsA("GuiButton")
+                if b and b ~= btn and env.TV_forbidden(b) then return false end
             end
         end
         return (pcall(function()
@@ -2634,8 +2636,13 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     auto.accTries += 1
     -- если кнопка после нажатия не изменилась, следующая попытка — другим способом
     local ACC_WAYS = { 1, 3, 5, 2, 4 }
-    local method = ACC_WAYS[(auto.accTries - 1) % #ACC_WAYS + 1]
-    local used = clickCell(btn, tg, method) or clickCell(btn, tg)
+    -- способ по кругу; не сработал — следующий (а не снова первый: на «Вы уверены?» он не помогает)
+    local used
+    for k = 0, #ACC_WAYS - 1 do
+        local method = ACC_WAYS[(auto.accTries - 1 + k) % #ACC_WAYS + 1]
+        used = clickCell(btn, tg, method)
+        if used then break end
+    end
     if auto.accTries >= 9 then auto.accDone, auto.accDoneAt = true, os.clock() end -- не долбим кнопку бесконечно
     notify(T("accepting"):format(profit == math.huge and 999 or math.floor(profit + 0.5), used or 0))
     auto.setAcc("click", used or 0, auto.accTries)

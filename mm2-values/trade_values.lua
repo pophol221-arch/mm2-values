@@ -2095,10 +2095,13 @@ local function clickCell(cell, tg, method)
         if not env.TV_vis(btn) then return false end
         local p0, sz0 = btn.AbsolutePosition, btn.AbsoluteSize
         -- что окажется под курсором: если там переключатель запросов и т.п. — мышью не жмём
-        local okP, under = pcall(function() return PlayerGui:GetGuiObjectsAtPosition(p0.X + sz0.X / 2, p0.Y + sz0.Y / 2) end)
-        for _, o in ipairs(okP and under or {}) do
-            local b = o:IsA("GuiButton") and o or o:FindFirstAncestorWhichIsA("GuiButton")
-            if b and env.TV_forbidden(b) then return false end
+        local ins = GuiService:GetGuiInset()
+        for _, dy in ipairs({ 0, ins.Y, -ins.Y }) do -- с отступом верхней панели и без: куда бы ни попал щелчок
+            local okP, under = pcall(function() return PlayerGui:GetGuiObjectsAtPosition(p0.X + sz0.X / 2, p0.Y + sz0.Y / 2 + dy) end)
+            for _, o in ipairs(okP and under or {}) do
+                local b = o:IsA("GuiButton") and o or o:FindFirstAncestorWhichIsA("GuiButton")
+                if b and env.TV_forbidden(b) then return false end
+            end
         end
         return (pcall(function()
             local vim = game:GetService("VirtualInputManager")
@@ -2114,7 +2117,9 @@ local function clickCell(cell, tg, method)
     local function viaAll()
         if not getconnections then return false end
         local targets = { btn }
-        for _, d in ipairs(btn:GetDescendants()) do if d:IsA("GuiButton") then table.insert(targets, d) end end
+        for _, d in ipairs(btn:GetDescendants()) do
+            if d:IsA("GuiButton") and not env.TV_forbidden(d) then table.insert(targets, d) end
+        end
         local fired = false
         for _, b in ipairs(targets) do
             for _, sigName in ipairs({ "MouseButton1Click", "Activated", "MouseButton1Down", "MouseButton1Up", "TouchTap" }) do
@@ -2129,14 +2134,15 @@ local function clickCell(cell, tg, method)
         end
         return fired
     end
-    -- 5) «сырое» нажатие: обработчики InputBegan/InputEnded кнопки и её родителей (мышь и палец)
+    -- 5) «сырое» нажатие: обработчики InputBegan/InputEnded ТОЛЬКО самой кнопки (не родителей: родительские блоки
+    --    вроде верхней панели могут сами решать, куда «нажали», — так задевался переключатель «Запросы на обмен»)
     local function viaInput()
         if not getconnections then return false end
         local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
         local pos = Vector3.new(p.X + sz.X / 2, p.Y + sz.Y / 2, 0)
         local fired = false
         local o = btn
-        for _ = 1, 3 do
+        for _ = 1, 1 do
             if not (o and o:IsA("GuiObject")) then break end
             for _, kind in ipairs({ Enum.UserInputType.MouseButton1, Enum.UserInputType.Touch }) do
                 for _, ev in ipairs({ { "InputBegan", Enum.UserInputState.Begin }, { "InputEnded", Enum.UserInputState.End } }) do
@@ -2276,7 +2282,7 @@ function auto.findBadge()
                 -- или кнопка рядом (бейдж лежит поверх «+»)
                 if not btn then
                     local c = t.AbsolutePosition + t.AbsoluteSize / 2
-                    local best, bestD = nil, 70 -- «+» под «!» совсем рядом; дальше — уже другие кнопки
+                    local best, bestD = nil, 45 -- «+» под «!» вплотную; дальше — уже другие кнопки
                     local scope = t.Parent and t.Parent.Parent or t.Parent
                     for _, b in ipairs(scope and scope:GetDescendants() or {}) do
                         if b:IsA("GuiButton") and isShown(b) and not env.TV_forbidden(b) then
@@ -2286,7 +2292,7 @@ function auto.findBadge()
                     end
                     btn = best
                 end
-                if btn then
+                if btn and not env.TV_forbidden(btn) then
                     local g = btn:FindFirstAncestorWhichIsA("ScreenGui")
                     return { btn, g }
                 end

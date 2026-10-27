@@ -1532,6 +1532,28 @@ env.TV_rarityCat = function(lbl)
     if h >= 35 and h < 75 then return "vintages" end
     return nil
 end
+-- ячейка предмета, в которой лежит надпись (поднимаемся до элемента сетки / оффера)
+env.TV_cellOf = function(lbl)
+    local o = lbl
+    for _ = 1, 6 do
+        local par = o.Parent
+        if not par or par:IsA("ScreenGui") then break end
+        if par.Name == "Container" or par:FindFirstChildWhichIsA("UIGridLayout") or par:FindFirstChildWhichIsA("UIListLayout") or par:IsA("ScrollingFrame") then return o end
+        o = par
+    end
+    return lbl.Parent or lbl
+end
+-- категория предмета: по картинке из базы MM2 (точно), иначе по цвету полоски
+env.TV_cellCat = function(cell, lbl)
+    for _, im in ipairs(cell:GetDescendants()) do
+        if (im:IsA("ImageLabel") or im:IsA("ImageButton")) and im.Image ~= "" then
+            local id = env.TV_imgId(im.Image)
+            local c = id and (env.TV_imgCat or {})[id]
+            if c then return c, true end
+        end
+    end
+    return lbl and env.TV_rarityCat(lbl) or nil, false
+end
 -- одно название — разные предметы: значение по категории (если её удалось узнать по цвету)
 env.TV_catPrice = function(key, name, cat)
     local cv = cat and (env.TV_catVals or {})[cat]
@@ -1564,7 +1586,7 @@ local function readItem(frame)
                 end
                 if (env.TV_ambig or {})[k] then
                     -- «Waves» годли (240) и «Waves» редкий (x2 T1 Rares): смотрим цвет полоски
-                    local cat = env.TV_rarityCat(d)
+                    local cat = env.TV_cellCat(frame, d)
                     if cat and cat ~= (env.TV_primCat or {})[k] then
                         local cp = env.TV_catPrice(k, d.Text, cat)
                         if cp then price = cp end
@@ -1584,7 +1606,7 @@ end
 -- отмечен ли предмет (с учётом категории, если её видно по цвету)
 env.TV_isMarked = function(tbl, lbl)
     local k = norm(lbl.Text)
-    local cat = (env.TV_ambig or {})[k] and env.TV_rarityCat(lbl) or nil
+    local cat = (env.TV_ambig or {})[k] and env.TV_cellCat(env.TV_cellOf(lbl), lbl) or nil
     for rk, name in pairs(tbl or {}) do
         local c, key = rk:match("^(%a+):(.+)$")
         if not key then key, c = rk, (env.TV_primCat or {})[rk] end
@@ -1684,7 +1706,37 @@ end
 task.spawn(function()
     pcall(function()
         local rs = game:GetService("ReplicatedStorage")
-        local mod = rs:FindFirstChild("Database") and rs.Database:FindFirstChild("Sync") and rs.Database.Sync:FindFirstChild("Item")
+        local sync = rs:FindFirstChild("Database") and rs.Database:FindFirstChild("Sync")
+        -- картинка -> категория по базе MM2: редкость оружия, питомцы — из своего модуля
+        local RAR = { godly = "godlies", ancient = "ancients", legendary = "legendaries", rare = "rares", uncommon = "uncommons",
+            common = "commons", vintage = "vintages", unique = "uniques", classic = "commons" }
+        env.TV_imgCat = env.TV_imgCat or {}
+        for _, m in ipairs(sync and sync:GetChildren() or {}) do
+            if m:IsA("ModuleScript") then
+                local isPetMod = m.Name:lower():find("pet") ~= nil
+                pcall(function()
+                    local function visit(t, depth)
+                        for _, v in pairs(t) do
+                            if type(v) == "table" then
+                                if v.Image ~= nil then
+                                    local cid = env.TV_imgId(tostring(v.Image))
+                                    if cid then
+                                        local chroma = v.Chroma or v.IsChroma or v.chroma
+                                        local r = RAR[tostring(v.Rarity or ""):lower()]
+                                        local cat = isPetMod and "pets" or (chroma and "chromas") or r
+                                        if cat and not env.TV_imgCat[cid] then env.TV_imgCat[cid] = cat end
+                                    end
+                                elseif depth < 2 then
+                                    visit(v, depth + 1)
+                                end
+                            end
+                        end
+                    end
+                    visit(require(m), 0)
+                end)
+            end
+        end
+        local mod = sync and sync:FindFirstChild("Item")
         if not mod then return end
         env.TV_dbCount = 0
         local flat = {}
@@ -4917,7 +4969,11 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                 local badge = d:FindFirstChild("TVPrice")
                                 local price, _, iname = nil, nil, nil
                                 if cell and S.enabled and env.TV_vis(d) then price, _, iname = readItem(d) end
-                                if iname and (env.TV_ambig or {})[norm(iname)] then price = nil end -- несколько предметов с этим названием — не гадаем
+                                if iname and (env.TV_ambig or {})[norm(iname)] then
+                                    -- несколько предметов с этим названием: цену пишем, только если категория известна по картинке
+                                    local _, sure = env.TV_cellCat(d, nil)
+                                    if not sure then price = nil end
+                                end
                                 if price and price > 0 then
                                     if not badge then
                                         badge = new("TextLabel", { Name = "TVPrice", AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18),

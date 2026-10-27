@@ -4943,12 +4943,18 @@ end)() -- отдельная функция: у неё свой лимит 200 �
 
     -- «Общая цена инвентаря» над окном профиля / инвентаря: сумма всех предметов по всем вкладкам
     local function showTotals(g)
+        -- окно профиля: самый большой блок вокруг видимых ячеек, который ещё НЕ на весь экран
+        -- (верхний контейнер на весь экран держит и чужие скрытые окна, например твой инвентарь)
         local tops = {}
+        local scr = ui.AbsoluteSize
         for _, d in ipairs(g:GetDescendants()) do
             if d:IsA("GuiObject") and d.Name ~= "TVPrice" and isCell(d) and env.TV_vis(d) then
-                local top = d
-                while top.Parent and top.Parent ~= g do top = top.Parent end
-                tops[top] = true
+                local win, o = nil, d.Parent
+                while o and o ~= g and o:IsA("GuiObject") do
+                    if o.AbsoluteSize.X < scr.X * 0.9 and o.AbsoluteSize.Y < scr.Y * 0.9 then win = o else break end
+                    o = o.Parent
+                end
+                if win then tops[win] = true end
             end
         end
         for top in pairs(tops) do
@@ -4990,9 +4996,14 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             lbl.Visible = S.enabled and total > 0
             lbl:SetAttribute("TVSeen", os.clock())
         end
-        -- окно закрыли / сменили — старые плашки прячем
+        -- плашка видна, пока открыто её окно (и на вкладке «Профиль» тоже); окно закрыли — прячем
         for _, l in ipairs(g:GetDescendants()) do
-            if l.Name == "TVTotal" and os.clock() - (l:GetAttribute("TVSeen") or 0) > 2 then l.Visible = false end
+            if l.Name == "TVTotal" then
+                local par = l.Parent
+                local full = par and par:IsA("GuiObject") and (par.AbsoluteSize.X >= scr.X * 0.9 or par.AbsoluteSize.Y >= scr.Y * 0.9)
+                if full then l:Destroy() -- старая плашка на весь экран (из прошлой версии)
+                elseif not (par and env.TV_vis(par)) then l.Visible = false end
+            end
         end
     end
 

@@ -196,6 +196,7 @@ local function loadValues()
         end
     end
     env.TV_primCat = primCat
+    env.TV_setItems = res.set_items or {} -- из каких предметов состоит каждый сет
     local arr = {}
     for k, v in pairs(res.values or res) do
         if map[norm(k)] and not SKIP[k] then table.insert(arr, { name = k, price = tonumber(v), key = norm(k) }) end
@@ -902,6 +903,25 @@ local function marks()
     return mode == "keep" and S.keep or S.blacklist
 end
 local function rowKey(it) return (it.cat and not it.primary) and (it.cat .. ":" .. it.key) or it.key end
+-- ключи отметок предметов сета (как у строк этих предметов в списке)
+local function setMemberKeys(it)
+    local mem = (env.TV_setItems or {})[it.name]
+    if not mem then return nil end
+    local keys = {}
+    for _, m in ipairs(mem) do
+        local k = norm(m[2])
+        local pc = (env.TV_primCat or {})[k]
+        table.insert(keys, (pc == nil or pc == m[1] or m[1] == "pets") and k or (m[1] .. ":" .. k))
+    end
+    return keys
+end
+-- сет отмечен сам или отмечены все его предметы
+local function setAllMarked(it, m)
+    local keys = setMemberKeys(it)
+    if not keys or #keys == 0 then return false end
+    for _, k in ipairs(keys) do if not m[k] then return false end end
+    return true
+end
 -- в трейде видно только название: отмечен хоть один предмет с таким названием — значит, отмечено
 env.TV_markSet = function(tbl)
     local set = {}
@@ -920,7 +940,7 @@ local renderList, renderSide
 local STAB_COLORS = { ["Stable"] = C.muted, ["Doing Well"] = C.good, ["Fluctuating"] = C.fair, ["Underpaid For"] = C.bad, ["Overpaid For"] = C.good }
 
 local function itemRow(it, order)
-    local on_ = mode ~= "values" and marks()[rowKey(it)] ~= nil
+    local on_ = mode ~= "values" and (marks()[rowKey(it)] ~= nil or setAllMarked(it, marks()))
     local info = mode == "values" and (env.TV_info or {})[it.name] or nil
     local r = new("TextButton", {
         Size = UDim2.new(1, -6, 0, info and 54 or 40), BackgroundColor3 = C.card, BackgroundTransparency = on_ and 0.1 or 0.6,
@@ -987,7 +1007,13 @@ local function itemRow(it, order)
     end
     on(r.Activated, function()
         local m, rk = marks(), rowKey(it)
-        if m[rk] then m[rk] = nil else m[rk] = it.name end
+        local keys = setMemberKeys(it)
+        if keys then
+            -- сет: отмечаем / снимаем сразу все его предметы
+            local now = not (m[rk] ~= nil or setAllMarked(it, m))
+            m[rk] = now and it.name or nil
+            for i, k in ipairs(keys) do m[k] = now and ((env.TV_setItems[it.name][i] or {})[2] or k) or nil end
+        elseif m[rk] then m[rk] = nil else m[rk] = it.name end
         saveSettings()
         renderList()
         renderSide()
@@ -1035,7 +1061,7 @@ local function sourceList()
     elseif curCat == "marked" then
         local lst = {}
         local m = marks()
-        for _, it in ipairs(itemList) do if m[rowKey(it)] then table.insert(lst, it) end end
+        for _, it in ipairs(itemList) do if m[rowKey(it)] or setAllMarked(it, m) then table.insert(lst, it) end end
         return lst
     elseif curCat == "all" then
         return itemList

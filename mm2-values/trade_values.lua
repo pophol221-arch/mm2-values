@@ -2433,7 +2433,7 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     if auto.busy then auto.setAcc("busy"); return end
     if th <= 0 then auto.setAcc("wait"); return end
     if myUnk > 0 then auto.setAcc("unk"); return end
-    if S.autoDecline and auto.findUnwanted(theirs) then auto.setAcc("bad"); return end
+    if S.autoDecline and auto.findUnwanted(theirs) and not select(2, auto.junkSplit(theirs)) then auto.setAcc("bad"); return end
     local profit = my > 0 and (th - my) / my * 100 or math.huge
     -- тот же запас, что у подсказки «Цель достигнута»: перебор до ~1 value (или 2%) считается целью
     local maxMine = th / (1 + ((auto.ordProfit or S.target) - (S.tolerance and 1 or 0)) / 100)
@@ -2640,6 +2640,22 @@ local function findUnwanted(theirs)
     end
 end
 auto.findUnwanted = findUnwanted -- нужна автопринятию, которое объявлено выше
+-- его оффер: сколько стоят отмеченные «нежелательные» и есть ли хоть один нормальный предмет (с ценой и не отмеченный)
+function auto.junkSplit(theirs)
+    local junk, good = 0, false
+    for _, item in ipairs(theirs:GetDescendants()) do
+        if (item:IsA("Frame") or item:IsA("ImageLabel") or item:IsA("ImageButton")) and item.Parent.Name == "Container" and env.TV_vis(item) then
+            local price, amount = readItem(item)
+            local marked = false
+            for _, l in ipairs(item:GetDescendants()) do
+                if l:IsA("TextLabel") and l.Text ~= "" and valueMap[norm(l.Text)] then marked = env.TV_isMarked(S.blacklist, l) ~= nil; break end
+            end
+            if marked then junk += (price or 0) * (amount or 1)
+            elseif price and price > 0 then good = true end
+        end
+    end
+    return junk, good
+end
 
 -- все нежелательные предметы в оффере соперника (для сообщения в чат)
 function auto.allUnwanted(theirs)
@@ -2671,7 +2687,10 @@ end
 local function autoDecline(tg, theirs)
     if not S.autoDecline then return false end
     local bad = findUnwanted(theirs)
-    if not bad then auto.declMsgSent = false; return false end -- убрал ненужное — отсчёт заново, если положит снова
+    if not bad then auto.declMsgSent = false; return false end
+    -- есть нормальный предмет — не отказываем: мусор просто не считаем (даём столько, сколько стоит нормальное)
+    local _, good = auto.junkSplit(theirs)
+    if good then auto.declMsgSent = false; return false end -- убрал ненужное — отсчёт заново, если положит снова
     if os.clock() - (auto.declLast or 0) < 1.5 then return true end
     -- один раз за трейд: сразу, как он положил ненужное, объясняем в чате (до нажатия «Отказ»)
     if not auto.declMsgSent then
@@ -3490,6 +3509,10 @@ local function tick()
 
     local my, myUnk = sumOffer(mine)
     local th, thUnk = sumOffer(theirs)
+    if S.autoDecline then
+        local junk, good = auto.junkSplit(theirs)
+        if good and junk > 0 then th = math.max(0, th - junk) end -- мусор рядом с нормальным предметом — не считаем
+    end
     local diff, total = th - my, my + th
     local share = total > 0 and th / total or 0.5
     local pct = math.floor(share * 100 + 0.5)

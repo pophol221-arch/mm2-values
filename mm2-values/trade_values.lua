@@ -5178,7 +5178,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 end
                 lbl.Position = UDim2.fromOffset(cx, y + inset)
                 lbl.Text = ('%s: <font color="%s">%s</font>  ·  %d'):format(T("invTotal"), hex(accent()), env.TV_fmt(total), n)
-                lbl.Visible = S.enabled
+                lbl.Visible = false -- плашку «Общая цена инвентаря» не показываем (по просьбе); лучшее оружие игрока запоминаем
                 used[win] = true
             end
         end

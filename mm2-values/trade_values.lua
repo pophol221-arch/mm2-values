@@ -986,7 +986,8 @@ local function itemRow(it, order)
 end
 
 -- свои предметы: то, что скрипт видел в трейдах, + открытый инвентарь MM2
-if S.myInvV ~= 2 then S.myInv, S.myInvV = {}, 2 end -- первая версия собирала лишнее — начинаем заново
+if S.myInvV ~= 2 then S.myInv, S.myInvV = {}, 2 end
+if S.tradeLogV ~= 2 then S.tradeLog, S.tradeLogV = {}, 2 end -- в первой версии истории попадали отклонённые трейды -- первая версия собирала лишнее — начинаем заново
 local INV_SKIP = { "shop", "store", "crate", "box", "preview", "reward", "spin", "unbox", "craft", "battle", "pass", "code", "gift", "trade", "offer", "season", "event", "quest" }
 local function scanMyInv()
     S.myInv = S.myInv or {}
@@ -1826,9 +1827,10 @@ env.TV_findBack = function(tg)
 end
 
 -- кнопки, которые скрипт не нажимает НИКОГДА: «Торговые запросы: выключить/включить», приглашения и т.п.
-env.TV_FORBIDDEN = { "выключ", "включ", "запрос", "request", "disable", "enable", "toggle", "приглас", "invite" }
+-- только видимые надписи (не внутреннее имя: кнопка «Принять» в списке запросов может называться «AcceptRequest»)
+env.TV_FORBIDDEN = { "выключ", "включ", "disable", "enable", "toggle", "приглас", "invite" }
 env.TV_forbidden = function(b)
-    local t = env.TV_btnText(b)
+    local t = env.TV_btnText(b):sub(#env.TV_low(b.Name) + 2)
     for _, w in ipairs(env.TV_FORBIDDEN) do if t:find(w, 1, true) then return true end end
     return false
 end
@@ -3336,8 +3338,9 @@ local function tick()
         -- трейд закрылся: обе стороны недавно приняли и отказ не жали — значит, состоялся; пишем в историю
         local sn = auto.lastSnap
         auto.lastSnap = nil
-        if sn and sn.meAt and sn.themAt and os.clock() - sn.meAt < 6 and os.clock() - sn.themAt < 30
-           and (auto.declTries or 0) == 0 and (auto.idleTries or 0) == 0 then
+        -- состоялся: был второй этап («Вы уверены?»), после него я принял, отказ не жали, и обе стороны что-то дают
+        if sn and sn.stage2At and sn.meAt and sn.meAt > sn.stage2At and os.clock() - sn.meAt < 6
+           and (auto.declTries or 0) == 0 and (auto.idleTries or 0) == 0 and ((sn.my or 0) > 0 or (sn.th or 0) > 0) then
             local function list(o)
                 local out = {}
                 for _, e in pairs(o or {}) do table.insert(out, { e.name, e.count, e.price }) end
@@ -3416,10 +3419,11 @@ local function tick()
 
     -- снимок трейда для истории: кто, что даю, что получаю; видел ли «вы приняли» / «другой игрок принял»
     do
-        local meAcc, themAcc = false, false
+        local meAcc, themAcc, stage2 = false, false, false
         for _, d in ipairs(tg:GetDescendants()) do
-            if d:IsA("TextLabel") and d.Text ~= "" and d.Visible then
+            if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and d.Visible then
                 local t = env.TV_low(d.Text)
+                if t:find("уверен") or t:find("are you sure") or t:find("confirm") or t:find("подтверд") then stage2 = true end
                 if t:find("вы приняли") or t:find("you accepted") or t:find("you have accepted") then meAcc = true end
                 if t:find("другой игрок принял") or t:find("other player has accepted") or t:find("other player accepted") then themAcc = true end
             end
@@ -3427,6 +3431,7 @@ local function tick()
         local snap = auto.lastSnap or {}
         snap.partner, snap.my, snap.th = auto.partner, my, th
         snap.gave, snap.got = auto.readOffer(mine), auto.readOffer(theirs)
+        if stage2 and not snap.stage2At then snap.stage2At = os.clock() end
         if meAcc then snap.meAt = os.clock() end
         if themAcc then snap.themAt = os.clock() end
         auto.lastSnap = snap
@@ -4432,7 +4437,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 local d = tr.th - tr.my
                 local pct = tr.my > 0 and math.floor(d / tr.my * 100 + 0.5) or nil
                 local col = d > 0 and C.good or d < 0 and C.bad or C.muted
-                local r = new("Frame", { Size = UDim2.new(1, -6, 0, 52), BackgroundColor3 = C.card, BackgroundTransparency = 0.4, LayoutOrder = i, ZIndex = 21 }, listF)
+                local r = new("Frame", { Size = UDim2.new(1, -6, 0, 86), BackgroundColor3 = C.card, BackgroundTransparency = 0.4, LayoutOrder = i, ZIndex = 21 }, listF)
                 corner(r, 8)
                 pad(r, 10, 0)
                 new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 20), Position = UDim2.fromOffset(0, 4), RichText = true,
@@ -4445,6 +4450,26 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                     Text = T("histGave") .. ": " .. names(tr.gave) .. "   ·   " .. T("histGot") .. ": " .. names(tr.got),
                     TextColor3 = C.muted, TextSize = 11, Font = fontReg(), TextXAlignment = Enum.TextXAlignment.Left,
                     TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 22 }, r)
+                -- картинки: что отдал → что получил
+                local strip = new("Frame", { BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 34), Position = UDim2.fromOffset(0, 50), ZIndex = 22 }, r)
+                list(strip, Enum.FillDirection.Horizontal, 4)
+                local order = 0
+                local function icon(x)
+                    order += 1
+                    local f = new("Frame", { Size = UDim2.fromOffset(32, 32), BackgroundColor3 = C.bg, BackgroundTransparency = 0.3, LayoutOrder = order, ZIndex = 22 }, strip)
+                    corner(f, 6)
+                    local im = new("ImageLabel", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, ScaleType = Enum.ScaleType.Fit, Image = "", ZIndex = 23 }, f)
+                    im.Image = env.TV_image and env.TV_image(x[1], function(a) if im.Parent then im.Image = a end end) or ""
+                    if x[2] > 1 then
+                        new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(30, 12), Position = UDim2.fromOffset(1, 20), Text = "×" .. x[2],
+                            TextColor3 = C.text, TextSize = 10, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Right, ZIndex = 24 }, f)
+                    end
+                end
+                for k, x in ipairs(tr.gave or {}) do if k <= 4 then icon(x) end end
+                order += 1
+                new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(22, 32), Text = "→", TextColor3 = C.muted, TextSize = 16,
+                    Font = Enum.Font.GothamBold, LayoutOrder = order, ZIndex = 22 }, strip)
+                for k, x in ipairs(tr.got or {}) do if k <= 4 then icon(x) end end
             end
             if items and #items > 0 then header(T("histItems"), 500) end
         end

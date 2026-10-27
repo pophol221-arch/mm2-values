@@ -2004,11 +2004,52 @@ end
 -- кнопки, которые скрипт не нажимает НИКОГДА: «Торговые запросы: выключить/включить», приглашения и т.п.
 -- только видимые надписи (не внутреннее имя: кнопка «Принять» в списке запросов может называться «AcceptRequest»)
 env.TV_FORBIDDEN = { "выключ", "включ", "disable", "enable", "toggle", "приглас", "invite" }
+-- строка «Запросы на обмен: [ползунок] выключено/включено» — все её кнопки в чёрном списке навсегда
+env.TV_noClick = env.TV_noClick or setmetatable({}, { __mode = "k" })
+env.TV_scanToggles = function()
+    for _, l in ipairs(PlayerGui:GetDescendants()) do
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" then
+            local t = env.TV_low(l.Text)
+            if t:find("запросы на обмен") or t:find("торговые запросы") or t:find("trade request") or t:find("trading requests") then
+                local row = l.Parent
+                for _ = 1, 2 do
+                    if row and row.Parent and not row.Parent:IsA("ScreenGui") and #row:GetChildren() < 4 then row = row.Parent end
+                end
+                local ly, lh = l.AbsolutePosition.Y + l.AbsoluteSize.Y / 2, math.max(14, l.AbsoluteSize.Y)
+                for _, bt in ipairs(row and row:GetDescendants() or {}) do
+                    -- только кнопки этой же строки (по высоте), остальное в панели не трогаем
+                    if bt:IsA("GuiButton") and math.abs(bt.AbsolutePosition.Y + bt.AbsoluteSize.Y / 2 - ly) <= lh then env.TV_noClick[bt] = true end
+                end
+                if l:IsA("GuiButton") then env.TV_noClick[l] = true end
+            end
+        end
+    end
+end
 env.TV_forbidden = function(b)
+    if env.TV_noClick[b] then return true end
     local t = env.TV_btnText(b):sub(#env.TV_low(b.Name) + 2)
     for _, w in ipairs(env.TV_FORBIDDEN) do if t:find(w, 1, true) then return true end end
+    -- надписи рядом в той же строке («выключено» справа от ползунка)
+    local p0, sz = b.AbsolutePosition, b.AbsoluteSize
+    local scope = b.Parent and (b.Parent.Parent or b.Parent)
+    for _, l in ipairs(scope and scope:GetDescendants() or {}) do
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l ~= b and l.Text ~= "" and l.Visible then
+            local c = l.AbsolutePosition + l.AbsoluteSize / 2
+            if math.abs(c.Y - (p0.Y + sz.Y / 2)) <= math.max(12, sz.Y / 2) and c.X >= p0.X - 260 and c.X <= p0.X + sz.X + 260 then
+                local lt = env.TV_low(l.Text)
+                for _, w in ipairs(env.TV_FORBIDDEN) do if lt:find(w, 1, true) then return true end end
+                if lt:find("запросы на обмен") or lt:find("trade request") then return true end
+            end
+        end
+    end
     return false
 end
+task.spawn(function()
+    while true do
+        pcall(env.TV_scanToggles)
+        task.wait(4)
+    end
+end)
 local function clickCell(cell, tg, method)
     local btn = cell:IsA("GuiButton") and cell or cell:FindFirstChildWhichIsA("GuiButton", true) or cell
     if btn:IsA("GuiButton") and env.TV_forbidden(btn) then return nil end

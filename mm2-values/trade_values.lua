@@ -187,6 +187,15 @@ local function loadValues()
         end
     end
     env.TV_ambig = ambig
+    env.TV_catVals = res.cat_values or {}
+    local primCat = {}
+    for cat, names in pairs(res.categories or {}) do
+        for _, name in ipairs(names) do
+            local cv = (res.cat_values or {})[cat]
+            if not (cv and cv[name] ~= nil) and map[norm(name)] then primCat[norm(name)] = primCat[norm(name)] or cat end
+        end
+    end
+    env.TV_primCat = primCat
     local arr = {}
     for k, v in pairs(res.values or res) do
         if map[norm(k)] and not SKIP[k] then table.insert(arr, { name = k, price = tonumber(v), key = norm(k) }) end
@@ -1463,16 +1472,78 @@ local function findTradeGui()
     return first
 end
 
+-- редкость по цвету полоски с названием (как в MM2): розовая — годли, фиолетовая — древние, красная — легендарки…
+env.TV_rarityCat = function(lbl)
+    local col
+    local o = lbl
+    for _ = 1, 3 do
+        if not o or not o:IsA("GuiObject") then break end
+        local g = o:FindFirstChildOfClass("UIGradient")
+        if g then col = g.Color.Keypoints[1].Value; break end
+        if o.BackgroundTransparency < 0.6 then col = o.BackgroundColor3; break end
+        o = o.Parent
+    end
+    if not col then return nil end
+    local h, sat, v = col:ToHSV()
+    h = h * 360
+    if sat < 0.25 or v < 0.2 then return "commons" end
+    if h >= 345 or h < 15 then return "legendaries" end
+    if h >= 285 and h < 345 then return "godlies" end
+    if h >= 250 and h < 285 then return "ancients" end
+    if h >= 180 and h < 250 then return "rares" end
+    if h >= 75 and h < 180 then return "uncommons" end
+    if h >= 35 and h < 75 then return "vintages" end
+    return nil
+end
+-- одно название — разные предметы: значение по категории (если её удалось узнать по цвету)
+env.TV_catPrice = function(key, name, cat)
+    local cv = cat and (env.TV_catVals or {})[cat]
+    if not cv then return nil end
+    for nm, v in pairs(cv) do
+        if norm(nm) == key or norm((nm:gsub("%s*%b()$", ""))) == key then return tonumber(v) or 0 end
+    end
+    return nil
+end
 local function readItem(frame)
     local price, amount, name = nil, 1, nil
     for _, d in ipairs(frame:GetDescendants()) do
         if d:IsA("TextLabel") and d.Text ~= "" then
             local n = d.Text:match("^[xX]%s*(%d+)$")
             if n then amount = tonumber(n)
-            elseif not price and valueMap[norm(d.Text)] then price, name = valueMap[norm(d.Text)], d.Text end
+            elseif not price and valueMap[norm(d.Text)] then
+                local k = norm(d.Text)
+                price, name = valueMap[k], d.Text
+                if (env.TV_ambig or {})[k] then
+                    -- «Waves» годли (240) и «Waves» редкий (x2 T1 Rares): смотрим цвет полоски
+                    local cat = env.TV_rarityCat(d)
+                    if cat and cat ~= (env.TV_primCat or {})[k] then
+                        local cp = env.TV_catPrice(k, d.Text, cat)
+                        if cp then price = cp end
+                    end
+                end
+            end
         end
     end
     return price, amount, name
+end
+env.TV_keptCell = function(cell)
+    for _, l in ipairs(cell:GetDescendants()) do
+        if l:IsA("TextLabel") and l.Text ~= "" and valueMap[norm(l.Text)] then return env.TV_isMarked(S.keep, l) ~= nil end
+    end
+    return false
+end
+-- отмечен ли предмет (с учётом категории, если её видно по цвету)
+env.TV_isMarked = function(tbl, lbl)
+    local k = norm(lbl.Text)
+    local cat = (env.TV_ambig or {})[k] and env.TV_rarityCat(lbl) or nil
+    for rk, name in pairs(tbl or {}) do
+        local c, key = rk:match("^(%a+):(.+)$")
+        if not key then key, c = rk, (env.TV_primCat or {})[rk] end
+        if key == k or norm(tostring(name)) == k then
+            if not cat or not c or c == cat then return name end
+        end
+    end
+    return nil
 end
 
 local function sumOffer(offer)
@@ -1737,7 +1808,7 @@ local function scanInventory(tg, mine, theirs)
            and d.Parent and (d.Parent:FindFirstChildWhichIsA("UIGridLayout") or d.Parent:FindFirstChildWhichIsA("UIListLayout")) then
             local price, amount, name = readItem(d)
             if price and price > 0 then
-                table.insert(items, { frame = d, price = price, amount = amount, name = name, kept = env.TV_markSet(S.keep)[norm(name)] ~= nil })
+                table.insert(items, { frame = d, price = price, amount = amount, name = name, kept = env.TV_keptCell(d) })
             end
         end
     end
@@ -2046,7 +2117,7 @@ function auto.findBadge()
                     local best, bestD = nil, 70 -- «+» под «!» совсем рядом; дальше — уже другие кнопки
                     local scope = t.Parent and t.Parent.Parent or t.Parent
                     for _, b in ipairs(scope and scope:GetDescendants() or {}) do
-                        if b:IsA("GuiButton") and isShown(b) and not auto.hasWords(b) then
+                        if b:IsA("GuiButton") and isShown(b) and not env.TV_forbidden(b) then
                             local d = ((b.AbsolutePosition + b.AbsoluteSize / 2) - c).Magnitude
                             if d < bestD then best, bestD = b, d end
                         end
@@ -2537,7 +2608,7 @@ local function findUnwanted(theirs)
     for _, d in ipairs(theirs:GetDescendants()) do
         -- только то, что видно: в окне трейда остаются скрытые ячейки от прошлого трейда
         if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
-            local hit = env.TV_markSet(S.blacklist)[norm(d.Text)]
+            local hit = env.TV_isMarked(S.blacklist, d)
             if hit then return hit end
         end
     end
@@ -2549,7 +2620,7 @@ function auto.allUnwanted(theirs)
     local list, seen = {}, {}
     for _, d in ipairs(theirs:GetDescendants()) do
         if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
-            local hit = env.TV_markSet(S.blacklist)[norm(d.Text)]
+            local hit = env.TV_isMarked(S.blacklist, d)
             if hit and not seen[hit] then seen[hit] = true; table.insert(list, hit) end
         end
     end

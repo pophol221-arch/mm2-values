@@ -3229,13 +3229,16 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
 
     -- авто-добавление: когда соперник 1.5 с ничего не меняет и вариант однозначный
     if S.autoAdd then
-        if th ~= auto.lastTh then auto.lastTh, auto.stableSince = th, os.clock() end
+        if th ~= auto.lastTh then auto.lastTh, auto.stableSince, auto.addTries = th, os.clock(), 0 end
         if auto.busy then
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights(); return
         end
-        if auto.doneFor ~= th and os.clock() - auto.stableSince > 1.5 then
-            auto.busy, auto.doneFor = true, th
+        -- попытка не удалась (ячейки перерисовались и т.п.) — через 3 с пробуем снова, до 3 раз
+        local retry = auto.doneFor == th and os.clock() - (auto.doneAt or 0) > 3 and (auto.addTries or 0) < 3
+        if (auto.doneFor ~= th or retry) and os.clock() - auto.stableSince > 1.5 then
+            auto.busy, auto.doneFor, auto.doneAt = true, th, os.clock()
+            auto.addTries = (auto.addTries or 0) + 1
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights()
             task.spawn(function()
@@ -3251,10 +3254,19 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                     if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do
+                    local key = norm(pk.item.name)
                     for _ = 1, pk.count do
                         if not (S.enabled and S.autoOffer and S.autoAdd) then break end
-                        if not (pk.item.frame.Parent and isShown(pk.item.frame)) then break end
-                        clickCell(pk.item.frame, tg)
+                        -- ячейка могла перерисоваться — ищем свежую по названию
+                        local f = pk.item.frame
+                        if not (f.Parent and isShown(f)) then
+                            f = nil
+                            for _, it in ipairs(scanInventory(tg, mine, theirs)) do
+                                if norm(it.name) == key and isShown(it.frame) then f = it.frame; break end
+                            end
+                        end
+                        if not f then break end
+                        clickCell(f, tg)
                         task.wait(0.35)
                     end
                 end
@@ -3346,6 +3358,7 @@ local function tick()
         auto.junkSig, auto.junkSince = nil, nil
         auto.giftTries, auto.giftLast = 0, 0
         auto.ord, auto.remFor, auto.idleSig, auto.kindNotified, auto.ordProfit, auto.ordCleanup = {}, nil, nil, nil, nil, nil
+        auto.tabEmptyDone, auto.addTries = nil, 0
         -- трейд закрылся после нашего отказа — теперь этот человек в блоке на 80 секунд (на следующие трейды)
         if auto.pendingBlock then auto.block(auto.pendingBlock); auto.pendingBlock = nil end
         auto.accSig, auto.accTries, auto.accDone = "", 0, false
@@ -3430,7 +3443,10 @@ local function tick()
                 if pets[norm(it.name)] then petN += 1 end
             end
         end
-        if petN == shown then auto.openTab(tg, "weapons") end -- только питомцы или пусто (пустые «Питомцы») — на «Оружие»
+        -- только питомцы — на «Оружие»; пусто (пустые «Питомцы») — тоже, но один раз за трейд:
+        -- каждое нажатие вкладки перерисовывает ячейки, и скрипт не успевал положить предметы
+        if shown > 0 and petN == shown then auto.openTab(tg, "weapons")
+        elseif shown == 0 and not auto.tabEmptyDone then auto.tabEmptyDone = true; auto.openTab(tg, "weapons") end
     end
     if auto.tryGift(tg, theirs, my, myUnk) then return end
     if auto.handleBlocked(tg) then return end

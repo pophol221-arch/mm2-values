@@ -3329,7 +3329,9 @@ function auto.removeExcess(tg, mine, excess, th, my)
     if th ~= auto.lastTh then auto.lastTh, auto.stableSince = th, os.clock() end
     if auto.busy or os.clock() - (auto.stableSince or 0) < 1.5 then return false end
     local sig = th .. ":" .. my
-    if auto.remFor == sig then return false end
+    -- та же ситуация: повтор через 3 с, до 3 раз (ячейки могли перерисоваться)
+    if auto.remFor == sig and (os.clock() - (auto.remAt or 0) < 3 or (auto.remTries or 0) >= 3) then return false end
+    if auto.remFor ~= sig then auto.remTries = 0 end
     local units, total = {}, 0
     for _, e in pairs(auto.readOffer(mine)) do total += e.price * e.count; table.insert(units, e) end
     -- вариант 1: k штук одного предмета
@@ -3352,8 +3354,23 @@ function auto.removeExcess(tg, mine, excess, th, my)
         end
     end
     if sum >= excess - 1e-9 and (not bestSum or sum < bestSum) then best, bestSum = plan, sum end
-    if not best or bestSum >= total - 1e-9 then return false end
-    auto.remFor, auto.busy = sig, true
+    if not best or bestSum >= total - 1e-9 then
+        -- точно не убрать — убираем самые дорогие, пока не уложимся, но хотя бы один предмет оставляем
+        best, bestSum = {}, 0
+        local left = 0
+        for _, e in ipairs(units) do left += e.count end
+        for _, e in ipairs(units) do
+            for _ = 1, e.count do
+                if bestSum >= excess - 1e-9 or left <= 1 then break end
+                best[e] = (best[e] or 0) + 1
+                bestSum += e.price
+                left -= 1
+            end
+        end
+        if bestSum <= 0 then return false end
+    end
+    auto.remFor, auto.busy, auto.remAt = sig, true, os.clock()
+    auto.remTries = (auto.remTries or 0) + 1
     task.spawn(function()
         pcall(function()
             for e, k in pairs(best) do
@@ -3583,6 +3600,13 @@ end
 
 local acc, wasOpen, errShown = 0, false, false
 local function tick()
+    -- сторож: «занят» дольше 10 с — значит, что-то оборвалось; снимаем, чтобы скрипт не завис
+    if auto.busy then
+        auto.busySince = auto.busySince or os.clock()
+        if os.clock() - auto.busySince > 10 then auto.busy, auto.busySince = false, nil end
+    else
+        auto.busySince = nil
+    end
     auto.tryAcceptRequest()
     local tg = S.enabled and findTradeGui() or nil
     if X.chatFeed then

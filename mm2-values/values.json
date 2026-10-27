@@ -11231,6 +11231,1372 @@
   }
  },
  "last_message_id": 1564012145870372928,
+ "set_items": {
+  "Alien Set": [
+   [
+    "godlies",
+    "Alienbeam"
+   ],
+   [
+    "godlies",
+    "Raygun"
+   ]
+  ],
+  "Aurora Set (Legend.)": [
+   [
+    "legendaries",
+    "Aurora (Gun)"
+   ],
+   [
+    "legendaries",
+    "Aurora (Knife)"
+   ]
+  ],
+  "Aurora Set (Rare)": [
+   [
+    "rares",
+    "Aurora (Gun)"
+   ],
+   [
+    "rares",
+    "Aurora (Knife)"
+   ]
+  ],
+  "Bat Set": [
+   [
+    "godlies",
+    "Bat"
+   ],
+   [
+    "godlies",
+    "Makeshift"
+   ]
+  ],
+  "Bats Set": [
+   [
+    "commons",
+    "Bats (Gun)"
+   ],
+   [
+    "commons",
+    "Bats (Knife)"
+   ]
+  ],
+  "Bauble Set": [
+   [
+    "godlies",
+    "Bauble"
+   ],
+   [
+    "godlies",
+    "Ornament"
+   ]
+  ],
+  "Beach Set": [
+   [
+    "godlies",
+    "Beachy"
+   ],
+   [
+    "godlies",
+    "Sands"
+   ]
+  ],
+  "Blizzard Set": [
+   [
+    "godlies",
+    "Blizzard"
+   ],
+   [
+    "godlies",
+    "Snowstorm"
+   ]
+  ],
+  "Bloom Set": [
+   [
+    "godlies",
+    "Bloom"
+   ],
+   [
+    "godlies",
+    "Flora"
+   ]
+  ],
+  "Borealis Set": [
+   [
+    "godlies",
+    "Australis"
+   ],
+   [
+    "godlies",
+    "Borealis"
+   ]
+  ],
+  "Bow Set": [
+   [
+    "ancients",
+    "Harvester"
+   ],
+   [
+    "ancients",
+    "Icepiercer"
+   ]
+  ],
+  "Bringer Set": [
+   [
+    "godlies",
+    "Darkbringer"
+   ],
+   [
+    "godlies",
+    "Lightbringer"
+   ]
+  ],
+  "C. Emberscythe Set": [
+   [
+    "chromas",
+    "Chroma Emberscythe"
+   ],
+   [
+    "chromas",
+    "Chroma Emberbow"
+   ]
+  ],
+  "C. Embersickle Set": [
+   [
+    "chromas",
+    "Chroma Embersickle"
+   ],
+   [
+    "chromas",
+    "Chroma Emberbow"
+   ]
+  ],
+  "Candy Set": [
+   [
+    "godlies",
+    "Candy"
+   ],
+   [
+    "godlies",
+    "Sugar"
+   ]
+  ],
+  "Candy Swirl Set": [
+   [
+    "rares",
+    "Candy Swirl (Gun)"
+   ],
+   [
+    "rares",
+    "Candy Swirl (Knife)"
+   ]
+  ],
+  "Cavern Set": [
+   [
+    "legendaries",
+    "Cavern (Gun)"
+   ],
+   [
+    "legendaries",
+    "Cavern (Knife)"
+   ]
+  ],
+  "Celestial Set": [
+   [
+    "ancients",
+    "Celestial"
+   ],
+   [
+    "godlies",
+    "Constellation"
+   ]
+  ],
+  "Chroma Alien Set": [
+   [
+    "chromas",
+    "Chroma Alienbeam"
+   ],
+   [
+    "chromas",
+    "Chroma Raygun"
+   ]
+  ],
+  "Chroma Bauble Set": [
+   [
+    "chromas",
+    "Chroma Bauble"
+   ],
+   [
+    "chromas",
+    "Chroma Ornament"
+   ]
+  ],
+  "Chroma Beach Set": [
+   [
+    "chromas",
+    "Chroma Beachy"
+   ],
+   [
+    "chromas",
+    "Chroma Sands"
+   ]
+  ],
+  "Chroma Blizzard Set": [
+   [
+    "chromas",
+    "Chroma Blizzard"
+   ],
+   [
+    "chromas",
+    "Chroma Snowstorm"
+   ]
+  ],
+  "Chroma Bringer Set": [
+   [
+    "chromas",
+    "Chroma Darkbringer"
+   ],
+   [
+    "chromas",
+    "Chroma Lightbringer"
+   ]
+  ],
+  "Chroma Ever Set": [
+   [
+    "chromas",
+    "Chroma Evergreen"
+   ],
+   [
+    "chromas",
+    "Chroma Evergun"
+   ]
+  ],
+  "Chroma Mortal Set": [
+   [
+    "chromas",
+    "Chroma Mortal"
+   ],
+   [
+    "chromas",
+    "Chroma Immortal"
+   ]
+  ],
+  "Chroma Pet Set": [
+   [
+    "chromas",
+    "Chroma Fire Bat"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Bear"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Bunny"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Cat"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Dog"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Fox"
+   ],
+   [
+    "chromas",
+    "Chroma Fire Pig"
+   ]
+  ],
+  "Chroma Slasher Set": [
+   [
+    "chromas",
+    "Chroma Laser"
+   ],
+   [
+    "chromas",
+    "Chroma Slasher"
+   ]
+  ],
+  "Chroma Snow Set": [
+   [
+    "chromas",
+    "Chroma Snowcannon"
+   ],
+   [
+    "chromas",
+    "Chroma Snow Dagger"
+   ]
+  ],
+  "Chroma Sun Set": [
+   [
+    "chromas",
+    "Chroma Sunrise"
+   ],
+   [
+    "chromas",
+    "Chroma Sunset"
+   ]
+  ],
+  "Chroma Sweet Set": [
+   [
+    "chromas",
+    "Chroma Sweet"
+   ],
+   [
+    "chromas",
+    "Chroma Treat"
+   ]
+  ],
+  "Colored Seer Set": [
+   [
+    "godlies",
+    "Blue Seer"
+   ],
+   [
+    "godlies",
+    "Purple Seer"
+   ],
+   [
+    "godlies",
+    "Red Seer"
+   ],
+   [
+    "godlies",
+    "Seer"
+   ],
+   [
+    "godlies",
+    "Orange Seer"
+   ],
+   [
+    "godlies",
+    "Yellow Seer"
+   ]
+  ],
+  "Cookie Set": [
+   [
+    "godlies",
+    "Cookiecane"
+   ],
+   [
+    "godlies",
+    "Gingermint"
+   ]
+  ],
+  "Corrupt Set": [
+   [
+    "uniques",
+    "Corrupt"
+   ],
+   [
+    "godlies",
+    "Luger"
+   ]
+  ],
+  "Dark Set": [
+   [
+    "godlies",
+    "Darkshot"
+   ],
+   [
+    "godlies",
+    "Darksword"
+   ]
+  ],
+  "Dark Set (Rare)": [
+   [
+    "rares",
+    "Darkgun"
+   ],
+   [
+    "rares",
+    "Darkknife"
+   ]
+  ],
+  "Elderwood Set": [
+   [
+    "godlies",
+    "Elderwood Revolver"
+   ],
+   [
+    "ancients",
+    "Elderwood Scythe"
+   ]
+  ],
+  "Emberscythe Set": [
+   [
+    "ancients",
+    "Emberbow"
+   ],
+   [
+    "ancients",
+    "Emberscythe"
+   ]
+  ],
+  "Embersickle Set": [
+   [
+    "godlies",
+    "Embersickle"
+   ],
+   [
+    "ancients",
+    "Emberbow"
+   ]
+  ],
+  "Eternal Set": [
+   [
+    "godlies",
+    "Eternalcane"
+   ],
+   [
+    "godlies",
+    "Eternal III"
+   ],
+   [
+    "godlies",
+    "Eternal IV"
+   ],
+   [
+    "godlies",
+    "Eternal"
+   ],
+   [
+    "godlies",
+    "Eternal II"
+   ]
+  ],
+  "Eternalcane Set": [
+   [
+    "godlies",
+    "Eternalcane"
+   ],
+   [
+    "godlies",
+    "Lugercane"
+   ]
+  ],
+  "Ever Set": [
+   [
+    "godlies",
+    "Evergreen"
+   ],
+   [
+    "godlies",
+    "Evergun"
+   ]
+  ],
+  "Eye Set": [
+   [
+    "pets",
+    "Overseer Eye"
+   ],
+   [
+    "pets",
+    "Eyeball"
+   ]
+  ],
+  "Flowerwood Set": [
+   [
+    "godlies",
+    "Flowerwood"
+   ],
+   [
+    "godlies",
+    "Flowerwood Gun"
+   ]
+  ],
+  "Frozen Set": [
+   [
+    "uncommons",
+    "Frozen (Gun)"
+   ],
+   [
+    "uncommons",
+    "Frozen (Knife)"
+   ]
+  ],
+  "Full Bringer Set": [
+   [
+    "chromas",
+    "Chroma Darkbringer"
+   ],
+   [
+    "chromas",
+    "Chroma Lightbringer"
+   ],
+   [
+    "godlies",
+    "Darkbringer"
+   ],
+   [
+    "godlies",
+    "Lightbringer"
+   ]
+  ],
+  "Full C. Ember Set": [
+   [
+    "chromas",
+    "Chroma Emberbow"
+   ],
+   [
+    "chromas",
+    "Chroma Emberscythe"
+   ],
+   [
+    "chromas",
+    "Chroma Embersickle"
+   ]
+  ],
+  "Full Colored Seer Set": [
+   [
+    "chromas",
+    "Chroma Seer"
+   ],
+   [
+    "godlies",
+    "Blue Seer"
+   ],
+   [
+    "godlies",
+    "Purple Seer"
+   ],
+   [
+    "godlies",
+    "Red Seer"
+   ],
+   [
+    "godlies",
+    "Seer"
+   ],
+   [
+    "godlies",
+    "Orange Seer"
+   ],
+   [
+    "godlies",
+    "Yellow Seer"
+   ]
+  ],
+  "Full Elderwood Set": [
+   [
+    "godlies",
+    "Elderwood Blade"
+   ],
+   [
+    "godlies",
+    "Elderwood Revolver"
+   ],
+   [
+    "ancients",
+    "Elderwood Scythe"
+   ]
+  ],
+  "Full Elite Set": [
+   [
+    "legendaries",
+    "Blue Elite"
+   ],
+   [
+    "legendaries",
+    "Green Elite"
+   ]
+  ],
+  "Full Ember Set": [
+   [
+    "ancients",
+    "Emberbow"
+   ],
+   [
+    "ancients",
+    "Emberscythe"
+   ],
+   [
+    "godlies",
+    "Embersickle"
+   ]
+  ],
+  "Full Ice Set": [
+   [
+    "ancients",
+    "Icebreaker"
+   ],
+   [
+    "godlies",
+    "Iceblaster"
+   ],
+   [
+    "ancients",
+    "Icepiercer"
+   ]
+  ],
+  "Full Luger Set": [
+   [
+    "chromas",
+    "Chroma Luger"
+   ],
+   [
+    "godlies",
+    "Luger"
+   ],
+   [
+    "godlies",
+    "Red Luger"
+   ],
+   [
+    "godlies",
+    "Green Luger"
+   ],
+   [
+    "godlies",
+    "Ginger Luger"
+   ],
+   [
+    "godlies",
+    "Lugercane"
+   ]
+  ],
+  "Full Swirly Set": [
+   [
+    "ancients",
+    "Swirly Axe"
+   ],
+   [
+    "godlies",
+    "Swirly Gun"
+   ],
+   [
+    "godlies",
+    "Swirly Blade"
+   ]
+  ],
+  "Ghost Set": [
+   [
+    "legendaries",
+    "Ghost (Gun)"
+   ],
+   [
+    "legendaries",
+    "Ghost (Knife)"
+   ]
+  ],
+  "Ginger Set (Godly)": [
+   [
+    "godlies",
+    "Gingerblade"
+   ],
+   [
+    "godlies",
+    "Ginger Luger"
+   ]
+  ],
+  "Gingerbread Set": [
+   [
+    "uncommons",
+    "Gingerbread (Gun)"
+   ]
+  ],
+  "Grave Set": [
+   [
+    "commons",
+    "Grave (Gun)"
+   ],
+   [
+    "commons",
+    "Grave (Knife)"
+   ]
+  ],
+  "Hallow Set": [
+   [
+    "godlies",
+    "Hallowgun"
+   ],
+   [
+    "ancients",
+    "Hallowscythe"
+   ]
+  ],
+  "Haunted Set": [
+   [
+    "commons",
+    "Haunted (Gun)"
+   ],
+   [
+    "commons",
+    "Haunted (Knife)"
+   ]
+  ],
+  "Ice Set": [
+   [
+    "ancients",
+    "Icebreaker"
+   ],
+   [
+    "godlies",
+    "Iceblaster"
+   ]
+  ],
+  "Icedriller Set": [
+   [
+    "legendaries",
+    "Icecracker"
+   ],
+   [
+    "legendaries",
+    "Icedriller"
+   ]
+  ],
+  "Iceflake Set": [
+   [
+    "godlies",
+    "Icebeam"
+   ],
+   [
+    "godlies",
+    "Iceflake"
+   ]
+  ],
+  "Latte Set": [
+   [
+    "legendaries",
+    "Latte (Gun)"
+   ],
+   [
+    "legendaries",
+    "Latte (Knife)"
+   ]
+  ],
+  "Lights Set": [
+   [
+    "uncommons",
+    "Lights (Gun)"
+   ],
+   [
+    "uncommons",
+    "Lights (Knife)"
+   ]
+  ],
+  "Logchopper Set": [
+   [
+    "ancients",
+    "Logchopper"
+   ],
+   [
+    "godlies",
+    "Minty"
+   ]
+  ],
+  "Luger Set": [
+   [
+    "godlies",
+    "Luger"
+   ],
+   [
+    "godlies",
+    "Red Luger"
+   ],
+   [
+    "godlies",
+    "Green Luger"
+   ],
+   [
+    "godlies",
+    "Ginger Luger"
+   ],
+   [
+    "godlies",
+    "Lugercane"
+   ]
+  ],
+  "Marble Set": [
+   [
+    "rares",
+    "Green Marble"
+   ],
+   [
+    "rares",
+    "Orange Marble"
+   ]
+  ],
+  "Mortal Set": [
+   [
+    "godlies",
+    "Mortal"
+   ],
+   [
+    "godlies",
+    "Immortal"
+   ]
+  ],
+  "Mummy Set": [
+   [
+    "uncommons",
+    "Mummy (Gun)"
+   ],
+   [
+    "uncommons",
+    "Mummy (Knife)"
+   ]
+  ],
+  "Ocean Set": [
+   [
+    "godlies",
+    "Ocean"
+   ],
+   [
+    "godlies",
+    "Waves"
+   ]
+  ],
+  "Old Glory Set": [
+   [
+    "godlies",
+    "Amerilaser"
+   ],
+   [
+    "godlies",
+    "Old Glory"
+   ]
+  ],
+  "Pals Set": [
+   [
+    "commons",
+    "Alex"
+   ],
+   [
+    "commons",
+    "Corl"
+   ],
+   [
+    "commons",
+    "Denis"
+   ],
+   [
+    "commons",
+    "Sketchy"
+   ],
+   [
+    "commons",
+    "Sub"
+   ]
+  ],
+  "Pearl Set": [
+   [
+    "godlies",
+    "Pearl"
+   ],
+   [
+    "godlies",
+    "Pearlshine"
+   ]
+  ],
+  "Plasma Set": [
+   [
+    "godlies",
+    "Plasmabeam"
+   ],
+   [
+    "godlies",
+    "Plasmablade"
+   ]
+  ],
+  "Potion Set": [
+   [
+    "uncommons",
+    "Potion (Gun)"
+   ],
+   [
+    "uncommons",
+    "Potion (Knife)"
+   ]
+  ],
+  "Pumpkin Set": [
+   [
+    "pets",
+    "Blue Pumpkin"
+   ],
+   [
+    "pets",
+    "Green Pumpkin"
+   ],
+   [
+    "pets",
+    "Purple Pumpkin"
+   ],
+   [
+    "pets",
+    "Red Pumpkin"
+   ]
+  ],
+  "Pumpkin Set (2019)": [
+   [
+    "pets",
+    "Blue Pumpkin"
+   ],
+   [
+    "pets",
+    "Green Pumpkin"
+   ],
+   [
+    "pets",
+    "Red Pumpkin"
+   ]
+  ],
+  "Pumpkin Set (2020)": [
+   [
+    "pets",
+    "Blue Pumpkin"
+   ],
+   [
+    "pets",
+    "Green Pumpkin"
+   ],
+   [
+    "pets",
+    "Red Pumpkin"
+   ]
+  ],
+  "Pumpkin Set (2021)": [
+   [
+    "pets",
+    "Shadow Pumpkin"
+   ]
+  ],
+  "Rainbow Set": [
+   [
+    "godlies",
+    "Rainbow Gun"
+   ],
+   [
+    "godlies",
+    "Rainbow"
+   ]
+  ],
+  "Retro Set": [
+   [
+    "legendaries",
+    "Golden"
+   ],
+   [
+    "legendaries",
+    "Shadow"
+   ],
+   [
+    "rares",
+    "Cowboy"
+   ],
+   [
+    "rares",
+    "Laser"
+   ],
+   [
+    "rares",
+    "Prince"
+   ],
+   [
+    "rares",
+    "Phaser"
+   ],
+   [
+    "uncommons",
+    "Ghost"
+   ]
+  ],
+  "Sakura Set": [
+   [
+    "godlies",
+    "Blossom"
+   ],
+   [
+    "godlies",
+    "Sakura"
+   ]
+  ],
+  "Santa's Set (Legend.)": [
+   [
+    "legendaries",
+    "Santa's Magic"
+   ],
+   [
+    "legendaries",
+    "Santa's Spirit"
+   ]
+  ],
+  "Scratch Set": [
+   [
+    "legendaries",
+    "Blue Scratch"
+   ],
+   [
+    "legendaries",
+    "Red Scratch"
+   ]
+  ],
+  "Silent Night Set": [
+   [
+    "rares",
+    "Silent Night (Gun)"
+   ],
+   [
+    "rares",
+    "Silent Night (Knife)"
+   ]
+  ],
+  "Skate Set": [
+   [
+    "commons",
+    "Euro"
+   ],
+   [
+    "commons",
+    "Grind"
+   ],
+   [
+    "commons",
+    "Indy"
+   ],
+   [
+    "commons",
+    "Ollie"
+   ],
+   [
+    "commons",
+    "Sidewinder"
+   ],
+   [
+    "commons",
+    "Tailslide"
+   ]
+  ],
+  "Slasher Set": [
+   [
+    "godlies",
+    "Laser"
+   ],
+   [
+    "godlies",
+    "Slasher"
+   ]
+  ],
+  "Slime Set": [
+   [
+    "commons",
+    "Slime (Gun)"
+   ],
+   [
+    "commons",
+    "Slime (Knife)"
+   ]
+  ],
+  "Snakebite Set": [
+   [
+    "rares",
+    "Snakebite (Gun)"
+   ],
+   [
+    "rares",
+    "Snakebite (Knife)"
+   ]
+  ],
+  "Snow Set": [
+   [
+    "godlies",
+    "Snowcannon"
+   ],
+   [
+    "godlies",
+    "Snow Dagger"
+   ]
+  ],
+  "Soul Set": [
+   [
+    "godlies",
+    "Soul"
+   ],
+   [
+    "godlies",
+    "Spirit"
+   ]
+  ],
+  "Sparkle Set": [
+   [
+    "commons",
+    "Sparkle1"
+   ],
+   [
+    "commons",
+    "Sparkle2"
+   ],
+   [
+    "commons",
+    "Sparkle3"
+   ],
+   [
+    "commons",
+    "Sparkle4"
+   ],
+   [
+    "commons",
+    "Sparkle5"
+   ],
+   [
+    "commons",
+    "Sparkle6"
+   ],
+   [
+    "commons",
+    "Sparkle7"
+   ],
+   [
+    "commons",
+    "Sparkle8"
+   ],
+   [
+    "commons",
+    "Sparkle9"
+   ],
+   [
+    "commons",
+    "Sparkle10"
+   ]
+  ],
+  "Spectral Set": [
+   [
+    "legendaries",
+    "Spectral (Gun)"
+   ],
+   [
+    "legendaries",
+    "Spectral (Knife)"
+   ]
+  ],
+  "Spectre Set": [
+   [
+    "godlies",
+    "Phantom"
+   ],
+   [
+    "godlies",
+    "Spectre"
+   ]
+  ],
+  "Sun Set": [
+   [
+    "godlies",
+    "Sunrise"
+   ],
+   [
+    "godlies",
+    "Sunset"
+   ]
+  ],
+  "Sweet Set": [
+   [
+    "godlies",
+    "Sweet"
+   ],
+   [
+    "godlies",
+    "Treat"
+   ]
+  ],
+  "Swirly Set": [
+   [
+    "godlies",
+    "Swirly Gun"
+   ],
+   [
+    "ancients",
+    "Swirly Axe"
+   ]
+  ],
+  "Toxic Set": [
+   [
+    "rares",
+    "Toxic (Gun)"
+   ],
+   [
+    "rares",
+    "Toxic (Knife)"
+   ]
+  ],
+  "Traveler Set": [
+   [
+    "legendaries",
+    "Traveler (Gun)"
+   ],
+   [
+    "legendaries",
+    "Traveler (Knife)"
+   ]
+  ],
+  "Traveler's Set": [
+   [
+    "ancients",
+    "Traveler's Axe"
+   ],
+   [
+    "godlies",
+    "Traveler's Gun"
+   ]
+  ],
+  "Vampire Set (Legend.)": [
+   [
+    "legendaries",
+    "Vampire (Gun)"
+   ],
+   [
+    "legendaries",
+    "Vampire (Knife)"
+   ]
+  ],
+  "Vampire Set (Rare)": [
+   [
+    "rares",
+    "Vampire (Gun)"
+   ],
+   [
+    "rares",
+    "Vampire (Knife)"
+   ]
+  ],
+  "Vampire's Set": [
+   [
+    "ancients",
+    "Vampire's Axe"
+   ],
+   [
+    "godlies",
+    "Vampire's Gun"
+   ]
+  ],
+  "Vintage Set": [
+   [
+    "vintages",
+    "Ghost"
+   ],
+   [
+    "vintages",
+    "Blood"
+   ],
+   [
+    "vintages",
+    "America"
+   ],
+   [
+    "vintages",
+    "Laser"
+   ],
+   [
+    "vintages",
+    "Phaser"
+   ],
+   [
+    "vintages",
+    "Prince"
+   ],
+   [
+    "vintages",
+    "Shadow"
+   ],
+   [
+    "vintages",
+    "Cowboy"
+   ],
+   [
+    "vintages",
+    "Golden"
+   ],
+   [
+    "vintages",
+    "Splitter"
+   ]
+  ],
+  "Virtual Set": [
+   [
+    "godlies",
+    "Blaster"
+   ],
+   [
+    "godlies",
+    "Virtual"
+   ]
+  ],
+  "Wrap Set": [
+   [
+    "uncommons",
+    "Wrap (Gun)"
+   ],
+   [
+    "uncommons",
+    "Wrap (Knife)"
+   ]
+  ],
+  "Wrapping Paper Set": [
+   [
+    "misc",
+    "Ultra Wrap"
+   ],
+   [
+    "misc",
+    "Gold Papers"
+   ],
+   [
+    "misc",
+    "Blue Papers"
+   ],
+   [
+    "misc",
+    "Purple Papers"
+   ],
+   [
+    "misc",
+    "Red Papers"
+   ],
+   [
+    "misc",
+    "Box of Fertilizer"
+   ],
+   [
+    "misc",
+    "Green Papers"
+   ]
+  ],
+  "Xeno Set": [
+   [
+    "godlies",
+    "Xenoknife"
+   ],
+   [
+    "godlies",
+    "Xenoshot"
+   ]
+  ],
+  "Zombie Set": [
+   [
+    "uncommons",
+    "Zombie (Gun)"
+   ],
+   [
+    "uncommons",
+    "Zombie (Knife)"
+   ]
+  ],
+  "Zombified Set": [
+   [
+    "uncommons",
+    "Zombified (Gun)"
+   ],
+   [
+    "uncommons",
+    "Zombified (Knife)"
+   ]
+  ]
+ },
  "updated": "2026-10-25T20:25:53.516000+00:00",
  "values": {
   "<3": 7,

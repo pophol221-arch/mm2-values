@@ -2676,11 +2676,12 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     if S.autoDecline and auto.findUnwanted(theirs) and not select(2, auto.junkSplit(theirs)) then auto.setAcc("bad"); return end
     local profit = my > 0 and (th - my) / my * 100 or math.huge
     -- тот же запас, что у подсказки «Цель достигнута»: перебор до ~1 value (или 2%) считается целью
-    local maxMine = th / (1 + ((auto.ordProfit or env.TV_pct(th)) - (S.tolerance and 1 or 0)) / 100)
+    local strict = S.tiersOn and not auto.ordProfit -- ступени: процент — жёсткий минимум, без допусков
+    local maxMine = th / (1 + ((auto.ordProfit or env.TV_pct(th)) - ((S.tolerance and not strict) and 1 or 0)) / 100)
     if S.fillOver and auto.fillTh == th and auto.fillMy then
         maxMine = math.max(maxMine, auto.fillMy) -- скрипт сам добил сверх цели: такой оффер тоже принимаем
     end
-    if my > maxMine + math.max(1, maxMine * 0.02) then
+    if my > maxMine + (strict and 0.05 or math.max(1, maxMine * 0.02)) then
         auto.accSig = ""
         auto.setAcc("low", profit == math.huge and 999 or math.floor(profit + 0.5))
         return
@@ -3544,7 +3545,8 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
         sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.good), T("sugOk"):format(tgt .. T("overTag")))
         hideHighlights(); return
     end
-    if need < -math.max(1, maxMine * 0.02) then
+    local strict = S.tiersOn and not auto.ordProfit -- ступени: не отдаём больше, чем позволяет ступень
+    if need < -(strict and 0.05 or math.max(1, maxMine * 0.02)) then
         sugText.Text = ('<font color="%s">%s</font>'):format(hex(C.bad), T("sugRemove"):format(tgt, fmt(-need)))
         if S.autoAdd and (auto.busy or auto.removeExcess(tg, mine, -need, th, my)) then
             sugText.Text = T("sugRemoving"):format(tgt, fmt(-need))
@@ -3559,7 +3561,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     local picks, sum = pickItems(items, need, avoid)
     -- допуск ±1%: если с ослабленной на 1% целью можно добить точнее, берём этот вариант
     local tolUsed = false
-    if S.tolerance then
+    if S.tolerance and not strict then
         local needTol = th / (1 + (pctT - 1) / 100) - my
         local picks2, sum2 = pickItems(items, needTol, avoid)
         if sum2 > sum then picks, sum, need, tolUsed = picks2, sum2, needTol, true end
@@ -3574,7 +3576,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
         for _, pk in ipairs(picks) do used[pk.item] = pk.count end
         local best
         for _, it in ipairs(items) do
-            if (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= th then
+            if (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
                 if not best or it.price < best.price then best = it end
             end
         end

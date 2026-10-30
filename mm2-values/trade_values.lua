@@ -2579,7 +2579,7 @@ task.spawn(function()
                 if os.clock() - (auto.rrFiredAt or -1e9) < 2 then return end
                 auto.rrFiredAt = os.clock()
                 env.TV_dbg("request window shown")
-                task.delay(0.8, function() -- окно выезжает анимацией — жмём, когда оно на месте
+                task.delay(0.5, function() -- окно выезжает анимацией — жмём, когда оно на месте
                     auto.reqScanAt, auto.reqLast = 0, 0
                     pcall(auto.tryAcceptRequest)
                 end)
@@ -2632,7 +2632,7 @@ end
 function auto.tryAcceptRequest()
     -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
     local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 2 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 5 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
     auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do
@@ -3065,14 +3065,25 @@ end)() -- отдельная функция: у неё свой лимит 200 �
 
 -- кнопка «Отклонить» в окне трейда (Text у кнопок остаётся английским даже при переводе игры)
 local function findDeclineButton(tg)
-    -- только реально видимая кнопка (у MM2 два варианта окна трейда, один из них скрыт); из нескольких — самая крупная
-    local best, bestArea = nil, 0
+    -- только реально видимая кнопка (у MM2 два варианта окна трейда, один из них скрыт).
+    -- Раньше бралась самая крупная — и это бывал блок на всё окно (в нём тоже есть надпись «Decline»):
+    -- тогда «Отказ» нажимал все предметы подряд. Теперь: кнопка с «Decline» в своём имени / имени рамки,
+    -- иначе — самая маленькая подходящая, и не больше четверти окна
+    local win = tg:FindFirstChildWhichIsA("GuiObject")
+    local maxArea = win and win.AbsoluteSize.X * win.AbsoluteSize.Y * 0.25 or math.huge
+    local best, bestScore
     for _, d in ipairs(tg:GetDescendants()) do
         if d:IsA("GuiButton") and isShown(d) then
-            local all = env.TV_btnText(d)
-            if all:find("decline") or all:find("отклон") or all:find("отказ") then
-                local area = d.AbsoluteSize.X * d.AbsoluteSize.Y
-                if area > bestArea then best, bestArea = d, area end
+            local area = d.AbsoluteSize.X * d.AbsoluteSize.Y
+            local byName = d.Name:lower():find("decline") or (d.Parent and d.Parent.Name:lower():find("decline"))
+            local ok = byName
+            if not ok and area <= maxArea then
+                local all = env.TV_btnText(d)
+                ok = all:find("decline") or all:find("отклон") or all:find("отказ")
+            end
+            if ok and area <= maxArea * 4 then
+                local score = (byName and 0 or 1e9) + area
+                if not bestScore or score < bestScore then best, bestScore = d, score end
             end
         end
     end
@@ -3095,11 +3106,13 @@ auto.DECL_WAYS = { 4, 3, 5, 1, 2 }
 function auto.pressDecline(btn, tg, tries)
     -- «Отказ» можно жать сколько угодно — каждый раз пробуем все способы: по кнопке и по надписи поверх неё
     local targets = { btn }
-    local scope = btn.Parent and (btn.Parent.Parent or btn.Parent)
+    local scope = btn.Parent
     if scope then
         local p0, sz = btn.AbsolutePosition, btn.AbsoluteSize
         for _, d in ipairs(scope:GetDescendants()) do
-            if d:IsA("GuiButton") and d ~= btn and env.TV_vis(d) then
+            -- только надписи-кнопки поверх «Отказа», не ячейки предметов
+            if d:IsA("GuiButton") and d ~= btn and env.TV_vis(d) and d.AbsoluteSize.X * d.AbsoluteSize.Y <= sz.X * sz.Y * 1.5
+               and not (d:FindFirstAncestor("YourOffer") or d:FindFirstAncestor("TheirOffer") or d:FindFirstAncestor("Items")) then
                 local c = d.AbsolutePosition + d.AbsoluteSize / 2
                 if c.X >= p0.X and c.X <= p0.X + sz.X and c.Y >= p0.Y and c.Y <= p0.Y + sz.Y then table.insert(targets, d) end
             end

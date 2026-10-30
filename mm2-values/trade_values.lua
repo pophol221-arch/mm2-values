@@ -5576,6 +5576,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         notify(T(key):format(...))
     end
     local function rowButton(l)
+        if l:IsA("GuiButton") then return l end -- ник сам кнопка (вид для ПК) — жмём прямо на него
         local b = l:FindFirstAncestorWhichIsA("GuiButton")
         if b then return b end
         local c = l.AbsolutePosition + l.AbsoluteSize / 2
@@ -5637,8 +5638,6 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         anyLeft = true
                         local row = rowButton(l)
                         if row:IsA("GuiButton") and env.TV_forbidden(row) then continue end
-                        clickCell(row, g) -- открывается окошко «Профиль / Обмен»
-                        task.wait(0.8)
                         local tradeBtn, tbg
                         local function findTradeBtn()
                             for _, gg in ipairs(PlayerGui:GetChildren()) do
@@ -5647,6 +5646,12 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     if b then return b, gg end
                                 end
                             end
+                        end
+                        -- нажимаем прямо на ник; окошко «Профиль / Обмен» не появилось — другим способом нажатия
+                        for _, m in ipairs({ 3, 1, 5, 2, 4 }) do
+                            clickCell(row, g, m)
+                            task.wait(0.8)
+                            if findTradeBtn() then break end
                         end
                         -- сначала «Профиль»: смотрим его самое дорогое оружие — под него потом соберём оффер
                         do

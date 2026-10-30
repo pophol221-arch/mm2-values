@@ -2304,7 +2304,22 @@ local function clickCell(cell, tg, method)
         end
         return {}
     end
+    -- 1) как в старой версии: обработчики ПЕРВОГО сигнала, где они есть (так «Принять» срабатывало сразу)
     local function viaConnections()
+        if not getconnections then return false end
+        for _, sigName in ipairs(SIGNALS) do
+            local ok, found = pcall(getconnections, btn[sigName])
+            if ok and found and #found > 0 then
+                for _, c in ipairs(found) do
+                    if not pcall(function() c:Fire() end) then pcall(function() c.Function() end) end
+                end
+                return true
+            end
+        end
+        return false
+    end
+    -- 6) все сигналы с обработчиками, с аргументами — запасной (несколько «нажатий» сразу могут сбивать MM2)
+    local function viaAllSignals()
         if not getconnections then return false end
         -- все сигналы с обработчиками: на первом часто висит только звук нажатия, а действие — на другом
         local fired, report = false, {}
@@ -2430,7 +2445,7 @@ local function clickCell(cell, tg, method)
         end
         return fired
     end
-    local ways = { viaConnections, viaFiresignal, viaMouse, viaAll, viaInput }
+    local ways = { viaConnections, viaFiresignal, viaMouse, viaAll, viaInput, viaAllSignals }
     local function nm(o) local ok, n = pcall(function() return o:GetFullName() end); return ok and n or "?" end
     if method then
         local r = ways[method]() and method or nil
@@ -2585,7 +2600,7 @@ end
 function auto.tryAcceptRequest()
     -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
     local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 0.5 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 2) then return end
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 3 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
     auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do
@@ -2624,15 +2639,16 @@ function auto.tryAcceptRequest()
                             elseif auto.hasReqWord(ctx) then
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
                                 env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
+                                if os.clock() - (auto.reqSeenAt or -1e9) > 10 then auto.reqTry = 0 end -- новый запрос — снова с 1-го способа
                                 auto.reqTry = (auto.reqTry or 0) + 1
                                 auto.reqSeenAt = os.clock() -- авто-предложения ставим на паузу, чтобы не мешали
                                 -- открыто окошко «Профиль / Обмен» от авто-предложений — закрываем, чтобы не перекрывало запрос
                                 local insp = g:FindFirstChild("Inspect", true)
                                 local ic = insp and insp:IsA("GuiObject") and isShown(insp) and insp:FindFirstChild("Close")
                                 if ic then clickCell(ic, g, 3); task.wait(0.2) end
-                                -- сразу двумя способами: обработчики кнопки и щелчок мышью (раньше по одному за 2.4 с — долго)
-                                clickCell(d, g, 1)
-                                clickCell(d, g, auto.reqTry % 2 == 1 and 3 or 5)
+                                -- одно нажатие; не открылся трейд за 3 с — следующий способ (частые нажатия MM2 только тормозят)
+                                local order = { 1, 5, 3, 6, 4 }
+                                clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
                                 return

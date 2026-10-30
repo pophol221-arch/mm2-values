@@ -5004,11 +5004,20 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             local pic = new("ImageLabel", { Size = UDim2.fromOffset(28, 28), Position = UDim2.fromOffset(4, 3), BackgroundTransparency = 1,
                 ScaleType = Enum.ScaleType.Fit, Image = "", ZIndex = 22 }, r)
             pic.Image = env.TV_image and env.TV_image(e.name, function(a) if pic.Parent then pic.Image = a end end) or ""
-            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -220, 1, 0), Position = UDim2.fromOffset(40, 0),
+            -- последнее изменение цены (как стрелки в «Таблице цен»): выросла — зелёным, упала — красным
+            local ch = (env.TV_changes or {})[e.name]
+            local chTxt = ""
+            if ch and ch ~= 0 and e.price > 0 then
+                local before = e.price - ch
+                local pct = before > 0 and math.floor(math.abs(ch) / before * 100 + 0.5) or nil
+                chTxt = ('<font color="%s">%s%s%s</font>   '):format(hex(ch > 0 and C.good or C.bad), ch > 0 and "+" or "−",
+                    env.TV_fmt(math.abs(ch)), pct and (" (" .. (ch > 0 and "+" or "−") .. pct .. "%)") or "")
+            end
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(1, -300, 1, 0), Position = UDim2.fromOffset(40, 0),
                 Text = e.name .. (e.count > 1 and ("  ×" .. e.count) or ""), TextColor3 = C.text, TextSize = 13, Font = fontBold(),
                 TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 22 }, r)
-            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(170, 34), AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, -10, 0, 0),
-                Text = (e.count > 1 and (env.TV_fmt(e.price) .. " × " .. e.count .. " = ") or "") .. "<b>" .. env.TV_fmt(e.total) .. "</b>",
+            new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.fromOffset(250, 34), AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, -10, 0, 0),
+                Text = chTxt .. (e.count > 1 and (env.TV_fmt(e.price) .. " × " .. e.count .. " = ") or "") .. "<b>" .. env.TV_fmt(e.total) .. "</b>",
                 RichText = true, TextColor3 = C.muted, TextSize = 12, Font = Enum.Font.RobotoMono, TextXAlignment = Enum.TextXAlignment.Right, ZIndex = 22 }, r)
         end
 

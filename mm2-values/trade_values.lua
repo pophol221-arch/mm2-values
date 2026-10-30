@@ -2551,8 +2551,7 @@ function auto.openTab(tg, which)
 end
 
 function auto.findBadge()
-    local roots = { PlayerGui }
-    pcall(function() table.insert(roots, game:GetService("CoreGui")) end)
+    local roots = { PlayerGui } -- CoreGui (интерфейс самого Roblox) не перебираем: огромный, а «!» MM2 там нет
     for _, root in ipairs(roots) do
         -- только видимое (раньше — все объекты игры и Roblox каждые 2 с: главный источник лагов)
         local desc = {}
@@ -2595,6 +2594,10 @@ function auto.tryAcceptRequest()
                 env.TV_walk(g, function(d) if d:IsA("GuiButton") then table.insert(vis, d) end end)
                 for _, d in ipairs(vis) do
                     if d:IsA("GuiButton") and isShown(d) then
+                        -- быстрый отбор: «Принять» запроса или кнопка внутри окна запроса; остальное (строки списка игроков,
+                        -- док) не разбираем — подбор надписей у пустых кнопок был самым долгим местом скрипта
+                        local quick = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "")):lower()
+                        if not (quick:find("accept", 1, true) or quick:find("принят", 1, true) or d:GetFullName():lower():find("request", 1, true)) then continue end
                         local txt = env.TV_btnText(d)
                         if (txt:find("accept") or txt:find("принят")) and not (txt:find("decline") or txt:find("отклон")) then
                             local ctx = auto.reqContext(d, g)
@@ -2620,7 +2623,7 @@ function auto.tryAcceptRequest()
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
                                 env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
                                 auto.reqTry = (auto.reqTry or 0) + 1
-                                local order = { 4, 5, 3, 1 } -- по логу запрос принимают способы 4 и 5
+                                local order = { 5, 3, 4, 1 } -- по логу запрос принимают 5 и мышь (3)
                                 clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
@@ -2632,7 +2635,9 @@ function auto.tryAcceptRequest()
             end
         end
     end
-    -- кнопки «Принять» на экране нет, но есть красный «!» — открываем список запросов
+    -- кнопки «Принять» на экране нет, но есть красный «!» — открываем список запросов (ищем не чаще раза в 6 с)
+    if os.clock() - (auto.badgeScanAt or 0) < 6 then return end
+    auto.badgeScanAt = os.clock()
     badge = auto.findBadge()
     -- «!» висит, а принимать нечего (например, это приглашение в друзья) — после 2 открытий пауза 20 с
     if (auto.badgeOpens or 0) >= 2 then

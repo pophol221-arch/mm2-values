@@ -2283,21 +2283,29 @@ local function clickCell(cell, tg, method)
     end
     local function viaConnections()
         if not getconnections then return false end
-        for _, sigName in ipairs(SIGNALS) do
+        -- все сигналы с обработчиками: на первом часто висит только звук нажатия, а действие — на другом
+        local fired, report = false, {}
+        local seen = {}
+        for _, sigName in ipairs({ "MouseButton1Down", "MouseButton1Up", "MouseButton1Click", "Activated" }) do
             local ok, found = pcall(getconnections, btn[sigName])
             if ok and found and #found > 0 then
                 local a = argsFor(sigName)
+                local okN = 0
                 for _, c in ipairs(found) do
-                    if not pcall(function() c.Function(table.unpack(a)) end) then pcall(function() c:Fire(table.unpack(a)) end) end
+                    local f = c.Function
+                    if not (f and seen[f]) then
+                        if f then seen[f] = true end
+                        local okC = pcall(function() if f then f(table.unpack(a)) else c:Fire(table.unpack(a)) end end)
+                        if not okC then okC = pcall(function() c:Fire(table.unpack(a)) end) end
+                        if okC then okN += 1 end
+                    end
                 end
-                if sigName == "MouseButton1Down" then
-                    local ok2, up = pcall(getconnections, btn.MouseButton1Up)
-                    if ok2 and up then for _, c in ipairs(up) do pcall(function() c.Function(table.unpack(a)) end) end end
-                end
-                return true
+                fired = true
+                table.insert(report, sigName .. "=" .. #found .. "/" .. okN)
             end
         end
-        return false
+        if fired then env.TV_dbg("conns " .. table.concat(report, " ")) end
+        return fired
     end
     local function viaFiresignal()
         if not firesignal then return false end
@@ -2325,16 +2333,28 @@ local function clickCell(cell, tg, method)
                 if top == btn or top:IsDescendantOf(btn) or btn:IsDescendantOf(top) or (near and top:IsDescendantOf(near)) then hits = true end
             end
         end
-        if not hits then return false end -- кнопка прокручена за край или закрыта другим окном — мышью мимо
-        return (pcall(function()
+        if not hits then env.TV_dbg("mouse: miss (под курсором другое)"); return false end -- кнопка прокручена за край или закрыта другим окном
+        local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
+        local sg = btn:FindFirstAncestorWhichIsA("ScreenGui")
+        local inset = (sg and sg.IgnoreGuiInset) and Vector2.zero or GuiService:GetGuiInset()
+        local x, y = p.X + sz.X / 2 + inset.X, p.Y + sz.Y / 2 + inset.Y
+        local ok, err = pcall(function()
             local vim = game:GetService("VirtualInputManager")
-            local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
-            local inset = (tg and tg.IgnoreGuiInset) and Vector2.zero or GuiService:GetGuiInset()
-            local x, y = p.X + sz.X / 2 + inset.X, p.Y + sz.Y / 2 + inset.Y
             vim:SendMouseButtonEvent(x, y, 0, true, game, 0)
             task.wait(0.05)
             vim:SendMouseButtonEvent(x, y, 0, false, game, 0)
-        end))
+        end)
+        if ok then return true end
+        env.TV_dbg("mouse: VIM error " .. tostring(err))
+        -- запасной путь исполнителя: подвинуть курсор и щёлкнуть
+        local ok2, err2 = pcall(function()
+            if not (mousemoveabs and (mouse1click or (mouse1press and mouse1release))) then error("no mouse1click") end
+            mousemoveabs(x, y)
+            task.wait(0.03)
+            if mouse1press and mouse1release then mouse1press(); task.wait(0.05); mouse1release() else mouse1click() end
+        end)
+        if not ok2 then env.TV_dbg("mouse: exec error " .. tostring(err2)) end
+        return ok2
     end
     -- 4) все обработчики кнопки и вложенных кнопок (в т.ч. нажатие пальцем) — для «Отказа»
     local function viaAll()
@@ -2570,7 +2590,9 @@ function auto.tryAcceptRequest()
                             elseif auto.hasReqWord(ctx) then
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
                                 env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
-                                clickCell(d, g)
+                                auto.reqTry = (auto.reqTry or 0) + 1
+                                local order = { 3, 1, 4, 5 }
+                                clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
                                 return
@@ -5697,6 +5719,8 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             task.wait(3)
             pcall(function()
                 if not (S.enabled and S.outreach) or os.clock() - (env.TV_tradeSeen or -1e9) < 3 then return end
+                -- висит входящий запрос — не мешаем его принять
+                if os.clock() - (auto.reqLast or -1e9) < 15 then return end
                 -- ждём ответа прошлому игроку до 30 с
                 if os.clock() - (env.TV_outLast or -1e9) < 30 then return end
                 local list, g = entries(listGui())

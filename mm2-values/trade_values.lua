@@ -2565,6 +2565,33 @@ function auto.openTab(tg, which)
     return false
 end
 
+-- окно входящего запроса MM2 появилось — принимаем в тот же момент, не дожидаясь очередной проверки
+task.spawn(function()
+    while env.TV_inst == INST do
+        local rr = PlayerGui:FindFirstChild("ReceivingRequest", true)
+        if rr and rr ~= auto.rrHooked and rr:IsA("GuiObject") then
+            auto.rrHooked = rr
+            local function fire()
+                if not (S.enabled and S.autoRequest) then return end
+                task.defer(function()
+                    auto.reqScanAt, auto.reqLast = 0, 0
+                    env.TV_dbg("request window shown")
+                    pcall(auto.tryAcceptRequest)
+                end)
+            end
+            on(rr:GetPropertyChangedSignal("Visible"), function() if rr.Visible then fire() end end)
+            -- окно может остаться открытым, а смениться только ник — тоже новый запрос
+            for _, l in ipairs(rr:GetDescendants()) do
+                if l:IsA("TextLabel") then on(l:GetPropertyChangedSignal("Text"), function() if env.TV_vis(rr) then fire() end end) end
+            end
+            if rr.Parent and rr.Parent:IsA("GuiObject") then
+                local par = rr.Parent
+                on(par:GetPropertyChangedSignal("Visible"), function() if par.Visible and rr.Visible then fire() end end)
+            end
+        end
+        task.wait(5)
+    end
+end)
 function auto.findBadge()
     local roots = { PlayerGui } -- CoreGui (интерфейс самого Roblox) не перебираем: огромный, а «!» MM2 там нет
     for _, root in ipairs(roots) do

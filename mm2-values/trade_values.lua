@@ -2583,7 +2583,9 @@ function auto.findBadge()
 end
 
 function auto.tryAcceptRequest()
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 1 or os.clock() - (auto.reqScanAt or 0) < 2 then return end
+    -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
+    local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 0.5 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 2) then return end
     auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do
@@ -2623,8 +2625,14 @@ function auto.tryAcceptRequest()
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
                                 env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
                                 auto.reqTry = (auto.reqTry or 0) + 1
-                                local order = { 5, 3, 4, 1 } -- по логу запрос принимают 5 и мышь (3)
-                                clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
+                                auto.reqSeenAt = os.clock() -- авто-предложения ставим на паузу, чтобы не мешали
+                                -- открыто окошко «Профиль / Обмен» от авто-предложений — закрываем, чтобы не перекрывало запрос
+                                local insp = g:FindFirstChild("Inspect", true)
+                                local ic = insp and insp:IsA("GuiObject") and isShown(insp) and insp:FindFirstChild("Close")
+                                if ic then clickCell(ic, g, 3); task.wait(0.2) end
+                                -- сразу двумя способами: обработчики кнопки и щелчок мышью (раньше по одному за 2.4 с — долго)
+                                clickCell(d, g, 1)
+                                clickCell(d, g, auto.reqTry % 2 == 1 and 3 or 5)
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
                                 return
@@ -5760,7 +5768,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             pcall(function()
                 if not (S.enabled and S.outreach) or os.clock() - (env.TV_tradeSeen or -1e9) < 3 then return end
                 -- висит входящий запрос — не мешаем его принять
-                if os.clock() - (auto.reqLast or -1e9) < 15 then return end
+                if os.clock() - (auto.reqSeenAt or -1e9) < 15 or os.clock() - (auto.reqLast or -1e9) < 15 then return end
                 -- ждём ответа прошлому игроку до 30 с
                 if os.clock() - (env.TV_outLast or -1e9) < 30 then return end
                 local list, g = entries(listGui())
@@ -5865,6 +5873,11 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         end
                         tradeBtn, tbg = findTradeBtn()
                         sent[nm], env.TV_outLast = os.clock(), os.clock()
+                        if tradeBtn and os.clock() - (auto.reqSeenAt or -1e9) < 15 then
+                            tradeBtn = nil -- пока смотрели профиль, пришёл запрос — сначала его
+                            env.TV_outLast = os.clock() - 20
+                            return
+                        end
                         if tradeBtn then
                             env.TV_out = { name = nm, at = os.clock() }
                             -- «Обмен»: разными способами нажатия, пока окошко «Профиль / Обмен» не закроется

@@ -2319,7 +2319,7 @@ local function clickCell(cell, tg, method)
         local p0, sz0 = btn.AbsolutePosition, btn.AbsoluteSize
         -- что окажется под курсором: если там переключатель запросов и т.п. — мышью не жмём
         local ins = GuiService:GetGuiInset()
-        local hits = false
+        local hits, tops = false, {}
         local near = btn.Parent and btn.Parent.Parent or btn.Parent
         for _, dy in ipairs({ 0, ins.Y, -ins.Y }) do -- с отступом верхней панели и без: куда бы ни попал щелчок
             local okP, under = pcall(function() return PlayerGui:GetGuiObjectsAtPosition(p0.X + sz0.X / 2, p0.Y + sz0.Y / 2 + dy) end)
@@ -2327,13 +2327,17 @@ local function clickCell(cell, tg, method)
             local top
             for _, o in ipairs(okP and under or {}) do if not o:IsDescendantOf(ui) then top = o; break end end
             if top then
+                table.insert(tops, top:GetFullName():gsub("^Players%.[^%.]+%.PlayerGui%.", ""))
                 local b = top:IsA("GuiButton") and top or top:FindFirstAncestorWhichIsA("GuiButton")
                 if b and b ~= btn and env.TV_forbidden(b) then return false end
                 -- щелчок попадёт в эту кнопку (или в её надпись / ячейку рядом), а не во что-то поверх
                 if top == btn or top:IsDescendantOf(btn) or btn:IsDescendantOf(top) or (near and top:IsDescendantOf(near)) then hits = true end
             end
         end
-        if not hits then env.TV_dbg("mouse: miss (под курсором другое)"); return false end -- кнопка прокручена за край или закрыта другим окном
+        -- не попали — всё равно жмём, если под курсором нет запрещённого (проверено выше); в лог — что там
+        if not hits then env.TV_dbg("mouse: under=" .. table.concat(tops, " | ")) end
+        -- ячейка в прокрутке за краем окна — мышью нельзя (щелчок уйдёт в другое место)
+        if #tops == 0 then env.TV_dbg("mouse: nothing under cursor"); return false end
         local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
         local sg = btn:FindFirstAncestorWhichIsA("ScreenGui")
         local inset = (sg and sg.IgnoreGuiInset) and Vector2.zero or GuiService:GetGuiInset()

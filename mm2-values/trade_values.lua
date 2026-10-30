@@ -2632,7 +2632,7 @@ end
 function auto.tryAcceptRequest()
     -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
     local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 5 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 2.5 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
     auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do
@@ -2679,10 +2679,16 @@ function auto.tryAcceptRequest()
                                 local ic = insp and insp:IsA("GuiObject") and isShown(insp) and insp:FindFirstChild("Close")
                                 if ic then clickCell(ic, g, 3); task.wait(0.2) end
                                 -- одно нажатие; не открылся трейд за 3 с — следующий способ (частые нажатия MM2 только тормозят)
-                                local order = { 1, 5, 3, 6, 4 }
-                                clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
+                                -- первым — мышь (так жмёт игрок); способ не сработал (нет getconnections и т.п.) — сразу следующий,
+                                -- а не через 5 с: иначе окно запроса успевало пропасть, а нажатия так и не было
+                                local order = { 3, 1, 5, 6, 4 }
+                                local used
+                                for k = 0, #order - 1 do
+                                    used = clickCell(d, g, order[(auto.reqTry - 1 + k) % #order + 1])
+                                    if used then break end
+                                end
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
-                                notify(T("requestAccepted"))
+                                if used then notify(T("requestAccepted")) else env.TV_dbg("request: no click method worked") end
                                 return
                             end
                         end

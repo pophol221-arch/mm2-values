@@ -4026,8 +4026,13 @@ local function tick()
         local sn = auto.lastSnap
         auto.lastSnap = nil
         -- состоялся: был второй этап («Вы уверены?»), после него я принял, отказ не жали, и обе стороны что-то дают
-        if sn and sn.stage2At and sn.meAt and sn.meAt > sn.stage2At and os.clock() - sn.meAt < 6
-           and (auto.declTries or 0) == 0 and (auto.idleTries or 0) == 0 and ((sn.my or 0) > 0 or (sn.th or 0) > 0) then
+        -- MM2 закрывает окно через 10+ с после подтверждения; «Отказ», нажатый ДО моего подтверждения, не в счёт
+        if sn then
+            env.TV_dbg(("trade closed: stage2=%s me=%s sinceMe=%.1f declLast=%.1f my=%s th=%s"):format(tostring(sn.stage2At),
+                tostring(sn.meAt), sn.meAt and os.clock() - sn.meAt or -1, auto.declLast or 0, tostring(sn.my), tostring(sn.th)))
+        end
+        if sn and sn.stage2At and sn.meAt and sn.meAt > sn.stage2At and os.clock() - sn.meAt < 25
+           and (auto.declLast or 0) < sn.meAt and ((sn.my or 0) > 0 or (sn.th or 0) > 0) then
             local function list(o)
                 local out = {}
                 for _, e in pairs(o or {}) do table.insert(out, { e.name, e.count, e.price }) end
@@ -5353,7 +5358,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             table.sort(sig)
             sig = table.concat(sig, ",")
             -- трейды «на проверке»: инвентарь изменился так, как должен был — значит, трейд состоялся
-            if S.tradePending and #S.tradePending > 0 then
+            -- сразу после трейда инвентарь ещё старый — проверяем через 5 с
+            local ripe = true
+            for _, tr in ipairs(S.tradePending or {}) do if os.time() - (tr.t or 0) < 5 then ripe = false end end
+            if ripe and S.tradePending and #S.tradePending > 0 then
                 for _, tr in ipairs(S.tradePending) do
                     local ok = false
                     for _, x in ipairs(tr.got or {}) do
@@ -5364,6 +5372,9 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         local k = norm(x[1])
                         if ((items[k] and items[k][2]) or 0) < ((tr.pre or {})[k] or 0) then ok = true end
                     end
+                    -- не с чем сравнивать (инвентарь до трейда не записан) — верим подтверждению трейда
+                    if next(tr.pre or {}) == nil then ok = true end
+                    env.TV_dbg(("trade verify %s: %s"):format(tostring(tr.p), ok and "OK" or "no inventory change"))
                     if ok then
                         tr.pre = nil
                         S.tradeLog = S.tradeLog or {}

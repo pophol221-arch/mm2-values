@@ -5541,10 +5541,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                             if b:IsA("GuiButton") and env.TV_vis(b) and not env.TV_forbidden(b) then
                                 local bc = b.AbsolutePosition + b.AbsoluteSize / 2
                                 local dx, dy = c.X - bc.X, math.abs(c.Y - bc.Y)
-                                -- «+» левее числа, на той же высоте; кнопка с надписью «+» — в приоритете
+                                -- «+» — самая левая кнопка этой полоски («+ · Друзья · Игроки»); с надписью «+» — в приоритете
                                 local t = env.TV_btnText(b):sub(#env.TV_low(b.Name) + 2):gsub("%s", "")
-                                if dy < 40 and dx > 5 and dx < 160 then
-                                    local d = dx - (t == "+" and 1000 or 0)
+                                if dy < 40 and dx > 5 and dx < 450 and b.AbsoluteSize.X < 120 then
+                                    local d = -dx - (t == "+" and 10000 or 0)
                                     if not bestD or d < bestD then best, bestD = b, d end
                                 end
                             end
@@ -5573,6 +5573,20 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         end
         return l -- сама надпись (clickCell найдёт кнопку внутри или нажмёт мышью)
     end
+    -- кнопка «Игроки» в верхней полоске (появляется после «+»): по ней открывается список
+    local function playersButton()
+        local scr = ui.AbsoluteSize
+        for _, g in ipairs(PlayerGui:GetChildren()) do
+            if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
+                for _, l in ipairs(g:GetDescendants()) do
+                    if (l:IsA("TextLabel") or l:IsA("TextButton")) and env.TV_vis(l) and l.AbsolutePosition.Y < scr.Y * 0.25 then
+                        local t = env.TV_low(l.Text):gsub("%s", "")
+                        if t == "игроки" or t == "players" or t == "игроков" then return rowButton(l), g end
+                    end
+                end
+            end
+        end
+    end
     task.spawn(function()
         while ui.Parent do
             task.wait(3)
@@ -5583,10 +5597,16 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 local list, g = entries(listGui())
                 if #list == 0 then
                     -- список игроков закрыт — открываем кнопкой «+» возле числа игроков
-                    local plus, pg = plusButton()
-                    if not plus then why("outNoPlus"); return end
-                    clickCell(plus, pg)
-                    task.wait(1)
+                    -- «+» раскрывает полоску «Друзья · Игроки», «Игроки» открывает список
+                    local pb, pbg = playersButton()
+                    if not pb then
+                        local plus, pg = plusButton()
+                        if not plus then why("outNoPlus"); return end
+                        clickCell(plus, pg)
+                        task.wait(1)
+                        pb, pbg = playersButton()
+                    end
+                    if pb then clickCell(pb, pbg); task.wait(1) end
                     list, g = entries(nil)
                     if #list == 0 then
                         -- может, свёрнут — раскрываем «^»

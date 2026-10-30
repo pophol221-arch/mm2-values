@@ -13,11 +13,19 @@ local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 -- повторный запуск: убираем прошлую копию
 local env = (getgenv and getgenv()) or _G
 if env.TV_cleanup then pcall(env.TV_cleanup) end
+-- метка этой копии: запустили скрипт ещё раз — старая копия перестаёт реагировать и закрывается сама
+-- (даже если она ещё грузилась и не успела оставить TV_cleanup)
+local INST = {}
+env.TV_inst = INST
 for _, g in ipairs(PlayerGui:GetChildren()) do
     if g.Name == "TradeValuesOverlay" or g.Name == "TVSettingsUI" or g.Name == "TVOverlayUI" or g.Name == "TVHighlightUI" then g:Destroy() end
 end
 local conns = {}
-local function on(sig, fn) local c = sig:Connect(fn); table.insert(conns, c); return c end
+local function on(sig, fn)
+    local c = sig:Connect(function(...) if env.TV_inst == INST then return fn(...) end end)
+    table.insert(conns, c)
+    return c
+end
 
 ------------------------------------------------------------------
 -- Настройки (сохраняются в файл Delta, если он умеет writefile)
@@ -5614,8 +5622,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     end
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
-env.TV_cleanup = function()
+local function cleanup()
     for _, c in ipairs(conns) do c:Disconnect() end
     if ui then ui:Destroy() end
     if hlGui then hlGui:Destroy() end
 end
+if env.TV_inst == INST then env.TV_cleanup = cleanup end
+task.spawn(function()
+    while env.TV_inst == INST do task.wait(1) end
+    pcall(cleanup) -- запустили новую копию — эта закрывается
+end)

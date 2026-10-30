@@ -17,6 +17,25 @@ if env.TV_cleanup then pcall(env.TV_cleanup) end
 -- (даже если она ещё грузилась и не успела оставить TV_cleanup)
 local INST = {}
 env.TV_inst = INST
+-- отладочный лог: копится и раз в 2 с уходит на ПК разработчика (локальная сеть, порт 8799); нет приёмника — молча
+env.TV_dbgBuf, env.TV_dbgHost = {}, nil
+env.TV_dbg = function(msg)
+    if #env.TV_dbgBuf < 400 then table.insert(env.TV_dbgBuf, ("%.1f %s"):format(os.clock(), tostring(msg))) end
+end
+task.spawn(function()
+    local req = request or http_request or (syn and syn.request)
+    while env.TV_inst == INST and req do
+        task.wait(2)
+        if #env.TV_dbgBuf > 0 then
+            local body = table.concat(env.TV_dbgBuf, "\n")
+            env.TV_dbgBuf = {}
+            for _, host in ipairs(env.TV_dbgHost and { env.TV_dbgHost } or { "127.0.0.1", "10.0.2.2" }) do
+                local ok, res = pcall(req, { Url = "http://" .. host .. ":8799/", Method = "POST", Body = body })
+                if ok and res and (res.StatusCode == 200 or res.Success) then env.TV_dbgHost = host; break end
+            end
+        end
+    end
+end)
 for _, g in ipairs(PlayerGui:GetChildren()) do
     if g.Name == "TradeValuesOverlay" or g.Name == "TVSettingsUI" or g.Name == "TVOverlayUI" or g.Name == "TVHighlightUI" then g:Destroy() end
 end
@@ -2365,11 +2384,20 @@ local function clickCell(cell, tg, method)
         return fired
     end
     local ways = { viaConnections, viaFiresignal, viaMouse, viaAll, viaInput }
-    if method then return ways[method]() and method or nil end
+    local function nm(o) local ok, n = pcall(function() return o:GetFullName() end); return ok and n or "?" end
+    if method then
+        local r = ways[method]() and method or nil
+        env.TV_dbg(("click %s [%s] m=%s -> %s"):format(nm(btn), env.TV_btnText and env.TV_btnText(btn) or "", tostring(method), tostring(r)))
+        return r
+    end
     -- сначала мышью (так нажимает игрок — MM2 это точно засчитывает), потом обработчики кнопки
     for _, i in ipairs({ 3, 1, 2, 4, 5 }) do
-        if ways[i]() then return i end
+        if ways[i]() then
+            env.TV_dbg(("click %s [%s] auto -> %d"):format(nm(btn), env.TV_btnText and env.TV_btnText(btn) or "", i))
+            return i
+        end
     end
+    env.TV_dbg(("click %s FAILED all methods"):format(nm(btn)))
     return nil
 end
 
@@ -2541,7 +2569,9 @@ function auto.tryAcceptRequest()
                                 end
                             elseif auto.hasReqWord(ctx) then
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
+                                env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
                                 clickCell(d, g)
+                                if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
                                 return
                             end
@@ -3687,6 +3717,11 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     for k in pairs(auto.readOffer(theirs)) do avoid[k] = true end
     for k in pairs(auto.rerollAvoid or {}) do avoid[k] = true end -- не то, что ему уже не понравилось
     local picks, sum = pickItems(items, need, avoid)
+    do
+        local sig = ("offer my=%s th=%s need=%.1f inv=%d picks=%d sum=%s autoOffer=%s autoAdd=%s busy=%s"):format(
+            tostring(my), tostring(th), need, #items, #picks, tostring(sum), tostring(S.autoOffer), tostring(S.autoAdd), tostring(auto.busy))
+        if sig ~= auto.dbgSig then auto.dbgSig = sig; env.TV_dbg(sig) end
+    end
     -- допуск ±1%: если с ослабленной на 1% целью можно добить точнее, берём этот вариант
     local tolUsed = false
     if S.tolerance and not strict then
@@ -3848,6 +3883,12 @@ local function tick()
     end
     auto.tryAcceptRequest()
     local tg = S.enabled and findTradeGui() or nil
+    if tg ~= auto.dbgTg then
+        auto.dbgTg = tg
+        env.TV_dbg(("tradeGui=%s enabled=%s autoOffer=%s autoAdd=%s autoAccept=%s autoRequest=%s outreach=%s"):format(
+            tg and tg:GetFullName() or "nil", tostring(S.enabled), tostring(S.autoOffer), tostring(S.autoAdd),
+            tostring(S.autoAccept), tostring(S.autoRequest), tostring(S.outreach)))
+    end
     if X.chatFeed then
         X.chatFeed.Visible = S.enabled and S.chatAds and (not tg or S.chatInTrade)
     end
@@ -4044,6 +4085,7 @@ on(RunService.Heartbeat, function(dt)
     if acc < (nearTrade and 0.25 or 0.6) then return end
     acc = 0
     local ok, err = pcall(tick)
+    if not ok and tostring(err) ~= auto.dbgErr then auto.dbgErr = tostring(err); env.TV_dbg("TICK ERROR " .. tostring(err)) end
     if not ok and not errShown then -- показать ошибку один раз, чтобы было что прислать
         errShown = true
         notify("Ошибка: " .. tostring(err):sub(1, 150))

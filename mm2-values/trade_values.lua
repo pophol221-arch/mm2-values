@@ -2363,7 +2363,11 @@ local function clickCell(cell, tg, method)
             local okP, under = pcall(function() return PlayerGui:GetGuiObjectsAtPosition(p0.X + sz0.X / 2, p0.Y + sz0.Y / 2 + dy) end)
             -- только то, во что реально попадёт щелчок (самый верхний), а не панели позади окна трейда
             local top
-            for _, o in ipairs(okP and under or {}) do if not o:IsDescendantOf(ui) then top = o; break end end
+            for _, o in ipairs(okP and under or {}) do
+                -- прозрачные рамки поверх экрана (у MM2 «Fade») щелчок не перехватывают — их пропускаем
+                local clear = o:IsA("Frame") and o.BackgroundTransparency >= 0.99 and not o.Active
+                if not o:IsDescendantOf(ui) and not clear then top = o; break end
+            end
             if top then
                 table.insert(tops, (top:GetFullName():gsub("^Players%.[^%.]+%.PlayerGui%.", "")))
                 local b = top:IsA("GuiButton") and top or top:FindFirstAncestorWhichIsA("GuiButton")
@@ -2372,10 +2376,8 @@ local function clickCell(cell, tg, method)
                 if top == btn or top:IsDescendantOf(btn) or btn:IsDescendantOf(top) or (near and top:IsDescendantOf(near)) then hits = true end
             end
         end
-        -- не попали — всё равно жмём, если под курсором нет запрещённого (проверено выше); в лог — что там
-        if not hits then env.TV_dbg("mouse: under=" .. table.concat(tops, " | ")) end
-        -- ячейка в прокрутке за краем окна — мышью нельзя (щелчок уйдёт в другое место)
-        if #tops == 0 then env.TV_dbg("mouse: nothing under cursor"); return false end
+        -- щелчок попал бы не в эту кнопку (прокручена за край, закрыта) — мышью не жмём, будут другие способы
+        if not hits then env.TV_dbg("mouse: miss, under=" .. table.concat(tops, " | ")); return false end
         local p, sz = btn.AbsolutePosition, btn.AbsoluteSize
         local sg = btn:FindFirstAncestorWhichIsA("ScreenGui")
         local inset = (sg and sg.IgnoreGuiInset) and Vector2.zero or GuiService:GetGuiInset()
@@ -2573,9 +2575,12 @@ task.spawn(function()
             auto.rrHooked = rr
             local function fire()
                 if not (S.enabled and S.autoRequest) then return end
-                task.defer(function()
+                -- несколько событий подряд (видимость + ник) — одно нажатие
+                if os.clock() - (auto.rrFiredAt or -1e9) < 2 then return end
+                auto.rrFiredAt = os.clock()
+                env.TV_dbg("request window shown")
+                task.delay(0.8, function() -- окно выезжает анимацией — жмём, когда оно на месте
                     auto.reqScanAt, auto.reqLast = 0, 0
-                    env.TV_dbg("request window shown")
                     pcall(auto.tryAcceptRequest)
                 end)
             end
@@ -2627,7 +2632,7 @@ end
 function auto.tryAcceptRequest()
     -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
     local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 3 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 2 or os.clock() - (auto.reqScanAt or 0) < (fast and 0.5 or 1) then return end
     auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do

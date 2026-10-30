@@ -31,8 +31,15 @@ end
 -- Настройки (сохраняются в файл Delta, если он умеет writefile)
 ------------------------------------------------------------------
 local S = { textSize = 16, theme = 1, font = 1, lang = "ru", showDiff = true, iconX = 0.02, iconY = 0.35, autoOffer = false, target = 20, enabled = true, highlight = true, autoAdd = true, tolerance = false, uiScale = 1, autoAccept = false, fillOver = true, mirrorEmpty = true, emptyDecline = true, junkDecline = true, giftAccept = true, ordersOn = true, orders = {}, antiAfk = false, antiFling = false, autoRequest = false, chatAds = false, chatInTrade = false, chatRequests = true, declineMsg = true, autoDecline = false, blacklist = {}, keep = {}, idleDecline = true, cheapGodly = true }
+-- запись в файл не чаще раза в 2 с: много сохранений подряд (история, инвентарь) — одна запись
+local saveQueued = false
 local function saveSettings()
-    if writefile then pcall(writefile, SETTINGS_FILE, HttpService:JSONEncode(S)) end
+    if not writefile or saveQueued then return end
+    saveQueued = true
+    task.delay(2, function()
+        saveQueued = false
+        pcall(writefile, SETTINGS_FILE, HttpService:JSONEncode(S))
+    end)
 end
 if readfile and isfile then
     pcall(function()
@@ -1700,9 +1707,11 @@ local function findTradeGui()
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g ~= ui and g.Name ~= "TVHighlightUI" and g:IsA("ScreenGui") and g.Enabled and g.Name:lower():find("trade") then
             first = first or g
-            for _, d in ipairs(g:GetDescendants()) do
-                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then c.offer, c.g = d, g; return g end
-            end
+            local hit
+            env.TV_walk(g, function(d)
+                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then hit = d; return true end
+            end)
+            if hit then c.offer, c.g = hit, g; return g end
         end
     end
     c.first = first
@@ -4021,7 +4030,10 @@ local function tick()
 end
 
 on(RunService.Heartbeat, function(dt)
-    acc += dt; if acc < 0.25 then return end; acc = 0
+    acc += dt
+    local nearTrade = os.clock() - (env.TV_tradeSeen or -1e9) < 3
+    if acc < (nearTrade and 0.25 or 0.6) then return end
+    acc = 0
     local ok, err = pcall(tick)
     if not ok and not errShown then -- показать ошибку один раз, чтобы было что прислать
         errShown = true
@@ -5550,14 +5562,14 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             return {}, nil
         end
         local out = {}
-        for _, l in ipairs(g:GetDescendants()) do
-            if (l:IsA("TextLabel") or l:IsA("TextButton")) and env.TV_vis(l) then
+        env.TV_walk(g, function(l)
+            if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" then
                 -- «[ELITE] Alinka_676766» — без приставки в скобках; себя в списке нет (names без LocalPlayer)
                 local key = l.Text:gsub("^%s*%b[]%s*", ""):gsub("^%s+", ""):gsub("%s+$", ""):lower()
                 local nm = names[key]
-                if nm then table.insert(out, { nm, l }) end
+                if nm and env.TV_vis(l) then table.insert(out, { nm, l }) end
             end
-        end
+        end)
         table.sort(out, function(a, b) return a[2].AbsolutePosition.Y < b[2].AbsolutePosition.Y end)
         return out, g
     end
@@ -5614,12 +5626,14 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         local scr = ui.AbsoluteSize
         for _, g in ipairs(PlayerGui:GetChildren()) do
             if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
-                for _, l in ipairs(g:GetDescendants()) do
-                    if (l:IsA("TextLabel") or l:IsA("TextButton")) and env.TV_vis(l) and l.AbsolutePosition.Y < scr.Y * 0.25 then
+                local hit
+                env.TV_walk(g, function(l)
+                    if (l:IsA("TextLabel") or l:IsA("TextButton")) and #l.Text <= 20 and l.Text ~= "" and l.AbsolutePosition.Y < scr.Y * 0.25 then
                         local t = env.TV_low(l.Text):gsub("%s", "")
-                        if t == "игроки" or t == "players" or t == "игроков" then return rowButton(l), g end
+                        if (t == "игроки" or t == "players" or t == "игроков") and env.TV_vis(l) then hit = l; return true end
                     end
-                end
+                end)
+                if hit then return rowButton(hit), g end
             end
         end
     end

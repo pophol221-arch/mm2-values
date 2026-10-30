@@ -1515,14 +1515,18 @@ end)
 
     -- анти-флинг: чужие персонажи у нас не сталкиваются с нами, резкий отброс гасим
     local lastSafe, lastSafeAt = nil, 0
+    local lastNoCollide = 0
     on(RunService.Stepped, function()
         if not (S.enabled and S.antiFling) then return end
+        if os.clock() - lastNoCollide >= 0.5 then
+        lastNoCollide = os.clock()
         for _, pl in ipairs(Players:GetPlayers()) do
             if pl ~= LP and pl.Character then
                 for _, part in ipairs(pl.Character:GetDescendants()) do
                     if part:IsA("BasePart") and part.CanCollide then part.CanCollide = false end
                 end
             end
+        end
         end
         local char = LP.Character
         local hrp = char and char:FindFirstChild("HumanoidRootPart")
@@ -1666,17 +1670,25 @@ refresh()
 ------------------------------------------------------------------
 -- Чтение окна трейда
 ------------------------------------------------------------------
+local tgCache = { offer = nil, g = nil, first = nil, at = 0 }
 local function findTradeGui()
+    -- быстро: оффер, найденный в прошлый раз, всё ещё на экране
+    local c = tgCache
+    if c.offer and c.offer.Parent and c.g.Parent and c.g.Enabled and env.TV_vis(c.offer) then return c.g end
+    if os.clock() - c.at < 1 then return c.first end
+    c.at, c.offer, c.g = os.clock(), nil, nil
+    c.first = nil
     -- окон трейда может быть несколько (для телефона и для ПК); берём то, где оффер реально на экране
     local first
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g ~= ui and g.Name ~= "TVHighlightUI" and g:IsA("ScreenGui") and g.Enabled and g.Name:lower():find("trade") then
             first = first or g
             for _, d in ipairs(g:GetDescendants()) do
-                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then return g end
+                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then c.offer, c.g = d, g; return g end
             end
         end
     end
+    c.first = first
     return first
 end
 
@@ -2179,8 +2191,10 @@ env.TV_FORBIDDEN = { "выключ", "включ", "disable", "enable", "toggle"
 env.TV_noClick = env.TV_noClick or setmetatable({}, { __mode = "k" })
 env.TV_scanToggles = function()
     for _, l in ipairs(PlayerGui:GetDescendants()) do
-        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" then
-            local t = env.TV_low(l.Text)
+        local raw = (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text or ""
+        -- быстрая проверка без перевода кириллицы в нижний регистр (он медленный)
+        if raw ~= "" and (raw:find("апрос", 1, true) or raw:find("АПРОС", 1, true) or raw:lower():find("request", 1, true)) then
+            local t = env.TV_low(raw)
             if t:find("запросы на обмен") or t:find("торговые запросы") or t:find("trade request") or t:find("trading requests") then
                 local row = l.Parent
                 for _ = 1, 2 do
@@ -2216,9 +2230,9 @@ env.TV_forbidden = function(b)
     return false
 end
 task.spawn(function()
-    while true do
+    while env.TV_inst == INST do -- раньше крутилось вечно: каждый перезапуск добавлял ещё одну копию проверки
         pcall(env.TV_scanToggles)
-        task.wait(4)
+        task.wait(8)
     end
 end)
 local function clickCell(cell, tg, method)
@@ -2458,7 +2472,8 @@ function auto.findBadge()
 end
 
 function auto.tryAcceptRequest()
-    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 1 then return end
+    if not (S.enabled and S.autoRequest) or os.clock() - auto.reqLast < 1 or os.clock() - (auto.reqScanAt or 0) < 2 then return end
+    auto.reqScanAt = os.clock()
     local badge -- кнопка с красным «!» (непрочитанные запросы)
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
@@ -5171,7 +5186,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     local SKIP = { "shop", "store", "crate", "box", "preview", "reward", "spin", "unbox", "craft", "battle", "pass", "trade", "offer", "event" }
     task.spawn(function()
         while ui.Parent do
-            task.wait(3)
+            task.wait(5)
             pcall(function()
                 if not S.enabled then return end
                 local roots = {}
@@ -5374,11 +5389,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     -- цены прямо на ячейках предметов в экранах MM2 (профиль игрока, инвентарь, «Оружие»): плашка в углу ячейки
     task.spawn(function()
         while ui.Parent do
-            task.wait(1.5)
+            task.wait(3)
             pcall(function()
                 for _, g in ipairs(PlayerGui:GetChildren()) do
                     if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
-                        pcall(showTotals, g)
                         for _, d in ipairs(g:GetDescendants()) do
                             local cell = d:IsA("GuiObject") and d.Name ~= "TVPrice" and isCell(d)
                             if cell or (d:IsA("GuiObject") and d:FindFirstChild("TVPrice")) then

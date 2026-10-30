@@ -2350,7 +2350,7 @@ local function clickCell(cell, tg, method)
             local top
             for _, o in ipairs(okP and under or {}) do if not o:IsDescendantOf(ui) then top = o; break end end
             if top then
-                table.insert(tops, top:GetFullName():gsub("^Players%.[^%.]+%.PlayerGui%.", ""))
+                table.insert(tops, (top:GetFullName():gsub("^Players%.[^%.]+%.PlayerGui%.", "")))
                 local b = top:IsA("GuiButton") and top or top:FindFirstAncestorWhichIsA("GuiButton")
                 if b and b ~= btn and env.TV_forbidden(b) then return false end
                 -- щелчок попадёт в эту кнопку (или в её надпись / ячейку рядом), а не во что-то поверх

@@ -5068,7 +5068,18 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 ScaleType = Enum.ScaleType.Fit, Image = "", ZIndex = 22 }, r)
             pic.Image = env.TV_image and env.TV_image(e.name, function(a) if pic.Parent then pic.Image = a end end) or ""
             -- последнее изменение цены (как стрелки в «Таблице цен»): выросла — зелёным, упала — красным
-            local ch = (env.TV_changes or {})[e.name]
+            -- рост / падение цены за выбранный период (1Д / 7Д / 30Д / Всё) по истории цен; нет истории — последнее изменение
+            local ch
+            local ph = (env.TV_hist or {})[e.name]
+            if ph and #ph > 0 then
+                local range = S.chartRange or 0
+                local since = range > 0 and os.time() - range or -math.huge
+                local base = ph[1][2]
+                for _, pnt in ipairs(ph) do if pnt[1] <= since then base = pnt[2] end end
+                ch = e.price - base
+            else
+                ch = (env.TV_changes or {})[e.name]
+            end
             local chTxt = ""
             if ch and ch ~= 0 and e.price > 0 then
                 local before = e.price - ch

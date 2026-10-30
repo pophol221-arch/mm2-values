@@ -2554,8 +2554,10 @@ function auto.findBadge()
     local roots = { PlayerGui }
     pcall(function() table.insert(roots, game:GetService("CoreGui")) end)
     for _, root in ipairs(roots) do
-        local okD, desc = pcall(function() return root:GetDescendants() end)
-        for _, t in ipairs(okD and desc or {}) do
+        -- только видимое (раньше — все объекты игры и Roblox каждые 2 с: главный источник лагов)
+        local desc = {}
+        pcall(env.TV_walk, root, function(t) if t:IsA("TextLabel") and t.Text:find("!", 1, true) then table.insert(desc, t) end end)
+        for _, t in ipairs(desc) do
             if t:IsA("TextLabel") and t.Text:match("^%s*!%s*$") and not t:IsDescendantOf(ui) and isShown(t) then
                 -- «!» внутри кнопки
                 local btn = t:FindFirstAncestorWhichIsA("GuiButton")
@@ -3930,8 +3932,12 @@ local function tick()
     else
         auto.busySince = nil
     end
+    local tp = os.clock()
     auto.tryAcceptRequest()
+    env.TV_perfAdd("t.request", os.clock() - tp)
+    tp = os.clock()
     local tg = S.enabled and findTradeGui() or nil
+    env.TV_perfAdd("t.findTrade", os.clock() - tp)
     if tg ~= auto.dbgTg then
         auto.dbgTg = tg
         env.TV_dbg(("tradeGui=%s enabled=%s autoOffer=%s autoAdd=%s autoAccept=%s autoRequest=%s outreach=%s"):format(

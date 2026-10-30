@@ -131,6 +131,23 @@ env.TV_vis = function(g)
     end
     return o ~= nil and o.Enabled
 end
+-- обход только видимого: скрытые окна MM2 (весь инвентарь, магазин…) пропускаем целиком — это тысячи объектов.
+-- yieldEvery: раз в столько объектов пауза в один кадр, чтобы проверка не давала рывок
+env.TV_walk = function(root, fn, yieldEvery)
+    local stack, n = { root }, 0
+    while #stack > 0 do
+        local o = table.remove(stack)
+        for _, c in ipairs(o:GetChildren()) do
+            if not (c:IsA("GuiObject") and not c.Visible) and not (c:IsA("LayerCollector") and not c.Enabled) then
+                if fn(c) then return true end
+                table.insert(stack, c)
+                n += 1
+                if yieldEvery and n % yieldEvery == 0 then task.wait() end
+            end
+        end
+    end
+    return false
+end
 -- номер картинки из ссылки: «...?width=250&height=250&assetId=123» — нужен assetId, а не первое число (250)
 env.TV_imgId = function(img)
     img = tostring(img or "")
@@ -2190,7 +2207,7 @@ env.TV_FORBIDDEN = { "выключ", "включ", "disable", "enable", "toggle"
 -- строка «Запросы на обмен: [ползунок] выключено/включено» — все её кнопки в чёрном списке навсегда
 env.TV_noClick = env.TV_noClick or setmetatable({}, { __mode = "k" })
 env.TV_scanToggles = function()
-    for _, l in ipairs(PlayerGui:GetDescendants()) do
+    env.TV_walk(PlayerGui, function(l)
         local raw = (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text or ""
         -- быстрая проверка без перевода кириллицы в нижний регистр (он медленный)
         if raw ~= "" and (raw:find("апрос", 1, true) or raw:find("АПРОС", 1, true) or raw:lower():find("request", 1, true)) then
@@ -2208,7 +2225,7 @@ env.TV_scanToggles = function()
                 if l:IsA("GuiButton") then env.TV_noClick[l] = true end
             end
         end
-    end
+    end, 400)
 end
 env.TV_forbidden = function(b)
     if env.TV_noClick[b] then return true end
@@ -2232,7 +2249,7 @@ end
 task.spawn(function()
     while env.TV_inst == INST do -- раньше крутилось вечно: каждый перезапуск добавлял ещё одну копию проверки
         pcall(env.TV_scanToggles)
-        task.wait(8)
+        task.wait(4)
     end
 end)
 local function clickCell(cell, tg, method)
@@ -2479,7 +2496,9 @@ function auto.tryAcceptRequest()
         if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
             local offer = g:FindFirstChild("YourOffer", true)
             if not (offer and offer:IsA("GuiObject") and isShown(offer)) then
-                for _, d in ipairs(g:GetDescendants()) do
+                local vis = {}
+                env.TV_walk(g, function(d) if d:IsA("GuiButton") then table.insert(vis, d) end end)
+                for _, d in ipairs(vis) do
                     if d:IsA("GuiButton") and isShown(d) then
                         local txt = env.TV_btnText(d)
                         if (txt:find("accept") or txt:find("принят")) and not (txt:find("decline") or txt:find("отклон")) then
@@ -5192,13 +5211,13 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 local roots = {}
                 for _, g in ipairs(PlayerGui:GetChildren()) do
                     if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
-                        for _, d in ipairs(g:GetDescendants()) do
+                        env.TV_walk(g, function(d)
                             if d:IsA("GuiObject") and d.Name:lower():find("inventory") and env.TV_vis(d) then
                                 local path, ok = d:GetFullName():lower(), true
                                 for _, w in ipairs(SKIP) do if path:find(w, 1, true) then ok = false; break end end
                                 if ok then table.insert(roots, d) end
                             end
-                        end
+                        end, 300)
                     end
                 end
                 -- профиль другого игрока выглядит так же — его не записываем
@@ -5393,7 +5412,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             pcall(function()
                 for _, g in ipairs(PlayerGui:GetChildren()) do
                     if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui and not g.Name:lower():find("trade") then
-                        for _, d in ipairs(g:GetDescendants()) do
+                        env.TV_walk(g, function(d)
                             local cell = d:IsA("GuiObject") and d.Name ~= "TVPrice" and isCell(d)
                             if cell or (d:IsA("GuiObject") and d:FindFirstChild("TVPrice")) then
                                 local badge = d:FindFirstChild("TVPrice")
@@ -5427,7 +5446,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     badge.Visible = false
                                 end
                             end
-                        end
+                        end, 300)
                     end
                 end
             end)
@@ -5502,12 +5521,14 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     local function listGui()
         for _, g in ipairs(PlayerGui:GetChildren()) do
             if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
-                for _, h in ipairs(g:GetDescendants()) do
-                    if h:IsA("TextLabel") and env.TV_vis(h) then
+                local found
+                env.TV_walk(g, function(h)
+                    if h:IsA("TextLabel") and h.Text ~= "" and (h.Text:find("ажмите", 1, true) or h.Text:lower():find("click", 1, true)) then
                         local t = env.TV_low(h.Text)
-                        for _, w in ipairs(HINT) do if t:find(w, 1, true) then return g, h end end
+                        for _, w in ipairs(HINT) do if t:find(w, 1, true) then found = h; return true end end
                     end
-                end
+                end)
+                if found then return g, found end
             end
         end
     end

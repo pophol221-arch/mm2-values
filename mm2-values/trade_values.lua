@@ -19,6 +19,22 @@ local INST = {}
 env.TV_inst = INST
 -- отладочный лог: копится и раз в 2 с уходит на ПК разработчика (локальная сеть, порт 8799); нет приёмника — молча
 env.TV_dbgBuf, env.TV_dbgHost = {}, nil
+env.TV_perf = {}
+env.TV_perfAdd = function(name, dt) env.TV_perf[name] = (env.TV_perf[name] or 0) + dt end
+task.spawn(function()
+    local frames = 0
+    local rs = game:GetService("RunService")
+    local c = rs.RenderStepped:Connect(function() frames += 1 end)
+    while env.TV_inst == INST do
+        task.wait(10)
+        local parts = {}
+        for k, v in pairs(env.TV_perf) do table.insert(parts, ("%s=%.0fms"):format(k, v * 1000)) end
+        table.sort(parts)
+        env.TV_dbg(("perf fps=%.0f %s"):format(frames / 10, table.concat(parts, " ")))
+        env.TV_perf, frames = {}, 0
+    end
+    c:Disconnect()
+end)
 env.TV_dbg = function(msg)
     if #env.TV_dbgBuf < 400 then table.insert(env.TV_dbgBuf, ("%.1f %s"):format(os.clock(), tostring(msg))) end
 end
@@ -160,18 +176,25 @@ end
 -- обход только видимого: скрытые окна MM2 (весь инвентарь, магазин…) пропускаем целиком — это тысячи объектов.
 -- yieldEvery: раз в столько объектов пауза в один кадр, чтобы проверка не давала рывок
 env.TV_walk = function(root, fn, yieldEvery)
+    local label = "walk@" .. tostring(debug.info(2, "l"))
+    local t0 = os.clock()
     local stack, n = { root }, 0
     while #stack > 0 do
         local o = table.remove(stack)
         for _, c in ipairs(o:GetChildren()) do
             if not (c:IsA("GuiObject") and not c.Visible) and not (c:IsA("LayerCollector") and not c.Enabled) then
-                if fn(c) then return true end
+                if fn(c) then env.TV_perfAdd(label, os.clock() - t0); return true end
                 table.insert(stack, c)
                 n += 1
-                if yieldEvery and n % yieldEvery == 0 then task.wait() end
+                if yieldEvery and n % yieldEvery == 0 then
+                    env.TV_perfAdd(label, os.clock() - t0)
+                    task.wait()
+                    t0 = os.clock()
+                end
             end
         end
     end
+    env.TV_perfAdd(label, os.clock() - t0)
     return false
 end
 -- номер картинки из ссылки: «...?width=250&height=250&assetId=123» — нужен assetId, а не первое число (250)
@@ -2595,7 +2618,7 @@ function auto.tryAcceptRequest()
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
                                 env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
                                 auto.reqTry = (auto.reqTry or 0) + 1
-                                local order = { 3, 1, 4, 5 }
+                                local order = { 4, 5, 3, 1 } -- по логу запрос принимают способы 4 и 5
                                 clickCell(d, g, order[(auto.reqTry - 1) % #order + 1])
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
                                 notify(T("requestAccepted"))
@@ -4110,7 +4133,9 @@ on(RunService.Heartbeat, function(dt)
     local nearTrade = os.clock() - (env.TV_tradeSeen or -1e9) < 3
     if acc < (nearTrade and 0.25 or 0.6) then return end
     acc = 0
+    local tt = os.clock()
     local ok, err = pcall(tick)
+    env.TV_perfAdd("tick", os.clock() - tt)
     if not ok and tostring(err) ~= auto.dbgErr then auto.dbgErr = tostring(err); env.TV_dbg("TICK ERROR " .. tostring(err)) end
     if not ok and not errShown then -- показать ошибку один раз, чтобы было что прислать
         errShown = true

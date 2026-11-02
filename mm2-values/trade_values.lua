@@ -173,6 +173,14 @@ env.TV_vis = function(g)
     end
     return o ~= nil and o.Enabled
 end
+-- центр элемента в пределах экрана: MM2 закрывает/открывает окна, уводя их за край (Visible остаётся true)
+env.TV_onScreen = function(g)
+    local cam = workspace.CurrentCamera
+    if not cam then return true end
+    local vp = cam.ViewportSize
+    local c = g.AbsolutePosition + g.AbsoluteSize / 2
+    return c.X >= 0 and c.Y >= -40 and c.X <= vp.X and c.Y <= vp.Y
+end
 -- обход только видимого: скрытые окна MM2 (весь инвентарь, магазин…) пропускаем целиком — это тысячи объектов.
 -- yieldEvery: раз в столько объектов пауза в один кадр, чтобы проверка не давала рывок
 env.TV_walk = function(root, fn, yieldEvery)
@@ -1732,7 +1740,7 @@ local tgCache = { offer = nil, g = nil, first = nil, at = 0 }
 local function findTradeGui()
     -- быстро: оффер, найденный в прошлый раз, всё ещё на экране
     local c = tgCache
-    if c.offer and c.offer.Parent and c.g.Parent and c.g.Enabled and env.TV_vis(c.offer) then return c.g end
+    if c.offer and c.offer.Parent and c.g.Parent and c.g.Enabled and env.TV_vis(c.offer) and env.TV_onScreen(c.offer) then return c.g end
     if os.clock() - c.at < 1 then return c.first end
     c.at, c.offer, c.g = os.clock(), nil, nil
     c.first = nil
@@ -1740,10 +1748,16 @@ local function findTradeGui()
     local first
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g ~= ui and g.Name ~= "TVHighlightUI" and g:IsA("ScreenGui") and g.Enabled and g.Name:lower():find("trade") then
-            first = first or g
+            -- запасной вариант — только окно, которое реально на экране; иначе закрытый (уехавший за край)
+            -- трейд считался открытым: висела полоска выгоды, отсчёт отказа и «кнопка Принять не найдена»
+            if not first then
+                for _, ch in ipairs(g:GetChildren()) do
+                    if ch:IsA("GuiObject") and ch.AbsoluteSize.X > 100 and env.TV_vis(ch) and env.TV_onScreen(ch) then first = g; break end
+                end
+            end
             local hit
             env.TV_walk(g, function(d)
-                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) then hit = d; return true end
+                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) and env.TV_onScreen(d) then hit = d; return true end
             end)
             if hit then c.offer, c.g = hit, g; return g end
         end

@@ -2219,8 +2219,8 @@ end
 -- hard: предметы, которые не кладём никогда (то, что он сам даёт в этом трейде — менять Х на Х бессмысленно)
 -- have: что уже лежит в моём оффере. В окне трейда MM2 всего 4 ячейки: стопка одного предмета (xN) — одна ячейка,
 -- новый предмет — новая. Раньше набор мог требовать 5–6 разных предметов, и скрипт пытался класть в занятые ячейки
-local TRADE_SLOTS = 4
 local function pickItems(items, need, avoid, hard, have)
+    local TRADE_SLOTS = 4
     avoid, hard, have = avoid or {}, hard or {}, have or {}
     local used = 0
     for _ in pairs(have) do used += 1 end
@@ -4045,7 +4045,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
         for _, pk in ipairs(picks) do local k = norm(pk.item.name); if not keys[k] then keys[k] = true; nSlots += 1 end end
         local best
         for _, it in ipairs(items) do
-            if not hard[norm(it.name)] and (keys[norm(it.name)] or nSlots < TRADE_SLOTS) and (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
+            if not hard[norm(it.name)] and (keys[norm(it.name)] or nSlots < 4) and (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
                 if not best or it.price < best.price then best = it end
             end
         end

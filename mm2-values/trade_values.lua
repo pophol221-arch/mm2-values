@@ -2629,6 +2629,35 @@ function auto.findBadge()
     end
 end
 
+-- окно трейда MM2 реально открыто (виден «YourOffer»)
+function auto.tradeOpened()
+    for _, g in ipairs(PlayerGui:GetChildren()) do
+        if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
+            local o = g:FindFirstChild("YourOffer", true)
+            if o and o:IsA("GuiObject") and isShown(o) then return true end
+        end
+    end
+    return false
+end
+-- прямой вызов remote MM2 (ReplicatedStorage.Trade.<name>) — не зависит от того, умеет ли исполнитель жать мышью
+function auto.tradeRemote(name, ...)
+    local tr = game:GetService("ReplicatedStorage"):FindFirstChild("Trade")
+    local r = tr and tr:FindFirstChild(name)
+    if not r then env.TV_dbg("remote: Trade." .. name .. " not found"); return false end
+    local args = table.pack(...)
+    local ok, err
+    if r:IsA("RemoteEvent") then
+        ok, err = pcall(function() r:FireServer(table.unpack(args, 1, args.n)) end)
+    elseif r:IsA("RemoteFunction") then
+        ok = true -- ответ сервера не ждём: окно трейда проверяем отдельно
+        task.spawn(function() pcall(function() r:InvokeServer(table.unpack(args, 1, args.n)) end) end)
+    else
+        return false
+    end
+    if not ok then env.TV_dbg("remote: Trade." .. name .. " error " .. tostring(err)) end
+    return ok
+end
+
 function auto.tryAcceptRequest()
     -- запрос недавно был на экране — проверяем каждые 0.5 с, иначе раз в 2 с
     local fast = os.clock() - (auto.reqSeenAt or -1e9) < 15
@@ -2670,25 +2699,42 @@ function auto.tryAcceptRequest()
                                 end
                             elseif auto.hasReqWord(ctx) then
                                 auto.reqLast, auto.badgeOpens = os.clock(), 0
-                                env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
-                                if os.clock() - (auto.reqSeenAt or -1e9) > 10 then auto.reqTry = 0 end -- новый запрос — снова с 1-го способа
-                                auto.reqTry = (auto.reqTry or 0) + 1
                                 auto.reqSeenAt = os.clock() -- авто-предложения ставим на паузу, чтобы не мешали
+                                if auto.reqBusy then return end -- уже принимаем этот запрос в фоне
+                                auto.reqBusy = true
+                                env.TV_dbg("request: accept button " .. d:GetFullName() .. " ctx=" .. ctx:sub(1, 200))
                                 -- открыто окошко «Профиль / Обмен» от авто-предложений — закрываем, чтобы не перекрывало запрос
                                 local insp = g:FindFirstChild("Inspect", true)
                                 local ic = insp and insp:IsA("GuiObject") and isShown(insp) and insp:FindFirstChild("Close")
-                                if ic then clickCell(ic, g, 3); task.wait(0.2) end
-                                -- одно нажатие; не открылся трейд за 3 с — следующий способ (частые нажатия MM2 только тормозят)
-                                -- первым — мышь (так жмёт игрок); способ не сработал (нет getconnections и т.п.) — сразу следующий,
-                                -- а не через 5 с: иначе окно запроса успевало пропасть, а нажатия так и не было
-                                local order = { 3, 1, 5, 6, 4 }
-                                local used
-                                for k = 0, #order - 1 do
-                                    used = clickCell(d, g, order[(auto.reqTry - 1 + k) % #order + 1])
-                                    if used then break end
-                                end
+                                if ic then clickCell(ic, g, 3) end
+                                -- раньше: способ «сработал» (мышь без ошибки) — и всё, даже если трейд так и не открылся.
+                                -- теперь: после каждого способа ждём окно трейда; не открылось — следующий способ.
+                                -- первым — прямой вызов MM2 (Trade.AcceptRequest), он не зависит от мыши и getconnections
+                                task.spawn(function()
+                                    pcall(function()
+                                        if ic then task.wait(0.2) end
+                                        for _, m in ipairs({ "remote", 3, 1, 6, 5, 2, 4 }) do
+                                            if auto.tradeOpened() then break end
+                                            -- запрос пропал (отменили / истёк) — больше не жмём
+                                            if m ~= "remote" and not (d.Parent and isShown(d)) then
+                                                env.TV_dbg("request: window gone, stop"); return
+                                            end
+                                            local fired
+                                            if m == "remote" then fired = auto.tradeRemote("AcceptRequest") else fired = clickCell(d, g, m) end
+                                            if fired then
+                                                local t0 = os.clock()
+                                                repeat task.wait(0.1) until auto.tradeOpened() or os.clock() - t0 > 1.5
+                                                if auto.tradeOpened() then break end
+                                                env.TV_dbg("request: method " .. tostring(m) .. " fired, trade not opened")
+                                            end
+                                        end
+                                        if auto.tradeOpened() then notify(T("requestAccepted"))
+                                        else env.TV_dbg("request: no method opened the trade") end
+                                    end)
+                                    auto.reqBusy = false
+                                    auto.reqLast = os.clock()
+                                end)
                                 if not auto.dumpedReq then auto.dumpedReq = true; task.delay(1.5, auto.debugDump) end
-                                if used then notify(T("requestAccepted")) else env.TV_dbg("request: no click method worked") end
                                 return
                             end
                         end
@@ -5168,10 +5214,9 @@ end)() -- отдельная функция: у неё свой лимит 200 �
             end
         end
         -- текущая цена справа
-        local badge = new("TextLabel", { BackgroundColor3 = col, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 16),
+        local badge = new("TextLabel", { BackgroundTransparency = 1, AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 16),
             AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.fromOffset(CW - 2, math.clamp(py(cur), 10, CH - B_ - 8)), Text = env.TV_fmt(cur),
-            TextColor3 = C.bg, TextSize = 10, Font = Enum.Font.RobotoMono, ZIndex = 26 }, canvas)
-        corner(badge, 5)
+            TextColor3 = col, TextSize = 10, Font = Enum.Font.RobotoMono, ZIndex = 26 }, canvas)
         pad(badge, 5, 0)
 
         -- предметы инвентаря: картинка, название xN, цена за штуку и всего
@@ -5648,9 +5693,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                 if price and price > 0 then
                                     if not badge then
                                         badge = new("TextLabel", { Name = "TVPrice", AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18),
-                                            Position = UDim2.fromOffset(4, 4), BackgroundColor3 = C.bg, BackgroundTransparency = 0.15,
+                                            Position = UDim2.fromOffset(4, 4), BackgroundTransparency = 1, TextXAlignment = Enum.TextXAlignment.Left,
                                             TextColor3 = accent(), TextSize = 13, Font = Enum.Font.GothamBold, ZIndex = (d.ZIndex or 1) + 10, Text = "" }, d)
-                                        corner(badge, 6)
+                                        -- без плашки: только цифры, с тёмной обводкой, чтобы читались поверх картинки
+                                        new("UIStroke", { Color = rgb(0, 0, 0), Thickness = 1.5, Transparency = 0.2 }, badge)
                                         pad(badge, 5, 0)
                                     end
                                     local txt = env.TV_fmt(price)

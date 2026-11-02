@@ -1098,6 +1098,10 @@ local function itemRow(it, order)
     end
     -- стрелка изменения цены (как «Change in Value» на сайте)
     local ch = (not it.cat or it.primary) and (env.TV_changes or {})[it.name] or nil -- стрелки — только у «своего» предмета
+    -- цена не менялась больше 7 дней — «+N / −N» не показываем (в истории точка пишется только при смене цены)
+    local h = (env.TV_hist or {})[it.name]
+    local lastAt = h and h[#h] and h[#h][1]
+    if not lastAt or os.time() - lastAt > 7 * 86400 then ch = nil end
     if ch and ch ~= 0 then
         local up = ch > 0
         local arrow = new("Frame", { Size = UDim2.fromOffset(12, 12), AnchorPoint = Vector2.new(1, 0.5),

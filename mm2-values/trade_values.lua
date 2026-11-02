@@ -2217,28 +2217,53 @@ end
 -- набираем предметы, не превышая нужную сумму. По возможности: разные предметы (не стопки одинаковых)
 -- и не то, что положил он сам (avoid = ключи его предметов). Не набирается — возвращаемся к обычному набору.
 -- hard: предметы, которые не кладём никогда (то, что он сам даёт в этом трейде — менять Х на Х бессмысленно)
-local function pickItems(items, need, avoid, hard)
-    avoid, hard = avoid or {}, hard or {}
+-- have: что уже лежит в моём оффере. В окне трейда MM2 всего 4 ячейки: стопка одного предмета (xN) — одна ячейка,
+-- новый предмет — новая. Раньше набор мог требовать 5–6 разных предметов, и скрипт пытался класть в занятые ячейки
+local TRADE_SLOTS = 4
+local function pickItems(items, need, avoid, hard, have)
+    avoid, hard, have = avoid or {}, hard or {}, have or {}
+    local used = 0
+    for _ in pairs(have) do used += 1 end
+    local free = math.max(0, TRADE_SLOTS - used)
     table.sort(items, function(a, b) return a.price > b.price end)
-    local function greedy(distinct, skipAvoid)
-        local picks, sum = {}, 0
-        for _, it in ipairs(items) do
+    -- skipAvoid — без «ему не понравилось»; one — по одной штуке каждого; first — с какого предмета начать
+    local function greedy(one, skipAvoid, first)
+        local picks, sum, slots = {}, 0, 0
+        local function take(it)
             local k = norm(it.name)
-            if not hard[k] and not (skipAvoid and avoid[k]) and not (distinct and #picks >= 4) then
-                local n = 0
-                while n < (distinct and 1 or it.amount) and sum + it.price <= need do
-                    sum += it.price; n += 1
-                end
-                if n > 0 then table.insert(picks, { item = it, count = n }) end
+            if hard[k] or (skipAvoid and avoid[k]) then return end
+            local newSlot = not have[k]
+            if newSlot and slots >= free then return end
+            local n = 0
+            while n < (one and 1 or it.amount) and sum + it.price <= need do
+                sum += it.price; n += 1
             end
+            if n > 0 then
+                table.insert(picks, { item = it, count = n })
+                if newSlot then slots += 1 end
+            end
+        end
+        if first then take(first) end
+        for _, it in ipairs(items) do
+            if it ~= first then take(it) end
         end
         return picks, sum
     end
     local slack = math.max(1, need * 0.03)
     local bestP, bestS = greedy(true, true)          -- разные, без его предметов
+    local function try(p2, s2) if s2 > bestS + slack or (s2 > bestS and #p2 <= #bestP) then bestP, bestS = p2, s2 end end
     for _, mode in ipairs({ { false, true }, { true, false }, { false, false } }) do
-        local p2, s2 = greedy(mode[1], mode[2])
-        if s2 > bestS + slack then bestP, bestS = p2, s2 end -- заметно точнее — берём
+        try(greedy(mode[1], mode[2]))
+    end
+    -- в 4 ячейки жадный выбор «от дорогих» часто не добивает: пробуем начинать с каждого подходящего предмета
+    local tried = 0
+    for _, it in ipairs(items) do
+        if it.price <= need and not hard[norm(it.name)] then
+            tried += 1
+            if tried > 40 then break end
+            try(greedy(false, true, it))
+            if bestS >= need - 1e-9 then break end
+        end
     end
     return bestP, bestS
 end
@@ -3992,7 +4017,8 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     local avoid, hard = {}, {}
     for k in pairs(auto.readOffer(theirs)) do avoid[k] = true; hard[k] = true end -- то, что он даёт, — никогда
     for k in pairs(auto.rerollAvoid or {}) do avoid[k] = true end -- не то, что ему уже не понравилось
-    local picks, sum = pickItems(items, need, avoid, hard)
+    local have = auto.readOffer(mine)
+    local picks, sum = pickItems(items, need, avoid, hard, have)
     do
         local sig = ("offer my=%s th=%s need=%.1f inv=%d picks=%d sum=%s autoOffer=%s autoAdd=%s busy=%s"):format(
             tostring(my), tostring(th), need, #items, #picks, tostring(sum), tostring(S.autoOffer), tostring(S.autoAdd), tostring(auto.busy))
@@ -4002,7 +4028,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     local tolUsed = false
     if S.tolerance and not strict then
         local needTol = th / (1 + (pctT - 1) / 100) - my
-        local picks2, sum2 = pickItems(items, needTol, avoid, hard)
+        local picks2, sum2 = pickItems(items, needTol, avoid, hard, have)
         if sum2 > sum then picks, sum, need, tolUsed = picks2, sum2, needTol, true end
     end
     if tolUsed then tgt = tgt .. " (±1%)" end
@@ -4013,9 +4039,13 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
         local rest = need - sum
         local used = {}
         for _, pk in ipairs(picks) do used[pk.item] = pk.count end
+        -- свободные ячейки (из 4) после набора: новый предмет кладём, только если есть куда
+        local keys, nSlots = {}, 0
+        for k in pairs(have) do keys[k] = true; nSlots += 1 end
+        for _, pk in ipairs(picks) do local k = norm(pk.item.name); if not keys[k] then keys[k] = true; nSlots += 1 end end
         local best
         for _, it in ipairs(items) do
-            if not hard[norm(it.name)] and (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
+            if not hard[norm(it.name)] and (keys[norm(it.name)] or nSlots < TRADE_SLOTS) and (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
                 if not best or it.price < best.price then best = it end
             end
         end
@@ -4089,7 +4119,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                     local addBtn = findAddButton(tg)
                     if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
                     -- теперь инвентарь на экране: набираем заново только из того, что реально есть
-                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid, hard)
+                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid, hard, auto.readOffer(mine))
                     if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do
@@ -6207,10 +6237,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 task.spawn(function()
                     pcall(function()
                         local addBtn = findAddButton(tg)
-                        local picks = pickItems(scanInventory(tg, mine, theirs), need, {})
+                        local picks = pickItems(scanInventory(tg, mine, theirs), need, {}, auto.readOffer(theirs), auto.readOffer(mine))
                         local anyHidden = false
                         for _, pk in ipairs(picks) do if not isShown(pk.item.frame) then anyHidden = true end end
-                        if anyHidden and addBtn then clickCell(addBtn, tg); task.wait(0.8); picks = pickItems(scanInventory(tg, mine, theirs), need, {}) end
+                        if anyHidden and addBtn then clickCell(addBtn, tg); task.wait(0.8); picks = pickItems(scanInventory(tg, mine, theirs), need, {}, auto.readOffer(theirs), auto.readOffer(mine)) end
                         for _, pk in ipairs(picks) do
                             for _ = 1, pk.count do
                                 if not (pk.item.frame.Parent and isShown(pk.item.frame)) then break end

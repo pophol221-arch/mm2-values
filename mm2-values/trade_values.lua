@@ -1549,7 +1549,7 @@ on(X.reqToggle.Activated, change(function() S.autoRequest = not S.autoRequest en
 on(X.chatToggle.Activated, change(function() S.chatAds = not S.chatAds end))
 on(X.afkToggle.Activated, change(function() S.antiAfk = not S.antiAfk end))
 on(X.flingToggle.Activated, change(function() S.antiFling = not S.antiFling end))
-on(X.outToggle.Activated, change(function() S.outreach = not S.outreach; env.TV_outLast = os.clock() - 80 end))
+on(X.outToggle.Activated, change(function() S.outreach = not S.outreach; env.TV_outLast = nil end))
 on(X.adToggle.Activated, change(function() S.chatAdvert = not S.chatAdvert; env.TV_adLast = os.clock() - 140 end))
 -- «Давай обменяемся!» в чат раз в минуту, пока не идёт трейд
 task.spawn(function()
@@ -2496,7 +2496,7 @@ local function findAddButton(tg)
     end
 end
 
-local auto = { busy = false, lastTh = -1, stableSince = 0, doneFor = -1, declined = false,
+local auto = { OUT_EVERY = 120, busy = false, lastTh = -1, stableSince = 0, doneFor = -1, declined = false,
                accSig = "", accSince = 0, accTries = 0, accDone = false, accLast = 0 }
 function auto.closePicker(tg)
     local b = env.TV_findBack(tg)
@@ -5936,11 +5936,11 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         while ui.Parent do
             task.wait(3)
             pcall(function()
-                if not (S.enabled and S.outreach) or os.clock() - (env.TV_tradeSeen or -1e9) < 3 then return end
+                -- раз в 2 минуты и только когда 2 минуты не было трейда
+                if not (S.enabled and S.outreach) or os.clock() - (env.TV_tradeSeen or -1e9) < auto.OUT_EVERY then return end
                 -- висит входящий запрос — не мешаем его принять
                 if os.clock() - (auto.reqSeenAt or -1e9) < 15 or os.clock() - (auto.reqLast or -1e9) < 15 then return end
-                -- ждём ответа прошлому игроку до 30 с
-                if os.clock() - (env.TV_outLast or -1e9) < 30 then return end
+                if os.clock() - (env.TV_outLast or -1e9) < auto.OUT_EVERY then return end
                 local list, g = entries(listGui())
                 if #list == 0 then
                     -- список игроков закрыт — открываем кнопкой «+» возле числа игроков
@@ -6043,9 +6043,25 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         end
                         tradeBtn, tbg = findTradeBtn()
                         sent[nm], env.TV_outLast = os.clock(), os.clock()
-                        if tradeBtn and os.clock() - (auto.reqSeenAt or -1e9) < 15 then
-                            tradeBtn = nil -- пока смотрели профиль, пришёл запрос — сначала его
-                            env.TV_outLast = os.clock() - 20
+                        if os.clock() - (auto.reqSeenAt or -1e9) < 15 then
+                            -- пока смотрели профиль, пришёл запрос — сначала его
+                            env.TV_outLast = os.clock() - auto.OUT_EVERY + 10
+                            return
+                        end
+                        -- отправка запроса напрямую через MM2 (Trade.SendRequest): нажатие «Обмен» часто не срабатывало,
+                        -- а скрипт всё равно писал «Предложил трейд», потому что окошко «Профиль / Обмен» закрывалось
+                        local plr
+                        for _, p in ipairs(Players:GetPlayers()) do
+                            if p ~= Players.LocalPlayer and (p.Name:lower() == nm:lower() or p.DisplayName:lower() == nm:lower()) then plr = p; break end
+                        end
+                        if plr and auto.tradeRemote("SendRequest", plr) then
+                            env.TV_out = { name = nm, at = os.clock() }
+                            if tradeBtn then
+                                local x = exactBtn(tbg, { "x", "х", "✕" })
+                                if x then clickCell(x, tbg) end
+                            end
+                            env.TV_dbg("outreach: SendRequest -> " .. plr.Name)
+                            notify(T("outSent"):format(nm))
                             return
                         end
                         if tradeBtn then
@@ -6065,7 +6081,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                             -- окошко не появилось — закрываем, если открыто, и пробуем следующего через 3 с
                             local x = exactBtn(g, { "x", "х", "✕" })
                             if x then clickCell(x, g) end
-                            env.TV_outLast = os.clock() - 27
+                            env.TV_outLast = os.clock() - auto.OUT_EVERY + 3 -- следующего — через 3 с
                             why("outNoTradeBtn", nm)
                         end
                         return

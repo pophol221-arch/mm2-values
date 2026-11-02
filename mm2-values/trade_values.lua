@@ -2563,6 +2563,21 @@ function auto.findAccept(tg)
             end
         end
     end
+    -- запасной путь (окно для телефона): у кнопок нет подписей, только «ActionButton» — «Принять» узнаём по зелёному цвету
+    -- (её фона, картинки или рамки вокруг), «Отказ» красный
+    local function green(c) return c and c.G > 0.55 and c.R < 0.45 and c.B < 0.45 end
+    for _, d in ipairs(tg:GetDescendants()) do
+        if d:IsA("GuiButton") and isShown(d) and env.TV_onScreen(d) then
+            local all = env.TV_btnText(d)
+            if not (all:find("wait") or all:find("подожд") or all:find("%(%d+%)") or all:find("unaccept") or all:find("отмен") or all:find("cancel")
+                or all:find("decline") or all:find("отказ") or all:find("отклон")) then
+                local p = d.Parent
+                local col = (d.BackgroundTransparency < 0.9 and d.BackgroundColor3) or (d:IsA("ImageButton") and d.Image ~= "" and d.ImageColor3)
+                    or (p and p:IsA("GuiObject") and p.BackgroundTransparency < 0.9 and p.BackgroundColor3) or nil
+                if green(col) and d.AbsoluteSize.X > d.AbsoluteSize.Y then return d end
+            end
+        end
+    end
 end
 
 -- автопринятие входящего запроса на трейд.
@@ -3897,8 +3912,10 @@ end
 function auto.removeExcess(tg, mine, excess, th, my)
     if th ~= auto.lastTh then auto.lastTh, auto.stableSince = th, os.clock() end
     if auto.busy or os.clock() - (auto.stableSince or 0) < 1.5 then return false end
-    local sig = th .. ":" .. my
-    -- та же ситуация: повтор через 3 с, до 3 раз (ячейки могли перерисоваться)
+    local sig = th .. ":" .. my .. ":" .. tostring(auto.lastTheirSig)
+    -- та же ситуация: повтор через 3 с, до 3 раз (ячейки могли перерисоваться); исчерпал — снова через 10 с.
+    -- Раньше «до 3 раз» было навсегда: если он менял предмет туда-обратно, ситуация повторялась и скрипт замирал
+    if auto.remFor == sig and (auto.remTries or 0) >= 3 and os.clock() - (auto.remAt or 0) > 10 then auto.remTries = 0 end
     if auto.remFor == sig and (os.clock() - (auto.remAt or 0) < 3 or (auto.remTries or 0) >= 3) then return false end
     if auto.remFor ~= sig then auto.remTries = 0 end
     local units, total = {}, 0

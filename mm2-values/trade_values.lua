@@ -2454,6 +2454,8 @@ local function clickCell(cell, tg, method)
             vim:SendMouseButtonEvent(x, y, 0, true, game, 0)
             task.wait(0.05)
             vim:SendMouseButtonEvent(x, y, 0, false, game, 0)
+            -- курсор уводим в угол: иначе он оставался над кнопкой, и та «светилась» наведением (красная «Отказ» и т.п.)
+            task.delay(0.1, function() pcall(function() vim:SendMouseMoveEvent(1, 1, game) end) end)
         end)
         if ok then return true end
         env.TV_dbg("mouse: VIM error " .. tostring(err))
@@ -2707,6 +2709,66 @@ task.spawn(function()
             end
         end
         task.wait(5)
+    end
+end)
+-- входящий запрос без открытия «+» (на телефоне окно запроса строится/обновляется, только когда панель раскрыта):
+-- 1) слушаем события MM2 из ReplicatedStorage.Trade — пришло событие с игроком, а трейда нет — принимаем;
+-- 2) раз в 2 с смотрим ник в окне запроса, даже если оно спрятано, и принимаем через Trade.AcceptRequest
+auto.reqTried = {}
+function auto.acceptFrom(p, why)
+    if not (S.enabled and S.autoRequest) or not p or p == Players.LocalPlayer then return end
+    if auto.tradeOpened() then return end
+    local rec = auto.reqTried[p.Name] or { n = 0, at = 0 }
+    if os.clock() - rec.at > 60 then rec.n = 0 end
+    if rec.n >= 3 or os.clock() - rec.at < 4 then return end
+    rec.n, rec.at = rec.n + 1, os.clock()
+    auto.reqTried[p.Name] = rec
+    if auto.isBlocked(p.Name) then auto.tradeRemote("DeclineRequest"); return end
+    env.TV_dbg("request (" .. why .. ") from " .. p.Name)
+    if auto.tradeRemote("AcceptRequest") then
+        task.delay(2, function() if auto.tradeOpened() then notify(T("requestAccepted")) end end)
+    end
+end
+task.spawn(function()
+    local tr = game:GetService("ReplicatedStorage"):WaitForChild("Trade", 30)
+    if not tr then return end
+    local function hook(r)
+        if not r:IsA("RemoteEvent") then return end
+        local n = r.Name:lower()
+        if n:find("accept") or n:find("decline") or n:find("cancel") or n:find("offer") or n:find("update") then return end
+        on(r.OnClientEvent, function(...)
+            for _, a in ipairs({ ... }) do
+                local p = typeof(a) == "Instance" and a:IsA("Player") and a
+                    or type(a) == "string" and Players:FindFirstChild(a)
+                    or type(a) == "table" and (typeof(a.Sender) == "Instance" and a.Sender or typeof(a.Player) == "Instance" and a.Player) or nil
+                if p and p:IsA("Player") and p ~= Players.LocalPlayer then
+                    task.delay(0.3, function() auto.acceptFrom(p, "event " .. r.Name) end)
+                    return
+                end
+            end
+        end)
+    end
+    for _, r in ipairs(tr:GetChildren()) do hook(r) end
+    on(tr.ChildAdded, hook)
+end)
+task.spawn(function()
+    while env.TV_inst == INST do
+        task.wait(2)
+        pcall(function()
+            if not (S.enabled and S.autoRequest) or auto.tradeOpened() then return end
+            local rr = PlayerGui:FindFirstChild("ReceivingRequest", true)
+            if not (rr and rr:IsA("GuiObject") and rr.Visible) then return end
+            for _, l in ipairs(rr:GetDescendants()) do
+                if l:IsA("TextLabel") and l.Text ~= "" then
+                    local t = l.Text:gsub("^%s+", ""):gsub("%s+$", ""):lower()
+                    for _, p in ipairs(Players:GetPlayers()) do
+                        if p ~= Players.LocalPlayer and (p.Name:lower() == t or p.DisplayName:lower() == t) then
+                            auto.acceptFrom(p, "hidden window"); return
+                        end
+                    end
+                end
+            end
+        end)
     end
 end)
 function auto.findBadge()

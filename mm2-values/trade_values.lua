@@ -1213,6 +1213,21 @@ renderList = function()
         end
     end
     if gen ~= renderGen then return end
+    -- отметить / снять всю категорию одной кнопкой (нежелательные и «не отдавать»)
+    if mode ~= "values" and q == "" and itemsByCat[curCat] and #itemsByCat[curCat] > 0 then
+        local m, all = marks(), true
+        for _, it in ipairs(itemsByCat[curCat]) do if not m[rowKey(it)] then all = false; break end end
+        local b = new("TextButton", { Size = UDim2.new(1, -6, 0, 32), BackgroundColor3 = accent(), BackgroundTransparency = all and 0.7 or 0.2,
+            Text = all and T("catUnmark") or T("catMark"), TextColor3 = all and C.text or C.bg, TextSize = 13, Font = fontBold(),
+            AutoButtonColor = false, LayoutOrder = -1 }, scroll)
+        corner(b, 8)
+        on(b.Activated, function()
+            for _, it in ipairs(itemsByCat[curCat]) do
+                if all then m[rowKey(it)] = nil else m[rowKey(it)] = it.name end
+            end
+            saveSettings(); renderList(); renderSide()
+        end)
+    end
     if curCat == "inv" and q == "" and shown > 0 then
         local b = new("TextButton", { Size = UDim2.new(1, -6, 0, 30), BackgroundColor3 = C.card, BackgroundTransparency = 0.5, Text = T("invClear"),
             TextColor3 = C.muted, TextSize = 13, Font = fontReg(), AutoButtonColor = false, LayoutOrder = 0 }, scroll)
@@ -2598,17 +2613,47 @@ task.spawn(function()
                 if not (S.enabled and S.autoRequest) then return end
                 -- несколько событий подряд (видимость + ник) — одно нажатие
                 if os.clock() - (auto.rrFiredAt or -1e9) < 2 then return end
+                -- кто прислал: ник из надписей окна запроса (нет игрока с таким ником — это не новый запрос)
+                local from
+                for _, l in ipairs(rr:GetDescendants()) do
+                    if l:IsA("TextLabel") and l.Text ~= "" then
+                        local t = l.Text:gsub("^%s+", ""):gsub("%s+$", ""):lower()
+                        for _, p in ipairs(Players:GetPlayers()) do
+                            if p ~= Players.LocalPlayer and (p.Name:lower() == t or p.DisplayName:lower() == t) then from = p; break end
+                        end
+                    end
+                    if from then break end
+                end
+                if not from then return end
                 auto.rrFiredAt = os.clock()
-                env.TV_dbg("request window shown")
-                task.delay(0.5, function() -- окно выезжает анимацией — жмём, когда оно на месте
-                    auto.reqScanAt, auto.reqLast = 0, 0
+                env.TV_dbg("request from " .. from.Name)
+                task.delay(0.5, function()
+                    -- на телефоне запрос спрятан под «+» возле числа игроков, и кнопки «Принять» на экране нет —
+                    -- поэтому принимаем сразу через MM2 (Trade.AcceptRequest), а не ищем кнопку
+                    if auto.isBlocked(from.Name) then
+                        auto.tradeRemote("DeclineRequest")
+                        notify(T("blockedReq"):format(from.Name))
+                        return
+                    end
+                    if auto.reqBusy then return end
+                    auto.reqBusy, auto.reqSeenAt = true, os.clock()
+                    pcall(function()
+                        if auto.tradeRemote("AcceptRequest") then
+                            local t0 = os.clock()
+                            repeat task.wait(0.1) until auto.tradeOpened() or os.clock() - t0 > 2
+                        end
+                    end)
+                    auto.reqBusy, auto.reqLast = false, os.clock()
+                    if auto.tradeOpened() then notify(T("requestAccepted")); return end
+                    -- не вышло — как раньше: ищем кнопку «Принять» (в т.ч. открывая список под «+»)
+                    auto.reqScanAt, auto.reqLast, auto.badgeScanAt = 0, 0, 0
                     pcall(auto.tryAcceptRequest)
                 end)
             end
             on(rr:GetPropertyChangedSignal("Visible"), function() if rr.Visible then fire() end end)
-            -- окно может остаться открытым, а смениться только ник — тоже новый запрос
+            -- окно может остаться открытым (или быть спрятанным под «+»), а смениться только ник — тоже новый запрос
             for _, l in ipairs(rr:GetDescendants()) do
-                if l:IsA("TextLabel") then on(l:GetPropertyChangedSignal("Text"), function() if env.TV_vis(rr) then fire() end end) end
+                if l:IsA("TextLabel") then on(l:GetPropertyChangedSignal("Text"), fire) end
             end
             if rr.Parent and rr.Parent:IsA("GuiObject") then
                 local par = rr.Parent

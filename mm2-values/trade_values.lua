@@ -112,7 +112,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Прочее", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTotal = "Общая цена инвентаря", histItems = "Предметы", histSum = "Трейдов: %d · итог: %s", histPending = "На проверке: %d — попадут в список, только если инвентарь подтвердит обмен", histTrades = "История трейдов", histNone = "Пока нет трейдов — после каждого состоявшегося трейда он появится здесь", histGave = "отдал", histGot = "получил", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата" }, antiAfk = "Анти-АФК", chatAdvert = "«Let's trade!» в чат раз в 2,5 минуты", outreach = "Самому предлагать трейд игрокам по списку", outSent = "Предложил трейд: %s", outProfile = "Профиль %s: самое дорогое — %s, предложу %s", outNoProfile = "Профиль %s: не увидел предметов с ценой — подожду, что он положит", outRetry = "Авто-предложения: «Обмен» не нажалась, другой способ (%d)", outTradeFail = "Авто-предложения: не получилось нажать «Обмен» для %s", outNoPlus = "Авто-предложения: не нашёл «+» возле числа игроков", outNoList = "Авто-предложения: нажал «+», но списка игроков не видно", outNoTradeBtn = "Авто-предложения: нажал на %s, но кнопки «Обмен» нет", outAllSent = "Авто-предложения: всем уже предложено, следующий круг через 10 мин", outWait = "%s ничего не кладёт — отклоню через %d с", chatAdvertMsg = "Let's trade!", rerolling = "Убрал и вернул — значит, хочет другое: собираю другой набор", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Прочее", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTotal = "Общая цена инвентаря", histItems = "Предметы", histSum = "Трейдов: %d · итог: %s", histPending = "На проверке: %d — попадут в список, только если инвентарь подтвердит обмен", histTrades = "История трейдов", histNone = "Пока нет трейдов — после каждого состоявшегося трейда он появится здесь", histGave = "отдал", histGot = "получил", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата", waitThem = "автопринятие: я принял, ждём соперника" }, antiAfk = "Анти-АФК", chatAdvert = "«Let's trade!» в чат раз в 2,5 минуты", outreach = "Самому предлагать трейд игрокам по списку", outSent = "Предложил трейд: %s", outProfile = "Профиль %s: самое дорогое — %s, предложу %s", outNoProfile = "Профиль %s: не увидел предметов с ценой — подожду, что он положит", outRetry = "Авто-предложения: «Обмен» не нажалась, другой способ (%d)", outTradeFail = "Авто-предложения: не получилось нажать «Обмен» для %s", outNoPlus = "Авто-предложения: не нашёл «+» возле числа игроков", outNoList = "Авто-предложения: нажал «+», но списка игроков не видно", outNoTradeBtn = "Авто-предложения: нажал на %s, но кнопки «Обмен» нет", outAllSent = "Авто-предложения: всем уже предложено, следующий круг через 10 мин", outWait = "%s ничего не кладёт — отклоню через %d с", chatAdvertMsg = "Let's trade!", rerolling = "Убрал и вернул — значит, хочет другое: собираю другой набор", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", allOffDone = "Все функции выключены", allOnDone = "Все функции включены", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -125,7 +125,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Other", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTotal = "Total inventory value", histItems = "Items", histSum = "Trades: %d · total: %s", histPending = "Being verified: %d — listed only if your inventory confirms the trade", histTrades = "Trade history", histNone = "No trades yet — every completed trade will show up here", histGave = "gave", histGot = "got", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result" }, antiAfk = "Anti-AFK", chatAdvert = "«Let's trade!» in chat every 2.5 minutes", outreach = "Send trade requests to players in the list", outSent = "Sent a trade request: %s", outProfile = "%s's profile: priciest item %s, I will offer %s", outNoProfile = "%s's profile: no priced items seen — will wait for their offer", outRetry = "Outreach: «Trade» did not react, another method (%d)", outTradeFail = "Outreach: could not press «Trade» for %s", outNoPlus = "Outreach: can't find «+» next to the player count", outNoList = "Outreach: pressed «+», but no player list", outNoTradeBtn = "Outreach: tapped %s, but no «Trade» button", outAllSent = "Outreach: everyone got a request, next round in 10 min", outWait = "%s puts nothing — declining in %d s", chatAdvertMsg = "Let's trade!", rerolling = "Removed and returned — wants something else: building another set", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Other", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTotal = "Total inventory value", histItems = "Items", histSum = "Trades: %d · total: %s", histPending = "Being verified: %d — listed only if your inventory confirms the trade", histTrades = "Trade history", histNone = "No trades yet — every completed trade will show up here", histGave = "gave", histGot = "got", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result", waitThem = "auto-accept: accepted, waiting for them" }, antiAfk = "Anti-AFK", chatAdvert = "«Let's trade!» in chat every 2.5 minutes", outreach = "Send trade requests to players in the list", outSent = "Sent a trade request: %s", outProfile = "%s's profile: priciest item %s, I will offer %s", outNoProfile = "%s's profile: no priced items seen — will wait for their offer", outRetry = "Outreach: «Trade» did not react, another method (%d)", outTradeFail = "Outreach: could not press «Trade» for %s", outNoPlus = "Outreach: can't find «+» next to the player count", outNoList = "Outreach: pressed «+», but no player list", outNoTradeBtn = "Outreach: tapped %s, but no «Trade» button", outAllSent = "Outreach: everyone got a request, next round in 10 min", outWait = "%s puts nothing — declining in %d s", chatAdvertMsg = "Let's trade!", rerolling = "Removed and returned — wants something else: building another set", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", allOffDone = "All features are off", allOnDone = "All features are on", highlight = "Highlight", autoAdd = "Auto-add",
@@ -219,7 +219,7 @@ env.TV_btnText = function(b)
     local parts = { b.Name, b:IsA("TextButton") and b.Text or "" }
     local own = b:IsA("TextButton") and b.Text ~= ""
     for _, l in ipairs(b:GetDescendants()) do
-        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" and env.TV_vis(l) then table.insert(parts, l.Text); own = true end
+        if (l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" and l.TextTransparency < 0.9 and env.TV_vis(l) then table.insert(parts, l.Text); own = true end
     end
     -- у MM2 кнопка бывает пустой («ActionButton»), а «ПРИНЯТЬ»/«ОТКАЗ» — отдельная надпись поверх неё:
     -- берём видимые надписи рядом, центр которых лежит на кнопке
@@ -229,7 +229,7 @@ env.TV_btnText = function(b)
         for _, l in ipairs(scope:GetDescendants()) do
             if (l:IsA("TextLabel") or l:IsA("TextButton")) and l ~= b and l.Text ~= "" and not l:IsDescendantOf(b) then
                 local c = l.AbsolutePosition + l.AbsoluteSize / 2
-                if c.X >= p0.X and c.X <= p0.X + sz.X and c.Y >= p0.Y and c.Y <= p0.Y + sz.Y and env.TV_vis(l) then
+                if c.X >= p0.X and c.X <= p0.X + sz.X and c.Y >= p0.Y and c.Y <= p0.Y + sz.Y and l.TextTransparency < 0.9 and env.TV_vis(l) then
                     table.insert(parts, l.Text)
                 end
             end
@@ -2216,13 +2216,15 @@ end
 
 -- набираем предметы, не превышая нужную сумму. По возможности: разные предметы (не стопки одинаковых)
 -- и не то, что положил он сам (avoid = ключи его предметов). Не набирается — возвращаемся к обычному набору.
-local function pickItems(items, need, avoid)
-    avoid = avoid or {}
+-- hard: предметы, которые не кладём никогда (то, что он сам даёт в этом трейде — менять Х на Х бессмысленно)
+local function pickItems(items, need, avoid, hard)
+    avoid, hard = avoid or {}, hard or {}
     table.sort(items, function(a, b) return a.price > b.price end)
     local function greedy(distinct, skipAvoid)
         local picks, sum = {}, 0
         for _, it in ipairs(items) do
-            if not (skipAvoid and avoid[norm(it.name)]) and not (distinct and #picks >= 4) then
+            local k = norm(it.name)
+            if not hard[k] and not (skipAvoid and avoid[k]) and not (distinct and #picks >= 4) then
                 local n = 0
                 while n < (distinct and 1 or it.amount) and sum + it.price <= need do
                     sum += it.price; n += 1
@@ -3086,12 +3088,19 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     end
     if os.clock() - auto.accSince < 2 then auto.setAcc("hold", math.max(1, math.ceil(2 - (os.clock() - auto.accSince)))); return end
     if os.clock() - auto.accLast < 1.5 then return end
+    -- отсчёт MM2 («подождите (5)»): только видимая надпись — погасшая (прозрачная) раньше навсегда
+    -- блокировала второе нажатие «Принять»
+    local meAcc, confirm = false, false
     for _, d in ipairs(tg:GetDescendants()) do
-        if d:IsA("TextLabel") and d.Visible and d.Text ~= "" then
+        if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Visible and d.Text ~= "" and d.TextTransparency < 0.9 then
             local t = env.TV_low(d.Text)
             if (t:find("wait") or t:find("подожд")) and isShown(d) then auto.setAcc("countdown"); return end
+            if t:find("вы приняли") or t:find("you accepted") or t:find("you have accepted") then meAcc = isShown(d) or meAcc end
+            if t:find("уверен") or t:find("are you sure") or t:find("confirm") or t:find("подтверд") then confirm = isShown(d) or confirm end
         end
     end
+    -- я уже принял, а подтверждения ещё нет — ждём соперника и НЕ жмём снова (повторное нажатие снимает принятие)
+    if meAcc and not confirm then auto.setAcc("waitThem"); return end
     -- открыт полноэкранный выбор предметов: сначала закрываем его, принимаем на следующем шаге
     if auto.closePicker(tg) then auto.accLast = os.clock(); auto.setAcc("hold", 1); return end
     local btn = auto.findAccept(tg)
@@ -3980,10 +3989,10 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     end
 
     local items = scanInventory(tg, mine, theirs)
-    local avoid = {}
-    for k in pairs(auto.readOffer(theirs)) do avoid[k] = true end
+    local avoid, hard = {}, {}
+    for k in pairs(auto.readOffer(theirs)) do avoid[k] = true; hard[k] = true end -- то, что он даёт, — никогда
     for k in pairs(auto.rerollAvoid or {}) do avoid[k] = true end -- не то, что ему уже не понравилось
-    local picks, sum = pickItems(items, need, avoid)
+    local picks, sum = pickItems(items, need, avoid, hard)
     do
         local sig = ("offer my=%s th=%s need=%.1f inv=%d picks=%d sum=%s autoOffer=%s autoAdd=%s busy=%s"):format(
             tostring(my), tostring(th), need, #items, #picks, tostring(sum), tostring(S.autoOffer), tostring(S.autoAdd), tostring(auto.busy))
@@ -3993,7 +4002,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     local tolUsed = false
     if S.tolerance and not strict then
         local needTol = th / (1 + (pctT - 1) / 100) - my
-        local picks2, sum2 = pickItems(items, needTol, avoid)
+        local picks2, sum2 = pickItems(items, needTol, avoid, hard)
         if sum2 > sum then picks, sum, need, tolUsed = picks2, sum2, needTol, true end
     end
     if tolUsed then tgt = tgt .. " (±1%)" end
@@ -4006,7 +4015,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
         for _, pk in ipairs(picks) do used[pk.item] = pk.count end
         local best
         for _, it in ipairs(items) do
-            if (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
+            if not hard[norm(it.name)] and (used[it] or 0) < it.amount and it.price >= rest and my + sum + it.price <= (strict and maxMine or th) then
                 if not best or it.price < best.price then best = it end
             end
         end
@@ -4043,23 +4052,34 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
 
     -- авто-добавление: когда соперник 1.5 с ничего не меняет и вариант однозначный
     if S.autoAdd then
-        if th ~= auto.lastTh then auto.lastTh, auto.stableSince, auto.addTries = th, os.clock(), 0 end
+        -- что именно он кладёт (не только сумма: заменил предмет на другой той же цены — тоже изменение)
+        local function theirSigOf()
+            local parts = {}
+            for k, e in pairs(auto.readOffer(theirs)) do table.insert(parts, k .. "=" .. e.count) end
+            table.sort(parts)
+            return table.concat(parts, ",")
+        end
+        local theirSig = theirSigOf()
+        if th ~= auto.lastTh or theirSig ~= auto.lastTheirSig then
+            auto.lastTh, auto.lastTheirSig, auto.stableSince, auto.addTries = th, theirSig, os.clock(), 0
+        end
         if auto.busy then
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights(); return
         end
         -- состояние = его оффер + мой оффер: раньше учитывался только его, и если мой оффер менялся
         -- (предмет не лёг, его убрали) при том же его оффере — скрипт больше не добавлял, а только подсвечивал
-        local addSig = th .. "|" .. my
+        local addSig = theirSig .. "|" .. my
         -- попытка не удалась (ячейки перерисовались и т.п.) — через 3 с пробуем снова, до 3 раз;
         -- исчерпал — ещё раз через 10 с, а не никогда
         if auto.doneFor == addSig and (auto.addTries or 0) >= 3 and os.clock() - (auto.doneAt or 0) > 10 then auto.addTries = 0 end
         local retry = auto.doneFor == addSig and os.clock() - (auto.doneAt or 0) > 3 and (auto.addTries or 0) < 3
-        if (auto.doneFor ~= addSig or retry) and os.clock() - auto.stableSince > 1.5 then
+        if (auto.doneFor ~= addSig or retry) and os.clock() - auto.stableSince > 1 then
             auto.addTries = (retry and auto.addTries or 0) + 1 -- новое состояние — попытки заново
             auto.busy, auto.doneFor, auto.doneAt = true, addSig, os.clock()
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights()
+            local aborted = false
             task.spawn(function()
               pcall(function()
                 -- инвентарь закрыт? открываем «Добавить предметы»
@@ -4069,13 +4089,16 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                     local addBtn = findAddButton(tg)
                     if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
                     -- теперь инвентарь на экране: набираем заново только из того, что реально есть
-                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid)
+                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid, hard)
                     if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do
                     local key = norm(pk.item.name)
                     for _ = 1, pk.count do
                         if not (S.enabled and S.autoOffer and S.autoAdd) then break end
+                        -- он что-то положил/убрал, пока я клал, — бросаем этот набор: через секунду соберём новый
+                        -- под его новый оффер (лишнее уберёт removeExcess)
+                        if theirSigOf() ~= theirSig then aborted = true; break end
                         -- ячейка могла перерисоваться — ищем свежую по названию
                         local f = pk.item.frame
                         if not (f.Parent and isShown(f)) then
@@ -4088,6 +4111,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                         clickCell(f, tg)
                         task.wait(0.35)
                     end
+                    if aborted then break end
                 end
                 task.wait(0.3)
                 auto.closePicker(tg)
@@ -4198,7 +4222,7 @@ local function tick()
         clampGear()
         hud.Visible, wasOpen, gear.Visible = false, false, true
         hideHighlights()
-        auto.lastTh, auto.doneFor, auto.declined = -1, -1, false
+        auto.lastTh, auto.doneFor, auto.declined, auto.lastTheirSig = -1, -1, false, nil
         auto.declTries, auto.declLast, auto.declMsgSent = 0, 0, false
         auto.emptySince, auto.hadTheirs, auto.nudged, auto.nudgeDone = nil, false, false, nil
         auto.junkSig, auto.junkSince = nil, nil

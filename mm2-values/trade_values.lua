@@ -5694,9 +5694,9 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     if not badge then
                                         badge = new("TextLabel", { Name = "TVPrice", AutomaticSize = Enum.AutomaticSize.X, Size = UDim2.fromOffset(0, 18),
                                             Position = UDim2.fromOffset(4, 4), BackgroundTransparency = 1, TextXAlignment = Enum.TextXAlignment.Left,
-                                            TextColor3 = accent(), TextSize = 13, Font = Enum.Font.GothamBold, ZIndex = (d.ZIndex or 1) + 10, Text = "" }, d)
-                                        -- без плашки: только цифры, с тёмной обводкой, чтобы читались поверх картинки
-                                        new("UIStroke", { Color = rgb(0, 0, 0), Thickness = 1.5, Transparency = 0.2 }, badge)
+                                            TextColor3 = rgb(0, 0, 0), TextSize = 13, Font = Enum.Font.FredokaOne, ZIndex = (d.ZIndex or 1) + 10, Text = "" }, d)
+                                        -- без плашки: чёрные цифры с мягкой светлой обводкой, чтобы читались и на тёмных ячейках
+                                        new("UIStroke", { Color = rgb(255, 255, 255), Thickness = 1.5, Transparency = 0.35 }, badge)
                                         pad(badge, 5, 0)
                                     end
                                     local txt = env.TV_fmt(price)
@@ -5709,7 +5709,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                         local pd = badge:FindFirstChildOfClass("UIPadding")
                                         if pd then pd.PaddingLeft, pd.PaddingRight = UDim.new(0.06, 0), UDim.new(0.06, 0) end
                                     end
-                                    badge.TextColor3, badge.Visible = accent(), true
+                                    badge.Visible = true
                                 elseif badge then
                                     badge.Visible = false
                                 end

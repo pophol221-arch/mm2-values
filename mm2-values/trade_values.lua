@@ -1188,16 +1188,23 @@ local function sourceList()
     return itemsByCat[curCat] or {}
 end
 
+local renderGen = 0
 renderList = function()
+    -- картинки строк могут подгружаться с паузой: прошлая отрисовка (например, «Годли») тогда
+    -- продолжала добавлять строки уже в список новой категории — отсюда чужие предметы в «Уникальных»
+    renderGen += 1
+    local gen = renderGen
     for _, c in ipairs(scroll:GetChildren()) do if c:IsA("GuiObject") then c:Destroy() end end
     local q = norm(searchBox.Text)
     local shown = 0
     for _, it in ipairs(sourceList()) do
+        if gen ~= renderGen then return end -- началась новая отрисовка — эту бросаем
         if q == "" or it.key:find(q, 1, true) then
             shown += 1
             itemRow(it, shown)
         end
     end
+    if gen ~= renderGen then return end
     if curCat == "inv" and q == "" and shown > 0 then
         local b = new("TextButton", { Size = UDim2.new(1, -6, 0, 30), BackgroundColor3 = C.card, BackgroundTransparency = 0.5, Text = T("invClear"),
             TextColor3 = C.muted, TextSize = 13, Font = fontReg(), AutoButtonColor = false, LayoutOrder = 0 }, scroll)

@@ -2629,6 +2629,13 @@ function auto.findBadge()
     end
 end
 
+-- кнопка в пределах экрана: MM2 прячет окно запроса, уводя его за край, а Visible оставляет true —
+-- такая «невидимая» кнопка «Принять» держала паузу авторассылки предложений бесконечно
+function auto.onScreen(d)
+    local vp = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize or ui.AbsoluteSize
+    local c = d.AbsolutePosition + d.AbsoluteSize / 2
+    return c.X >= 0 and c.Y >= -40 and c.X <= vp.X and c.Y <= vp.Y
+end
 -- окно трейда MM2 реально открыто (виден «YourOffer»)
 function auto.tradeOpened()
     for _, g in ipairs(PlayerGui:GetChildren()) do
@@ -2671,7 +2678,7 @@ function auto.tryAcceptRequest()
                 local vis = {}
                 env.TV_walk(g, function(d) if d:IsA("GuiButton") then table.insert(vis, d) end end)
                 for _, d in ipairs(vis) do
-                    if d:IsA("GuiButton") and isShown(d) then
+                    if d:IsA("GuiButton") and isShown(d) and auto.onScreen(d) then
                         -- быстрый отбор: «Принять» запроса или кнопка внутри окна запроса; остальное (строки списка игроков,
                         -- док) не разбираем — подбор надписей у пустых кнопок был самым долгим местом скрипта
                         local quick = (d.Name .. " " .. (d:IsA("TextButton") and d.Text or "")):lower()
@@ -2716,7 +2723,7 @@ function auto.tryAcceptRequest()
                                         for _, m in ipairs({ "remote", 3, 1, 6, 5, 2, 4 }) do
                                             if auto.tradeOpened() then break end
                                             -- запрос пропал (отменили / истёк) — больше не жмём
-                                            if m ~= "remote" and not (d.Parent and isShown(d)) then
+                                            if m ~= "remote" and not (d.Parent and isShown(d) and auto.onScreen(d)) then
                                                 env.TV_dbg("request: window gone, stop"); return
                                             end
                                             local fired
@@ -2969,6 +2976,22 @@ function auto.setAcc(key, ...)
     X.accLine.Visible = S.autoAccept and key ~= "off"
     X.accLine.Text = select("#", ...) > 0 and (acc[key] or key):format(...) or (acc[key] or key)
 end
+-- оффер проходит по цели прибыли (тот же запас, что у подсказки «Цель достигнута»: перебор до ~1 value или 2%)
+function auto.meetsTarget(my, th)
+    if th <= 0 then return false end
+    local strict = S.tiersOn and not auto.ordProfit -- ступени: процент — жёсткий минимум, без допусков
+    local maxMine = th / (1 + ((auto.ordProfit or env.TV_pct(th)) - ((S.tolerance and not strict) and 1 or 0)) / 100)
+    if S.fillOver and auto.fillTh == th and auto.fillMy then
+        maxMine = math.max(maxMine, auto.fillMy) -- скрипт сам добил сверх цели: такой оффер тоже принимаем
+    end
+    return my <= maxMine + (strict and 0.05 or math.max(1, maxMine * 0.02))
+end
+-- трейд можно принимать: автопринятие включено, цены известны и прибыль в цели
+function auto.wantAccept(theirs, my, th, myUnk)
+    if not (S.autoAccept and S.enabled) or auto.accDone or myUnk > 0 then return false end
+    if S.autoDecline and auto.findUnwanted(theirs) and not select(2, auto.junkSplit(theirs)) then return false end
+    return auto.meetsTarget(my, th)
+end
 function auto.tryAccept(tg, theirs, my, th, myUnk)
     if not (S.autoAccept and S.enabled) then auto.setAcc("off"); return end
     -- «сдался» не навсегда: через 10 с пробуем снова (трейд могли отменить и начать заново)
@@ -2979,13 +3002,7 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     if myUnk > 0 then auto.setAcc("unk"); return end
     if S.autoDecline and auto.findUnwanted(theirs) and not select(2, auto.junkSplit(theirs)) then auto.setAcc("bad"); return end
     local profit = my > 0 and (th - my) / my * 100 or math.huge
-    -- тот же запас, что у подсказки «Цель достигнута»: перебор до ~1 value (или 2%) считается целью
-    local strict = S.tiersOn and not auto.ordProfit -- ступени: процент — жёсткий минимум, без допусков
-    local maxMine = th / (1 + ((auto.ordProfit or env.TV_pct(th)) - ((S.tolerance and not strict) and 1 or 0)) / 100)
-    if S.fillOver and auto.fillTh == th and auto.fillMy then
-        maxMine = math.max(maxMine, auto.fillMy) -- скрипт сам добил сверх цели: такой оффер тоже принимаем
-    end
-    if my > maxMine + (strict and 0.05 or math.max(1, maxMine * 0.02)) then
+    if not auto.meetsTarget(my, th) then
         auto.accSig = ""
         auto.setAcc("low", profit == math.huge and 999 or math.floor(profit + 0.5))
         return
@@ -3743,8 +3760,11 @@ function auto.handleCheap(tg, mine, theirs, my, th)
 end
 
 -- трейд «завис»: 20 с ничего не меняется (он что-то положил, скрипт ответил, а он молчит) — отказ, чтобы не терять время
-function auto.handleIdle(tg, mine, theirs, my, th)
+function auto.handleIdle(tg, mine, theirs, my, th, myUnk)
     if not S.idleDecline or th <= 0 then auto.idleSig = nil; return false end
+    -- выгодный трейд не отклоняем по таймеру: раньше отсчёт «20 с без изменений» перебивал автопринятие,
+    -- и скрипт жал «Отказ» в трейде с прибылью выше цели
+    if auto.wantAccept(theirs, my, th, myUnk or 0) then auto.idleSig = nil; return false end
     local parts = { tostring(my), tostring(th) }
     for k, e in pairs(auto.readOffer(mine)) do table.insert(parts, "m" .. k .. e.count) end
     for k, e in pairs(auto.readOffer(theirs)) do table.insert(parts, "t" .. k .. e.count) end
@@ -3958,11 +3978,16 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights(); return
         end
-        -- попытка не удалась (ячейки перерисовались и т.п.) — через 3 с пробуем снова, до 3 раз
-        local retry = auto.doneFor == th and os.clock() - (auto.doneAt or 0) > 3 and (auto.addTries or 0) < 3
-        if (auto.doneFor ~= th or retry) and os.clock() - auto.stableSince > 1.5 then
-            auto.busy, auto.doneFor, auto.doneAt = true, th, os.clock()
-            auto.addTries = (auto.addTries or 0) + 1
+        -- состояние = его оффер + мой оффер: раньше учитывался только его, и если мой оффер менялся
+        -- (предмет не лёг, его убрали) при том же его оффере — скрипт больше не добавлял, а только подсвечивал
+        local addSig = th .. "|" .. my
+        -- попытка не удалась (ячейки перерисовались и т.п.) — через 3 с пробуем снова, до 3 раз;
+        -- исчерпал — ещё раз через 10 с, а не никогда
+        if auto.doneFor == addSig and (auto.addTries or 0) >= 3 and os.clock() - (auto.doneAt or 0) > 10 then auto.addTries = 0 end
+        local retry = auto.doneFor == addSig and os.clock() - (auto.doneAt or 0) > 3 and (auto.addTries or 0) < 3
+        if (auto.doneFor ~= addSig or retry) and os.clock() - auto.stableSince > 1.5 then
+            auto.addTries = (retry and auto.addTries or 0) + 1 -- новое состояние — попытки заново
+            auto.busy, auto.doneFor, auto.doneAt = true, addSig, os.clock()
             sugText.Text = T("sugAuto"):format(tgt, fmt(sum), listText)
             hideHighlights()
             task.spawn(function()
@@ -4261,7 +4286,7 @@ local function tick()
         return
     end
     updateAutoOffer(tg, mine, theirs, my, th) -- заявки и автооффер работают и во время отсчёта «20 с ничего не меняется»
-    if auto.handleIdle(tg, mine, theirs, my, th) then return end
+    if auto.handleIdle(tg, mine, theirs, my, th, myUnk) then return end
     auto.tryAccept(tg, theirs, my, th, myUnk)
 end
 

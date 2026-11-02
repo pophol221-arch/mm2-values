@@ -5996,29 +5996,47 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                             end
                             if profBtn then
                                 clickCell(profBtn, pgui)
-                                -- ждём, пока профиль прогрузится (самая дорогая цена 2 раза подряд одна и та же)
-                                local top, topGui, stable = 0, nil, 0
-                                for _ = 1, 12 do
+                                -- ждём, пока профиль прогрузится целиком (число предметов и сумма 2 раза подряд те же).
+                                -- Читаем ВЕСЬ инвентарь в профиле, включая прокрученные за край ячейки (у них Visible = true)
+                                local vals, topGui, stable, lastSig = {}, nil, 0, ""
+                                for _ = 1, 16 do
                                     task.wait(0.5)
-                                    local t, tg2 = 0, nil
+                                    local cur, tg2, sum = {}, nil, 0
                                     for _, gg in ipairs(PlayerGui:GetChildren()) do
                                         if gg:IsA("ScreenGui") and gg.Enabled and gg ~= ui and gg ~= hlGui then
                                             for _, d in ipairs(gg:GetDescendants()) do
                                                 if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
                                                     local v = valueMap[norm(d.Text)]
-                                                    if v and v > t then t, tg2 = v, gg end
+                                                    if v and v > 0 then table.insert(cur, v); sum += v; tg2 = tg2 or gg end
                                                 end
                                             end
                                         end
                                     end
-                                    if t > 0 and t == top then stable += 1; if stable >= 2 then break end else stable = 0 end
-                                    top, topGui = t, tg2
+                                    local sig = #cur .. ":" .. sum
+                                    if #cur > 0 and sig == lastSig then stable += 1; if stable >= 2 then break end else stable = 0 end
+                                    vals, topGui, lastSig = cur, tg2, sig
                                 end
+                                table.sort(vals, function(a, b) return a > b end)
+                                -- сколько я могу отдать: мой инвентарь по ценам, без «не отдавать»
+                                local budget = 0
+                                for k, e in pairs(S.invItems or {}) do
+                                    if not (S.keep or {})[k] then budget += (valueMap[k] or 0) * (e[2] or 1) end
+                                end
+                                -- самый дорогой его предмет, на который мне хватает с целью прибыли (+10–20% по ступеням);
+                                -- инвентарь ещё не знаю (не было трейда) — берём просто самый дорогой
+                                local top = 0
+                                for _, v in ipairs(vals) do
+                                    if budget <= 0 or v / (1 + env.TV_pct(v) / 100) <= budget then top = v; break end
+                                end
+                                env.TV_dbg(("outreach: %s items=%d max=%s budget=%s pick=%s"):format(nm, #vals, tostring(vals[1]), tostring(budget), tostring(top)))
                                 if top > 0 then
                                     S.bestByPlayer = S.bestByPlayer or {}
                                     S.bestByPlayer[nm:lower()] = top
                                     saveSettings()
                                     notify(T("outProfile"):format(nm, env.TV_fmt(top), env.TV_fmt(top / (1 + env.TV_pct(top) / 100))))
+                                elseif #vals > 0 then
+                                    auto.outSkip = true -- у него всё дороже, чем я могу дать, — запрос не шлём
+                                    notify(("%s: %s"):format(nm, S.lang == "en" and "nothing I can afford" or "нечего предложить — всё дороже моего инвентаря"))
                                 else
                                     why("outNoProfile", nm)
                                 end
@@ -6043,6 +6061,15 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         end
                         tradeBtn, tbg = findTradeBtn()
                         sent[nm], env.TV_outLast = os.clock(), os.clock()
+                        if auto.outSkip then
+                            auto.outSkip = false
+                            if tradeBtn then
+                                local x = exactBtn(tbg, { "x", "х", "✕" })
+                                if x then clickCell(x, tbg) end
+                            end
+                            env.TV_outLast = os.clock() - auto.OUT_EVERY + 3 -- сразу следующий игрок
+                            return
+                        end
                         if os.clock() - (auto.reqSeenAt or -1e9) < 15 then
                             -- пока смотрели профиль, пришёл запрос — сначала его
                             env.TV_outLast = os.clock() - auto.OUT_EVERY + 10

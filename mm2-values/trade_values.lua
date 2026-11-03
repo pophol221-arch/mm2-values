@@ -181,6 +181,16 @@ env.TV_onScreen = function(g)
     local c = g.AbsolutePosition + g.AbsoluteSize / 2
     return c.X >= 0 and c.Y >= -40 and c.X <= vp.X and c.Y <= vp.Y
 end
+-- элемент хоть немного (от 30 px) заходит на экран. Для поиска окна трейда: MM2 закрывает окно, уводя его
+-- ЦЕЛИКОМ за край, а на телефоне открытое окно бывает частично за краем — по центру оно считалось закрытым
+-- (пропадала плашка ТЫ/ОН и всё остальное в трейде)
+env.TV_inView = function(g)
+    local cam = workspace.CurrentCamera
+    if not cam then return true end
+    local vp = cam.ViewportSize
+    local p, s = g.AbsolutePosition, g.AbsoluteSize
+    return p.X + s.X > 30 and p.Y + s.Y > 30 and p.X < vp.X - 30 and p.Y < vp.Y - 30
+end
 -- обход только видимого: скрытые окна MM2 (весь инвентарь, магазин…) пропускаем целиком — это тысячи объектов.
 -- yieldEvery: раз в столько объектов пауза в один кадр, чтобы проверка не давала рывок
 env.TV_walk = function(root, fn, yieldEvery)
@@ -1775,7 +1785,7 @@ local tgCache = { offer = nil, g = nil, first = nil, at = 0 }
 local function findTradeGui()
     -- быстро: оффер, найденный в прошлый раз, всё ещё на экране
     local c = tgCache
-    if c.offer and c.offer.Parent and c.g.Parent and c.g.Enabled and env.TV_vis(c.offer) and env.TV_onScreen(c.offer) then return c.g end
+    if c.offer and c.offer.Parent and c.g.Parent and c.g.Enabled and env.TV_vis(c.offer) and env.TV_inView(c.offer) then return c.g end
     if os.clock() - c.at < 1 then return c.first end
     c.at, c.offer, c.g = os.clock(), nil, nil
     c.first = nil
@@ -1787,12 +1797,12 @@ local function findTradeGui()
             -- трейд считался открытым: висела полоска выгоды, отсчёт отказа и «кнопка Принять не найдена»
             if not first then
                 for _, ch in ipairs(g:GetChildren()) do
-                    if ch:IsA("GuiObject") and ch.AbsoluteSize.X > 100 and env.TV_vis(ch) and env.TV_onScreen(ch) then first = g; break end
+                    if ch:IsA("GuiObject") and ch.AbsoluteSize.X > 100 and env.TV_vis(ch) and env.TV_inView(ch) then first = g; break end
                 end
             end
             local hit
             env.TV_walk(g, function(d)
-                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) and env.TV_onScreen(d) then hit = d; return true end
+                if (d.Name == "YourOffer" or d.Name == "MyOffer") and env.TV_vis(d) and env.TV_inView(d) then hit = d; return true end
             end)
             if hit then c.offer, c.g = hit, g; return g end
         end
@@ -4433,7 +4443,19 @@ local function tick()
         hud.Visible = true
         hudScale.Scale = sf() * 0.9
         tween(hudScale, 0.25, { Scale = sf() }, Enum.EasingStyle.Back)
+        -- плашку могли случайно утащить за край (на телефоне — легко), и место сохранилось: тогда её не видно
+        -- ни в одном трейде. Центр плашки за пределами экрана — возвращаем на место по умолчанию
+        task.delay(0.4, function()
+            local abs, c = ui.AbsoluteSize, hud.AbsolutePosition + hud.AbsoluteSize / 2
+            if abs.X > 50 and (c.X < 0 or c.Y < 0 or c.X > abs.X or c.Y > abs.Y) then
+                env.TV_dbg(("hud off-screen at %d,%d — reset"):format(c.X, c.Y))
+                S.hudX, S.hudY = nil, nil
+                placeHud()
+                saveSettings()
+            end
+        end)
     end
+    hud.Visible = true -- трейд открыт — плашка видна всегда (что бы её ни спрятало)
 
     auto.partner = auto.partnerName(tg)
     local mine   = findOffer(tg, { "YourOffer", "MyOffer" })

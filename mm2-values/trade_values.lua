@@ -1599,33 +1599,49 @@ end)
     end)
 
     -- анти-флинг: чужие персонажи у нас не сталкиваются с нами, резкий отброс гасим
+    -- Раньше CanCollide снимали раз в 0.5 с, но Humanoid возвращает CanCollide = true торсу/корню КАЖДЫЙ кадр —
+    -- флингер успевал ударить. Теперь снимаем каждый кадр (Stepped, до физики), а список деталей обновляем раз в секунду.
+    -- Отброс проверяем и после физики (Heartbeat), чтобы погасить его в том же кадре.
     local lastSafe, lastSafeAt = nil, 0
-    local lastNoCollide = 0
-    on(RunService.Stepped, function()
-        if not (S.enabled and S.antiFling) then return end
-        if os.clock() - lastNoCollide >= 0.5 then
-        lastNoCollide = os.clock()
+    local otherParts, partsAt = {}, -1e9
+    local function refreshParts()
+        partsAt = os.clock()
+        table.clear(otherParts)
         for _, pl in ipairs(Players:GetPlayers()) do
             if pl ~= LP and pl.Character then
                 for _, part in ipairs(pl.Character:GetDescendants()) do
-                    if part:IsA("BasePart") and part.CanCollide then part.CanCollide = false end
+                    if part:IsA("BasePart") then table.insert(otherParts, part) end
                 end
             end
         end
-        end
+    end
+    local function guardSelf()
         local char = LP.Character
         local hrp = char and char:FindFirstChild("HumanoidRootPart")
         local hum = char and char:FindFirstChildOfClass("Humanoid")
-        if not (hrp and hum) then return end
+        if not (hrp and hum) or hum.Health <= 0 then return end
         local v, w = hrp.AssemblyLinearVelocity, hrp.AssemblyAngularVelocity
         local flatSpeed = Vector3.new(v.X, 0, v.Z).Magnitude
-        if flatSpeed > 120 or w.Magnitude > 40 or v.Y > 150 then
+        if flatSpeed > 100 or w.Magnitude > 30 or v.Y > 120 then
             hrp.AssemblyLinearVelocity, hrp.AssemblyAngularVelocity = Vector3.zero, Vector3.zero
             if lastSafe then hrp.CFrame = lastSafe end
-        elseif hum.FloorMaterial ~= Enum.Material.Air and os.clock() - lastSafeAt > 0.5 then
-            lastSafe, lastSafeAt = hrp.CFrame, os.clock() -- стоим на земле — запоминаем место
+        elseif flatSpeed < 40 and hum.FloorMaterial ~= Enum.Material.Air and os.clock() - lastSafeAt > 0.5 then
+            lastSafe, lastSafeAt = hrp.CFrame, os.clock() -- спокойно стоим на земле — запоминаем место
         end
+    end
+    on(RunService.Stepped, function()
+        if not (S.enabled and S.antiFling) then return end
+        if os.clock() - partsAt >= 1 then refreshParts() end
+        for _, part in ipairs(otherParts) do
+            if part.Parent and part.CanCollide then part.CanCollide = false end
+        end
+        guardSelf()
     end)
+    on(RunService.Heartbeat, function()
+        if S.enabled and S.antiFling then guardSelf() end
+    end)
+    -- новый персонаж (респавн, новый раунд): старое безопасное место не годится
+    on(LP.CharacterAdded, function() lastSafe, lastSafeAt = nil, 0 end)
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 on(tMinus.Activated, change(function() S.target = math.max(0, S.target - 5) end))
 on(tPlus.Activated, change(function() S.target = math.min(500, S.target + 5) end))
@@ -2729,6 +2745,15 @@ function auto.acceptFrom(p, why)
         task.delay(2, function() if auto.tradeOpened() then notify(T("requestAccepted")) end end)
     end
 end
+-- игрок среди аргументов события/вызова MM2 (сам Player, ник или таблица с Sender/Player)
+function auto.playerFromArgs(...)
+    for _, a in ipairs({ ... }) do
+        local p = typeof(a) == "Instance" and a:IsA("Player") and a
+            or type(a) == "string" and Players:FindFirstChild(a)
+            or type(a) == "table" and (typeof(a.Sender) == "Instance" and a.Sender or typeof(a.Player) == "Instance" and a.Player) or nil
+        if p and p:IsA("Player") and p ~= Players.LocalPlayer then return p end
+    end
+end
 task.spawn(function()
     local tr = game:GetService("ReplicatedStorage"):WaitForChild("Trade", 30)
     if not tr then return end
@@ -2737,19 +2762,55 @@ task.spawn(function()
         local n = r.Name:lower()
         if n:find("accept") or n:find("decline") or n:find("cancel") or n:find("offer") or n:find("update") then return end
         on(r.OnClientEvent, function(...)
-            for _, a in ipairs({ ... }) do
-                local p = typeof(a) == "Instance" and a:IsA("Player") and a
-                    or type(a) == "string" and Players:FindFirstChild(a)
-                    or type(a) == "table" and (typeof(a.Sender) == "Instance" and a.Sender or typeof(a.Player) == "Instance" and a.Player) or nil
-                if p and p:IsA("Player") and p ~= Players.LocalPlayer then
-                    task.delay(0.3, function() auto.acceptFrom(p, "event " .. r.Name) end)
-                    return
-                end
-            end
+            local p = auto.playerFromArgs(...)
+            if p then task.delay(0.3, function() auto.acceptFrom(p, "event " .. r.Name) end) end
         end)
     end
     for _, r in ipairs(tr:GetChildren()) do hook(r) end
     on(tr.ChildAdded, hook)
+end)
+-- Входящий запрос MM2 приходит НЕ событием, а вызовом сервера: Trade.SendRequest (RemoteFunction) -> OnClientInvoke(отправитель).
+-- Слушать его через OnClientEvent нельзя, поэтому запросы, свёрнутые под «+», раньше не принимались.
+-- Оборачиваем обработчик MM2 (getcallbackvalue): MM2 работает как прежде, а мы параллельно принимаем через Trade.AcceptRequest.
+task.spawn(function()
+    local gcv = getcallbackvalue or (debug and debug.getcallbackvalue)
+    if not gcv then env.TV_dbg("request hook: no getcallbackvalue"); return end
+    local tr = game:GetService("ReplicatedStorage"):WaitForChild("Trade", 30)
+    if not tr then return end
+    -- оригинальные обработчики храним в env: при повторном запуске скрипта оборачиваем оригинал, а не свою же обёртку
+    env.TV_origInvoke = env.TV_origInvoke or {}
+    local function wrap(r)
+        if not (r:IsA("RemoteFunction") and r.Name:lower():find("request")) then return false end
+        local orig = env.TV_origInvoke[r]
+        if not orig then
+            local ok, cb = pcall(gcv, r, "OnClientInvoke")
+            if not ok or type(cb) ~= "function" then return false end -- MM2 ещё не поставил обработчик — попробуем позже
+            orig = cb
+            env.TV_origInvoke[r] = cb
+        end
+        local myInst = INST
+        r.OnClientInvoke = function(...)
+            if env.TV_inst == myInst then
+                local p = auto.playerFromArgs(...)
+                if p then task.delay(0.4, function() pcall(auto.acceptFrom, p, "invoke " .. r.Name) end) end
+            end
+            return orig(...)
+        end
+        env.TV_dbg("request hook: wrapped Trade." .. r.Name)
+        return true
+    end
+    -- обработчик MM2 может появиться не сразу (интерфейс грузится после скрипта) — пробуем минуту
+    local done = {}
+    for _ = 1, 30 do
+        local pending = false
+        for _, r in ipairs(tr:GetChildren()) do
+            if r:IsA("RemoteFunction") and r.Name:lower():find("request") and not done[r] then
+                if wrap(r) then done[r] = true else pending = true end
+            end
+        end
+        if not pending or env.TV_inst ~= INST then break end
+        task.wait(2)
+    end
 end)
 task.spawn(function()
     while env.TV_inst == INST do
@@ -2757,17 +2818,23 @@ task.spawn(function()
         pcall(function()
             if not (S.enabled and S.autoRequest) or auto.tradeOpened() then return end
             local rr = PlayerGui:FindFirstChild("ReceivingRequest", true)
-            if not (rr and rr:IsA("GuiObject") and rr.Visible) then return end
+            if not (rr and rr:IsA("GuiObject")) then return end
+            -- под «+» окно запроса скрыто (Visible = false у него или у родителя), поэтому видимость не требуем:
+            -- принимаем, если окно видно ИЛИ в нём сменился ник (пришёл новый запрос, пока панель свёрнута)
             for _, l in ipairs(rr:GetDescendants()) do
                 if l:IsA("TextLabel") and l.Text ~= "" then
                     local t = l.Text:gsub("^%s+", ""):gsub("%s+$", ""):lower()
                     for _, p in ipairs(Players:GetPlayers()) do
                         if p ~= Players.LocalPlayer and (p.Name:lower() == t or p.DisplayName:lower() == t) then
-                            auto.acceptFrom(p, "hidden window"); return
+                            local changed = auto.rrLastNick ~= p.Name
+                            auto.rrLastNick = p.Name
+                            if rr.Visible or changed then auto.acceptFrom(p, rr.Visible and "request window" or "hidden window") end
+                            return
                         end
                     end
                 end
             end
+            auto.rrLastNick = nil -- в окне нет ника игрока с сервера — следующий ник будет новым запросом
         end)
     end
 end)
@@ -4097,6 +4164,13 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     for k in pairs(auto.readOffer(theirs)) do avoid[k] = true; hard[k] = true end -- то, что он даёт, — никогда
     for k in pairs(auto.rerollAvoid or {}) do avoid[k] = true end -- не то, что ему уже не понравилось
     local have = auto.readOffer(mine)
+    -- после «убрал и вернул» отвергнутые предметы — запрет, а не пожелание: раньше pickItems выбирал набор
+    -- с лучшей суммой, а это почти всегда был тот же самый, и оффер не менялся. Нечем заменить — обычный подбор
+    if next(auto.rerollAvoid or {}) ~= nil then
+        local hardR = table.clone(hard)
+        for k in pairs(auto.rerollAvoid) do hardR[k] = true end
+        if #pickItems(items, need, avoid, hardR, have) > 0 then hard = hardR end
+    end
     local picks, sum = pickItems(items, need, avoid, hard, have)
     do
         local sig = ("offer my=%s th=%s need=%.1f inv=%d picks=%d sum=%s autoOffer=%s autoAdd=%s busy=%s"):format(
@@ -4437,13 +4511,9 @@ local function tick()
         if shown > 0 and petN == shown then auto.openTab(tg, "weapons")
         elseif shown == 0 and not auto.tabEmptyDone then auto.tabEmptyDone = true; auto.openTab(tg, "weapons") end
     end
-    if auto.tryGift(tg, theirs, my, myUnk) then return end
-    if auto.handleBlocked(tg) then return end
-    if autoDecline(tg, theirs) then return end
-    if env.TV_outreachTick and env.TV_outreachTick(tg, mine, theirs, my, th) then return end
-    if auto.handleEmpty(tg, mine, theirs, my, th) then return end
-    env.TV_inTrade, env.TV_lastTradeAt = true, os.clock()
-    -- он убрал предмет и вернул тот же (до 20 с) — значит, мой оффер ему не понравился: соберём другой набор
+    -- он убрал предмет и вернул тот же (до 20 с) — значит, мой оффер ему не понравился: соберём другой набор.
+    -- Историю его оффера пишем ДО всех ранних выходов: когда он убирал свой единственный предмет, handleEmpty
+    -- («соперник ничего не предлагает») выходил раньше, пустое состояние не записывалось, и повтор не замечался
     do
         local parts = {}
         for k, e in pairs(auto.readOffer(theirs)) do table.insert(parts, k .. "=" .. e.count) end
@@ -4453,8 +4523,12 @@ local function tick()
         auto.theirHist = h
         if #h == 0 or h[#h].sig ~= sig then
             local prev = h[#h - 1]
-            if sig ~= "" and prev and prev.sig == sig and os.clock() - prev.t < 20 and next(auto.readOffer(mine)) ~= nil or
-               (sig ~= "" and prev and prev.sig == sig and os.clock() - prev.t < 20 and auto.lastMine and next(auto.lastMine) ~= nil) then
+            -- «20 с» считаем от момента, когда он убрал предмет (начало промежуточного состояния h[#h]),
+            -- а не от того, когда предмет впервые появился: иначе после долгого трейда повтор не замечался
+            local quick = prev ~= nil and os.clock() - h[#h].t < 20
+            if sig ~= "" and prev and prev.sig == sig and quick and
+               (next(auto.readOffer(mine)) ~= nil or (auto.lastMine and next(auto.lastMine) ~= nil)) then
+                env.TV_dbg("reroll: partner removed and returned " .. sig)
                 auto.reroll = true
                 auto.rerollAvoid = auto.rerollAvoid or {}
                 for k in pairs(auto.lastMine or {}) do auto.rerollAvoid[k] = true end
@@ -4467,6 +4541,12 @@ local function tick()
         local mineNow = auto.readOffer(mine)
         if sig ~= "" and next(mineNow) ~= nil then auto.lastMine = mineNow end
     end
+    if auto.tryGift(tg, theirs, my, myUnk) then return end
+    if auto.handleBlocked(tg) then return end
+    if autoDecline(tg, theirs) then return end
+    if env.TV_outreachTick and env.TV_outreachTick(tg, mine, theirs, my, th) then return end
+    if auto.handleEmpty(tg, mine, theirs, my, th) then return end
+    env.TV_inTrade, env.TV_lastTradeAt = true, os.clock()
     if auto.reroll and S.autoOffer and S.autoAdd and not auto.busy then
         auto.reroll, auto.busy = false, true
         auto.doneFor, auto.remFor, auto.addTries = -1, nil, 0

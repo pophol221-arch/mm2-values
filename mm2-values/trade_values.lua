@@ -2751,8 +2751,15 @@ function auto.acceptFrom(p, why)
     auto.reqTried[p.Name] = rec
     if auto.isBlocked(p.Name) then auto.tradeRemote("DeclineRequest"); return end
     env.TV_dbg("request (" .. why .. ") from " .. p.Name)
+    -- видно на экране телефона (лог туда не доходит): запрос замечен и чем принимаем
+    notify((S.lang == "en" and "Request from %s — accepting (%s)" or "Запрос от %s — принимаю (%s)"):format(p.Name, why))
     if auto.tradeRemote("AcceptRequest") then
-        task.delay(2, function() if auto.tradeOpened() then notify(T("requestAccepted")) end end)
+        task.delay(2, function()
+            if auto.tradeOpened() then notify(T("requestAccepted"))
+            else notify(S.lang == "en" and "Trade did not open after AcceptRequest" or "После AcceptRequest трейд не открылся") end
+        end)
+    else
+        notify(S.lang == "en" and "No Trade.AcceptRequest in this game" or "В игре нет Trade.AcceptRequest")
     end
 end
 -- игрок среди аргументов события/вызова MM2 (сам Player, ник или таблица с Sender/Player)
@@ -2784,9 +2791,28 @@ end)
 -- Оборачиваем обработчик MM2 (getcallbackvalue): MM2 работает как прежде, а мы параллельно принимаем через Trade.AcceptRequest.
 task.spawn(function()
     local gcv = getcallbackvalue or (debug and debug.getcallbackvalue)
-    if not gcv then env.TV_dbg("request hook: no getcallbackvalue"); return end
     local tr = game:GetService("ReplicatedStorage"):WaitForChild("Trade", 30)
     if not tr then return end
+    if not gcv then
+        -- исполнитель не умеет читать обработчик MM2: ставим свой (только при включённом «Принимать запросы»).
+        -- Минус: окно запроса MM2 больше не всплывает до перезахода — но запросы принимаются сами
+        env.TV_dbg("request hook: no getcallbackvalue, own handler")
+        local sr = tr:FindFirstChild("SendRequest")
+        if sr and sr:IsA("RemoteFunction") and S.autoRequest then
+            local myInst = INST
+            sr.OnClientInvoke = function(...)
+                if env.TV_inst == myInst then
+                    local p = auto.playerFromArgs(...)
+                    if p then task.delay(0.4, function() pcall(auto.acceptFrom, p, "own handler") end) end
+                end
+                return true
+            end
+            notify(S.lang == "en" and "Request catcher: simple mode (no getcallbackvalue)" or "Перехват запросов: простой режим (нет getcallbackvalue)")
+        else
+            notify(S.lang == "en" and "Request catcher: not available" or "Перехват запросов: недоступен")
+        end
+        return
+    end
     -- оригинальные обработчики храним в env: при повторном запуске скрипта оборачиваем оригинал, а не свою же обёртку
     env.TV_origInvoke = env.TV_origInvoke or {}
     local function wrap(r)
@@ -2807,6 +2833,7 @@ task.spawn(function()
             return orig(...)
         end
         env.TV_dbg("request hook: wrapped Trade." .. r.Name)
+        notify((S.lang == "en" and "Request catcher on: Trade.%s" or "Перехват запросов включён: Trade.%s"):format(r.Name))
         return true
     end
     -- обработчик MM2 может появиться не сразу (интерфейс грузится после скрипта) — пробуем минуту
@@ -2820,6 +2847,9 @@ task.spawn(function()
         end
         if not pending or env.TV_inst ~= INST then break end
         task.wait(2)
+    end
+    if next(done) == nil and env.TV_inst == INST then
+        notify(S.lang == "en" and "Request catcher: MM2 handler not found" or "Перехват запросов: обработчик MM2 не найден")
     end
 end)
 task.spawn(function()
@@ -2892,7 +2922,9 @@ function auto.tradeOpened()
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
             local o = g:FindFirstChild("YourOffer", true)
-            if o and o:IsA("GuiObject") and isShown(o) then return true end
+            -- MM2 «закрывает» окно трейда, уводя его за край экрана (Visible остаётся true): без проверки положения
+            -- трейд всегда считался открытым, и все входящие запросы пропускались
+            if o and o:IsA("GuiObject") and isShown(o) and env.TV_inView(o) then return true end
         end
     end
     return false
@@ -2925,7 +2957,7 @@ function auto.tryAcceptRequest()
     for _, g in ipairs(PlayerGui:GetChildren()) do
         if g:IsA("ScreenGui") and g.Enabled and g ~= ui and g ~= hlGui then
             local offer = g:FindFirstChild("YourOffer", true)
-            if not (offer and offer:IsA("GuiObject") and isShown(offer)) then
+            if not (offer and offer:IsA("GuiObject") and isShown(offer) and env.TV_inView(offer)) then
                 local vis = {}
                 env.TV_walk(g, function(d) if d:IsA("GuiButton") then table.insert(vis, d) end end)
                 for _, d in ipairs(vis) do

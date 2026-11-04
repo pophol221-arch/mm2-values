@@ -116,7 +116,7 @@ local L = {
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", allOffDone = "Все функции выключены", allOnDone = "Все функции включены", highlight = "Подсветка", autoAdd = "Авто-добавление",
-           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordProfit = "Своя прибыль за этот предмет", ordGone = "Заявка больше не подходит — убираю её предметы", ordProfitOn = "автооффер наберёт +%d%% (варианты не используются)", ordProfitOff = "выкл. — кладутся варианты ниже", ordProfitTag = " · заявка", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", kindAsk = "%s: это нож или пистолет? (скрипт думает: %s)", kindBtnKnife = "Нож", kindBtnGun = "Пистолет", ordUnsure = "Заявка: определяю, нож это или пистолет… [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", adSent = "Написал в чат: Let's trade!", priceMoved = "Цены в инвентаре: %s", histStats = "Сегодня: %s · за 7 дней: %s · лучший: %s (%s)",adFail = "Не получилось написать в чат: %s", tiers = "Прибыль по цене предмета (ступени)", tierUpTo = "до", tiersOn = "Включить ступени", tierCount = "%d ступ.", tierOff = "выкл.", tierAdd = "+ Ступень", tierHint = "Считается по цене того, что даёт он. Дороже последней ступени — её процент. Заявки со своей прибылью важнее.", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 80 с)", blockedTrade = "%s в блоке на 80 с — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
+           bl = "Нежелательные предметы", keep = "Не отдавать", keepTitle = "Не отдавать", myInv = "Мой инвентарь", invHint = "Пока пусто: открой любой трейд — скрипт запишет, что сейчас лежит в твоём инвентаре", invClear = "Очистить (обновится в следующем трейде)", keepHint = "Отмеченные предметы скрипт никогда сам не кладёт в трейд", orders = "Заявки", ordersSub = "%d заявок · на какой предмет что отдаёшь", ordersOn = "Заявки включены", ordNew = "+ Новая заявка", ordAddVar = "+ Вариант", ordDel = "Удалить заявку", ordPickTarget = "Выбери предмет, на который заявка", ordPickOffer = "Что отдаёшь за %s — нажимай на предметы", ordSave = "Сохранить", ordCancel = "Отмена", ordGive = "отдаёшь %s за %s", ordEmpty = "Выбери заявку слева или создай новую", ordNoVars = "Пока нет вариантов — добавь, что отдаёшь", ordProfit = "Своя прибыль за этот предмет", ordGone = "Заявка больше не подходит — убираю её предметы", ordProfitOn = "автооффер наберёт +%d%% (варианты не используются)", ordProfitOff = "выкл. — кладутся варианты ниже", ordProfitTag = " · заявка", ordApplied = "Заявка: %s за %s", chartTitle = "%s · сейчас %s", chartSince = "%s с %s · изменений: %d", chartLine = "Линия", chartCandles = "Свечи", candleTip = "<b>%s</b>\nоткр %s · макс %s\nмин %s · закр %s\n%s", kindGun = "пистолет", kindKnife = "нож", kindAsk = "%s: это нож или пистолет? (скрипт думает: %s)", kindBtnKnife = "Нож", kindBtnGun = "Пистолет", ordUnsure = "Заявка: определяю, нож это или пистолет… [%s]", chartFew = "История копится с %s — чем больше обновлений, тем подробнее график",  blCount = "%d шт.", autoDecline = "Автоотклонение", tolerance = "Допуск ±1%", fillOver = "Добивать сверх цели", adSent = "Написал в чат: Let's trade!", priceMoved = "Цены в инвентаре: %s", histStats = "Сегодня: %s · за 7 дней: %s · лучший: %s (%s)",adFail = "Не получилось написать в чат: %s", tiers = "Прибыль по цене предмета (ступени)", tierUpTo = "до", tiersOn = "Включить ступени", tierCount = "%d ступ.", tierOff = "выкл.", tierAdd = "+ Ступень", tierHint = "Считается по цене того, что даёт он. Дороже последней ступени — её процент. Кнопка «%» справа переключает на фиксированную прибыль в value (например, +10 value). Заявки со своей прибылью важнее.", mirrorEmpty = "Убирать, если он всё убрал", junkDecline = "Отклонять хлам (без цены)", giftAccept = "Принимать подарки", idleDecline = "Отклонять, если 20 с ничего не меняется", cheapGodly = "За мелочь — 1 самый дешёвый годли", cheapNeed = "Мелочь: за %s нужно от %s, он даёт %s", cheapOk = "Мелочь → %s x1", cheapDoing = "Кладу %s x1 за мелочь…", idleWait = "20 с ничего не меняется — отклоню через %d с", giftDoing = "Подарок: он принял, ты ничего не отдаёшь — принимаю (попытка %d)", junkWait = "У него только предметы без цены — отклоню через %d с", emptyDecline = "Пустой трейд: показать предметы и отклонить", nudgeWait = "Он ничего не предлагает — через %d с покажу предметы", nudging = "Показываю ему предметы…", blockedReq = "Отклонил запрос от %s (блок 80 с)", blockedTrade = "%s в блоке на 80 с — отказ", emptyWait = "Всё ещё пусто — отклоню через %d с", emptyCleared = "Он всё убрал — убираю и я", overTag = " (сверх цели)", autoAccept = "Автопринятие", accepting = "Принимаю трейд (+%d%%), способ %d", autoRequest = "Принимать запросы", chatAds = "Анализ чата", gives = "даёт", wants = "хочет", forYou = "для тебя", items = "предметы", anyOffers = "любые предложения", asksAdd = "просит добавить", requestAccepted = "Запрос на трейд принят", accepted = "Трейд принят: +%d%%",
            search = "Поиск…", marked = "Отмеченные", catMark = "Отметить всю категорию", catUnmark = "Снять отметки со всей категории", ordAddProfit = "+ Вариант: % прибыли", ordProfitVar = "Прибыль +%d%%", ordProfitVarSub = "автооффер наберёт с этой прибылью", all = "Все",
            cats = { sets = "Сеты", uniques = "Уникальные", ancients = "Древние", vintages = "Винтажные",
                     chromas = "Хромы", godlies = "Годли", legendaries = "Легендарные", rares = "Редкие",
@@ -129,7 +129,7 @@ local L = {
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", allOffDone = "All features are off", allOnDone = "All features are on", highlight = "Highlight", autoAdd = "Auto-add",
-           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordProfit = "Own profit for this item", ordGone = "Order no longer matches — taking its items back", ordProfitOn = "auto-offer aims for +%d%% (variants are not used)", ordProfitOff = "off — the variants below are used", ordProfitTag = " · order", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", kindAsk = "%s: knife or gun? (script thinks: %s)", kindBtnKnife = "Knife", kindBtnGun = "Gun", ordUnsure = "Order: checking whether it is a knife or a gun… [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", adSent = "Sent to chat: Let's trade!", priceMoved = "Inventory prices: %s", histStats = "Today: %s · 7 days: %s · best: %s (%s)",adFail = "Could not write to chat: %s", tiers = "Profit by item value (tiers)", tierUpTo = "up to", tiersOn = "Enable tiers", tierCount = "%d tiers", tierOff = "off", tierAdd = "+ Tier", tierHint = "Based on the value of what they give. Above the last tier — its percent. Orders with their own profit come first.", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (80 s block)", blockedTrade = "%s is blocked for 80 s — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
+           bl = "Unwanted items", keep = "Never give", keepTitle = "Never give", myInv = "My inventory", invHint = "Empty for now: open any trade — the script records what is in your inventory right now", invClear = "Clear (refreshes in the next trade)", keepHint = "Marked items are never put into a trade by the script", orders = "Orders", ordersSub = "%d orders · what you give for an item", ordersOn = "Orders enabled", ordNew = "+ New order", ordAddVar = "+ Variant", ordDel = "Delete order", ordPickTarget = "Pick the item this order is for", ordPickOffer = "What you give for %s — tap items", ordSave = "Save", ordCancel = "Cancel", ordGive = "you give %s for %s", ordEmpty = "Pick an order on the left or create one", ordNoVars = "No variants yet — add what you give", ordProfit = "Own profit for this item", ordGone = "Order no longer matches — taking its items back", ordProfitOn = "auto-offer aims for +%d%% (variants are not used)", ordProfitOff = "off — the variants below are used", ordProfitTag = " · order", ordApplied = "Order: %s for %s", chartTitle = "%s · now %s", chartSince = "%s since %s · changes: %d", chartLine = "Line", chartCandles = "Candles", candleTip = "<b>%s</b>\nopen %s · high %s\nlow %s · close %s\n%s", kindGun = "gun", kindKnife = "knife", kindAsk = "%s: knife or gun? (script thinks: %s)", kindBtnKnife = "Knife", kindBtnGun = "Gun", ordUnsure = "Order: checking whether it is a knife or a gun… [%s]", chartFew = "History is collected since %s — the more updates, the richer the chart",  blCount = "%d items", autoDecline = "Auto-decline", tolerance = "Allow ±1%", fillOver = "Top up past target", adSent = "Sent to chat: Let's trade!", priceMoved = "Inventory prices: %s", histStats = "Today: %s · 7 days: %s · best: %s (%s)",adFail = "Could not write to chat: %s", tiers = "Profit by item value (tiers)", tierUpTo = "up to", tiersOn = "Enable tiers", tierCount = "%d tiers", tierOff = "off", tierAdd = "+ Tier", tierHint = "Based on the value of what they give. Above the last tier — its percent. The «%» button switches to a fixed profit in value (e.g. +10 value). Orders with their own profit come first.", mirrorEmpty = "Clear mine if they clear", junkDecline = "Decline junk (no value)", giftAccept = "Accept gifts", idleDecline = "Decline if nothing changes for 20 s", cheapGodly = "Small items → 1 cheapest godly", cheapNeed = "Small items: %s needs %s or more, they give %s", cheapOk = "Small items → %s x1", cheapDoing = "Adding %s x1 for small items…", idleWait = "Nothing changed for 20 s — declining in %d s", giftDoing = "Gift: they accepted, you give nothing — accepting (try %d)", junkWait = "Only unpriced items — declining in %d s", emptyDecline = "Empty trade: show items, then decline", nudgeWait = "They offer nothing — showing items in %d s", nudging = "Showing them items…", blockedReq = "Declined request from %s (80 s block)", blockedTrade = "%s is blocked for 80 s — declining", emptyWait = "Still empty — declining in %d s", emptyCleared = "They removed everything — removing mine", overTag = " (over target)", autoAccept = "Auto-accept", accepting = "Accepting trade (+%d%%), method %d", autoRequest = "Accept requests", chatAds = "Chat analysis", gives = "gives", wants = "wants", forYou = "for you", items = "items", anyOffers = "any offers", asksAdd = "asks to add", requestAccepted = "Trade request accepted", accepted = "Trade accepted: +%d%%",
            search = "Search…", marked = "Marked", catMark = "Mark the whole category", catUnmark = "Unmark the whole category", ordAddProfit = "+ Variant: profit %", ordProfitVar = "Profit +%d%%", ordProfitVarSub = "auto-offer aims for this profit", all = "All",
            cats = { sets = "Sets", uniques = "Uniques", ancients = "Ancients", vintages = "Vintages",
                     chromas = "Chromas", godlies = "Godlies", legendaries = "Legendaries", rares = "Rares",
@@ -1180,11 +1180,28 @@ end
 if S.myInvV ~= 2 then S.myInv, S.myInvV = {}, 2 end
 if type(S.tiers) ~= "table" then S.tiers = { { 100, 20 }, { 300, 15 }, { 1000, 10 }, { 3000, 5 } } end
 -- цель прибыли для оффера ценой v: по ступеням (если включены), иначе общая
-env.TV_pct = function(v)
+-- ступень: { до какой цены, прибыль, fixed }. fixed = true — прибыль не в %, а фиксированная сумма value
+env.TV_tierFor = function(v)
     local t = S.tiers
-    if not (S.tiersOn and t and #t > 0) then return S.target end
-    for _, e in ipairs(t) do if (v or 0) <= e[1] then return e[2] end end
-    return t[#t][2]
+    if not (S.tiersOn and t and #t > 0) then return nil end
+    for _, e in ipairs(t) do if (v or 0) <= e[1] then return e end end
+    return t[#t]
+end
+env.TV_pct = function(v)
+    local e = env.TV_tierFor(v)
+    if not e then return S.target end
+    if not e[3] then return e[2] end
+    -- фиксированная прибыль P: он даёт v, я отдаю не больше v - P → это (P / (v - P)) * 100 %
+    v = v or 0
+    if v <= 0 then return 0 end
+    if e[2] >= v then return 1000 end -- прибыль больше всего его оффера — отдать можно только ~ничего
+    return e[2] / (v - e[2]) * 100
+end
+-- подпись цели: «+15%» или «+10 value» (для фиксированной ступени)
+env.TV_pctLabel = function(v, pct)
+    local e = env.TV_tierFor(v)
+    if e and e[3] then return "+" .. env.TV_fmt(e[2]) .. " value" end
+    return ("+%d%%"):format(math.floor((pct or env.TV_pct(v)) + 0.5))
 end
 if S.adV ~= 1 then S.chatAdvert, S.adV = true, 1 end -- «Давай обменяемся» включено по умолчанию
 if S.tradeLogV ~= 3 then S.tradeLog, S.tradePending, S.tradeLogV = {}, {}, 3 end -- раньше в историю попадали несостоявшиеся трейды -- первая версия собирала лишнее — начинаем заново
@@ -1492,7 +1509,7 @@ X.renderTiers = function()
     X.drawTier(S.tiersOn)
     box.BackgroundTransparency = S.tiersOn and 0.3 or 0.7
     local parts = { S.lang }
-    for _, e in ipairs(S.tiers) do table.insert(parts, e[1] .. ":" .. e[2]) end
+    for _, e in ipairs(S.tiers) do table.insert(parts, e[1] .. ":" .. e[2] .. (e[3] and "v" or "")) end
     local sig = table.concat(parts, ",")
     if sig == X.tierSig then return end
     for _, c in ipairs(box:GetChildren()) do if c:IsA("TextBox") and c:IsFocused() then return end end
@@ -1507,15 +1524,16 @@ X.renderTiers = function()
         return new("TextLabel", { BackgroundTransparency = 1, Size = UDim2.new(0, w, 1, 0), AutomaticSize = w == 0 and Enum.AutomaticSize.X or nil,
             Text = text, TextColor3 = C.muted, TextSize = 13, Font = fontReg(), LayoutOrder = order }, parent)
     end
-    local function numBox(parent, val, w, order, onSet)
+    local function numBox(parent, val, w, order, onSet, decimals)
         local f = new("Frame", { Size = UDim2.fromOffset(w, 30), BackgroundColor3 = C.bg, BackgroundTransparency = 0.2, LayoutOrder = order }, parent)
         corner(f, 8)
         stroke(f)
         local b = new("TextBox", { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Text = tostring(val), TextColor3 = C.text,
             TextSize = 13, Font = fontBold(), ClearTextOnFocus = false }, f)
         on(b.FocusLost, function()
-            local n = tonumber((b.Text:gsub("[^%d%.]", "")))
-            if n then onSet(math.floor(n + 0.5)) end
+            local n = tonumber((b.Text:gsub(",", "."):gsub("[^%d%.]", "")))
+            -- фиксированная прибыль в value может быть дробной (0.5), проценты и цены — целые
+            if n then onSet(decimals and math.floor(n * 10 + 0.5) / 10 or math.floor(n + 0.5)) end
             X.tierSig = nil
             save()
         end)
@@ -1527,8 +1545,20 @@ X.renderTiers = function()
         txt(line, T("tierUpTo"), 0, 1)
         numBox(line, e[1], 90, 2, function(n) e[1] = math.max(1, n) end)
         txt(line, "value  →", 0, 3)
-        numBox(line, e[2], 56, 4, function(n) e[2] = math.clamp(n, 0, 500) end)
-        txt(line, "%", 0, 5)
+        numBox(line, e[2], 56, 4, function(n) e[2] = e[3] and math.clamp(n, 0, 1e7) or math.clamp(n, 0, 500) end, e[3])
+        -- «%» / «value»: нажатие переключает, считать прибыль процентом или фиксированной суммой
+        local mode = new("TextButton", { Size = UDim2.fromOffset(0, 30), AutomaticSize = Enum.AutomaticSize.X, BackgroundColor3 = C.bg,
+            BackgroundTransparency = 0.2, Text = e[3] and "value" or "%", TextColor3 = e[3] and accent() or C.text, TextSize = 13,
+            Font = fontBold(), AutoButtonColor = false, LayoutOrder = 5 }, line)
+        corner(mode, 8)
+        stroke(mode)
+        pad(mode, 8, 0)
+        on(mode.Activated, function()
+            if e[3] then e[3] = nil; e[2] = math.clamp(math.floor(e[2] + 0.5), 0, 500)
+            else e[3] = true end
+            X.tierSig = nil
+            save()
+        end)
         local del = new("TextButton", { Size = UDim2.fromOffset(30, 30), BackgroundColor3 = C.bg, BackgroundTransparency = 0.2, Text = "×",
             TextColor3 = C.bad, TextSize = 16, Font = fontBold(), AutoButtonColor = false, LayoutOrder = 6 }, line)
         corner(del, 8)
@@ -4218,7 +4248,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     if not S.autoOffer then sugLine.Visible = false; hideHighlights(); return end
     sugLine.Visible = true
     local pctT = auto.ordProfit or env.TV_pct(th) -- своя прибыль из заявки за его предмет — важнее общей (иначе ступень по цене его оффера)
-    local tgt = ("+%d%%"):format(pctT) .. (auto.ordProfit and T("ordProfitTag") or "")
+    local tgt = (auto.ordProfit and ("+%d%%"):format(math.floor(pctT + 0.5)) or env.TV_pctLabel(th, pctT)) .. (auto.ordProfit and T("ordProfitTag") or "")
     if th <= 0 then sugText.Text = T("sugWait"):format(tgt); hideHighlights(); return end
 
     local maxMine = th / (1 + pctT / 100)  -- столько можно отдать, чтобы остаться в цели

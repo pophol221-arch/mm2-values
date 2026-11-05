@@ -2546,6 +2546,8 @@ local function clickCell(cell, tg, method)
                 if b and b ~= btn and env.TV_forbidden(b) then return false end
                 -- щелчок попадёт в эту кнопку (или в её надпись / ячейку рядом), а не во что-то поверх
                 if top == btn or top:IsDescendantOf(btn) or btn:IsDescendantOf(top) or (near and top:IsDescendantOf(near)) then hits = true end
+                -- «Отказ»: достаточно, что поверх — то же окно трейда (надпись «ОТКАЗ» лежит отдельно от кнопки)
+                if env.TV_mouseForce and top:FindFirstAncestorWhichIsA("ScreenGui") == btn:FindFirstAncestorWhichIsA("ScreenGui") then hits = true end
             end
         end
         -- щелчок попал бы не в эту кнопку (прокручена за край, закрыта) — мышью не жмём, будут другие способы
@@ -3567,7 +3569,12 @@ function auto.pressDecline(btn, tg, tries)
     local fired = {}
     -- нечётные попытки — настоящий щелчок мышью (MM2 надёжно засчитывает только его; обработчики кнопки «срабатывают»,
     -- а отказа нет). Мышь жмёт только при точном попадании в «Отказ» — мимо, в лобби, не уйдёт
-    if tries % 2 == 1 and env.TV_vis(btn) and clickCell(btn, tg, 3) then fired[3] = true end
+    if env.TV_vis(btn) then
+        env.TV_mouseForce = true
+        local ok = clickCell(btn, tg, 3)
+        env.TV_mouseForce = false
+        if ok then fired[3] = true end
+    end
     if not next(fired) then
         for _, t in ipairs(targets) do
             for _, m in ipairs(auto.DECL_WAYS) do

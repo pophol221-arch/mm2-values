@@ -4514,13 +4514,21 @@ local function tick()
                 table.sort(out, function(a, b) return a[2] * a[3] > b[2] * b[3] end)
                 return out
             end
-            -- пока только «на проверке»: в историю попадёт, когда инвентарь покажет, что отданное ушло / полученное пришло
-            local pre = {}
-            for k, e in pairs(S.invItems or {}) do pre[k] = e[2] end
-            S.tradePending = S.tradePending or {}
-            table.insert(S.tradePending, { t = os.time(), p = sn.partner or "?", my = sn.my or 0, th = sn.th or 0,
-                gave = list(sn.gave), got = list(sn.got), pre = pre })
-            while #S.tradePending > 10 do table.remove(S.tradePending, 1) end
+            local rec = { t = os.time(), p = sn.partner or "?", my = sn.my or 0, th = sn.th or 0, gave = list(sn.gave), got = list(sn.got) }
+            if sn.themAt and sn.themAt > sn.stage2At then
+                -- на втором этапе («Вы уверены?») подтвердили оба — обмен точно прошёл: сразу в историю
+                S.tradeLog = S.tradeLog or {}
+                table.insert(S.tradeLog, 1, rec)
+                while #S.tradeLog > 100 do table.remove(S.tradeLog) end
+            else
+                -- его подтверждения не видели — «на проверке»: в историю попадёт, когда инвентарь покажет, что отданное ушло / полученное пришло
+                local pre = {}
+                for k, e in pairs(S.invItems or {}) do pre[k] = e[2] end
+                rec.pre = pre
+                S.tradePending = S.tradePending or {}
+                table.insert(S.tradePending, rec)
+                while #S.tradePending > 10 do table.remove(S.tradePending, 1) end
+            end
             saveSettings()
         end
         clampGear()

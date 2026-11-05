@@ -6467,8 +6467,16 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                         if gg:IsA("ScreenGui") and gg.Enabled and gg ~= ui and gg ~= hlGui then
                                             for _, d in ipairs(gg:GetDescendants()) do
                                                 if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
-                                                    local v = valueMap[norm(d.Text)]
-                                                    if v and v > 0 then table.insert(cur, v); sum += v; tg2 = tg2 or gg end
+                                                    local k = norm(d.Text)
+                                                    local v = valueMap[k]
+                                                    if v and v > 0 then
+                                                        -- цель — только годли (и выше: хрома, древние); у одинаковых названий — по цвету/картинке
+                                                        local cat = (env.TV_primCat or {})[k]
+                                                        if (env.TV_ambig or {})[k] then cat = env.TV_cellCat(env.TV_cellOf(d), d) or cat end
+                                                        if cat == "godlies" or cat == "chromas" or cat == "ancients" then
+                                                            table.insert(cur, v); sum += v; tg2 = tg2 or gg
+                                                        end
+                                                    end
                                                 end
                                             end
                                         end
@@ -6478,11 +6486,15 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     vals, topGui, lastSig = cur, tg2, sig
                                 end
                                 table.sort(vals, function(a, b) return a > b end)
-                                -- сколько я могу отдать: мой инвентарь по ценам, без «не отдавать»
-                                local budget = 0
+                                -- сколько я могу отдать: в трейде 4 слота (одинаковые предметы ложатся в один слот стопкой) —
+                                -- это 4 моих самых дорогих стопки (без «не отдавать»)
+                                local units = {}
                                 for k, e in pairs(S.invItems or {}) do
-                                    if not (S.keep or {})[k] then budget += (valueMap[k] or 0) * (e[2] or 1) end
+                                    if not (S.keep or {})[k] and (valueMap[k] or 0) > 0 then table.insert(units, valueMap[k] * (e[2] or 1)) end
                                 end
+                                table.sort(units, function(a, b) return a > b end)
+                                local budget = 0
+                                for i = 1, math.min(4, #units) do budget += units[i] end
                                 -- самый дорогой его предмет, на который мне хватает с целью прибыли (+10–20% по ступеням);
                                 -- инвентарь ещё не знаю (не было трейда) — берём просто самый дорогой
                                 local top = 0

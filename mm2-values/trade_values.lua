@@ -2328,6 +2328,17 @@ end)
 local function clickCell(cell, tg, method)
     local btn = cell:IsA("GuiButton") and cell or cell:FindFirstChildWhichIsA("GuiButton", true) or cell
     if btn:IsA("GuiButton") and env.TV_forbidden(btn) then return nil end
+    -- ячейка в списке с прокруткой за краем (ниже/выше видимой части) — сначала прокручиваем к ней
+    pcall(function()
+        local sf = cell:FindFirstAncestorWhichIsA("ScrollingFrame")
+        if not sf then return end
+        local top, h = sf.AbsolutePosition.Y, sf.AbsoluteWindowSize.Y
+        local cy, ch = cell.AbsolutePosition.Y, cell.AbsoluteSize.Y
+        if cy < top or cy + ch > top + h then
+            sf.CanvasPosition = Vector2.new(sf.CanvasPosition.X, math.max(0, sf.CanvasPosition.Y + (cy - top) - (h - ch) / 2))
+            task.wait(0.1) -- дать игре перерисовать список
+        end
+    end)
     local SIGNALS = { "MouseButton1Click", "Activated", "MouseButton1Down" }
     -- аргументы, как у настоящего нажатия (обработчики MM2 читают input — без него падали молча)
     local function argsFor(sigName)

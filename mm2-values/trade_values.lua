@@ -1206,7 +1206,7 @@ env.TV_pctLabel = function(v, pct)
     return ("+%d%%"):format(math.floor((pct or env.TV_pct(v)) + 0.5))
 end
 if S.adV ~= 1 then S.chatAdvert, S.adV = true, 1 end -- «Давай обменяемся» включено по умолчанию
-if S.tradeLogV ~= 3 then S.tradeLog, S.tradePending, S.tradeLogV = {}, {}, 3 end -- раньше в историю попадали несостоявшиеся трейды -- первая версия собирала лишнее — начинаем заново
+if S.tradeLogV ~= 4 then S.tradeLog, S.tradePending, S.tradeLogV = {}, {}, 4 end -- v4: очистка истории с несостоявшимися трейдами (07.11) -- раньше в историю попадали несостоявшиеся трейды -- первая версия собирала лишнее — начинаем заново
 local INV_SKIP = { "shop", "store", "crate", "box", "preview", "reward", "spin", "unbox", "craft", "battle", "pass", "code", "gift", "trade", "offer", "season", "event", "quest" }
 local function scanMyInv()
     S.myInv = S.myInv or {}

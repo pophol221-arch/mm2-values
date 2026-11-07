@@ -85,27 +85,33 @@ if readfile and isfile then
 end
 
 local function rgb(r, g, b) return Color3.fromRGB(r, g, b) end
--- тёмная тёплая тема: «бумага», коралловый акцент
+-- тёмная «стеклянная» тема: графит с холодным отливом, яркий акцент, окна с градиентной рамкой
 local C = {
-    bg = rgb(19, 17, 14), card = rgb(36, 33, 27), line = rgb(238, 230, 216),
-    text = rgb(238, 230, 216), muted = rgb(166, 156, 141),
-    good = rgb(125, 192, 140), fair = rgb(214, 174, 82), bad = rgb(255, 138, 128),
+    bg = rgb(12, 13, 21), card = rgb(27, 29, 44), line = rgb(255, 255, 255),
+    text = rgb(241, 243, 251), muted = rgb(138, 145, 172),
+    good = rgb(74, 222, 128), fair = rgb(250, 204, 21), bad = rgb(248, 113, 113),
 }
 -- темы = акцентный цвет
 local ACCENTS = {
-    rgb(238, 111, 78), rgb(122, 166, 204), rgb(127, 176, 139),
-    rgb(156, 147, 214), rgb(214, 174, 82), rgb(197, 122, 166),
+    rgb(139, 92, 246), rgb(59, 130, 246), rgb(6, 182, 212),
+    rgb(16, 185, 129), rgb(245, 158, 11), rgb(236, 72, 153),
 }
-local FONTS = {
-    { "Classic", Enum.Font.Merriweather, Enum.Font.GothamMedium }, -- заголовки с засечками, текст — простой
+local FONTS
+do
+    -- шрифта может не быть в старой версии Roblox — тогда запасной
+    local function f(name, fb) local ok, v = pcall(function() return Enum.Font[name] end); return ok and v or fb end
+    FONTS = {
+    { "Modern", f("BuilderSansBold", Enum.Font.GothamBold), f("BuilderSansMedium", Enum.Font.GothamMedium) },
     { "Gotham", Enum.Font.GothamBold, Enum.Font.GothamMedium },
+    { "Classic", Enum.Font.Merriweather, Enum.Font.GothamMedium }, -- заголовки с засечками, текст — простой
     { "Fredoka", Enum.Font.FredokaOne, Enum.Font.FredokaOne },
     { "Ubuntu", Enum.Font.Ubuntu, Enum.Font.Ubuntu },
     { "Montserrat", Enum.Font.Montserrat, Enum.Font.Montserrat },
     { "Luckiest", Enum.Font.LuckiestGuy, Enum.Font.LuckiestGuy },
     { "Arcade", Enum.Font.Arcade, Enum.Font.Arcade },
-}
-if S.styleV ~= 2 then S.theme, S.font, S.styleV = 1, 1, 2 end -- новый вид: как на сайте
+    }
+end
+if S.styleV ~= 3 then S.theme, S.font, S.styleV = 1, 1, 3 end -- новый вид: стекло, фиолетовый акцент, Modern
 local function accent() return ACCENTS[S.theme] or ACCENTS[1] end
 local function fontBold() return (FONTS[S.font] or FONTS[1])[2] end
 local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
@@ -524,8 +530,8 @@ local gear = new("TextButton", {
     Size = UDim2.fromOffset(46, 46), Position = UDim2.fromScale(S.iconX, S.iconY),
     BackgroundColor3 = rgb(255, 255, 255), Text = "", AutoButtonColor = false,
 }, ui)
-corner(gear, 14)
-local gearRing = stroke(gear, rgb(255, 255, 255), 0.75, 1.5)
+corner(gear, 16)
+local gearRing = stroke(gear, rgb(255, 255, 255), 0.55, 1.5)
 do
     -- фон — градиент акцента; надпись отдельным объектом, иначе градиент перекрасит и её
     local g = new("UIGradient", { Rotation = 45 }, gear)
@@ -603,6 +609,7 @@ corner(tabBar, 10)
 stroke(tabBar)
 local tabKnob = new("Frame", { Size = UDim2.new(1 / 5, -6, 1, -6), Position = UDim2.fromOffset(3, 3), BackgroundColor3 = accent() }, tabBar)
 corner(tabKnob, 8)
+new("UIGradient", { Rotation = 90, Color = ColorSequence.new(rgb(255, 255, 255), rgb(175, 175, 195)) }, tabKnob)
 local tabMainBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
 local tabTradeBtn = new("TextButton", { Size = UDim2.fromScale(1 / 5, 1), Position = UDim2.fromScale(1 / 5, 0), BackgroundTransparency = 1, Text = "", TextColor3 = C.text, TextSize = 14, ZIndex = 2 }, tabBar)
 themed(function() tabMainBtn.Font, tabTradeBtn.Font = fontBold(), fontBold() end)
@@ -658,13 +665,14 @@ end
 local function makeToggle(r)
     local t = new("TextButton", {
         Size = UDim2.fromOffset(46, 26), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, 0, 0.5, 0),
-        BackgroundColor3 = rgb(60, 62, 74), Text = "", AutoButtonColor = false,
+        BackgroundColor3 = rgb(44, 47, 68), Text = "", AutoButtonColor = false,
     }, r)
     corner(t, 13)
+    new("UIGradient", { Rotation = 90, Color = ColorSequence.new(rgb(255, 255, 255), rgb(190, 190, 205)) }, t)
     local k = new("Frame", { Size = UDim2.fromOffset(20, 20), Position = UDim2.fromOffset(3, 3), BackgroundColor3 = rgb(255, 255, 255) }, t)
     corner(k, 10)
     return t, function(state)
-        tween(t, 0.2, { BackgroundColor3 = state and accent() or rgb(60, 62, 74) })
+        tween(t, 0.2, { BackgroundColor3 = state and accent() or rgb(44, 47, 68) })
         tween(k, 0.2, { Position = state and UDim2.fromOffset(23, 3) or UDim2.fromOffset(3, 3) })
     end
 end
@@ -930,7 +938,7 @@ local resetBtn = new("TextButton", {
 corner(resetBtn, 11)
 local resetStroke = stroke(resetBtn, accent(), 0.5)
 themed(function() resetBtn.Font = fontBold(); resetBtn.TextColor3 = accent(); resetStroke.Color = accent() end)
-hover(resetBtn, C.card, rgb(35, 38, 50))
+hover(resetBtn, C.card, rgb(40, 43, 64))
 local footer = label(panel, { Size = UDim2.new(1, 0, 0, 14), TextSize = 11, TextColor3 = C.muted, TextXAlignment = Enum.TextXAlignment.Center, LayoutOrder = 3 })
 
 -- вкладка «Игрок»
@@ -1007,7 +1015,7 @@ local backBtn = new("TextButton", {
 corner(backBtn, 16)
 stroke(backBtn)
 themed(function() backBtn.Font = fontBold() end)
-hover(backBtn, C.card, rgb(40, 43, 56))
+hover(backBtn, C.card, rgb(40, 43, 64))
 local blTitle = label(blHead, { Size = UDim2.new(1, -260, 0, 18), Position = UDim2.fromOffset(44, 0), TextSize = 16 }, true)
 local blSub = label(blHead, { Size = UDim2.new(1, -260, 0, 14), Position = UDim2.fromOffset(44, 19), TextSize = 12, TextColor3 = C.muted })
 makeDraggable(blTitle, blPage)
@@ -6693,6 +6701,36 @@ end)() -- отдельная функция: у неё свой лимит 200 �
         return true
     end
 end)() -- отдельная функция: у неё свой лимит 200 локальных
+
+------------------------------------------------------------------
+-- Оформление окон: лёгкий отлив акцентом сверху, затемнение вниз, градиентная рамка
+------------------------------------------------------------------
+;(function()
+    local skinned = setmetatable({}, { __mode = "k" })
+    local WHITE = rgb(255, 255, 255)
+    local function paint(w, s)
+        local a = accent()
+        w.BackgroundColor3 = C.bg:Lerp(a, 0.07)
+        s.g.Color = ColorSequence.new(WHITE, rgb(140, 142, 160))
+        s.sg.Color = ColorSequence.new(a:Lerp(WHITE, 0.3), a)
+    end
+    local function skin(w)
+        if skinned[w] or not w:IsA("Frame") or w.BackgroundColor3 ~= C.bg then return end
+        local st = w:FindFirstChildOfClass("UIStroke") or stroke(w)
+        st.Color, st.Transparency, st.Thickness = WHITE, 0, 1.4
+        local sg = new("UIGradient", { Rotation = 35, Transparency = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.2), NumberSequenceKeypoint.new(0.5, 0.88), NumberSequenceKeypoint.new(1, 0.5) }) }, st)
+        local g = new("UIGradient", { Rotation = 90 }, w)
+        local c = w:FindFirstChildOfClass("UICorner")
+        if c and c.CornerRadius.Offset >= 14 then c.CornerRadius = UDim.new(0, 20) end
+        local s = { g = g, sg = sg }
+        skinned[w] = s
+        paint(w, s)
+    end
+    for _, c in ipairs(ui:GetChildren()) do pcall(skin, c) end
+    on(ui.ChildAdded, function(c) pcall(skin, c) end)
+    themed(function() for w, s in pairs(skinned) do if w.Parent then paint(w, s) end end end)
+end)()
 
 local function cleanup()
     for _, c in ipairs(conns) do c:Disconnect() end

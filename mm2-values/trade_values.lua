@@ -2660,6 +2660,93 @@ end
 
 local auto = { OUT_EVERY = 60,busy = false, lastTh = -1, stableSince = 0, doneFor = -1, declined = false,
                accSig = "", accSince = 0, accTries = 0, accDone = false, accLast = 0 }
+-- подпись набора: «ключ*кол-во» по алфавиту (чтобы помнить, какие наборы уже показывали)
+function auto.comboSig(offer)
+    local parts = {}
+    for k, e in pairs(offer or {}) do table.insert(parts, k .. "*" .. (e.count or 1)) end
+    table.sort(parts)
+    return table.concat(parts, ",")
+end
+-- после «убрал и вернул»: перебираем наборы (до 4 ячеек, не дороже нужного, от 80% цели) от самых точных.
+-- Уже показанные пропускаем; предметы при этом не запрещаются — возвращаются в других сочетаниях.
+-- Все наборы показаны — идём по кругу заново (кроме самого последнего)
+function auto.pickCombo(items, need, hard)
+    local pool, seen = {}, {}
+    for _, it in ipairs(items) do
+        local k = norm(it.name)
+        if not hard[k] and not seen[k] and (it.price or 0) > 0 and it.price <= need + 1e-9 then
+            seen[k] = true
+            table.insert(pool, it)
+        end
+    end
+    table.sort(pool, function(a, b) return a.price > b.price end)
+    while #pool > 20 do table.remove(pool) end
+    local cands, cur, nodes = {}, {}, 0
+    local floorSum = need * 0.8
+    local function dfs(i, sum, slots)
+        nodes += 1
+        if #cur > 0 and sum >= floorSum and #cands < 4000 then table.insert(cands, { picks = table.clone(cur), sum = sum }) end
+        if slots >= 4 or nodes > 40000 then return end
+        for j = i, #pool do
+            local it = pool[j]
+            local maxN = math.min(it.amount or 1, math.floor((need - sum) / it.price + 1e-9))
+            for n = 1, maxN do
+                table.insert(cur, { item = it, count = n })
+                dfs(j + 1, sum + it.price * n, slots + 1)
+                table.remove(cur)
+            end
+            if nodes > 40000 then return end
+        end
+    end
+    dfs(1, 0, 0)
+    table.sort(cands, function(a, b)
+        if math.abs(a.sum - b.sum) > 1e-9 then return a.sum > b.sum end
+        return #a.picks < #b.picks
+    end)
+    local function sigOf(c)
+        local t = {}
+        for _, pk in ipairs(c.picks) do table.insert(t, norm(pk.item.name) .. "*" .. pk.count) end
+        table.sort(t)
+        return table.concat(t, ",")
+    end
+    local tried = auto.rerollTried or {}
+    for _, c in ipairs(cands) do if not tried[sigOf(c)] then return c.picks, c.sum end end
+    if #cands == 0 then return {}, 0 end
+    auto.rerollTried = {}
+    if auto.rerollLast then auto.rerollTried[auto.rerollLast] = true end
+    env.TV_dbg("reroll: all combos shown, starting over")
+    for _, c in ipairs(cands) do if sigOf(c) ~= auto.rerollLast then return c.picks, c.sum end end
+    return cands[1].picks, cands[1].sum
+end
+-- подбор оффера: после «убрал и вернул» (и пока мой оффер пуст) — следующий непоказанный набор, иначе обычный pickItems
+function auto.choosePicks(items, need, avoid, hard, have)
+    if auto.rerollTried and next(auto.rerollTried) ~= nil and next(have or {}) == nil and need > 0 then
+        local key = ("%.1f"):format(need)
+        local cc = auto.comboCache
+        if cc and cc.key == key then
+            -- тот же набор, что выбран раньше (ячейки инвентаря могли перерисоваться — ищем по названию)
+            local picks, sum, ok = {}, 0, true
+            for _, e in ipairs(cc.list) do
+                local found
+                for _, it in ipairs(items) do
+                    if norm(it.name) == e[1] and (it.amount or 1) >= e[2] then found = it; break end
+                end
+                if not found then ok = false; break end
+                table.insert(picks, { item = found, count = e[2] })
+                sum += found.price * e[2]
+            end
+            if ok and #picks > 0 then return picks, sum end
+        end
+        local p, sm = auto.pickCombo(items, need, hard)
+        if #p > 0 then
+            local lst = {}
+            for _, pk in ipairs(p) do table.insert(lst, { norm(pk.item.name), pk.count }) end
+            auto.comboCache = { key = key, list = lst }
+            return p, sm
+        end
+    end
+    return pickItems(items, need, avoid, hard, have)
+end
 function auto.closePicker(tg)
     local b = env.TV_findBack(tg)
     if b then clickCell(b, tg); return true end
@@ -4297,16 +4384,8 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
     local items = scanInventory(tg, mine, theirs)
     local avoid, hard = {}, {}
     for k in pairs(auto.readOffer(theirs)) do avoid[k] = true; hard[k] = true end -- то, что он даёт, — никогда
-    for k in pairs(auto.rerollAvoid or {}) do avoid[k] = true end -- не то, что ему уже не понравилось
     local have = auto.readOffer(mine)
-    -- после «убрал и вернул» отвергнутые предметы — запрет, а не пожелание: раньше pickItems выбирал набор
-    -- с лучшей суммой, а это почти всегда был тот же самый, и оффер не менялся. Нечем заменить — обычный подбор
-    if next(auto.rerollAvoid or {}) ~= nil then
-        local hardR = table.clone(hard)
-        for k in pairs(auto.rerollAvoid) do hardR[k] = true end
-        if #pickItems(items, need, avoid, hardR, have) > 0 then hard = hardR end
-    end
-    local picks, sum = pickItems(items, need, avoid, hard, have)
+    local picks, sum = auto.choosePicks(items, need, avoid, hard, have)
     do
         local sig = ("offer my=%s th=%s need=%.1f inv=%d picks=%d sum=%s autoOffer=%s autoAdd=%s busy=%s"):format(
             tostring(my), tostring(th), need, #items, #picks, tostring(sum), tostring(S.autoOffer), tostring(S.autoAdd), tostring(auto.busy))
@@ -4407,7 +4486,7 @@ local function updateAutoOffer(tg, mine, theirs, my, th)
                     local addBtn = findAddButton(tg)
                     if addBtn then clickCell(addBtn, tg); task.wait(0.8) end
                     -- теперь инвентарь на экране: набираем заново только из того, что реально есть
-                    local again = pickItems(scanInventory(tg, mine, theirs), need, avoid, hard, auto.readOffer(mine))
+                    local again = auto.choosePicks(scanInventory(tg, mine, theirs), need, avoid, hard, auto.readOffer(mine))
                     if #again > 0 then picks = again end
                 end
                 for _, pk in ipairs(picks) do
@@ -4552,6 +4631,7 @@ local function tick()
         auto.ord, auto.remFor, auto.idleSig, auto.kindNotified, auto.ordProfit, auto.ordCleanup = {}, nil, nil, nil, nil, nil
         auto.tabEmptyDone, auto.addTries = nil, 0
         auto.theirHist, auto.lastMine, auto.rerollAvoid, auto.reroll = nil, nil, nil, false
+        auto.rerollTried, auto.comboCache = nil, nil
         env.TV_inTrade = false
         if env.TV_out and env.TV_out.tradeAt then env.TV_out = nil end
         -- трейд закрылся после нашего отказа — теперь этот человек в блоке на 20 секунд (на следующие трейды)
@@ -4696,9 +4776,14 @@ local function tick()
                (next(auto.readOffer(mine)) ~= nil or (auto.lastMine and next(auto.lastMine) ~= nil)) then
                 env.TV_dbg("reroll: partner removed and returned " .. sig)
                 auto.reroll = true
-                auto.rerollAvoid = auto.rerollAvoid or {}
-                for k in pairs(auto.lastMine or {}) do auto.rerollAvoid[k] = true end
-                for k in pairs(auto.readOffer(mine)) do auto.rerollAvoid[k] = true end
+                -- запоминаем показанный набор целиком (предметы и количество): следующий — другой набор,
+                -- но предметы из него могут вернуться в другой комбинации; перебрали все — начинаем сначала
+                auto.rerollTried = auto.rerollTried or {}
+                local cur = auto.readOffer(mine)
+                if next(cur) == nil then cur = auto.lastMine or {} end
+                local c = auto.comboSig(cur)
+                if c ~= "" then auto.rerollTried[c] = true; auto.rerollLast = c end
+                auto.comboCache = nil
             end
             table.insert(h, { sig = sig, t = os.clock() })
             while #h > 4 do table.remove(h, 1) end
@@ -6466,23 +6551,29 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                 if #list == 0 then
                     -- список игроков закрыт — открываем кнопкой «+» возле числа игроков
                     -- «+» раскрывает полоску «Друзья · Игроки», «Игроки» открывает список
-                    local pb, pbg = playersButton()
-                    if not pb then
-                        local plus, pg = plusButton()
-                        if not plus then why("outNoPlus"); return end
-                        clickCell(plus, pg)
-                        task.wait(1)
-                        pb, pbg = playersButton()
+                    -- надпись «Игроки» под числом — просто счётчик, по ней список не открывается: сначала всегда «+»
+                    -- (разными способами нажатия, пока список не появится)
+                    local plus, pg = plusButton()
+                    if plus then
+                        for _, m in ipairs({ 3, 1, 2 }) do
+                            clickCell(plus, pg, m)
+                            task.wait(1)
+                            list, g = entries(nil)
+                            if #list > 0 then break end
+                        end
                     end
-                    if pb then clickCell(pb, pbg); task.wait(1) end
-                    list, g = entries(nil)
+                    if #list == 0 then
+                        -- старый вид: после «+» появляется полоска «Друзья · Игроки»
+                        local pb, pbg = playersButton()
+                        if pb then clickCell(pb, pbg); task.wait(1); list, g = entries(nil) end
+                    end
                     if #list == 0 then
                         -- может, свёрнут — раскрываем «^»
                         local lg = listGui()
                         local arrow = lg and exactBtn(lg, { "^", "˄", "v", "˅", "▲", "▼" })
                         if arrow then clickCell(arrow, lg); task.wait(0.8); list, g = entries(nil) end
                     end
-                    if #list == 0 then why("outNoList"); return end
+                    if #list == 0 then why(plus and "outNoList" or "outNoPlus"); return end
                 end
                 local anyLeft = false
                 for _, e in ipairs(list) do

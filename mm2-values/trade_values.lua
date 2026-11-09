@@ -6709,15 +6709,39 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                         for _, p in ipairs(Players:GetPlayers()) do
                             if p ~= Players.LocalPlayer and (p.Name:lower() == nm:lower() or p.DisplayName:lower() == nm:lower()) then plr = p; break end
                         end
+                        -- запрос реально ушёл: на экране «Запрос отправлен» (SendingRequest) или уже открылся трейд
+                        local function requestSent()
+                            local sr = PlayerGui:FindFirstChild("SendingRequest", true)
+                            return (sr and sr:IsA("GuiObject") and env.TV_vis(sr)) or os.clock() - (env.TV_tradeSeen or -1e9) < 2
+                        end
                         if plr and auto.tradeRemote("SendRequest", plr) then
-                            env.TV_out = { name = nm, at = os.clock() }
-                            if tradeBtn then
-                                local x = exactBtn(tbg, { "x", "х", "✕" })
-                                if x then clickCell(x, tbg) end
+                            -- remote не выдаёт ошибку, даже если сервер его проигнорировал — ждём подтверждения на экране
+                            local okSent = false
+                            for _ = 1, 6 do
+                                task.wait(0.5)
+                                if requestSent() then okSent = true; break end
                             end
-                            env.TV_dbg("outreach: SendRequest -> " .. plr.Name)
-                            notify(T("outSent"):format(nm))
-                            return
+                            env.TV_dbg("outreach: SendRequest -> " .. plr.Name .. (okSent and " OK" or " ignored"))
+                            if okSent then
+                                env.TV_out = { name = nm, at = os.clock() }
+                                local tb2, tbg2 = findTradeBtn()
+                                if tb2 then
+                                    local x = exactBtn(tbg2, { "x", "х", "✕" })
+                                    if x then clickCell(x, tbg2) end
+                                end
+                                notify(T("outSent"):format(nm))
+                                return
+                            end
+                            -- не ушёл — жмём «Обмен» как игрок (окошко «Профиль / Обмен» открываем заново, если закрылось)
+                            tradeBtn, tbg = findTradeBtn()
+                            if not tradeBtn then
+                                for _, m in ipairs({ 3, 1, 5 }) do
+                                    clickCell(row, g, m)
+                                    task.wait(0.8)
+                                    tradeBtn, tbg = findTradeBtn()
+                                    if tradeBtn then break end
+                                end
+                            end
                         end
                         if tradeBtn then
                             env.TV_out = { name = nm, at = os.clock() }
@@ -6725,12 +6749,23 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                             local done = false
                             for try, m in ipairs({ 3, 1, 5, 2, 4 }) do
                                 clickCell(tradeBtn, tbg, m)
-                                task.wait(1)
+                                task.wait(1.2)
+                                -- закрытое окошко — ещё не значит, что запрос ушёл: проверяем «Запрос отправлен»
+                                if requestSent() then done = true; break end
                                 local still = findTradeBtn()
-                                if not still or os.clock() - (env.TV_tradeSeen or -1e9) < 2 then done = true; break end
+                                if not still then
+                                    for _, m2 in ipairs({ 3, 1 }) do
+                                        clickCell(row, g, m2)
+                                        task.wait(0.8)
+                                        still = findTradeBtn()
+                                        if still then break end
+                                    end
+                                end
+                                if not still then break end
                                 tradeBtn = still
                                 why("outRetry", try)
                             end
+                            if not done then env.TV_outLast = os.clock() - auto.OUT_EVERY + 5 end -- не вышло — следующий игрок через 5 с
                             notify(T(done and "outSent" or "outTradeFail"):format(nm))
                         else
                             -- окошко не появилось — закрываем, если открыто, и пробуем следующего через 3 с

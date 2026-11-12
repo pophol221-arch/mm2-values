@@ -118,7 +118,7 @@ local function fontReg() return (FONTS[S.font] or FONTS[1])[3] end
 
 local L = {
     ru = { you = "ТЫ", them = "ОН", win = "ВЫГОДА", good = "ВЫГОДНО", fair = "ЧЕСТНО", bad = "НЕВЫГОДНО", empty = "ПУСТО",
-           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Прочее", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTotal = "Общая цена инвентаря", histItems = "Предметы", histSum = "Трейдов: %d · итог: %s", histPending = "На проверке: %d — попадут в список, только если инвентарь подтвердит обмен", histTrades = "История трейдов", histNone = "Пока нет трейдов — после каждого состоявшегося трейда он появится здесь", histGave = "отдал", histGot = "получил", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата", waitThem = "автопринятие: я принял, ждём соперника" }, antiAfk = "Анти-АФК", chatAdvert = "«Let's trade!» в чат раз в 2 минуты", outreach = "Самому предлагать трейд игрокам по списку", outSent = "Предложил трейд: %s", outAskMsg = "This offer is for your %s! Add it and I accept", outAsked = "Написал в чат: хочу %s за свой оффер", outCancel = "Запрос не приняли за 30 с — отменил, следующему через минуту",outProfile = "Профиль %s: самое дорогое — %s, предложу %s", outNoProfile = "Профиль %s: не увидел предметов с ценой — подожду, что он положит", outRetry = "Авто-предложения: «Обмен» не нажалась, другой способ (%d)", outTradeFail = "Авто-предложения: не получилось нажать «Обмен» для %s", outNoPlus = "Авто-предложения: не нашёл «+» возле числа игроков", outNoList = "Авто-предложения: нажал «+», но списка игроков не видно", outNoTradeBtn = "Авто-предложения: нажал на %s, но кнопки «Обмен» нет", outAllSent = "Авто-предложения: всем уже предложено, следующий круг через 10 мин", outWait = "%s ничего не кладёт — отклоню через %d с", chatAdvertMsg = "Let's trade!", rerolling = "Убрал и вернул — значит, хочет другое: собираю другой набор", antiFling = "Анти-флинг", theme = "Акцент",
+           noPrice = "без цены: %d", settings = "Настройки", size = "Размер текста", scale = "Масштаб", tabMain = "Основное", tabTrade = "Трейд", tabTrade2 = "Принятие", tabGame = "Прочее", tabChat = "Чат", valuesTitle = "Таблица цен", invStats = "Статистика инвентаря", invTotal = "Общая цена инвентаря", histItems = "Предметы", histSum = "Трейдов: %d · итог: %s", histPending = "На проверке: %d — попадут в список, только если инвентарь подтвердит обмен", histTrades = "История трейдов", histNone = "Пока нет трейдов — после каждого состоявшегося трейда он появится здесь", histGave = "отдал", histGot = "получил", invTitle = "Инвентарь · сейчас %s", invNote = "За 24 ч: %s  ·  за 7 дн: %s  ·  точек: %d", invEmpty = "Пока нет данных: открой трейд, когда в твоём предложении пусто, — скрипт запишет стоимость инвентаря", openValues = "Открыть", rangeL = "Диапазон", demandL = "Спрос", rarityL = "Редкость", stab = { ["Stable"] = "Стабильно", ["Doing Well"] = "Растёт", ["Fluctuating"] = "Колеблется", ["Underpaid For"] = "Недоплачивают", ["Overpaid For"] = "Переплачивают" }, chatInTrade = "Показывать во время трейда", chatRequests = "Выполнять просьбы из чата", declineMsg = "Писать в чат причину отказа", declPress = "отказ: кнопок %d, попытка %d (сработали способы: %s)", declWait = "Не нужен %s — отклоню через %d с", declNoBtn = "кнопка «Отказ» не найдена [%s]", declTry = "Нежелательный предмет: %s — отказ, попытка %d", reqPlan = "Просит: %s", reqAdd = "добавь %s", reqRemove = "убери %s", reqDone = "Просьба выполнена", reqTooMuch = "Просит %s — это больше, чем он даёт", reqDoing = "Выполняю просьбу: %s", acc = { off = "", wait = "автопринятие: ждём предметы соперника", busy = "автопринятие: скрипт кладёт предметы", unk = "автопринятие: у тебя предметы без цены", bad = "автопринятие: нежелательный предмет", low = "автопринятие: прибыль ниже цели (%d%%)", hold = "автопринятие: проверка %d с", countdown = "автопринятие: ждём отсчёт MM2", nobtn = "автопринятие: кнопка «Принять» не найдена [%s]", click = "автопринятие: нажал, способ %d (попытка %d)", gaveup = "автопринятие: 9 попыток без результата", waitThem = "автопринятие: я принял, ждём соперника" }, antiAfk = "Анти-АФК", chatAdvert = "«Let's trade!» в чат раз в 2 минуты", outreach = "Самому предлагать трейд игрокам по списку", outSent = "Предложил трейд: %s", outAskMsg = "This offer is for your %s! Add it and I accept", outAsked = "Написал в чат: хочу %s за свой оффер", outCancel = "Запрос не приняли за 30 с — отменил, следующему через минуту",outProfile = "Профиль %s: самое дорогое — %s, предложу %s", outNoProfile = "Профиль %s: годли нет — следующий игрок", outProfileFail = "Профиль %s не открылся — следующий игрок", outRetry = "Авто-предложения: «Обмен» не нажалась, другой способ (%d)", outTradeFail = "Авто-предложения: не получилось нажать «Обмен» для %s", outNoPlus = "Авто-предложения: не нашёл «+» возле числа игроков", outNoList = "Авто-предложения: нажал «+», но списка игроков не видно", outNoTradeBtn = "Авто-предложения: нажал на %s, но кнопки «Обмен» нет", outAllSent = "Авто-предложения: всем уже предложено, следующий круг через 10 мин", outWait = "%s ничего не кладёт — отклоню через %d с", chatAdvertMsg = "Let's trade!", rerolling = "Убрал и вернул — значит, хочет другое: собираю другой набор", antiFling = "Анти-флинг", theme = "Акцент",
            font = "Шрифт", lang = "Язык", diff = "Показывать разницу", reset = "Вернуть плашку на место",
            loaded = "Цен загружено: %d", failed = "Цены не загрузились", noOffers = "Окно трейда не распознано",
            auto = "Автооффер", target = "Цель прибыли", enabled = "Скрипт включён", allLabel = "Все функции", allOff = "Всё выкл.", allOn = "Всё вкл.", allOffDone = "Все функции выключены", allOnDone = "Все функции включены", highlight = "Подсветка", autoAdd = "Авто-добавление",
@@ -131,7 +131,7 @@ local L = {
            sugOk = "Цель %s достигнута", sugRemove = "Цель %s: убери ~%s", sugRemoving = "Цель %s: убираю лишнее (~%s)", sugNone = "Цель %s: нечем добить (~%s)",
            sugWait = "Цель %s: ждём предметы соперника" },
     en = { you = "YOU", them = "THEM", win = "GAIN", good = "PROFIT", fair = "FAIR", bad = "LOSS", empty = "EMPTY",
-           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Other", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTotal = "Total inventory value", histItems = "Items", histSum = "Trades: %d · total: %s", histPending = "Being verified: %d — listed only if your inventory confirms the trade", histTrades = "Trade history", histNone = "No trades yet — every completed trade will show up here", histGave = "gave", histGot = "got", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result", waitThem = "auto-accept: accepted, waiting for them" }, antiAfk = "Anti-AFK", chatAdvert = "«Let's trade!» in chat every 2 minutes", outreach = "Send trade requests to players in the list", outSent = "Sent a trade request: %s", outAskMsg = "This offer is for your %s! Add it and I accept", outAsked = "Said in chat: want %s for my offer", outCancel = "Request not accepted in 30 s — cancelled, next one in a minute",outProfile = "%s's profile: priciest item %s, I will offer %s", outNoProfile = "%s's profile: no priced items seen — will wait for their offer", outRetry = "Outreach: «Trade» did not react, another method (%d)", outTradeFail = "Outreach: could not press «Trade» for %s", outNoPlus = "Outreach: can't find «+» next to the player count", outNoList = "Outreach: pressed «+», but no player list", outNoTradeBtn = "Outreach: tapped %s, but no «Trade» button", outAllSent = "Outreach: everyone got a request, next round in 10 min", outWait = "%s puts nothing — declining in %d s", chatAdvertMsg = "Let's trade!", rerolling = "Removed and returned — wants something else: building another set", antiFling = "Anti-fling", theme = "Accent",
+           noPrice = "no price: %d", settings = "Settings", size = "Text size", scale = "Scale", tabMain = "General", tabTrade = "Trading", tabTrade2 = "Accepting", tabGame = "Other", tabChat = "Chat", valuesTitle = "Value list", invStats = "Inventory stats", invTotal = "Total inventory value", histItems = "Items", histSum = "Trades: %d · total: %s", histPending = "Being verified: %d — listed only if your inventory confirms the trade", histTrades = "Trade history", histNone = "No trades yet — every completed trade will show up here", histGave = "gave", histGot = "got", invTitle = "Inventory · now %s", invNote = "24 h: %s  ·  7 days: %s  ·  points: %d", invEmpty = "No data yet: open a trade while your offer is empty — the script records your inventory value", openValues = "Open", rangeL = "Range", demandL = "Demand", rarityL = "Rarity", stab = {}, chatInTrade = "Show during a trade", chatRequests = "Follow chat requests", declineMsg = "Say why I decline in chat", declPress = "decline: buttons %d, try %d (methods fired: %s)", declWait = "Unwanted %s — declining in %d s", declNoBtn = "Decline button not found [%s]", declTry = "Unwanted item: %s — declining, try %d", reqPlan = "Asks: %s", reqAdd = "add %s", reqRemove = "remove %s", reqDone = "Request done", reqTooMuch = "Asks %s — more than they give", reqDoing = "Doing the request: %s", acc = { off = "", wait = "auto-accept: waiting for their items", busy = "auto-accept: adding items", unk = "auto-accept: you have unpriced items", bad = "auto-accept: unwanted item", low = "auto-accept: profit below target (%d%%)", hold = "auto-accept: checking %d s", countdown = "auto-accept: waiting for MM2 countdown", nobtn = "auto-accept: Accept button not found [%s]", click = "auto-accept: clicked, method %d (try %d)", gaveup = "auto-accept: 9 tries, no result", waitThem = "auto-accept: accepted, waiting for them" }, antiAfk = "Anti-AFK", chatAdvert = "«Let's trade!» in chat every 2 minutes", outreach = "Send trade requests to players in the list", outSent = "Sent a trade request: %s", outAskMsg = "This offer is for your %s! Add it and I accept", outAsked = "Said in chat: want %s for my offer", outCancel = "Request not accepted in 30 s — cancelled, next one in a minute",outProfile = "%s's profile: priciest item %s, I will offer %s", outNoProfile = "%s's profile: no godlies — next player", outProfileFail = "%s's profile did not open — next player", outRetry = "Outreach: «Trade» did not react, another method (%d)", outTradeFail = "Outreach: could not press «Trade» for %s", outNoPlus = "Outreach: can't find «+» next to the player count", outNoList = "Outreach: pressed «+», but no player list", outNoTradeBtn = "Outreach: tapped %s, but no «Trade» button", outAllSent = "Outreach: everyone got a request, next round in 10 min", outWait = "%s puts nothing — declining in %d s", chatAdvertMsg = "Let's trade!", rerolling = "Removed and returned — wants something else: building another set", antiFling = "Anti-fling", theme = "Accent",
            font = "Font", lang = "Language", diff = "Show difference", reset = "Reset bar position",
            loaded = "Prices loaded: %d", failed = "Failed to load prices", noOffers = "Trade window not recognised",
            auto = "Auto-offer", target = "Profit target", enabled = "Script enabled", allLabel = "All features", allOff = "All off", allOn = "All on", allOffDone = "All features are off", allOnDone = "All features are on", highlight = "Highlight", autoAdd = "Auto-add",
@@ -3496,7 +3496,15 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
         for _, d in ipairs(tg:GetDescendants()) do
             if d:IsA("TextLabel") and d.Text ~= "" and isShown(d) then
                 local t = env.TV_low(d.Text)
-                if t:find("you accepted") or t:find("вы согласил") or t:find("вы принял") then auto.setAcc("waitThem"); return end
+                if t:find("you accepted") or t:find("вы согласил") or t:find("вы принял") then
+                    -- «Вы уверены?» пропала после моего нажатия — запоминаем рабочий способ для этого этапа
+                    if auto.accLastStage == "confirm" and auto.accLastMethod and os.clock() - auto.accLast < 8 then
+                        S.accGood = S.accGood or {}
+                        if S.accGood.confirm ~= auto.accLastMethod then S.accGood.confirm = auto.accLastMethod; saveSettings() end
+                        auto.accLastStage = nil
+                    end
+                    auto.setAcc("waitThem"); return
+                end
             end
         end
         -- подсказка для отладки: окно и видимые кнопки, которые скрипт видит (коротко — иначе плашка растягивается)
@@ -3513,18 +3521,36 @@ function auto.tryAccept(tg, theirs, my, th, myUnk)
     -- надпись на кнопке сменилась («Принять» -> «Вы уверены?» или обратно после отмены) — новый этап, попытки заново
     local lbl = btn:FindFirstChildWhichIsA("TextLabel", true)
     local btnText = (btn:IsA("TextButton") and btn.Text or "") .. "|" .. (lbl and lbl.Text or "")
-    if btnText ~= auto.accBtnText then auto.accBtnText, auto.accTries = btnText, 0 end
+    local low = env.TV_low(btnText)
+    local stage = (low:find("уверен") or low:find("sure") or low:find("confirm")) and "confirm" or "accept"
+    if btnText ~= auto.accBtnText then
+        -- кнопка сменилась после моего нажатия — этот способ сработал на прошлом этапе: запоминаем (навсегда)
+        if auto.accBtnText and auto.accLastMethod and auto.accLastStage and os.clock() - auto.accLast < 8 then
+            S.accGood = S.accGood or {}
+            if S.accGood[auto.accLastStage] ~= auto.accLastMethod then S.accGood[auto.accLastStage] = auto.accLastMethod; saveSettings() end
+        end
+        auto.accBtnText, auto.accTries = btnText, 0
+    end
+    -- «Вы уверены?»: MM2 несколько секунд не даёт подтвердить — жмём тем же рабочим способом каждые 1.5 с, пока не пройдёт,
+    -- а не перебираем все способы по кругу (раньше первым шёл способ 1, который на этой кнопке не работает: 2 круга впустую)
     auto.accLast = os.clock()
     auto.accTries += 1
-    -- если кнопка после нажатия не изменилась, следующая попытка — другим способом
-    local ACC_WAYS = { 1, 3, 5, 2, 4 }
-    -- способ по кругу; не сработал — следующий (а не снова первый: на «Вы уверены?» он не помогает)
+    local good = (S.accGood or {})[stage]
+    local ACC_WAYS = stage == "confirm" and { 3, 5, 4, 2, 1 } or { 1, 3, 5, 2, 4 }
+    if good then
+        local w = { good }
+        for _, m in ipairs(ACC_WAYS) do if m ~= good then table.insert(w, m) end end
+        ACC_WAYS = w
+    end
+    -- первые 4 попытки — первым (рабочим) способом; дальше по кругу
+    local start = auto.accTries <= 4 and 0 or (auto.accTries - 4)
     local used
     for k = 0, #ACC_WAYS - 1 do
-        local method = ACC_WAYS[(auto.accTries - 1 + k) % #ACC_WAYS + 1]
+        local method = ACC_WAYS[(start + k) % #ACC_WAYS + 1]
         used = clickCell(btn, tg, method)
         if used then break end
     end
+    auto.accLastMethod, auto.accLastStage = used, stage
     if auto.accTries >= 9 then auto.accDone, auto.accDoneAt = true, os.clock() end -- не долбим кнопку бесконечно
     notify(T("accepting"):format(profit == math.huge and 999 or math.floor(profit + 0.5), used or 0))
     auto.setAcc("click", used or 0, auto.accTries)
@@ -6606,18 +6632,66 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     if profBtn then pgui = gg; break end
                                 end
                             end
+                            -- старые данные по этому игроку не используем
+                            if S.bestByPlayer then S.bestByPlayer[nm:lower()] = nil end
+                            if env.TV_outWant then env.TV_outWant[nm:lower()] = nil end
                             if profBtn then
                                 clickCell(profBtn, pgui)
+                                -- окно профиля (ViewProfile): читаем ТОЛЬКО его. Раньше читались все окна игры — и в «профиль»
+                                -- попадал мой собственный инвентарь (Icewing 13 у всех подряд)
+                                local function profileRoot()
+                                    local best, bestA
+                                    for _, gg in ipairs(PlayerGui:GetChildren()) do
+                                        if gg:IsA("ScreenGui") and gg.Enabled and gg ~= ui and gg ~= hlGui then
+                                            env.TV_walk(gg, function(o)
+                                                if (o:IsA("Frame") or o:IsA("ImageLabel") or o:IsA("ScrollingFrame")) and o.Name:lower():find("profile")
+                                                   and env.TV_vis(o) and (not env.TV_inView or env.TV_inView(o)) then
+                                                    local a = o.AbsoluteSize.X * o.AbsoluteSize.Y
+                                                    if not bestA or a > bestA then best, bestA = o, a end
+                                                end
+                                            end)
+                                        end
+                                    end
+                                    return best
+                                end
+                                local others = {} -- ники остальных игроков: профиль с чужим ником — ещё старый, ждём
+                                for _, pl in ipairs(Players:GetPlayers()) do
+                                    if pl ~= Players.LocalPlayer and pl.Name:lower() ~= nm:lower() and pl.DisplayName:lower() ~= nm:lower() then
+                                        others[pl.Name:lower()] = true; others[pl.DisplayName:lower()] = true
+                                    end
+                                end
                                 -- ждём, пока профиль прогрузится целиком (число предметов и сумма 2 раза подряд те же).
                                 -- Читаем ВЕСЬ инвентарь в профиле, включая прокрученные за край ячейки (у них Visible = true)
                                 local vals, topGui, stable, lastSig = {}, nil, 0, ""
                                 local nameOf = {} -- цена → название (для фразы в чате: «хочу твой X»)
-                                for _ = 1, 16 do
+                                local sawProfile, emptyN = false, 0
+                                for step = 1, 18 do
                                     task.wait(0.5)
+                                    local root = profileRoot()
+                                    if not root and (step == 5 or step == 10) then
+                                        -- профиль не открылся — жмём «Профиль» ещё раз другим способом
+                                        for _, gg in ipairs(PlayerGui:GetChildren()) do
+                                            if gg:IsA("ScreenGui") and gg.Enabled and gg ~= ui and gg ~= hlGui then
+                                                local pb2 = exactBtn(gg, { "профиль", "profile" })
+                                                if pb2 then clickCell(pb2, gg, step == 5 and 3 or 1); break end
+                                            end
+                                        end
+                                    end
                                     local cur, tg2, sum = {}, nil, 0
-                                    for _, gg in ipairs(PlayerGui:GetChildren()) do
-                                        if gg:IsA("ScreenGui") and gg.Enabled and gg ~= ui and gg ~= hlGui then
-                                            for _, d in ipairs(gg:GetDescendants()) do
+                                    local stale = false
+                                    if root then
+                                        sawProfile = true
+                                        tg2 = root:FindFirstAncestorWhichIsA("ScreenGui")
+                                        for _, d in ipairs(root:GetDescendants()) do
+                                            if d:IsA("TextLabel") and d.Text ~= "" then
+                                                local key = d.Text:gsub("^%s*%b[]%s*", ""):gsub("^%s+", ""):gsub("%s+$", ""):lower()
+                                                if others[key] then stale = true; break end
+                                            end
+                                        end
+                                    end
+                                    if root and not stale then
+                                        do
+                                            for _, d in ipairs(root:GetDescendants()) do
                                                 if d:IsA("TextLabel") and d.Text ~= "" and env.TV_vis(d) then
                                                     local k = norm(d.Text)
                                                     local v = valueMap[k]
@@ -6626,7 +6700,7 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                                         local cat = (env.TV_primCat or {})[k]
                                                         if (env.TV_ambig or {})[k] then cat = env.TV_cellCat(env.TV_cellOf(d), d) or cat end
                                                         if cat == "godlies" or cat == "chromas" or cat == "ancients" then
-                                                            table.insert(cur, v); sum += v; tg2 = tg2 or gg
+                                                            table.insert(cur, v); sum += v
                                                             nameOf[v] = nameOf[v] or d.Text
                                                         end
                                                     end
@@ -6637,6 +6711,8 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     local sig = #cur .. ":" .. sum
                                     if #cur > 0 and sig == lastSig then stable += 1; if stable >= 2 then break end else stable = 0 end
                                     vals, topGui, lastSig = cur, tg2, sig
+                                    -- профиль его, но годли нет 3 с подряд — дальше не ждём
+                                    if root and not stale and #cur == 0 then emptyN += 1; if emptyN >= 6 then break end else emptyN = 0 end
                                 end
                                 table.sort(vals, function(a, b) return a > b end)
                                 -- сколько я могу отдать: в трейде 4 слота (одинаковые предметы ложатся в один слот стопкой) —
@@ -6666,7 +6742,9 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                     auto.outSkip = true -- у него всё дороже, чем я могу дать, — запрос не шлём
                                     notify(("%s: %s"):format(nm, S.lang == "en" and "nothing I can afford" or "нечего предложить — всё дороже моего инвентаря"))
                                 else
-                                    why("outNoProfile", nm)
+                                    -- профиль не открылся или в нём нет годли — без цели не предлагаем, следующий игрок
+                                    auto.outSkip = true
+                                    notify(T(sawProfile and "outNoProfile" or "outProfileFail"):format(nm))
                                 end
                                 -- закрываем профиль (крестик в его окне) и снова открываем окошко «Профиль / Обмен»
                                 local x = topGui and exactBtn(topGui, { "x", "х", "✕" })
@@ -6685,6 +6763,10 @@ end)() -- отдельная функция: у неё свой лимит 200 �
                                         if e2[1] == nm then clickCell(rowButton(e2[2]), g2); task.wait(0.8); break end
                                     end
                                 end
+                            else
+                                -- кнопки «Профиль» нет — не знаем, что у него есть: не предлагаем вслепую
+                                auto.outSkip = true
+                                notify(T("outProfileFail"):format(nm))
                             end
                         end
                         tradeBtn, tbg = findTradeBtn()

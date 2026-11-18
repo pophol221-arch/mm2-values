@@ -1931,7 +1931,7 @@ end
 local function readItem(frame)
     local price, amount, name = nil, 1, nil
     for _, d in ipairs(frame:GetDescendants()) do
-        if d:IsA("TextLabel") and d.Text ~= "" then
+        if d:IsA("TextLabel") and d.Text ~= "" and d.Name ~= "TVPrice" and d.Name ~= "TVSum" then
             local n = d.Text:match("^[xX]%s*(%d+)$")
             if n then amount = tonumber(n)
             elseif not price and valueMap[norm(d.Text)] then
@@ -4740,6 +4740,7 @@ local function tick()
     themVal.Text = fmt(th) .. ds
     setNote(youNote, myUnk)
     setNote(themNote, thUnk)
+    if env.TV_offerLabels then pcall(env.TV_offerLabels, mine); pcall(env.TV_offerLabels, theirs) end
 
     winLabel.Text = ('<font color="%s">%s %d%%</font>'):format(hex(col), T("win"), pct)
     statusLabel.Text = status
@@ -6919,7 +6920,120 @@ end)() -- отдельная функция: у неё свой лимит 200 �
     end
 end)() -- отдельная функция: у неё свой лимит 200 локальных
 
+------------------------------------------------------------------
+-- В окне трейда: вместо «ВАШЕ / ИХ ПРЕДЛОЖЕНИЕ» — «625 + 650 = 1275», на каждой ячейке — её цена сверху
+------------------------------------------------------------------
+;(function()
+    local hidden = {} -- заголовок MM2 → { прозрачность текста, обводки, UIStroke }
+    local WORDS = { "предложени", "offer" }
+    local function header(offer)
+        local function match(l)
+            if not ((l:IsA("TextLabel") or l:IsA("TextButton")) and l.Text ~= "" and l.Name ~= "TVSum") then return false end
+            local t = env.TV_low(l.Text)
+            for _, w in ipairs(WORDS) do if t:find(w, 1, true) then return true end end
+            return false
+        end
+        for _, d in ipairs(offer:GetDescendants()) do if match(d) then return d end end
+        -- заголовок может лежать рядом с оффером (над ячейками)
+        local par = offer.Parent
+        if par then
+            local top = offer.AbsolutePosition.Y
+            local best, bestD
+            for _, d in ipairs(par:GetDescendants()) do
+                if match(d) and not d:IsDescendantOf(offer) and d.AbsolutePosition.Y <= top + 10 then
+                    local dist = top - d.AbsolutePosition.Y
+                    if not bestD or dist < bestD then best, bestD = d, dist end
+                end
+            end
+            return best
+        end
+    end
+    local function outline(lbl, th)
+        new("UIStroke", { Color = rgb(0, 0, 0), Thickness = th, ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual }, lbl)
+    end
+    env.TV_offerLabels = function(offer)
+        local on = S.enabled
+        -- цены на ячейках (по порядку слева направо — для строки суммы)
+        local cells = {}
+        for _, e in pairs(on and auto.readOffer(offer) or {}) do
+            for _, c in ipairs(e.cells) do
+                local _, amount = readItem(c)
+                table.insert(cells, { c = c, price = e.price, n = amount or 1 })
+            end
+        end
+        table.sort(cells, function(a, b)
+            local pa, pb = a.c.AbsolutePosition, b.c.AbsolutePosition
+            if math.abs(pa.Y - pb.Y) > 4 then return pa.Y < pb.Y end
+            return pa.X < pb.X
+        end)
+        local seen = {}
+        for _, x in ipairs(cells) do
+            seen[x.c] = true
+            local b = x.c:FindFirstChild("TVPrice")
+            if not b then
+                b = new("TextLabel", { Name = "TVPrice", BackgroundTransparency = 1, AnchorPoint = Vector2.new(0.5, 0),
+                    Position = UDim2.fromScale(0.5, 0.03), Size = UDim2.fromScale(0.9, 0.17), TextScaled = true,
+                    Font = Enum.Font.GothamBlack, TextColor3 = rgb(255, 214, 92), ZIndex = (x.c.ZIndex or 1) + 10, Text = "" }, x.c)
+                outline(b, 1.5)
+            end
+            local t = env.TV_fmt(x.price)
+            if b.Text ~= t then b.Text = t end
+            b.Visible = true
+        end
+        for _, d in ipairs(offer:GetDescendants()) do
+            if d.Name == "TVPrice" and d:IsA("TextLabel") and not seen[d.Parent] then d.Visible = false end
+        end
+        -- строка над ячейками: «625 + 650 = 1275» (стопка — «650×2»)
+        local hdr = header(offer)
+        if not hdr then return end
+        local sumL = hdr:FindFirstChild("TVSum")
+        if not on then
+            if sumL then sumL.Visible = false end
+            local h = hidden[hdr]
+            if h then
+                hdr.TextTransparency, hdr.TextStrokeTransparency = h[1], h[2]
+                for st in pairs(h[3]) do st.Enabled = true end
+                hidden[hdr] = nil
+            end
+            return
+        end
+        if not hidden[hdr] then
+            local strokes = {}
+            for _, st in ipairs(hdr:GetChildren()) do if st:IsA("UIStroke") and st.Enabled then strokes[st] = true; st.Enabled = false end end
+            hidden[hdr] = { hdr.TextTransparency, hdr.TextStrokeTransparency, strokes }
+            hdr.TextTransparency, hdr.TextStrokeTransparency = 1, 1
+        end
+        if not sumL then
+            sumL = new("TextLabel", { Name = "TVSum", BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), TextScaled = true,
+                TextXAlignment = hdr.TextXAlignment, Font = Enum.Font.GothamBlack, TextColor3 = rgb(255, 255, 255),
+                ZIndex = (hdr.ZIndex or 1) + 1, Text = "" }, hdr)
+            outline(sumL, 2)
+        end
+        local parts, total = {}, 0
+        for _, x in ipairs(cells) do
+            table.insert(parts, env.TV_fmt(x.price) .. (x.n > 1 and ("×" .. x.n) or ""))
+            total += x.price * x.n
+        end
+        local t = #parts == 0 and "0" or (table.concat(parts, " + ") .. " = " .. env.TV_fmt(total))
+        if sumL.Text ~= t then sumL.Text = t end
+        sumL.Visible = true
+    end
+    -- скрипт закрывают / перезапускают: возвращаем надписи MM2 как были
+    env.TV_offerRestore = function()
+        for hdr, h in pairs(hidden) do
+            pcall(function()
+                hdr.TextTransparency, hdr.TextStrokeTransparency = h[1], h[2]
+                for st in pairs(h[3]) do st.Enabled = true end
+                local l = hdr:FindFirstChild("TVSum")
+                if l then l:Destroy() end
+            end)
+        end
+        hidden = {}
+    end
+end)()
+
 local function cleanup()
+    if env.TV_offerRestore then pcall(env.TV_offerRestore) end
     for _, c in ipairs(conns) do c:Disconnect() end
     if ui then ui:Destroy() end
     if hlGui then hlGui:Destroy() end

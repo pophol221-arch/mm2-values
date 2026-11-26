@@ -1657,11 +1657,11 @@
   "Cavern (Knife)": -1,
   "Cavern Set": -1,
   "Celestial": 50,
-  "Celestial Set": 50,
+  "Celestial Set": 100,
   "Chill": -2,
   "Chilly": -1,
-  "Chroma Alien Set": -500,
-  "Chroma Alienbeam": -500,
+  "Chroma Alien Set": 500,
+  "Chroma Alienbeam": 500,
   "Chroma Bauble": 1000,
   "Chroma Bauble Set": 1000,
   "Chroma Beach Set": -50,
@@ -1671,16 +1671,16 @@
   "Chroma Boneblade": -3,
   "Chroma Bringer Set": -10,
   "Chroma Candleflame": -2,
-  "Chroma Constellation": -1000,
+  "Chroma Constellation": 500,
   "Chroma Cookiecane": -1,
   "Chroma Darkbringer": -5,
   "Chroma Deathshard": -2,
   "Chroma Elderwood Blade": -1,
   "Chroma Emberbow": -500,
-  "Chroma Emberscythe": -2500,
-  "Chroma Emberscythe Set": -3000,
-  "Chroma Embersickle": -50,
-  "Chroma Embersickle Set": -550,
+  "Chroma Emberscythe": -750,
+  "Chroma Emberscythe Set": -1250,
+  "Chroma Embersickle": -150,
+  "Chroma Embersickle Set": -650,
   "Chroma Ever Set": 4000,
   "Chroma Evergreen": 2000,
   "Chroma Evergun": 2000,
@@ -1697,12 +1697,12 @@
   "Chroma Heart Wand": -100,
   "Chroma Heat": -2,
   "Chroma Icecream": -25,
-  "Chroma Immortal": -200,
+  "Chroma Immortal": -50,
   "Chroma Laser": -2,
   "Chroma Lightbringer": -5,
   "Chroma Luger": -2,
-  "Chroma Mortal": -200,
-  "Chroma Mortal Set": -400,
+  "Chroma Mortal": -50,
+  "Chroma Mortal Set": -100,
   "Chroma Ornament": 25,
   "Chroma Pet Set": -7,
   "Chroma Raygun": -250,
@@ -1731,7 +1731,7 @@
   "Clockwork": -2,
   "Coal (Knife)": 3,
   "Colored Seer Set": -6,
-  "Constellation": -50,
+  "Constellation": 50,
   "Cookie (Knife)": 1,
   "Cookie Set": -1,
   "Cookiecane": -1,
@@ -1760,12 +1760,12 @@
   "Elf (2018)": 5,
   "Elf (2019)": -25,
   "Elf (Knife)": -2,
-  "Emberbow": -75,
+  "Emberbow": -50,
   "Emberknife": 3,
-  "Emberscythe": -75,
-  "Emberscythe Set": -150,
+  "Emberscythe": -50,
+  "Emberscythe Set": -100,
   "Embersickle": -5,
-  "Embersickle Set": -80,
+  "Embersickle Set": -55,
   "Energized (Gun)": 1,
   "Eternal": -1,
   "Eternal II": -1,
@@ -1775,9 +1775,9 @@
   "Eternalcane": -2,
   "Eternalcane Set": -4,
   "Euro": -1,
-  "Ever Set": 125,
-  "Evergreen": 75,
-  "Evergun": 50,
+  "Ever Set": 225,
+  "Evergreen": 150,
+  "Evergun": 75,
   "Eye Set": -2,
   "Eyeball": -1,
   "Fairy": -1,
@@ -1794,11 +1794,11 @@
   "Frozen (Knife)": -1,
   "Frozen Set": -2,
   "Full Bringer Set": -1,
-  "Full Chroma Ember Set": -3050,
+  "Full Chroma Ember Set": -1400,
   "Full Colored Seer Set": -1,
   "Full Elderwood Set": -7,
   "Full Elite Set": -2,
-  "Full Ember Set": -155,
+  "Full Ember Set": -105,
   "Full Ice Set": 10,
   "Full Luger Set": 2,
   "Full Swirly Set": -3,
@@ -1965,6 +1965,7 @@
   "Slime (Knife)": -1,
   "Slime Set": -1,
   "Slimy": 2,
+  "Small Set (103)": 5,
   "Small Set (107)": 5,
   "Snakebite (Knife)": -2,
   "Snakebite Set": -2,
@@ -2029,8 +2030,8 @@
   "Vampire Set (Legend.)": -5,
   "Vampire Set (Rare)": -2,
   "Vampire's Axe": -50,
-  "Vampire's Gun": -25,
-  "Vampire's Set": -75,
+  "Vampire's Gun": -50,
+  "Vampire's Set": -100,
   "Vintage Set": -2,
   "Virtual": -2,
   "Virtual Set": -3,
@@ -2364,6 +2365,10 @@
    [
     1795483139,
     155
+   ],
+   [
+    1795657131,
+    160
    ]
   ],
   "Bat Set": [
@@ -2398,6 +2403,10 @@
    [
     1795483139,
     185
+   ],
+   [
+    1795657131,
+    190
    ]
   ],
   "Bats": [
@@ -2506,6 +2515,10 @@
    [
     1795483139,
     775
+   ],
+   [
+    1795657131,
+    825
    ]
   ],
   "Bauble Set": [
@@ -2524,6 +2537,10 @@
    [
     1795483139,
     840
+   ],
+   [
+    1795657131,
+    890
    ]
   ],
   "Beach": [
@@ -2908,6 +2925,10 @@
    [
     1795483139,
     530
+   ],
+   [
+    1795657131,
+    550
    ]
   ],
   "Box of Fertilizer": [
@@ -3044,6 +3065,10 @@
    [
     1795285143,
     90
+   ],
+   [
+    1795657131,
+    95
    ]
   ],
   "Candy Corn": [
@@ -3078,6 +3103,10 @@
    [
     1795285143,
     120
+   ],
+   [
+    1795657131,
+    125
    ]
   ],
   "Candy Swirl (Gun)": [
@@ -3202,6 +3231,10 @@
    [
     1795483139,
     2025
+   ],
+   [
+    1795657131,
+    2075
    ]
   ],
   "Celestial Set": [
@@ -3232,6 +3265,10 @@
    [
     1795483139,
     4525
+   ],
+   [
+    1795657131,
+    4625
    ]
   ],
   "Chill": [
@@ -3322,6 +3359,10 @@
    [
     1794765728,
     30500
+   ],
+   [
+    1795657131,
+    31000
    ]
   ],
   "Chroma Alienbeam": [
@@ -3360,6 +3401,10 @@
    [
     1794765728,
     18000
+   ],
+   [
+    1795657131,
+    18500
    ]
   ],
   "Chroma Bauble": [
@@ -3374,6 +3419,10 @@
    [
     1795483139,
     30000
+   ],
+   [
+    1795657131,
+    31000
    ]
   ],
   "Chroma Bauble Set": [
@@ -3388,6 +3437,10 @@
    [
     1795483139,
     31825
+   ],
+   [
+    1795657131,
+    32825
    ]
   ],
   "Chroma Beach Set": [
@@ -3620,6 +3673,10 @@
    [
     1792242458,
     27000
+   ],
+   [
+    1795657131,
+    27500
    ]
   ],
   "Chroma Cookiecane": [
@@ -3702,6 +3759,10 @@
    [
     1795483139,
     5500
+   ],
+   [
+    1795657131,
+    5000
    ]
   ],
   "Chroma Emberscythe": [
@@ -3752,6 +3813,10 @@
    [
     1795483139,
     6000
+   ],
+   [
+    1795657131,
+    5250
    ]
   ],
   "Chroma Emberscythe Set": [
@@ -3810,6 +3875,10 @@
    [
     1795483139,
     11500
+   ],
+   [
+    1795657131,
+    10250
    ]
   ],
   "Chroma Embersickle": [
@@ -3860,6 +3929,10 @@
    [
     1795483139,
     1800
+   ],
+   [
+    1795657131,
+    1650
    ]
   ],
   "Chroma Embersickle Set": [
@@ -3926,6 +3999,10 @@
    [
     1795483139,
     7300
+   ],
+   [
+    1795657131,
+    6650
    ]
   ],
   "Chroma Ever Set": [
@@ -3976,6 +4053,10 @@
    [
     1795483139,
     95000
+   ],
+   [
+    1795657131,
+    99000
    ]
   ],
   "Chroma Evergreen": [
@@ -4026,6 +4107,10 @@
    [
     1795483139,
     42000
+   ],
+   [
+    1795657131,
+    44000
    ]
   ],
   "Chroma Evergun": [
@@ -4072,6 +4157,10 @@
    [
     1795483139,
     53000
+   ],
+   [
+    1795657131,
+    55000
    ]
   ],
   "Chroma Fang": [
@@ -4268,6 +4357,10 @@
    [
     1792959953,
     1600
+   ],
+   [
+    1795657131,
+    1550
    ]
   ],
   "Chroma Laser": [
@@ -4324,6 +4417,10 @@
    [
     1792959953,
     1600
+   ],
+   [
+    1795657131,
+    1550
    ]
   ],
   "Chroma Mortal Set": [
@@ -4346,6 +4443,10 @@
    [
     1792959953,
     3200
+   ],
+   [
+    1795657131,
+    3100
    ]
   ],
   "Chroma Ornament": [
@@ -4772,6 +4873,10 @@
    [
     1795483139,
     24000
+   ],
+   [
+    1795657131,
+    23500
    ]
   ],
   "Chroma Watergun": [
@@ -4864,6 +4969,10 @@
    [
     1792445186,
     2500
+   ],
+   [
+    1795657131,
+    2550
    ]
   ],
   "Cookie": [
@@ -5528,6 +5637,10 @@
    [
     1795483139,
     575
+   ],
+   [
+    1795657131,
+    525
    ]
   ],
   "Emberknife": [
@@ -5608,6 +5721,10 @@
    [
     1795483139,
     575
+   ],
+   [
+    1795657131,
+    525
    ]
   ],
   "Emberscythe Set": [
@@ -5674,6 +5791,10 @@
    [
     1795483139,
     1150
+   ],
+   [
+    1795657131,
+    1050
    ]
   ],
   "Embersickle": [
@@ -5724,6 +5845,10 @@
    [
     1795483139,
     130
+   ],
+   [
+    1795657131,
+    125
    ]
   ],
   "Embersickle Set": [
@@ -5794,6 +5919,10 @@
    [
     1795483139,
     705
+   ],
+   [
+    1795657131,
+    650
    ]
   ],
   "Energized": [
@@ -5912,6 +6041,10 @@
    [
     1795483139,
     6400
+   ],
+   [
+    1795657131,
+    6625
    ]
   ],
   "Evergreen": [
@@ -5934,6 +6067,10 @@
    [
     1795483139,
     2850
+   ],
+   [
+    1795657131,
+    3000
    ]
   ],
   "Evergun": [
@@ -5952,6 +6089,10 @@
    [
     1795483139,
     3550
+   ],
+   [
+    1795657131,
+    3625
    ]
   ],
   "Eye Set": [
@@ -6228,6 +6369,10 @@
    [
     1795483139,
     13300
+   ],
+   [
+    1795657131,
+    11900
    ]
   ],
   "Full Chroma Set": [
@@ -6342,6 +6487,10 @@
    [
     1795483139,
     1280
+   ],
+   [
+    1795657131,
+    1175
    ]
   ],
   "Full Ice Set": [
@@ -6384,6 +6533,10 @@
    [
     1795483139,
     317
+   ],
+   [
+    1795657131,
+    327
    ]
   ],
   "Full Luger Set": [
@@ -6886,6 +7039,10 @@
    [
     1795483139,
     310
+   ],
+   [
+    1795657131,
+    320
    ]
   ],
   "Haunted": [
@@ -7170,6 +7327,10 @@
    [
     1795483139,
     220
+   ],
+   [
+    1795657131,
+    230
    ]
   ],
   "Icewing": [
@@ -8754,6 +8915,10 @@
    [
     1795285143,
     1240
+   ],
+   [
+    1795657131,
+    1245
    ]
   ],
   "Small Set (107)": [
@@ -8764,6 +8929,10 @@
    [
     1795285143,
     1305
+   ],
+   [
+    1795657131,
+    1310
    ]
   ],
   "Snakebite (Gun)": [
@@ -9828,6 +9997,10 @@
    [
     1795285143,
     4400
+   ],
+   [
+    1795657131,
+    4300
    ]
   ],
   "Traveler's Set": [
@@ -9930,6 +10103,10 @@
    [
     1795285143,
     11000
+   ],
+   [
+    1795657131,
+    10900
    ]
   ],
   "Treat": [
@@ -10140,6 +10317,10 @@
    [
     1795483139,
     1100
+   ],
+   [
+    1795657131,
+    1050
    ]
   ],
   "Vampire's Edge": [
@@ -10164,6 +10345,10 @@
    [
     1795483139,
     1850
+   ],
+   [
+    1795657131,
+    1800
    ]
   ],
   "Vampire's Set": [
@@ -10250,6 +10435,10 @@
    [
     1795483139,
     2950
+   ],
+   [
+    1795657131,
+    2850
    ]
   ],
   "Vintage Set": [
@@ -10853,13 +11042,13 @@
   },
   "Bauble": {
    "d": 6,
-   "r": "775 - 825",
+   "r": "825 - 875",
    "s": "Doing Well",
    "y": 4
   },
   "Bauble Set": {
    "d": 6,
-   "r": "840 - 890",
+   "r": "890 - 940",
    "s": "Doing Well",
    "y": 4
   },
@@ -11093,13 +11282,13 @@
   },
   "Celestial": {
    "d": 6,
-   "r": "2,025 - 2,075",
+   "r": "2,075 - 2,150",
    "s": "Doing Well",
    "y": 4
   },
   "Celestial Set": {
    "d": 6,
-   "r": "4,525 - 4,575",
+   "r": "4,625 - 4,700",
    "s": "Doing Well",
    "y": 4
   },
@@ -11128,12 +11317,14 @@
   },
   "Chroma Bauble": {
    "d": 7,
-   "s": "Stable",
+   "r": "31,000 - 33,000",
+   "s": "Doing Well",
    "y": 6
   },
   "Chroma Bauble Set": {
    "d": 7,
-   "s": "Stable",
+   "r": "32,825 - 34,825",
+   "s": "Doing Well",
    "y": 6
   },
   "Chroma Beach Set": {
@@ -11200,49 +11391,49 @@
   },
   "Chroma Emberbow": {
    "d": 5,
-   "r": "5,000 - 5,500",
+   "r": "4,750 - 5,000",
    "s": "Underpaid For",
    "y": 5
   },
   "Chroma Emberscythe": {
    "d": 5,
-   "r": "5,500 - 6,000",
+   "r": "5,000 - 5,250",
    "s": "Underpaid For",
    "y": 5
   },
   "Chroma Emberscythe Set": {
    "d": 5,
-   "r": "10,500 - 11,500",
+   "r": "9,750 - 10,250",
    "s": "Underpaid For",
    "y": 5
   },
   "Chroma Embersickle": {
    "d": 5,
-   "r": "1,750 - 1,800",
+   "r": "1,600 - 1,650",
    "s": "Underpaid For",
    "y": 4
   },
   "Chroma Embersickle Set": {
    "d": 5,
-   "r": "6,750 - 7,300",
+   "r": "6,350 - 6,650",
    "s": "Underpaid For",
    "y": 5
   },
   "Chroma Ever Set": {
    "d": 7,
-   "r": "95,000 - 99,000",
+   "r": "99,000 - 103,000",
    "s": "Doing Well",
    "y": 8
   },
   "Chroma Evergreen": {
    "d": 7,
-   "r": "42,000 - 44,000",
+   "r": "44,000 - 46,000",
    "s": "Doing Well",
    "y": 7
   },
   "Chroma Evergun": {
    "d": 7,
-   "r": "53,000 - 55,000",
+   "r": "55,000 - 57,000",
    "s": "Doing Well",
    "y": 8
   },
@@ -11321,7 +11512,6 @@
   },
   "Chroma Immortal": {
    "d": 5,
-   "r": "1,600 - 1,800",
    "y": 4
   },
   "Chroma Laser": {
@@ -11341,12 +11531,10 @@
   },
   "Chroma Mortal": {
    "d": 5,
-   "r": "1,600 - 1,800",
    "y": 4
   },
   "Chroma Mortal Set": {
    "d": 5,
-   "r": "3,200 - 3,600",
    "y": 4
   },
   "Chroma Ornament": {
@@ -11466,7 +11654,8 @@
   },
   "Chroma Vampire's Gun": {
    "d": 6,
-   "s": "Stable",
+   "r": "23,000 - 23,500",
+   "s": "Underpaid For",
    "y": 6
   },
   "Chroma Watergun": {
@@ -11506,7 +11695,7 @@
    "y": 3
   },
   "Constellation": {
-   "d": 5,
+   "d": 6,
    "s": "Stable",
    "y": 4
   },
@@ -11667,7 +11856,7 @@
   },
   "Emberbow": {
    "d": 5,
-   "r": "525 - 575",
+   "r": "475 - 525",
    "s": "Underpaid For",
    "y": 3
   },
@@ -11677,25 +11866,25 @@
   },
   "Emberscythe": {
    "d": 5,
-   "r": "525 - 575",
+   "r": "475 - 525",
    "s": "Underpaid For",
    "y": 3
   },
   "Emberscythe Set": {
    "d": 5,
-   "r": "1,050 - 1,150",
+   "r": "950 - 1,050",
    "s": "Underpaid For",
    "y": 3
   },
   "Embersickle": {
-   "d": 3,
-   "r": "125 - 135",
+   "d": 2,
+   "r": "120 - 130",
    "s": "Fluctuating",
    "y": 3
   },
   "Embersickle Set": {
    "d": 5,
-   "r": "650 - 710",
+   "r": "595 - 655",
    "s": "Fluctuating",
    "y": 3
   },
@@ -11746,20 +11935,20 @@
   },
   "Ever Set": {
    "d": 6,
-   "r": "6,400 - 6,600",
+   "r": "6,625 - 6,850",
    "s": "Overpaid For",
    "y": 4
   },
   "Evergreen": {
    "d": 6,
-   "r": "2,850 - 3,000",
+   "r": "3,000 - 3,150",
    "s": "Overpaid For",
    "y": 4
   },
   "Evergun": {
    "d": 6,
-   "r": "3,550 - 3,600",
-   "s": "Doing Well",
+   "r": "3,625 - 3,700",
+   "s": "Overpaid For",
    "y": 4
   },
   "Eye Set": {
@@ -11861,7 +12050,7 @@
   },
   "Full Chroma Ember Set": {
    "d": 5,
-   "r": "12,250 - 13,300",
+   "r": "11,350 - 11,900",
    "s": "Underpaid For",
    "y": 5
   },
@@ -11885,7 +12074,7 @@
   },
   "Full Ember Set": {
    "d": 5,
-   "r": "1,175 - 1,285",
+   "r": "1,070 - 1,180",
    "s": "Fluctuating",
    "y": 3
   },
@@ -12928,10 +13117,10 @@
    "y": 4
   },
   "Small Set (103)": {
-   "r": "1,190 - 1,290"
+   "r": "1,195 - 1,925"
   },
   "Small Set (107)": {
-   "r": "1,255 - 1,355"
+   "r": "1,260 - 1,360"
   },
   "Snakebite (Gun)": {
    "d": 1,
@@ -13266,13 +13455,13 @@
   },
   "Traveler's Gun": {
    "d": 5,
-   "r": "4,300 - 4,400",
+   "r": "4,200 - 4,300",
    "s": "Underpaid For",
    "y": 5
   },
   "Traveler's Set": {
    "d": 5,
-   "r": "10,900 - 11,000",
+   "r": "10,800 - 10,900",
    "s": "Underpaid For",
    "y": 5
   },
@@ -13335,7 +13524,7 @@
   },
   "Vampire's Axe": {
    "d": 5,
-   "r": "1,050 - 1,100",
+   "r": "1,000 - 1,050",
    "s": "Underpaid For",
    "y": 4
   },
@@ -13351,7 +13540,7 @@
   },
   "Vampire's Set": {
    "d": 5,
-   "r": "2,900 - 2,950",
+   "r": "2,800 - 2,850",
    "s": "Underpaid For",
    "y": 4
   },
@@ -13521,7 +13710,7 @@
    "y": 4
   }
  },
- "last_message_id": 1574595154021449861,
+ "last_message_id": 1575324929035862138,
  "set_items": {
   "Alien Set": [
    [
@@ -14888,7 +15077,7 @@
    ]
   ]
  },
- "updated": "2026-11-24T01:18:59.282000+00:00",
+ "updated": "2026-11-26T01:38:51.204000+00:00",
  "values": {
   "<3": 7,
   "Alex": 4,
@@ -14907,8 +15096,8 @@
   "Aurora Set (Rare)": 8,
   "Australis": 125,
   "Badger": 1,
-  "Bat": 155,
-  "Bat Set": 185,
+  "Bat": 160,
+  "Bat Set": 190,
   "Bats": 0,
   "Bats (2020)": 3,
   "Bats (Gun)": 1,
@@ -14918,8 +15107,8 @@
   "Battleaxe": 12,
   "Battleaxe II": 17,
   "Batwing": 40,
-  "Bauble": 775,
-  "Bauble Set": 840,
+  "Bauble": 825,
+  "Bauble Set": 890,
   "Beach": 35,
   "Beach Set": 130,
   "Beachy": 65,
@@ -14941,7 +15130,7 @@
   "Bones": 210,
   "Borealis": 130,
   "Borealis Set": 255,
-  "Bow Set": 530,
+  "Bow Set": 550,
   "Box of Fertilizer": 2,
   "Brains": 130,
   "Branches": 45,
@@ -14953,10 +15142,10 @@
   "C. Traveler's Gun": 140000,
   "C. Vampire's Gun": 24500,
   "Candleflame": 30,
-  "Candy": 90,
+  "Candy": 95,
   "Candy Corn": 0,
   "Candy Corn (2019)": 12,
-  "Candy Set": 120,
+  "Candy Set": 125,
   "Candy Swirl (Gun)": 2,
   "Candy Swirl (Knife)": 1,
   "Candy Swirl Set": 3,
@@ -14968,14 +15157,14 @@
   "Cavern (Gun)": 1,
   "Cavern (Knife)": 7,
   "Cavern Set": 8,
-  "Celestial": 2025,
-  "Celestial Set": 4525,
+  "Celestial": 2075,
+  "Celestial Set": 4625,
   "Chill": 10,
   "Chilly": 3,
-  "Chroma Alien Set": 30500,
-  "Chroma Alienbeam": 18000,
-  "Chroma Bauble": 30000,
-  "Chroma Bauble Set": 31825,
+  "Chroma Alien Set": 31000,
+  "Chroma Alienbeam": 18500,
+  "Chroma Bauble": 31000,
+  "Chroma Bauble Set": 32825,
   "Chroma Beach Set": 1650,
   "Chroma Beachy": 800,
   "Chroma Blizzard": 5500,
@@ -14983,19 +15172,19 @@
   "Chroma Boneblade": 22,
   "Chroma Bringer Set": 125,
   "Chroma Candleflame": 40,
-  "Chroma Constellation": 27000,
+  "Chroma Constellation": 27500,
   "Chroma Cookiecane": 32,
   "Chroma Darkbringer": 65,
   "Chroma Deathshard": 33,
   "Chroma Elderwood Blade": 37,
-  "Chroma Emberbow": 5500,
-  "Chroma Emberscythe": 6000,
-  "Chroma Emberscythe Set": 11500,
-  "Chroma Embersickle": 1800,
-  "Chroma Embersickle Set": 7300,
-  "Chroma Ever Set": 95000,
-  "Chroma Evergreen": 42000,
-  "Chroma Evergun": 53000,
+  "Chroma Emberbow": 5000,
+  "Chroma Emberscythe": 5250,
+  "Chroma Emberscythe Set": 10250,
+  "Chroma Embersickle": 1650,
+  "Chroma Embersickle Set": 6650,
+  "Chroma Ever Set": 99000,
+  "Chroma Evergreen": 44000,
+  "Chroma Evergun": 55000,
   "Chroma Fang": 32,
   "Chroma Fire Bat": 3,
   "Chroma Fire Bear": 3,
@@ -15009,12 +15198,12 @@
   "Chroma Heart Wand": 3500,
   "Chroma Heat": 28,
   "Chroma Icecream": 1525,
-  "Chroma Immortal": 1600,
+  "Chroma Immortal": 1550,
   "Chroma Laser": 40,
   "Chroma Lightbringer": 60,
   "Chroma Luger": 50,
-  "Chroma Mortal": 1600,
-  "Chroma Mortal Set": 3200,
+  "Chroma Mortal": 1550,
+  "Chroma Mortal Set": 3100,
   "Chroma Ornament": 1825,
   "Chroma Pet Set": 21,
   "Chroma Raygun": 12500,
@@ -15037,7 +15226,7 @@
   "Chroma Tides": 27,
   "Chroma Traveler's Gun": 140000,
   "Chroma Treat": 1775,
-  "Chroma Vampire's Gun": 24000,
+  "Chroma Vampire's Gun": 23500,
   "Chroma Watergun": 2300,
   "Chroma Weapon Set": 530,
   "Chromatic": 1,
@@ -15047,7 +15236,7 @@
   "Coal (Knife)": 15,
   "Colored Seer Set": 16,
   "Combat II": 10,
-  "Constellation": 2500,
+  "Constellation": 2550,
   "Cookie": 1,
   "Cookie (Knife)": 1,
   "Cookie Set": 24,
@@ -15079,12 +15268,12 @@
   "Elf (2018)": 20,
   "Elf (2019)": 600,
   "Elf (Knife)": 15,
-  "Emberbow": 575,
+  "Emberbow": 525,
   "Emberknife": 3,
-  "Emberscythe": 575,
-  "Emberscythe Set": 1150,
-  "Embersickle": 130,
-  "Embersickle Set": 705,
+  "Emberscythe": 525,
+  "Emberscythe Set": 1050,
+  "Embersickle": 125,
+  "Embersickle Set": 650,
   "Energized": 2,
   "Energized (Gun)": 2,
   "Eternal": 7,
@@ -15095,9 +15284,9 @@
   "Eternalcane": 13,
   "Eternalcane Set": 26,
   "Euro": 4,
-  "Ever Set": 6400,
-  "Evergreen": 2850,
-  "Evergun": 3550,
+  "Ever Set": 6625,
+  "Evergreen": 3000,
+  "Evergun": 3625,
   "Eye Set": 6,
   "Eyeball": 3,
   "Fairy": 3,
@@ -15119,13 +15308,13 @@
   "Frozen (Knife)": 1,
   "Frozen Set": 4,
   "Full Bringer Set": 189,
-  "Full Chroma Ember Set": 13300,
+  "Full Chroma Ember Set": 11900,
   "Full Chroma Set": 550,
   "Full Colored Seer Set": 43,
   "Full Elderwood Set": 97,
   "Full Elite Set": 6,
-  "Full Ember Set": 1280,
-  "Full Ice Set": 317,
+  "Full Ember Set": 1175,
+  "Full Ice Set": 327,
   "Full Luger Set": 158,
   "Full Swirly Set": 65,
   "Gemstone": 15,
@@ -15174,7 +15363,7 @@
   "Hallowgun": 20,
   "Hallowscythe": 30,
   "Handsaw": 8,
-  "Harvester": 310,
+  "Harvester": 320,
   "Haunted": 1,
   "Haunted (Gun)": 1,
   "Haunted (Knife)": 1,
@@ -15198,7 +15387,7 @@
   "Icedriller Set": 6,
   "Iceflake": 15,
   "Iceflake Set": 33,
-  "Icepiercer": 220,
+  "Icepiercer": 230,
   "Icewing": 13,
   "Icicles": 3,
   "Icicles (Gun)": 3,
@@ -15338,8 +15527,8 @@
   "Slime (Knife)": 1,
   "Slime Set": 2,
   "Slimy": 20,
-  "Small Set (103)": 1240,
-  "Small Set (107)": 1305,
+  "Small Set (103)": 1245,
+  "Small Set (107)": 1310,
   "Snakebite (Gun)": 1,
   "Snakebite (Knife)": 3,
   "Snakebite Set": 4,
@@ -15407,8 +15596,8 @@
   "Traveler (Knife)": 3,
   "Traveler Set": 53,
   "Traveler's Axe": 6600,
-  "Traveler's Gun": 4400,
-  "Traveler's Set": 11000,
+  "Traveler's Gun": 4300,
+  "Traveler's Set": 10900,
   "Treat": 155,
   "Tree": 2,
   "Tree (2021)": 2,
@@ -15421,10 +15610,10 @@
   "Vampire Bat": 3,
   "Vampire Set (Legend.)": 48,
   "Vampire Set (Rare)": 4,
-  "Vampire's Axe": 1100,
+  "Vampire's Axe": 1050,
   "Vampire's Edge": 15,
-  "Vampire's Gun": 1850,
-  "Vampire's Set": 2950,
+  "Vampire's Gun": 1800,
+  "Vampire's Set": 2850,
   "Vintage Set": 59,
   "Virtual": 13,
   "Virtual Set": 30,
